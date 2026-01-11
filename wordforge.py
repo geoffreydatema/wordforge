@@ -10,41 +10,83 @@ from PySide6.QtGui import QFont, QColor
 from PySide6.QtCore import Qt
 
 # --- LORE CONFIGURATION ---
-# 1. Define Categories for Procedural Generation
-VOWELS = [
-    'a', 'э', 'ʟ', 'o', 'h',   # Short
-    'ᴀ', 'и', 'ꭅ', 'ꟻ', 'ю',   # Long
-    'e', 'ᴇ', 'У', 'я', 's'    # Diphthongs/Special
+VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ᴀ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я', 's']
+CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', '⊿', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
+
+# Keyboard Layout: (Key ID, Display Label)
+KEYBOARD_LAYOUT = [
+    [('q', 'q'), ('w', 'э'), ('e', 'p'), ('r', 'ᴛ'), ('t', 'b'), ('y', 'h'), ('u', 'ʟ'), ('i', 'o'), ('o', 'п')],
+    [('a', 'a'), ('s', 'c'), ('d', '⊿'), ('f', 'v'), ('g', 'г'), ('h', 'x'), ('j', 'd'), ('k', 'ᴋ'), ('l', 'ԉ')],
+    [('z', 'z'), ('x', 'ʙ'), ('c', 'Б'), ('v', 'ʜ'), ('b', 'ᴍ')]
 ]
 
-CONSONANTS = [
-    'Б', 'ʙ', 'г', '⊿', 'z', 'ᴋ', 'ԉ', 'ᴍ', 'ʜ', 'п', 
-    'p', 'c', 'ᴛ', 'v', 'x', 'q', 'b', 'd', 'ж', 'ц', 
-    'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ'
-]
+# MAP: Key Sequence -> Target Character
+# Keys are based on the QWERTY Key IDs from the layout above.
+COMBO_MAP = {
+    # SINGLE CHARACTERS (Long Vowels)
+    # Key 'a' is a -> Long 'A'
+    "a": "ᴀ", 
+    # Key 'w' is э (e) -> Long 'E'
+    "w": "и", 
+    # Key 'u' is ʟ (i) -> Long 'I'
+    "u": "ꭅ", 
+    # Key 'i' is o (o) -> Long 'O'
+    "i": "ꟻ", 
+    # Key 'y' is h (u) -> Long 'U'
+    "y": "ю",
 
-# 2. Virtual Keyboard Mapping (Physical Key -> Lore Character)
-KEY_MAP = {
-    # Row 1 (Numbers row)
-    '1': 'ᴀ', '2': 'и', '3': 'ꭅ', '4': 'ꟻ', '5': 'ю', '6': 'e', '7': 'ᴇ', '8': 'У', '9': 'я', '0': 's',
-    # Row 2 (QWERTY)
-    'q': 'q', 'w': 'q', 'e': 'э', 'r': 'p', 't': 'ᴛ', 'y': 'b', 'u': 'h', 'i': 'ʟ', 'o': 'o', 'p': 'п',
-    # Row 3 (ASDF)
-    'a': 'a', 's': 'c', 'd': '⊿', 'f': 'v', 'g': 'г', 'h': 'x', 'j': 'd', 'k': 'ᴋ', 'l': 'ԉ',
-    # Row 4 (ZXCV)
-    'z': 'z', 'x': 'ж', 'c': 'ц', 'v': 'ʙ', 'b': 'Б', 'n': 'ʜ', 'm': 'ᴍ'
+    # CLUSTERS (Phonetic Key Combinations)
+    
+    # "ya" -> Key(T)[b=y] + Key(A)[a]
+    "ta": "я",
+    
+    # "ye" -> Key(T)[b=y] + Key(W)[э=e]
+    "tw": "e",
+    
+    # "yo" -> Key(T)[b=y] + Key(I)[o]
+    "ti": "ᴇ",
+    
+    # "oo" -> Key(I)[o] + Key(I)[o]
+    "ii": "У",
+    
+    # "oe" -> Key(I)[o] + Key(W)[э=e]
+    "iw": "s",
+
+    # "ts" -> Key(R)[ᴛ=t] + Key(S)[c=s]
+    "rs": "ц",
+    
+    # "zh" -> Key(Z)[z] + Key(H)[x=h]
+    "zh": "ж",
+    
+    # "sh" -> Key(S)[c=s] + Key(H)[x=h]
+    "sh": "ш",
+    
+    # "ch" -> Key(K)[k] + Key(H)[x=h]  (Approximation for ch)
+    "kh": "ч",
+    
+    # "sk" -> Key(S)[c=s] + Key(K)[k]
+    "sk": "ꚇ",
+    
+    # "th" (Unvoiced) -> Key(R)[ᴛ=t] + Key(H)[x=h]
+    "rh": "Ұ",
+    
+    # "dh" (Voiced) -> Key(J)[d] + Key(H)[x=h]
+    "dh": "њ",
+    
+    # "ng" -> Key(V)[ʜ=n] + Key(G)[г=g]
+    "vg": "Ꙗ",
+    
+    # "st" -> Key(S)[c=s] + Key(R)[ᴛ=t]
+    "sr": "ԕ"
 }
 
 class WordGenerator:
-    """Handles the logic for creating new words based on lore rules."""
     @staticmethod
     def generate_word(min_syllables=1, max_syllables=3):
         word = ""
         syllables = random.randint(min_syllables, max_syllables)
-        
         for i in range(syllables):
             structure = random.choice(["CV", "CVC", "VC", "CVV"])
-            
             syllable = ""
             if structure == "CV":
                 syllable = random.choice(CONSONANTS) + random.choice(VOWELS)
@@ -54,9 +96,7 @@ class WordGenerator:
                 syllable = random.choice(VOWELS) + random.choice(CONSONANTS)
             elif structure == "CVV":
                 syllable = random.choice(CONSONANTS) + random.choice(VOWELS) + random.choice(VOWELS)
-            
             word += syllable
-            
         return word
 
 class VocabVault(QMainWindow):
@@ -73,6 +113,9 @@ class VocabVault(QMainWindow):
         self.categories = ["dictionary", "phrases"]
         self.tables = {} 
         self.data = self.load_data()
+        
+        self.shift_active = False
+        self.shift_buffer = ""
         
         self.setup_ui()
 
@@ -96,51 +139,36 @@ class VocabVault(QMainWindow):
         self.setCentralWidget(central_widget)
         main_layout = QHBoxLayout(central_widget)
 
-        # === LEFT PANEL: INPUT & GENERATOR ===
+        # === LEFT PANEL ===
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setFixedWidth(450)
+        left_panel.setFixedWidth(500)
         
-        # 1. Title
-        title = QLabel("Word Forge")
-        title.setStyleSheet("font-size: 20px; font-weight: bold;")
-        left_layout.addWidget(title)
-
-        # 2. Generator Controls
+        # Generator
         gen_group = QFrame()
         gen_group.setStyleSheet("background-color: #2b2b2b; border-radius: 8px; padding: 10px;")
         gen_layout = QVBoxLayout(gen_group)
-        
-        gen_label = QLabel("Procedural Generator")
-        gen_label.setStyleSheet("color: #4fc3f7; font-weight: bold;")
-        gen_layout.addWidget(gen_label)
-        
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
         self.gen_result_display.setStyleSheet("font-size: 32px; color: white; margin: 10px;")
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
-        
         btn_generate = QPushButton("Generate Random Word")
         btn_generate.clicked.connect(self.run_generator)
         btn_generate.setStyleSheet("background-color: #0277bd; color: white; padding: 8px;")
         gen_layout.addWidget(btn_generate)
-        
         left_layout.addWidget(gen_group)
-        left_layout.addSpacing(20)
+        left_layout.addSpacing(10)
 
-        # 3. Manual Entry Fields
+        # Manual Entry
         form_layout = QGridLayout()
-        
         self.input_conlang = QLineEdit()
         self.input_conlang.setPlaceholderText("Lore Word")
-        self.input_conlang.setStyleSheet("font-size: 18px; padding: 5px;")
-        
+        self.input_conlang.setStyleSheet("font-size: 24px; padding: 5px; font-weight: bold;")
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
-        
         self.input_notes = QLineEdit()
-        self.input_notes.setPlaceholderText("Etymology / Root Notes (Optional)")
+        self.input_notes.setPlaceholderText("Etymology / Root Notes")
         
         form_layout.addWidget(QLabel("Word:"), 0, 0)
         form_layout.addWidget(self.input_conlang, 0, 1)
@@ -148,123 +176,159 @@ class VocabVault(QMainWindow):
         form_layout.addWidget(self.input_english, 1, 1)
         form_layout.addWidget(QLabel("Root:"), 2, 0)
         form_layout.addWidget(self.input_notes, 2, 1)
-        
         left_layout.addLayout(form_layout)
         
-        # 4. Add Button
         self.add_button = QPushButton("Save to Dictionary")
         self.add_button.setMinimumHeight(45)
         self.add_button.setStyleSheet("background-color: #2e7d32; color: white; font-weight: bold;")
         self.add_button.clicked.connect(self.add_entry)
         left_layout.addWidget(self.add_button)
         
-        # 5. Virtual Keyboard
-        left_layout.addSpacing(20)
-        left_layout.addWidget(QLabel("Alphabet Input:"))
+        # Virtual Keyboard
+        left_layout.addSpacing(15)
+        left_layout.addWidget(QLabel("Touch Keyboard:"))
         keyboard = self.create_keyboard()
         left_layout.addWidget(keyboard)
-        
         left_layout.addStretch()
         
-        # === RIGHT PANEL: DICTIONARY ===
+        # === RIGHT PANEL ===
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
         
-        # Tabs
         self.tabs = QTabWidget()
         for category in self.categories:
             tab = QWidget()
             t_layout = QVBoxLayout(tab)
             table = QTableWidget()
-            table.setColumnCount(3) # Removed Score column
+            table.setColumnCount(3)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes"])
             header = table.horizontalHeader()
             header.setSectionResizeMode(0, QHeaderView.Stretch)
             header.setSectionResizeMode(1, QHeaderView.Stretch)
             header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
-            
             self.tables[category] = table
             t_layout.addWidget(table)
             self.tabs.addTab(tab, category.title())
-            
         right_layout.addWidget(self.tabs)
         
-        # Status Bar (Total Words)
-        status_layout = QHBoxLayout()
         self.stats_label = QLabel("Total Words: 0")
-        self.stats_label.setStyleSheet("color: #888; font-weight: bold;")
-        status_layout.addWidget(self.stats_label)
-        status_layout.addStretch()
-        right_layout.addLayout(status_layout)
+        right_layout.addWidget(self.stats_label)
         
-        # Assemble Main Layout
         main_layout.addWidget(left_panel)
         main_layout.addWidget(right_panel)
 
-        # Load initial data
         for category in self.categories:
             self.refresh_table(category)
 
     def create_keyboard(self):
         container = QWidget()
         layout = QVBoxLayout(container)
-        layout.setSpacing(2)
+        layout.setSpacing(4)
         
-        # Helper to make a row
-        def make_row(chars):
+        for row_data in KEYBOARD_LAYOUT:
             row = QHBoxLayout()
-            row.setSpacing(2)
-            for char in chars:
-                btn = QPushButton(char)
-                btn.setFixedSize(32, 32)
-                btn.clicked.connect(lambda ch=False, c=char: self.insert_char(c))
-                # Style Consonants differently from Vowels
-                if char in VOWELS:
-                    btn.setStyleSheet("color: #ffab91; font-weight: bold;") # Reddish
-                elif char in CONSONANTS:
-                    btn.setStyleSheet("color: #81d4fa; font-weight: bold;") # Blueish
+            row.setSpacing(4)
+            row.addStretch() 
+            for key_id, label in row_data:
+                btn = QPushButton(label)
+                btn.setFixedSize(45, 45)
+                btn.setFont(QFont("Arial", 14))
+                btn.clicked.connect(lambda ch=False, k=key_id, l=label: self.handle_keypress(k, l))
+                
+                if label in VOWELS:
+                    btn.setStyleSheet("background-color: #444; color: #ffab91; border: 1px solid #555;")
+                else:
+                    btn.setStyleSheet("background-color: #444; color: #81d4fa; border: 1px solid #555;")
                 row.addWidget(btn)
             row.addStretch()
-            return row
-
-        # Row 1: Short Vowels
-        layout.addLayout(make_row(['a', 'э', 'ʟ', 'o', 'h']))
-        # Row 2: Long Vowels
-        layout.addLayout(make_row(['ᴀ', 'и', 'ꭅ', 'ꟻ', 'ю']))
-        # Row 3: Special/Diphthongs
-        layout.addLayout(make_row(['e', 'ᴇ', 'У', 'я', 's']))
-        # Row 4: Common Consonants (Labials/Dentals)
-        layout.addLayout(make_row(['Б', 'ʙ', 'г', '⊿', 'z', 'ᴋ', 'ԉ', 'ᴍ', 'ʜ']))
-        # Row 5: Fricatives/Liquids
-        layout.addLayout(make_row(['п', 'p', 'c', 'ᴛ', 'v', 'x', 'q', 'b', 'd']))
-        # Row 6: Complex/Clusters
-        layout.addLayout(make_row(['ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']))
-        
-        # Space / Backspace row
+            layout.addLayout(row)
+            
         ctrl_row = QHBoxLayout()
-        btn_space = QPushButton("Space")
-        btn_space.clicked.connect(lambda: self.insert_char(" "))
-        btn_back = QPushButton("⌫")
-        btn_back.clicked.connect(self.backspace)
-        ctrl_row.addWidget(btn_space)
-        ctrl_row.addWidget(btn_back)
+        ctrl_row.addStretch()
+        
+        self.shift_btn = QPushButton("SHIFT")
+        self.shift_btn.setCheckable(True)
+        self.shift_btn.setFixedSize(80, 45)
+        self.shift_btn.setStyleSheet("""
+            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; }
+            QPushButton:checked { background-color: #ff9800; color: black; }
+        """)
+        self.shift_btn.toggled.connect(self.toggle_shift)
+        ctrl_row.addWidget(self.shift_btn)
+        
+        space_btn = QPushButton("Space")
+        space_btn.setFixedSize(150, 45)
+        space_btn.clicked.connect(lambda: self.input_conlang.insert(" "))
+        ctrl_row.addWidget(space_btn)
+        
+        back_btn = QPushButton("⌫")
+        back_btn.setFixedSize(60, 45)
+        back_btn.clicked.connect(self.backspace)
+        ctrl_row.addWidget(back_btn)
+        
+        ctrl_row.addStretch()
         layout.addLayout(ctrl_row)
         
         return container
 
-    def insert_char(self, char):
-        self.input_conlang.insert(char)
+    def toggle_shift(self, checked):
+        self.shift_active = checked
+        if not checked and self.shift_buffer:
+            if self.shift_buffer in COMBO_MAP:
+                result = COMBO_MAP[self.shift_buffer]
+                self.replace_last_chars(len(self.shift_buffer), result)
+            self.shift_buffer = ""
+
+    def replace_last_chars(self, n, new_text):
+        for _ in range(n):
+            self.input_conlang.backspace()
+        self.input_conlang.insert(new_text)
+
+    def handle_keypress(self, key_id, default_char):
+        if not self.shift_active:
+            self.input_conlang.insert(default_char)
+            self.input_conlang.setFocus()
+            self.shift_buffer = ""
+            return
+
+        # SMART SHIFT LOGIC
+        self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
+        self.shift_buffer += key_id
+        
+        is_prefix = False
+        for code in COMBO_MAP.keys():
+            if code.startswith(self.shift_buffer) and len(code) > len(self.shift_buffer):
+                is_prefix = True
+                break
+        
+        if is_prefix:
+            return
+        
+        if self.shift_buffer in COMBO_MAP:
+            result = COMBO_MAP[self.shift_buffer]
+            self.replace_last_chars(len(self.shift_buffer), result)
+            self.shift_buffer = ""
+        else:
+            prev_buffer = self.shift_buffer[:-1]
+            if prev_buffer in COMBO_MAP:
+                self.input_conlang.backspace() 
+                result = COMBO_MAP[prev_buffer]
+                self.replace_last_chars(len(prev_buffer), result)
+                self.input_conlang.insert(default_char) 
+                self.shift_buffer = ""
+            else:
+                self.shift_buffer = ""
 
     def backspace(self):
         self.input_conlang.backspace()
         self.input_conlang.setFocus()
+        if self.shift_buffer:
+            self.shift_buffer = self.shift_buffer[:-1]
 
     def run_generator(self):
-        # Generate word and put it in the display label
         word = WordGenerator.generate_word()
         self.gen_result_display.setText(word)
-        # Also auto-fill the input box for convenience
         self.input_conlang.setText(word)
 
     def add_entry(self):
@@ -294,7 +358,6 @@ class VocabVault(QMainWindow):
         items = self.data[category]
         table.setRowCount(0)
         self.stats_label.setText(f"Total Words: {sum(len(v) for v in self.data.values())}")
-        
         for r, item in enumerate(items):
             table.insertRow(r)
             table.setItem(r, 0, QTableWidgetItem(item.get('conlang', '')))
