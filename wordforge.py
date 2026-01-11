@@ -39,22 +39,108 @@ COMBO_MAP = {
 DISABLED_KEYS = ['q', 'x', 'c']
 
 class WordGenerator:
+    # --- Vowel Definitions ---
+    SHORT_VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 's']
+    LONG_VOWELS = ['ᴀ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я']
+    ALL_VOWELS = SHORT_VOWELS + LONG_VOWELS
+
     @staticmethod
     def generate_word(min_syllables=1, max_syllables=3):
         word = ""
         syllables = random.randint(min_syllables, max_syllables)
+        
         for i in range(syllables):
-            structure = random.choice(["CV", "CVC", "VC", "CVV"])
+            # Weighted Selection:
+            # CV (30%), CVC (30%), VC (30%), CVV (10%)
+            structure = random.choices(
+                ["CV", "CVC", "VC", "CVV"], 
+                weights=[30, 30, 30, 10],
+                k=1
+            )[0]
+            
             syllable = ""
+            # Helper to check boundary with previous syllable
+            prev_char = word[-1] if word else None
+            
+            # --- GENERATION LOGIC ---
             if structure == "CV":
-                syllable = random.choice(CONSONANTS) + random.choice(VOWELS)
+                # 1. Pick Consonant
+                c = random.choice(CONSONANTS)
+                while c == prev_char:
+                    c = random.choice(CONSONANTS)
+                
+                # 2. Pick Vowel
+                v = random.choice(WordGenerator.ALL_VOWELS)
+                
+                syllable = c + v
+
             elif structure == "CVC":
-                syllable = random.choice(CONSONANTS) + random.choice(VOWELS) + random.choice(CONSONANTS)
+                c1 = random.choice(CONSONANTS)
+                while c1 == prev_char:
+                    c1 = random.choice(CONSONANTS)
+                
+                v = random.choice(WordGenerator.ALL_VOWELS)
+                
+                c2 = random.choice(CONSONANTS)
+                while c2 == v:
+                    c2 = random.choice(CONSONANTS)
+                    
+                syllable = c1 + v + c2
+
             elif structure == "VC":
-                syllable = random.choice(VOWELS) + random.choice(CONSONANTS)
+                # 1. Pick Vowel (Boundary Rules Apply!)
+                valid_vowels = WordGenerator.ALL_VOWELS.copy()
+                
+                # Rule A: No duplicates
+                if prev_char in valid_vowels:
+                    valid_vowels.remove(prev_char)
+                
+                # Rule B: If previous char was Short Vowel, this CANNOT be Short
+                if prev_char in WordGenerator.SHORT_VOWELS:
+                    valid_vowels = [x for x in valid_vowels if x not in WordGenerator.SHORT_VOWELS]
+                
+                # Safety fallback
+                if not valid_vowels: 
+                    v = random.choice(WordGenerator.LONG_VOWELS)
+                else:
+                    v = random.choice(valid_vowels)
+                
+                # 2. Pick Consonant
+                c = random.choice(CONSONANTS)
+                while c == v:
+                    c = random.choice(CONSONANTS)
+                    
+                syllable = v + c
+
             elif structure == "CVV":
-                syllable = random.choice(CONSONANTS) + random.choice(VOWELS) + random.choice(VOWELS)
+                # 1. Pick Consonant
+                c = random.choice(CONSONANTS)
+                while c == prev_char:
+                    c = random.choice(CONSONANTS)
+                
+                # 2. Pick Vowel Pair (No Short-Short)
+                pair_type = random.choice(['LL', 'SL', 'LS'])
+                
+                v1 = ""
+                v2 = ""
+                
+                # Pick First Vowel
+                if pair_type[0] == 'L': v1 = random.choice(WordGenerator.LONG_VOWELS)
+                else: v1 = random.choice(WordGenerator.SHORT_VOWELS)
+                    
+                # Pick Second Vowel
+                if pair_type[1] == 'L': v2 = random.choice(WordGenerator.LONG_VOWELS)
+                else: v2 = random.choice(WordGenerator.SHORT_VOWELS)
+                
+                # Rule: No duplicates
+                while v2 == v1:
+                    if pair_type[1] == 'L': v2 = random.choice(WordGenerator.LONG_VOWELS)
+                    else: v2 = random.choice(WordGenerator.SHORT_VOWELS)
+                
+                syllable = c + v1 + v2
+
             word += syllable
+            
         return word
 
 class PhysicalKeyFilter(QObject):
