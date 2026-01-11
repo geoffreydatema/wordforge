@@ -107,7 +107,7 @@ class PhysicalKeyFilter(QObject):
 class VocabVault(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Future Language Forge")
+        self.setWindowTitle("Word Forge")
         self.resize(1200, 750)
         
         font = QFont()
@@ -178,7 +178,7 @@ class VocabVault(QMainWindow):
         # Manual Entry
         form_layout = QGridLayout()
         self.input_conlang = QLineEdit()
-        self.input_conlang.setPlaceholderText("Type with Physical Keyboard...")
+        self.input_conlang.setPlaceholderText("New Word")
         self.input_conlang.setStyleSheet("font-size: 24px; padding: 5px; font-weight: bold;")
         
         self.input_english = QLineEdit()
