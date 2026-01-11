@@ -21,63 +21,29 @@ KEYBOARD_LAYOUT = [
 ]
 
 # MAP: Key Sequence -> Target Character
-# Keys are based on the QWERTY Key IDs from the layout above.
 COMBO_MAP = {
     # SINGLE CHARACTERS (Long Vowels)
-    # Key 'a' is a -> Long 'A'
     "a": "ᴀ", 
-    # Key 'w' is э (e) -> Long 'E'
     "w": "и", 
-    # Key 'u' is ʟ (i) -> Long 'I'
     "u": "ꭅ", 
-    # Key 'i' is o (o) -> Long 'O'
     "i": "ꟻ", 
-    # Key 'y' is h (u) -> Long 'U'
     "y": "ю",
 
-    # CLUSTERS (Phonetic Key Combinations)
-    
-    # "ya" -> Key(T)[b=y] + Key(A)[a]
-    "ta": "я",
-    
-    # "ye" -> Key(T)[b=y] + Key(W)[э=e]
-    "tw": "e",
-    
-    # "yo" -> Key(T)[b=y] + Key(I)[o]
-    "ti": "ᴇ",
-    
-    # "oo" -> Key(I)[o] + Key(I)[o]
-    "ii": "У",
-    
-    # "oe" -> Key(I)[o] + Key(W)[э=e]
-    "iw": "s",
-
-    # "ts" -> Key(R)[ᴛ=t] + Key(S)[c=s]
-    "rs": "ц",
-    
-    # "zh" -> Key(Z)[z] + Key(H)[x=h]
-    "zh": "ж",
-    
-    # "sh" -> Key(S)[c=s] + Key(H)[x=h]
-    "sh": "ш",
-    
-    # "ch" -> Key(K)[k] + Key(H)[x=h]  (Approximation for ch)
-    "kh": "ч",
-    
-    # "sk" -> Key(S)[c=s] + Key(K)[k]
-    "sk": "ꚇ",
-    
-    # "th" (Unvoiced) -> Key(R)[ᴛ=t] + Key(H)[x=h]
-    "rh": "Ұ",
-    
-    # "dh" (Voiced) -> Key(J)[d] + Key(H)[x=h]
-    "dh": "њ",
-    
-    # "ng" -> Key(V)[ʜ=n] + Key(G)[г=g]
-    "vg": "Ꙗ",
-    
-    # "st" -> Key(S)[c=s] + Key(R)[ᴛ=t]
-    "sr": "ԕ"
+    # CLUSTERS
+    "ta": "я",  # ya
+    "tw": "e",  # ye
+    "ti": "ᴇ",  # yo
+    "ii": "У",  # oo
+    "iw": "s",  # oe
+    "rs": "ц",  # ts
+    "zh": "ж",  # zh
+    "sh": "ш",  # sh
+    "kh": "ч",  # ch
+    "sk": "ꚇ",  # sk
+    "rh": "Ұ",  # th (unvoiced)
+    "jh": "њ",  # dh (voiced)
+    "vg": "Ꙗ",  # ng
+    "sr": "ԕ"   # st
 }
 
 class WordGenerator:
@@ -153,9 +119,25 @@ class VocabVault(QMainWindow):
         self.gen_result_display.setStyleSheet("font-size: 32px; color: white; margin: 10px;")
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
+        
+        # GENERATE BUTTON (Blue Theme)
         btn_generate = QPushButton("Generate Random Word")
         btn_generate.clicked.connect(self.run_generator)
-        btn_generate.setStyleSheet("background-color: #0277bd; color: white; padding: 8px;")
+        btn_generate.setStyleSheet("""
+            QPushButton { 
+                background-color: #0277bd; 
+                color: white; 
+                padding: 8px; 
+                border-radius: 4px; 
+                font-weight: bold;
+            }
+            QPushButton:hover { 
+                background-color: #039be5; 
+            }
+            QPushButton:pressed { 
+                background-color: #01579b; 
+            }
+        """)
         gen_layout.addWidget(btn_generate)
         left_layout.addWidget(gen_group)
         left_layout.addSpacing(10)
@@ -178,9 +160,24 @@ class VocabVault(QMainWindow):
         form_layout.addWidget(self.input_notes, 2, 1)
         left_layout.addLayout(form_layout)
         
+        # SAVE BUTTON (Green Theme)
         self.add_button = QPushButton("Save to Dictionary")
         self.add_button.setMinimumHeight(45)
-        self.add_button.setStyleSheet("background-color: #2e7d32; color: white; font-weight: bold;")
+        self.add_button.setStyleSheet("""
+            QPushButton { 
+                background-color: #2e7d32; 
+                color: white; 
+                font-weight: bold; 
+                border-radius: 4px; 
+                font-size: 16px;
+            }
+            QPushButton:hover { 
+                background-color: #388e3c; 
+            }
+            QPushButton:pressed { 
+                background-color: #1b5e20; 
+            }
+        """)
         self.add_button.clicked.connect(self.add_entry)
         left_layout.addWidget(self.add_button)
         
@@ -225,6 +222,24 @@ class VocabVault(QMainWindow):
         layout = QVBoxLayout(container)
         layout.setSpacing(4)
         
+        # CSS Template for Keys
+        KEY_STYLE = """
+            QPushButton {{
+                background-color: #444; 
+                color: {color}; 
+                border: 1px solid #555; 
+                border-radius: 5px;
+            }}
+            QPushButton:hover {{
+                background-color: #555;
+                border-color: #777;
+            }}
+            QPushButton:pressed {{
+                background-color: #222;
+                border-color: #333;
+            }}
+        """
+
         for row_data in KEYBOARD_LAYOUT:
             row = QHBoxLayout()
             row.setSpacing(4)
@@ -235,10 +250,10 @@ class VocabVault(QMainWindow):
                 btn.setFont(QFont("Arial", 14))
                 btn.clicked.connect(lambda ch=False, k=key_id, l=label: self.handle_keypress(k, l))
                 
-                if label in VOWELS:
-                    btn.setStyleSheet("background-color: #444; color: #ffab91; border: 1px solid #555;")
-                else:
-                    btn.setStyleSheet("background-color: #444; color: #81d4fa; border: 1px solid #555;")
+                # Apply Style with Color Injection
+                text_color = "#ffab91" if label in VOWELS else "#81d4fa"
+                btn.setStyleSheet(KEY_STYLE.format(color=text_color))
+                
                 row.addWidget(btn)
             row.addStretch()
             layout.addLayout(row)
@@ -246,23 +261,38 @@ class VocabVault(QMainWindow):
         ctrl_row = QHBoxLayout()
         ctrl_row.addStretch()
         
+        # SHIFT BUTTON STYLE
         self.shift_btn = QPushButton("SHIFT")
         self.shift_btn.setCheckable(True)
         self.shift_btn.setFixedSize(80, 45)
         self.shift_btn.setStyleSheet("""
-            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; }
-            QPushButton:checked { background-color: #ff9800; color: black; }
+            QPushButton { 
+                background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; 
+            }
+            QPushButton:hover { background-color: #444; border-color: #777; }
+            QPushButton:checked { background-color: #ff9800; color: black; border-color: #e65100; }
         """)
         self.shift_btn.toggled.connect(self.toggle_shift)
         ctrl_row.addWidget(self.shift_btn)
         
+        # CONTROL BUTTONS STYLE (Space/Back)
+        CTRL_STYLE = """
+            QPushButton { 
+                background-color: #333; color: white; border: 1px solid #555; border-radius: 5px; 
+            }
+            QPushButton:hover { background-color: #444; border-color: #777; }
+            QPushButton:pressed { background-color: #222; border-color: #111; }
+        """
+        
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
+        space_btn.setStyleSheet(CTRL_STYLE)
         space_btn.clicked.connect(lambda: self.input_conlang.insert(" "))
         ctrl_row.addWidget(space_btn)
         
         back_btn = QPushButton("⌫")
         back_btn.setFixedSize(60, 45)
+        back_btn.setStyleSheet(CTRL_STYLE)
         back_btn.clicked.connect(self.backspace)
         ctrl_row.addWidget(back_btn)
         
@@ -291,7 +321,6 @@ class VocabVault(QMainWindow):
             self.shift_buffer = ""
             return
 
-        # SMART SHIFT LOGIC
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
         self.shift_buffer += key_id
@@ -319,6 +348,8 @@ class VocabVault(QMainWindow):
                 self.shift_buffer = ""
             else:
                 self.shift_buffer = ""
+
+        self.shift_btn.setChecked(False)
 
     def backspace(self):
         self.input_conlang.backspace()
