@@ -40,23 +40,43 @@ class WordGenerator:
     @staticmethod
     def generate_word(min_syllables=1, max_syllables=3):
         word = ""
-        structure_log = [] # List to track the types (e.g. ["CV", "VC"])
+        structure_log = [] 
         syllables = random.randint(min_syllables, max_syllables)
         
         for i in range(syllables):
-            # Weighted Selection: CV(30), CVC(30), VC(30), CVV(10)
+            # Weighted Selection: 
+            # CV(30), CVC(30), VC(25), CVV(10), V(5)
+            # We treat V as a rare "starter" or "spacer" syllable
             structure = random.choices(
-                ["CV", "CVC", "VC", "CVV"], 
-                weights=[30, 30, 30, 10],
+                ["CV", "CVC", "VC", "CVV", "V"], 
+                weights=[30, 30, 25, 10, 5],
                 k=1
             )[0]
             
-            structure_log.append(structure)
-            syllable = ""
+            # Helper: Check boundary with previous syllable
             prev_char = word[-1] if word else None
             
+            # If previous char was a vowel, we CANNOT start with V or VC
+            # Force a switch to a Consonant-starter to avoid vowel collision
+            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC"]:
+                structure = random.choice(["CV", "CVC"])
+            
+            structure_log.append(structure)
+            syllable = ""
+            
             # --- GENERATION LOGIC ---
-            if structure == "CV":
+            if structure == "V":
+                # Pure Vowel Syllable
+                # Logic: Just pick a vowel (safely)
+                v = random.choice(WordGenerator.ALL_VOWELS)
+                
+                # Rule: No duplicates with previous char
+                if prev_char:
+                    while v == prev_char: v = random.choice(WordGenerator.ALL_VOWELS)
+                
+                syllable = v
+
+            elif structure == "CV":
                 c = random.choice(CONSONANTS)
                 while c == prev_char: c = random.choice(CONSONANTS)
                 v = random.choice(WordGenerator.ALL_VOWELS)
@@ -96,7 +116,6 @@ class WordGenerator:
 
             word += syllable
             
-        # Return both the word and the structure string
         return word, "-".join(structure_log)
 
 class PhysicalKeyFilter(QObject):
