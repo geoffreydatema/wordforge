@@ -45,35 +45,30 @@ class WordGenerator:
         
         for i in range(syllables):
             # Weighted Selection: 
-            # CV(30), CVC(30), VC(25), CVV(10), V(5)
-            # We treat V as a rare "starter" or "spacer" syllable
+            # CV(25), CVC(25), VC(20), CVV(10), V(5), CCV(10), VCC(5)
             structure = random.choices(
-                ["CV", "CVC", "VC", "CVV", "V"], 
-                weights=[30, 30, 25, 10, 5],
+                ["CV", "CVC", "VC", "CVV", "V", "CCV", "VCC"], 
+                weights=[25, 25, 20, 10, 5, 10, 5],
                 k=1
             )[0]
             
             # Helper: Check boundary with previous syllable
             prev_char = word[-1] if word else None
             
-            # If previous char was a vowel, we CANNOT start with V or VC
-            # Force a switch to a Consonant-starter to avoid vowel collision
-            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC"]:
-                structure = random.choice(["CV", "CVC"])
+            # If previous char was a vowel, we CANNOT start with a Vowel-based structure
+            # (V, VC, VCC) are banned in this specific slot to prevent Vowel collisions
+            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC", "VCC"]:
+                # Force switch to a Consonant-starter
+                structure = random.choice(["CV", "CVC", "CCV"])
             
             structure_log.append(structure)
             syllable = ""
             
             # --- GENERATION LOGIC ---
             if structure == "V":
-                # Pure Vowel Syllable
-                # Logic: Just pick a vowel (safely)
                 v = random.choice(WordGenerator.ALL_VOWELS)
-                
-                # Rule: No duplicates with previous char
                 if prev_char:
                     while v == prev_char: v = random.choice(WordGenerator.ALL_VOWELS)
-                
                 syllable = v
 
             elif structure == "CV":
@@ -113,6 +108,38 @@ class WordGenerator:
                     v2 = random.choice(WordGenerator.LONG_VOWELS) if pair_type[1] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
                 
                 syllable = c + v1 + v2
+
+            elif structure == "CCV":
+                # 1. First Consonant
+                c1 = random.choice(CONSONANTS)
+                while c1 == prev_char: c1 = random.choice(CONSONANTS)
+                
+                # 2. Second Consonant (Must not match C1)
+                c2 = random.choice(CONSONANTS)
+                while c2 == c1: c2 = random.choice(CONSONANTS)
+                
+                # 3. Vowel
+                v = random.choice(WordGenerator.ALL_VOWELS)
+                syllable = c1 + c2 + v
+
+            elif structure == "VCC":
+                # 1. Vowel (Boundary Rules)
+                valid_vowels = WordGenerator.ALL_VOWELS.copy()
+                if prev_char in valid_vowels: valid_vowels.remove(prev_char)
+                if prev_char in WordGenerator.SHORT_VOWELS:
+                    valid_vowels = [x for x in valid_vowels if x not in WordGenerator.SHORT_VOWELS]
+                
+                v = random.choice(WordGenerator.LONG_VOWELS) if not valid_vowels else random.choice(valid_vowels)
+                
+                # 2. First Consonant
+                c1 = random.choice(CONSONANTS)
+                while c1 == v: c1 = random.choice(CONSONANTS)
+                
+                # 3. Second Consonant
+                c2 = random.choice(CONSONANTS)
+                while c2 == c1: c2 = random.choice(CONSONANTS)
+                
+                syllable = v + c1 + c2
 
             word += syllable
             
