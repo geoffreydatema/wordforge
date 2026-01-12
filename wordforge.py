@@ -13,26 +13,19 @@ from PySide6.QtCore import Qt, QObject, QEvent
 VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ᴀ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я', 's']
 CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', '⊿', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
 
-# Keyboard Layout: (English Key ID, Lore Character)
+# Keyboard Layout
 KEYBOARD_LAYOUT = [
-    # Row 1 (WERTYUIOP) -> Lore: q, э, p, ᴛ, b, h, ʟ, o, п
     [('w', 'q'), ('e', 'э'), ('r', 'p'), ('t', 'ᴛ'), ('y', 'b'), ('u', 'h'), ('i', 'ʟ'), ('o', 'o'), ('p', 'п')],
-    # Row 2 (ASDFGHJKL) -> Lore: a, c, ⊿, v, г, x, d, ᴋ, ԉ
     [('a', 'a'), ('s', 'c'), ('d', '⊿'), ('f', 'v'), ('g', 'г'), ('h', 'x'), ('j', 'd'), ('k', 'ᴋ'), ('l', 'ԉ')],
-    # Row 3 (ZVBNM) -> Lore: z, ʙ, Б, ʜ, ᴍ (Skipping X and C)
     [('z', 'z'), ('v', 'ʙ'), ('b', 'Б'), ('n', 'ʜ'), ('m', 'ᴍ')]
 ]
 
 # MAP: Physical Key Sequence -> Target Character
 COMBO_MAP = {
-    # --- Single Shifts (Long Vowels) ---
     "a": "ᴀ", "e": "и", "i": "ꭅ", "o": "ꟻ", "u": "ю",
-    
-    # --- Clusters ---
-    "ya": "я", "ye": "e", "yo": "ᴇ",
-    "oo": "У", "oe": "s",
+    "ya": "я", "ye": "e", "yo": "ᴇ", "oo": "У", "oe": "s",
     "ts": "ц", "zh": "ж", "sh": "ш", "kh": "ч", "sk": "ꚇ",
-    "th": "Ұ", "jh": "њ", "ng": "Ꙗ", "st": "ԕ"
+    "th": "Ұ", "dh": "њ", "ng": "Ꙗ", "st": "ԕ"
 }
 
 # KEYS TO DISABLE (Physical English Keys)
@@ -47,108 +40,69 @@ class WordGenerator:
     @staticmethod
     def generate_word(min_syllables=1, max_syllables=3):
         word = ""
+        structure_log = [] # List to track the types (e.g. ["CV", "VC"])
         syllables = random.randint(min_syllables, max_syllables)
         
         for i in range(syllables):
-            # Weighted Selection:
-            # CV (30%), CVC (30%), VC (30%), CVV (10%)
+            # Weighted Selection: CV(30), CVC(30), VC(30), CVV(10)
             structure = random.choices(
                 ["CV", "CVC", "VC", "CVV"], 
                 weights=[30, 30, 30, 10],
                 k=1
             )[0]
             
+            structure_log.append(structure)
             syllable = ""
-            # Helper to check boundary with previous syllable
             prev_char = word[-1] if word else None
             
             # --- GENERATION LOGIC ---
             if structure == "CV":
-                # 1. Pick Consonant
                 c = random.choice(CONSONANTS)
-                while c == prev_char:
-                    c = random.choice(CONSONANTS)
-                
-                # 2. Pick Vowel
+                while c == prev_char: c = random.choice(CONSONANTS)
                 v = random.choice(WordGenerator.ALL_VOWELS)
-                
                 syllable = c + v
 
             elif structure == "CVC":
                 c1 = random.choice(CONSONANTS)
-                while c1 == prev_char:
-                    c1 = random.choice(CONSONANTS)
-                
+                while c1 == prev_char: c1 = random.choice(CONSONANTS)
                 v = random.choice(WordGenerator.ALL_VOWELS)
-                
                 c2 = random.choice(CONSONANTS)
-                while c2 == v:
-                    c2 = random.choice(CONSONANTS)
-                    
+                while c2 == v: c2 = random.choice(CONSONANTS)
                 syllable = c1 + v + c2
 
             elif structure == "VC":
-                # 1. Pick Vowel (Boundary Rules Apply!)
                 valid_vowels = WordGenerator.ALL_VOWELS.copy()
-                
-                # Rule A: No duplicates
-                if prev_char in valid_vowels:
-                    valid_vowels.remove(prev_char)
-                
-                # Rule B: If previous char was Short Vowel, this CANNOT be Short
+                if prev_char in valid_vowels: valid_vowels.remove(prev_char)
                 if prev_char in WordGenerator.SHORT_VOWELS:
                     valid_vowels = [x for x in valid_vowels if x not in WordGenerator.SHORT_VOWELS]
                 
-                # Safety fallback
-                if not valid_vowels: 
-                    v = random.choice(WordGenerator.LONG_VOWELS)
-                else:
-                    v = random.choice(valid_vowels)
-                
-                # 2. Pick Consonant
+                v = random.choice(WordGenerator.LONG_VOWELS) if not valid_vowels else random.choice(valid_vowels)
                 c = random.choice(CONSONANTS)
-                while c == v:
-                    c = random.choice(CONSONANTS)
-                    
+                while c == v: c = random.choice(CONSONANTS)
                 syllable = v + c
 
             elif structure == "CVV":
-                # 1. Pick Consonant
                 c = random.choice(CONSONANTS)
-                while c == prev_char:
-                    c = random.choice(CONSONANTS)
+                while c == prev_char: c = random.choice(CONSONANTS)
                 
-                # 2. Pick Vowel Pair (No Short-Short)
                 pair_type = random.choice(['LL', 'SL', 'LS'])
+                v1 = random.choice(WordGenerator.LONG_VOWELS) if pair_type[0] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
+                v2 = random.choice(WordGenerator.LONG_VOWELS) if pair_type[1] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
                 
-                v1 = ""
-                v2 = ""
-                
-                # Pick First Vowel
-                if pair_type[0] == 'L': v1 = random.choice(WordGenerator.LONG_VOWELS)
-                else: v1 = random.choice(WordGenerator.SHORT_VOWELS)
-                    
-                # Pick Second Vowel
-                if pair_type[1] == 'L': v2 = random.choice(WordGenerator.LONG_VOWELS)
-                else: v2 = random.choice(WordGenerator.SHORT_VOWELS)
-                
-                # Rule: No duplicates
                 while v2 == v1:
-                    if pair_type[1] == 'L': v2 = random.choice(WordGenerator.LONG_VOWELS)
-                    else: v2 = random.choice(WordGenerator.SHORT_VOWELS)
+                    v2 = random.choice(WordGenerator.LONG_VOWELS) if pair_type[1] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
                 
                 syllable = c + v1 + v2
 
             word += syllable
             
-        return word
+        # Return both the word and the structure string
+        return word, "-".join(structure_log)
 
 class PhysicalKeyFilter(QObject):
-    """Intercepts physical keyboard events to route them through Lore Logic."""
     def __init__(self, parent_window):
         super().__init__()
         self.window = parent_window
-        
         self.key_map = {}
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
@@ -157,37 +111,23 @@ class PhysicalKeyFilter(QObject):
     def eventFilter(self, obj, event):
         if event.type() == QEvent.KeyPress:
             key_text = event.text().lower()
-            
-            # 1. Block Disabled Keys IMMEDIATELY
-            if key_text in DISABLED_KEYS:
-                return True # Swallow the event (do nothing)
-            
-            # 2. Handle Special Keys
+            if key_text in DISABLED_KEYS: return True 
             if event.key() == Qt.Key_Backspace:
                 self.window.backspace()
                 return True 
             if event.key() == Qt.Key_Space:
                 self.window.input_conlang.insert(" ")
                 return True
-                
-            # 3. Allow Copy/Paste shortcuts
-            if event.modifiers() & (Qt.ControlModifier | Qt.AltModifier):
-                return False
+            if event.modifiers() & (Qt.ControlModifier | Qt.AltModifier): return False
 
-            # 4. Handle Lore Keys
             if key_text in self.key_map:
                 lore_char = self.key_map[key_text]
-                key_id = key_text 
-                
                 is_shifted = bool(event.modifiers() & Qt.ShiftModifier)
-                
                 if is_shifted:
                     self.window.shift_active = True
                     self.window.shift_btn.setChecked(True)
-                
-                self.window.handle_keypress(key_id, lore_char)
-                return True # Block default insertion
-
+                self.window.handle_keypress(key_text, lore_char)
+                return True 
         return super().eventFilter(obj, event)
 
 class VocabVault(QMainWindow):
@@ -244,16 +184,20 @@ class VocabVault(QMainWindow):
         gen_layout = QVBoxLayout(gen_group)
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
-        self.gen_result_display.setStyleSheet("font-size: 32px; color: white; margin: 10px;")
+        self.gen_result_display.setStyleSheet("font-size: 32px; color: white; margin-top: 10px;")
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
+
+        # NEW: Structure Display Label
+        self.gen_structure_display = QLabel("")
+        self.gen_structure_display.setAlignment(Qt.AlignCenter)
+        self.gen_structure_display.setStyleSheet("color: #888; font-size: 14px; font-style: italic; margin-bottom: 10px;")
+        gen_layout.addWidget(self.gen_structure_display)
         
         btn_generate = QPushButton("Generate Random Word")
         btn_generate.clicked.connect(self.run_generator)
         btn_generate.setStyleSheet("""
-            QPushButton { 
-                background-color: #0277bd; color: white; padding: 8px; border-radius: 4px; font-weight: bold;
-            }
+            QPushButton { background-color: #0277bd; color: white; padding: 8px; border-radius: 4px; font-weight: bold; }
             QPushButton:hover { background-color: #039be5; }
             QPushButton:pressed { background-color: #01579b; }
         """)
@@ -283,16 +227,13 @@ class VocabVault(QMainWindow):
         self.add_button = QPushButton("Save to Dictionary")
         self.add_button.setMinimumHeight(45)
         self.add_button.setStyleSheet("""
-            QPushButton { 
-                background-color: #2e7d32; color: white; font-weight: bold; border-radius: 4px; font-size: 16px;
-            }
+            QPushButton { background-color: #2e7d32; color: white; font-weight: bold; border-radius: 4px; font-size: 16px; }
             QPushButton:hover { background-color: #388e3c; }
             QPushButton:pressed { background-color: #1b5e20; }
         """)
         self.add_button.clicked.connect(self.add_entry)
         left_layout.addWidget(self.add_button)
         
-        # Virtual Keyboard
         left_layout.addSpacing(15)
         left_layout.addWidget(QLabel("Touch Keyboard:"))
         keyboard = self.create_keyboard()
@@ -350,7 +291,6 @@ class VocabVault(QMainWindow):
                 btn.setFixedSize(45, 45)
                 btn.setFont(QFont("Arial", 14))
                 btn.clicked.connect(lambda ch=False, k=key_id, l=label: self.handle_keypress(k, l))
-                
                 text_color = "#ffab91" if label in VOWELS else "#81d4fa"
                 btn.setStyleSheet(KEY_STYLE.format(color=text_color))
                 row.addWidget(btn)
@@ -364,9 +304,7 @@ class VocabVault(QMainWindow):
         self.shift_btn.setCheckable(True)
         self.shift_btn.setFixedSize(80, 45)
         self.shift_btn.setStyleSheet("""
-            QPushButton { 
-                background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; 
-            }
+            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; }
             QPushButton:hover { background-color: #444; border-color: #777; }
             QPushButton:checked { background-color: #ff9800; color: black; border-color: #e65100; }
         """)
@@ -444,7 +382,6 @@ class VocabVault(QMainWindow):
             else:
                 self.shift_buffer = ""
 
-        # Auto-disable Shift after a match (or fail)
         self.shift_btn.setChecked(False)
 
     def backspace(self):
@@ -454,8 +391,10 @@ class VocabVault(QMainWindow):
             self.shift_buffer = self.shift_buffer[:-1]
 
     def run_generator(self):
-        word = WordGenerator.generate_word()
+        # UPDATED: Unpack Tuple (Word, Structure)
+        word, structure = WordGenerator.generate_word()
         self.gen_result_display.setText(word)
+        self.gen_structure_display.setText(structure)
         self.input_conlang.setText(word)
 
     def add_entry(self):
@@ -479,6 +418,7 @@ class VocabVault(QMainWindow):
         self.input_english.clear()
         self.input_notes.clear()
         self.gen_result_display.setText("...")
+        self.gen_structure_display.setText("")
 
     def refresh_table(self, category):
         table = self.tables[category]
