@@ -3,12 +3,27 @@
         {
             "conlang": "cэԉꟻe",
             "english": "word",
-            "notes": "Russian слово"
+            "notes": "based on Russian слово"
         },
         {
             "conlang": "zsvꭅцᴀ",
             "english": "random",
             "notes": ""
+        },
+        {
+            "conlang": "aᴋʙa⊿a",
+            "english": "water",
+            "notes": "mix of English aqua and Russian вода"
+        },
+        {
+            "conlang": "гpaжʜ",
+            "english": "citizen",
+            "notes": "based on Russian гражданин"
+        },
+        {
+            "conlang": "aԕpꟻжa",
+            "english": "star",
+            "notes": "based on Latin astra"
         }
     ],
     "phrases": []
