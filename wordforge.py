@@ -21,7 +21,7 @@ TABLE_SIZE_CORRECTIONS = {
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
 HEADER_SIZE_CORRECTIONS = {
-    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "27pt", "Ꙗ": "20pt"
+    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "24pt", "Ꙗ": "17pt"
 }
 
 # Keyboard Layout
