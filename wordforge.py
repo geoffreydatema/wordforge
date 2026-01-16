@@ -14,9 +14,16 @@ VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ',
 CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
 
 # --- VISUAL TWEAKS ---
-# 100% is normal. <100% shrinks it. >100% grows it.
-SIZE_CORRECTIONS = {
+
+# 1. TABLE CORRECTIONS (Base font ~14pt)
+TABLE_SIZE_CORRECTIONS = {
     "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "16pt", "Ꙗ": "12pt"
+}
+
+# 2. HEADER CORRECTIONS (Base font ~32px/24pt)
+# Scaled up so they look correct in the large generator display
+HEADER_SIZE_CORRECTIONS = {
+    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "24pt", "Ꙗ": "17pt"
 }
 
 # Keyboard Layout
@@ -36,24 +43,30 @@ COMBO_MAP = {
 
 DISABLED_KEYS = ['q', 'x', 'c']
 
-def apply_visual_fixes(text):
+def apply_visual_fixes(text, mode='table'):
     """
-    Wraps text in HTML. 
-    1. Sets a BASE font size for the whole string (14pt).
-    2. Applies relative scaling to specific characters.
+    Wraps text in HTML with specific visual corrections.
+    mode: 'table' (14pt base) or 'header' (32px base)
     """
     if not text: return ""
     
+    # Select the correct dictionary and base size
+    if mode == 'header':
+        corrections = HEADER_SIZE_CORRECTIONS
+        base_size = "32px"
+    else:
+        corrections = TABLE_SIZE_CORRECTIONS
+        base_size = "14pt"
+    
     html = ""
     for char in text:
-        if char in SIZE_CORRECTIONS:
-            scale = SIZE_CORRECTIONS[char]
+        if char in corrections:
+            scale = corrections[char]
             html += f"<span style='font-size:{scale};'>{char}</span>"
         else:
             html += char
             
-    # Wrap in a root span to enforce the base size for the label
-    return f"<span style='font-size:14pt;'>{html}</span>"
+    return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class WordGenerator:
     SHORT_VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 's']
@@ -209,12 +222,16 @@ class VocabVault(QMainWindow):
         gen_layout = QVBoxLayout(gen_group)
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
-        self.gen_result_display.setStyleSheet("font-size: 32px; color: white; margin-top: 10px;")
+        
+        # INCREASED HEIGHT
+        self.gen_result_display.setFixedHeight(80) 
+        self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") # font-size handled by HTML now
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
 
         self.gen_structure_display = QLabel("")
         self.gen_structure_display.setAlignment(Qt.AlignCenter)
+        self.gen_structure_display.setFixedHeight(30)
         self.gen_structure_display.setStyleSheet("color: #888; font-size: 14px; font-style: italic; margin-bottom: 10px;")
         gen_layout.addWidget(self.gen_structure_display)
         
@@ -372,11 +389,11 @@ class VocabVault(QMainWindow):
 
     def run_generator(self):
         word, structure = WordGenerator.generate_word()
-        # Apply visual fixes
-        styled_word = apply_visual_fixes(word)
+        # FIX: Apply Header-specific visual fixes
+        styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
-        self.input_conlang.setText(word)
+        self.input_conlang.setText(word) 
 
     def add_entry(self):
         conlang = self.input_conlang.text().strip()
@@ -404,9 +421,9 @@ class VocabVault(QMainWindow):
         for r, item in enumerate(items):
             table.insertRow(r)
             
-            # Lore Word (Styled)
+            # Lore Word (Styled with Visual Fixes)
             lore_word_raw = item.get('conlang', '')
-            lore_word_styled = apply_visual_fixes(lore_word_raw)
+            lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
             label.setAlignment(Qt.AlignCenter)
             table.setCellWidget(r, 0, label)
