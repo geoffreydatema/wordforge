@@ -5,8 +5,8 @@ import random
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
-                               QMessageBox, QGridLayout, QFrame, QLabel)
-from PySide6.QtGui import QFont, QColor
+                               QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit)
+from PySide6.QtGui import QFont, QColor, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent
 
 # --- LORE CONFIGURATION ---
@@ -14,16 +14,14 @@ VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ',
 CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
 
 # --- VISUAL TWEAKS ---
-
-# 1. TABLE CORRECTIONS (Base font ~14pt)
+# 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
     "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "16pt", "Ꙗ": "12pt"
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
-# Scaled up so they look correct in the large generator display
 HEADER_SIZE_CORRECTIONS = {
-    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "24pt", "Ꙗ": "17pt"
+    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "27pt", "Ꙗ": "20pt"
 }
 
 # Keyboard Layout
@@ -44,13 +42,8 @@ COMBO_MAP = {
 DISABLED_KEYS = ['q', 'x', 'c']
 
 def apply_visual_fixes(text, mode='table'):
-    """
-    Wraps text in HTML with specific visual corrections.
-    mode: 'table' (14pt base) or 'header' (32px base)
-    """
     if not text: return ""
     
-    # Select the correct dictionary and base size
     if mode == 'header':
         corrections = HEADER_SIZE_CORRECTIONS
         base_size = "32px"
@@ -67,6 +60,57 @@ def apply_visual_fixes(text, mode='table'):
             html += char
             
     return f"<span style='font-size:{base_size};'>{html}</span>"
+
+class RichLineEdit(QTextEdit):
+    """
+    A Custom Widget that looks like a QLineEdit but supports Rich Text (HTML).
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setAcceptRichText(True)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setTabChangesFocus(True)
+        self.setLineWrapMode(QTextEdit.NoWrap)
+        self.setFixedHeight(40) # Fixed height to match single line input
+        
+        # Style to match the other inputs
+        self.setStyleSheet("""
+            QTextEdit {
+                font-size: 14pt; 
+                font-weight: bold;
+                padding: 5px; 
+                border: 1px solid #555; 
+                border-radius: 2px;
+                background-color: #2b2b2b; 
+                color: white;
+            }
+        """)
+
+    def keyPressEvent(self, event):
+        # Prevent newlines when hitting Enter
+        if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            return 
+        super().keyPressEvent(event)
+
+    def setText(self, text):
+        # Automatically apply visual fixes when setting text programmatically
+        styled = apply_visual_fixes(text, mode='table')
+        self.setHtml(styled)
+        self.moveCursor(QTextCursor.End)
+        
+    def text(self):
+        return self.toPlainText()
+        
+    def insert(self, text):
+        # FIX: Apply visual fixes to individual characters/strings inserted
+        # This handles both Virtual Keyboard clicks and Physical key presses
+        styled = apply_visual_fixes(text, mode='table')
+        self.textCursor().insertHtml(styled)
+        
+    def backspace(self):
+        # Compatibility method for Virtual Keyboard
+        self.textCursor().deletePreviousChar()
 
 class WordGenerator:
     SHORT_VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 's']
@@ -223,9 +267,8 @@ class VocabVault(QMainWindow):
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
         
-        # INCREASED HEIGHT
         self.gen_result_display.setFixedHeight(80) 
-        self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") # font-size handled by HTML now
+        self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") 
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
 
@@ -242,14 +285,20 @@ class VocabVault(QMainWindow):
         left_layout.addWidget(gen_group)
         left_layout.addSpacing(10)
 
+        # MANUAL ENTRY
         form_layout = QGridLayout()
-        self.input_conlang = QLineEdit()
+        
+        self.input_conlang = RichLineEdit()
         self.input_conlang.setPlaceholderText("New Word")
-        self.input_conlang.setStyleSheet("font-size: 24px; padding: 5px; font-weight: bold;")
+        
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
+        self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
+        
         self.input_notes = QLineEdit()
         self.input_notes.setPlaceholderText("Etymology / Root Notes")
+        self.input_notes.setStyleSheet("font-size: 14pt; padding: 5px;")
+        
         form_layout.addWidget(QLabel("Word:"), 0, 0)
         form_layout.addWidget(self.input_conlang, 0, 1)
         form_layout.addWidget(QLabel("Def:"), 1, 0)
@@ -389,13 +438,15 @@ class VocabVault(QMainWindow):
 
     def run_generator(self):
         word, structure = WordGenerator.generate_word()
-        # FIX: Apply Header-specific visual fixes
+        # Apply Header-specific visual fixes
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
-        self.input_conlang.setText(word) 
+        # Apply Table-specific visual fixes to the Input box automatically via RichLineEdit
+        self.input_conlang.setText(word)
 
     def add_entry(self):
+        # Must grab plain text for storage, but rich text is purely for display
         conlang = self.input_conlang.text().strip()
         english = self.input_english.text().strip()
         notes = self.input_notes.text().strip()
