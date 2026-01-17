@@ -16,7 +16,7 @@ CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ',
 # --- VISUAL TWEAKS ---
 # 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
-    "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "16pt", "Ꙗ": "12pt"
+    "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "15pt", "Ꙗ": "10pt"
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
@@ -79,7 +79,6 @@ class RichLineEdit(QTextEdit):
             QTextEdit {
                 font-size: 14pt; 
                 font-weight: bold;
-                padding: 5px; 
                 border: 1px solid #555; 
                 border-radius: 2px;
                 background-color: #2b2b2b; 
@@ -476,7 +475,8 @@ class VocabVault(QMainWindow):
             lore_word_raw = item.get('conlang', '')
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
-            label.setAlignment(Qt.AlignCenter)
+            label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+            label.setStyleSheet("padding-left: 5px; padding-top: 0px;")
             table.setCellWidget(r, 0, label)
             
             # English Definition (Standard)
