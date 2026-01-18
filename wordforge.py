@@ -547,8 +547,7 @@ class VocabVault(QMainWindow):
             
             # LEFT ALIGNMENT & PADDING
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-            # label.setStyleSheet("padding-left: 5px; padding-top: 5px;") # Previous tweak
-            # Removed padding as requested by user
+            label.setStyleSheet("padding-left: 2px;")
             
             table.setCellWidget(r, 0, label)
             
