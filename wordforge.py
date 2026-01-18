@@ -14,9 +14,10 @@ VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ',
 CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
 
 # --- VISUAL TWEAKS ---
+
 # 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
-    "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "15pt", "Ꙗ": "10pt"
+    "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "15pt", "Ꙗ": "11pt"
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
@@ -31,10 +32,18 @@ KEYBOARD_LAYOUT = [
     [('z', 'z'), ('v', 'ʙ'), ('b', 'Б'), ('n', 'ʜ'), ('m', 'ᴍ')]
 ]
 
-# Clusters & Combos
+# --- NEW INPUT MAPPING SEPARATION ---
+
+# SHIFT: Single Character replacements (Long Vowels)
+LONG_VOWEL_MAP = {
+    "a": "ʌ", "e": "и", "i": "ꭅ", "o": "ꟻ", "u": "ю"
+}
+
+# ALT: Compound Character replacements
 COMBO_MAP = {
-    "a": "ʌ", "e": "и", "i": "ꭅ", "o": "ꟻ", "u": "ю",
+    # Vowel Compounds
     "ya": "я", "ye": "e", "yo": "ᴇ", "oo": "У", "oe": "s",
+    # Consonant Compounds
     "ts": "ц", "zh": "ж", "sh": "ш", "kh": "ч", "sk": "ꚇ", "st": "ԕ",
     "th": "Ұ", "dh": "њ", "ng": "Ꙗ"
 }
@@ -62,9 +71,6 @@ def apply_visual_fixes(text, mode='table'):
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class RichLineEdit(QTextEdit):
-    """
-    A Custom Widget that looks like a QLineEdit but supports Rich Text (HTML).
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setAcceptRichText(True)
@@ -72,13 +78,15 @@ class RichLineEdit(QTextEdit):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setTabChangesFocus(True)
         self.setLineWrapMode(QTextEdit.NoWrap)
-        self.setFixedHeight(40) # Fixed height to match single line input
+        self.setFixedHeight(50) 
         
-        # Style to match the other inputs
         self.setStyleSheet("""
             QTextEdit {
                 font-size: 14pt; 
                 font-weight: bold;
+                padding-top: 8px; 
+                padding-left: 5px;
+                padding-right: 5px;
                 border: 1px solid #555; 
                 border-radius: 2px;
                 background-color: #2b2b2b; 
@@ -87,13 +95,11 @@ class RichLineEdit(QTextEdit):
         """)
 
     def keyPressEvent(self, event):
-        # Prevent newlines when hitting Enter
         if event.key() in (Qt.Key_Return, Qt.Key_Enter):
             return 
         super().keyPressEvent(event)
 
     def setText(self, text):
-        # Automatically apply visual fixes when setting text programmatically
         styled = apply_visual_fixes(text, mode='table')
         self.setHtml(styled)
         self.moveCursor(QTextCursor.End)
@@ -102,13 +108,10 @@ class RichLineEdit(QTextEdit):
         return self.toPlainText()
         
     def insert(self, text):
-        # FIX: Apply visual fixes to individual characters/strings inserted
-        # This handles both Virtual Keyboard clicks and Physical key presses
         styled = apply_visual_fixes(text, mode='table')
         self.textCursor().insertHtml(styled)
         
     def backspace(self):
-        # Compatibility method for Virtual Keyboard
         self.textCursor().deletePreviousChar()
 
 class WordGenerator:
@@ -209,13 +212,21 @@ class PhysicalKeyFilter(QObject):
             if event.key() == Qt.Key_Space:
                 self.window.input_conlang.insert(" ")
                 return True
-            if event.modifiers() & (Qt.ControlModifier | Qt.AltModifier): return False
+            
+            # --- MODIFIER DETECTION ---
+            # If Physical SHIFT is held, toggle virtual shift ON
+            if event.modifiers() & Qt.ShiftModifier:
+                self.window.shift_active = True
+                self.window.shift_btn.setChecked(True)
+            # If Physical ALT is held, toggle virtual alt ON
+            if event.modifiers() & Qt.AltModifier:
+                self.window.alt_active = True
+                self.window.alt_btn.setChecked(True)
+
+            if event.modifiers() & (Qt.ControlModifier): return False
+            
             if key_text in self.key_map:
                 lore_char = self.key_map[key_text]
-                is_shifted = bool(event.modifiers() & Qt.ShiftModifier)
-                if is_shifted:
-                    self.window.shift_active = True
-                    self.window.shift_btn.setChecked(True)
                 self.window.handle_keypress(key_text, lore_char)
                 return True 
         return super().eventFilter(obj, event)
@@ -231,8 +242,12 @@ class VocabVault(QMainWindow):
         self.categories = ["dictionary", "phrases"]
         self.tables = {} 
         self.data = self.load_data()
-        self.shift_active = False
-        self.shift_buffer = ""
+        
+        # --- INPUT STATES ---
+        self.shift_active = False # For Long Vowels
+        self.alt_active = False   # For Compounds
+        self.alt_buffer = ""      # Stores the compound sequence (e.g., "s" -> "sk")
+        
         self.setup_ui()
         self.key_filter = PhysicalKeyFilter(self)
         self.input_conlang.installEventFilter(self.key_filter)
@@ -292,10 +307,12 @@ class VocabVault(QMainWindow):
         
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
+        self.input_english.setFixedHeight(50)
         self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
         
         self.input_notes = QLineEdit()
         self.input_notes.setPlaceholderText("Etymology / Root Notes")
+        self.input_notes.setFixedHeight(50)
         self.input_notes.setStyleSheet("font-size: 14pt; padding: 5px;")
         
         form_layout.addWidget(QLabel("Word:"), 0, 0)
@@ -363,36 +380,67 @@ class VocabVault(QMainWindow):
                 row.addWidget(btn)
             row.addStretch()
             layout.addLayout(row)
+        
+        # --- MODIFIER ROW ---
         ctrl_row = QHBoxLayout()
         ctrl_row.addStretch()
+        
+        # SHIFT BUTTON
         self.shift_btn = QPushButton("SHIFT")
         self.shift_btn.setCheckable(True)
         self.shift_btn.setFixedSize(80, 45)
-        self.shift_btn.setStyleSheet("QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; } QPushButton:hover { background-color: #444; border-color: #777; } QPushButton:checked { background-color: #ff9800; color: black; border-color: #e65100; }")
+        self.shift_btn.setStyleSheet("""
+            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; }
+            QPushButton:hover { background-color: #444; border-color: #777; }
+            QPushButton:checked { background-color: #ff9800; color: black; border-color: #e65100; }
+        """)
         self.shift_btn.toggled.connect(self.toggle_shift)
         ctrl_row.addWidget(self.shift_btn)
+
+        # ALT BUTTON (NEW)
+        self.alt_btn = QPushButton("ALT")
+        self.alt_btn.setCheckable(True)
+        self.alt_btn.setFixedSize(80, 45)
+        self.alt_btn.setStyleSheet("""
+            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; }
+            QPushButton:hover { background-color: #444; border-color: #777; }
+            QPushButton:checked { background-color: #29b6f6; color: black; border-color: #0288d1; }
+        """)
+        self.alt_btn.toggled.connect(self.toggle_alt)
+        ctrl_row.addWidget(self.alt_btn)
+        
         CTRL_STYLE = "QPushButton { background-color: #333; color: white; border: 1px solid #555; border-radius: 5px; } QPushButton:hover { background-color: #444; border-color: #777; } QPushButton:pressed { background-color: #222; border-color: #111; }"
+        
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
         space_btn.setStyleSheet(CTRL_STYLE)
         space_btn.clicked.connect(lambda: self.input_conlang.insert(" "))
         ctrl_row.addWidget(space_btn)
+        
         back_btn = QPushButton("⌫")
         back_btn.setFixedSize(60, 45)
         back_btn.setStyleSheet(CTRL_STYLE)
         back_btn.clicked.connect(self.backspace)
         ctrl_row.addWidget(back_btn)
+        
         ctrl_row.addStretch()
         layout.addLayout(ctrl_row)
         return container
 
     def toggle_shift(self, checked):
         self.shift_active = checked
-        if not checked and self.shift_buffer:
-            if self.shift_buffer in COMBO_MAP:
-                result = COMBO_MAP[self.shift_buffer]
-                self.replace_last_chars(len(self.shift_buffer), result)
-            self.shift_buffer = ""
+        if checked:
+            # Shift implies Alt is off
+            self.alt_btn.setChecked(False)
+
+    def toggle_alt(self, checked):
+        self.alt_active = checked
+        if checked:
+            # Alt implies Shift is off
+            self.shift_btn.setChecked(False)
+        else:
+            # If turning off Alt, clear the buffer
+            self.alt_buffer = ""
 
     def replace_last_chars(self, n, new_text):
         for _ in range(n):
@@ -400,40 +448,61 @@ class VocabVault(QMainWindow):
         self.input_conlang.insert(new_text)
 
     def handle_keypress(self, key_id, default_char):
-        if not self.shift_active:
+        
+        # 1. SHIFT MODE (Long Vowels Only)
+        if self.shift_active:
+            # Only affect a, e, i, o, u
+            if key_id in LONG_VOWEL_MAP:
+                result = LONG_VOWEL_MAP[key_id]
+                self.input_conlang.insert(result)
+            else:
+                # If not a vowel, shift does nothing special, just insert regular char
+                self.input_conlang.insert(default_char)
+            
+            # Reset Shift after one use (unless held physically, which re-enables it)
+            self.shift_btn.setChecked(False)
+            self.input_conlang.setFocus()
+            return
+
+        # 2. ALT MODE (Compounds Only)
+        if self.alt_active:
             self.input_conlang.insert(default_char)
             self.input_conlang.setFocus()
-            self.shift_buffer = ""
+            self.alt_buffer += key_id
+            
+            # Check for EXACT Match
+            if self.alt_buffer in COMBO_MAP:
+                result = COMBO_MAP[self.alt_buffer]
+                self.replace_last_chars(len(self.alt_buffer), result)
+                self.alt_btn.setChecked(False) # Success! Turn off Alt
+                self.alt_buffer = ""
+                return
+
+            # Check if this is a valid PREFIX (start of a combo)
+            is_prefix = False
+            for code in COMBO_MAP.keys():
+                if code.startswith(self.alt_buffer) and len(code) > len(self.alt_buffer):
+                    is_prefix = True
+                    break
+            
+            # If it's NOT a valid prefix, we have hit a dead end.
+            if not is_prefix:
+                # Dead end. Reset Alt mode, clear buffer.
+                # Note: We leave the characters typed so far in the box (e.g. "s" + "z" -> "sz")
+                self.alt_btn.setChecked(False)
+                self.alt_buffer = ""
+            
             return
+
+        # 3. NORMAL MODE
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
-        self.shift_buffer += key_id
-        is_prefix = False
-        for code in COMBO_MAP.keys():
-            if code.startswith(self.shift_buffer) and len(code) > len(self.shift_buffer):
-                is_prefix = True
-                break
-        if is_prefix: return
-        if self.shift_buffer in COMBO_MAP:
-            result = COMBO_MAP[self.shift_buffer]
-            self.replace_last_chars(len(self.shift_buffer), result)
-            self.shift_buffer = ""
-        else:
-            prev_buffer = self.shift_buffer[:-1]
-            if prev_buffer in COMBO_MAP:
-                self.input_conlang.backspace() 
-                result = COMBO_MAP[prev_buffer]
-                self.replace_last_chars(len(prev_buffer), result)
-                self.input_conlang.insert(default_char) 
-                self.shift_buffer = ""
-            else:
-                self.shift_buffer = ""
-        self.shift_btn.setChecked(False)
 
     def backspace(self):
         self.input_conlang.backspace()
         self.input_conlang.setFocus()
-        if self.shift_buffer: self.shift_buffer = self.shift_buffer[:-1]
+        if self.alt_buffer:
+            self.alt_buffer = self.alt_buffer[:-1]
 
     def run_generator(self):
         word, structure = WordGenerator.generate_word()
@@ -475,8 +544,12 @@ class VocabVault(QMainWindow):
             lore_word_raw = item.get('conlang', '')
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
+            
+            # LEFT ALIGNMENT & PADDING
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-            label.setStyleSheet("padding-left: 5px; padding-top: 0px;")
+            # label.setStyleSheet("padding-left: 5px; padding-top: 5px;") # Previous tweak
+            # Removed padding as requested by user
+            
             table.setCellWidget(r, 0, label)
             
             # English Definition (Standard)
