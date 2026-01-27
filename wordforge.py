@@ -9,46 +9,137 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
 from PySide6.QtGui import QFont, QColor, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent
 
-# --- LORE CONFIGURATION ---
-VOWELS = ['a', 'э', 'ɪ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я', 'ɶ']
-CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'Ԓ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ϣ', 'Ұ', 'њ', 'Ꙗ', 'ʒ']
+# ==========================================
+#        MASTER CHARACTER DEFINITIONS
+# ==========================================
+# Change characters here, and they update everywhere.
+
+class LORE:
+    # --- VOWELS ---
+    # Short
+    A_SHORT = 'a'
+    E_SHORT = 'э'
+    I_SHORT = 'ɪ'
+    O_SHORT = 'o'
+    U_SHORT = 'h' # Sound /u/ or /ʌ/? Mapped to 'u' key
+    OE_SHORT = 's' # Mapped to 'oe' key (Wait, map says 'oe' -> OE_COMBO)
+    
+    # Long (Shifted)
+    A_LONG = 'ʌ'
+    E_LONG = 'и'
+    I_LONG = 'ꭅ'
+    O_LONG = 'ꟻ'
+    U_LONG = 'ю'
+    
+    # Compounds (Alt)
+    YA = 'я'
+    YE = 'e' # Looks like English e
+    YO = 'ᴇ'
+    OO = 'У'
+    OE = 'ɶ'
+
+    # --- CONSONANTS ---
+    # Standard
+    Q = 'q'
+    P = 'p'
+    T = 'ᴛ'
+    B = 'b'
+    P_CYR = 'п'
+    C = 'c'
+    D_CYR = 'д' # Lowercase De
+    V = 'v'
+    G_CYR = 'г'
+    X = 'x'
+    D = 'd'
+    K_SMALL = 'ᴋ'
+    L_CYR = 'Ԓ' 
+    Z = 'z'
+    B_SMALL = 'ʙ'
+    B_CYR = 'Б'
+    N_SMALL = 'ʜ'
+    M_SMALL = 'ᴍ'
+    
+    # Compounds / Special
+    ZH = 'ж'
+    TS = 'ц'
+    CH = 'ч'
+    SH = 'ш'
+    SK = 'ϣ'
+    TH = 'Ұ'
+    DH = 'њ'
+    NG = 'Ꙗ'
+    ST = 'ʒ'
+
+# ==========================================
+#           LORE CONFIGURATION
+# ==========================================
+
+VOWELS = [
+    LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, 
+    LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
+    LORE.YA, LORE.YE, LORE.YO, LORE.OO, LORE.OE
+]
+
+CONSONANTS = [
+    LORE.Q, LORE.P, LORE.T, LORE.B, LORE.P_CYR, LORE.C, LORE.D_CYR, LORE.V, LORE.G_CYR, 
+    LORE.X, LORE.D, LORE.K_SMALL, LORE.L_CYR, LORE.Z, LORE.B_SMALL, LORE.B_CYR, LORE.N_SMALL, LORE.M_SMALL, 
+    LORE.ZH, LORE.TS, LORE.CH, LORE.SH, LORE.SK, LORE.TH, LORE.DH, LORE.NG, LORE.ST
+]
 
 # --- VISUAL TWEAKS ---
 
 # 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
-    "ꟻ": "10.5pt", "У": "10.5pt", "Б": "10.5pt", "Ұ": "10.5pt", "Ꙗ": "10.5pt", 'Ԓ': '10.5pt'
+    LORE.O_LONG: "10.5pt", 
+    LORE.OO:     "10.5pt", 
+    LORE.B_CYR:  "10.5pt", 
+    LORE.TH:     "10.5pt", 
+    LORE.NG:     "10.5pt", 
+    LORE.L_CYR:  "10.5pt",
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
 HEADER_SIZE_CORRECTIONS = {
-    "ꟻ": "17pt", "У": "17.5pt", "Б": "17pt", "Ұ": "17pt", "Ꙗ": "17pt", 'Ԓ': '17pt'
+    LORE.O_LONG: "17pt", 
+    LORE.OO:     "17.5pt", # Note: User specified 17.5pt
+    LORE.B_CYR:  "17pt", 
+    LORE.TH:     "17pt", 
+    LORE.NG:     "17pt", 
+    LORE.L_CYR:  "17pt",
 }
 
-# Keyboard Layout
+# Keyboard Layout (Visual Mapping)
 KEYBOARD_LAYOUT = [
-    [('w', 'q'), ('e', 'э'), ('r', 'p'), ('t', 'ᴛ'), ('y', 'b'), ('u', 'h'), ('i', 'ɪ'), ('o', 'o'), ('p', 'п')],
-    [('a', 'a'), ('s', 'c'), ('d', 'д'), ('f', 'v'), ('g', 'г'), ('h', 'x'), ('j', 'd'), ('k', 'ᴋ'), ('l', 'Ԓ')],
-    [('z', 'z'), ('v', 'ʙ'), ('b', 'Б'), ('n', 'ʜ'), ('m', 'ᴍ')]
+    [('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
+    [('a', LORE.A_SHORT), ('s', LORE.C), ('d', LORE.D_CYR), ('f', LORE.V), ('g', LORE.G_CYR), ('h', LORE.X), ('j', LORE.D), ('k', LORE.K_SMALL), ('l', LORE.L_CYR)],
+    [('z', LORE.Z), ('v', LORE.B_SMALL), ('b', LORE.B_CYR), ('n', LORE.N_SMALL), ('m', LORE.M_SMALL)]
 ]
 
 # --- NEW INPUT MAPPING SEPARATION ---
 
 # SHIFT: Single Character replacements (Long Vowels)
 LONG_VOWEL_MAP = {
-    "a": "ʌ", "e": "и", "i": "ꭅ", "o": "ꟻ", "u": "ю"
+    "a": LORE.A_LONG, 
+    "e": LORE.E_LONG, 
+    "i": LORE.I_LONG, 
+    "o": LORE.O_LONG, 
+    "u": LORE.U_LONG
 }
 
 # ALT: Compound Character replacements
 COMBO_MAP = {
     # Vowel Compounds
-    "ya": "я", "ye": "e", "yo": "ᴇ", "oo": "У", "oe": "ɶ",
+    "ya": LORE.YA, "ye": LORE.YE, "yo": LORE.YO, "oo": LORE.OO, "oe": LORE.OE,
     # Consonant Compounds
-    "ts": "ц", "zh": "ж", "sh": "ш", "kh": "ч", "sk": "ϣ", "st": "ʒ",
-    "th": "Ұ", "dh": "њ", "ng": "Ꙗ"
+    "ts": LORE.TS, "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
+    "sk": LORE.SK, "st": LORE.ST, "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG
 }
 
 DISABLED_KEYS = ['q', 'x', 'c']
+
+# ==========================================
+#              APP LOGIC
+# ==========================================
 
 def apply_visual_fixes(text, mode='table'):
     if not text: return ""
@@ -71,6 +162,9 @@ def apply_visual_fixes(text, mode='table'):
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class RichLineEdit(QTextEdit):
+    """
+    A Custom Widget that looks like a QLineEdit but supports Rich Text (HTML).
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setAcceptRichText(True)
@@ -115,9 +209,24 @@ class RichLineEdit(QTextEdit):
         self.textCursor().deletePreviousChar()
 
 class WordGenerator:
-    SHORT_VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 's']
-    LONG_VOWELS = ['ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я']
-    ALL_VOWELS = SHORT_VOWELS + LONG_VOWELS
+    # Use LORE references for the generator rules
+    SHORT_VOWELS = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, LORE.OE_SHORT]
+    # Note: LORE.OE_SHORT ('s') was in original SHORT_VOWELS list, included here if needed.
+    
+    # Actually, let's stick to the generated list for safety
+    # Filter 's' (English s) out of Short Vowels if it's no longer used as a vowel? 
+    # Your updated VOWELS list has LORE.OE ('ɶ') but not 's'.
+    # I will derive SHORT/LONG from the main VOWELS list to match your new config.
+    
+    # Let's rebuild the specific lists based on your VOWELS definition:
+    # Assumed Short: a, э, ɪ, o, h
+    # Assumed Long: ʌ, и, ꭅ, ꟻ, ю, e, ᴇ, У, я, ɶ
+    
+    GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
+    GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
+                LORE.YE, LORE.YO, LORE.OO, LORE.YA, LORE.OE]
+    
+    ALL_VOWELS = GEN_SHORT + GEN_LONG
 
     @staticmethod
     def generate_word(min_syllables=1, max_syllables=3):
@@ -159,8 +268,8 @@ class WordGenerator:
             elif structure == "VC":
                 valid = WordGenerator.ALL_VOWELS.copy()
                 if prev_char in valid: valid.remove(prev_char)
-                if prev_char in WordGenerator.SHORT_VOWELS: valid = [x for x in valid if x not in WordGenerator.SHORT_VOWELS]
-                v = random.choice(valid) if valid else random.choice(WordGenerator.LONG_VOWELS)
+                if prev_char in WordGenerator.GEN_SHORT: valid = [x for x in valid if x not in WordGenerator.GEN_SHORT]
+                v = random.choice(valid) if valid else random.choice(WordGenerator.GEN_LONG)
                 c = random.choice(CONSONANTS)
                 while c == v: c = random.choice(CONSONANTS)
                 syllable = v + c
@@ -168,9 +277,9 @@ class WordGenerator:
                 c = random.choice(CONSONANTS)
                 while c == prev_char: c = random.choice(CONSONANTS)
                 pair = random.choice(['LL', 'SL', 'LS'])
-                v1 = random.choice(WordGenerator.LONG_VOWELS) if pair[0] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
-                v2 = random.choice(WordGenerator.LONG_VOWELS) if pair[1] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
-                while v2 == v1: v2 = random.choice(WordGenerator.LONG_VOWELS) if pair[1] == 'L' else random.choice(WordGenerator.SHORT_VOWELS)
+                v1 = random.choice(WordGenerator.GEN_LONG) if pair[0] == 'L' else random.choice(WordGenerator.GEN_SHORT)
+                v2 = random.choice(WordGenerator.GEN_LONG) if pair[1] == 'L' else random.choice(WordGenerator.GEN_SHORT)
+                while v2 == v1: v2 = random.choice(WordGenerator.GEN_LONG) if pair[1] == 'L' else random.choice(WordGenerator.GEN_SHORT)
                 syllable = c + v1 + v2
             elif structure == "CCV":
                 c1 = random.choice(CONSONANTS)
@@ -182,8 +291,8 @@ class WordGenerator:
             elif structure == "VCC":
                 valid = WordGenerator.ALL_VOWELS.copy()
                 if prev_char in valid: valid.remove(prev_char)
-                if prev_char in WordGenerator.SHORT_VOWELS: valid = [x for x in valid if x not in WordGenerator.SHORT_VOWELS]
-                v = random.choice(valid) if valid else random.choice(WordGenerator.LONG_VOWELS)
+                if prev_char in WordGenerator.GEN_SHORT: valid = [x for x in valid if x not in WordGenerator.GEN_SHORT]
+                v = random.choice(valid) if valid else random.choice(WordGenerator.GEN_LONG)
                 c1 = random.choice(CONSONANTS)
                 while c1 == v: c1 = random.choice(CONSONANTS)
                 c2 = random.choice(CONSONANTS)
@@ -213,12 +322,9 @@ class PhysicalKeyFilter(QObject):
                 self.window.input_conlang.insert(" ")
                 return True
             
-            # --- MODIFIER DETECTION ---
-            # If Physical SHIFT is held, toggle virtual shift ON
             if event.modifiers() & Qt.ShiftModifier:
                 self.window.shift_active = True
                 self.window.shift_btn.setChecked(True)
-            # If Physical ALT is held, toggle virtual alt ON
             if event.modifiers() & Qt.AltModifier:
                 self.window.alt_active = True
                 self.window.alt_btn.setChecked(True)
@@ -243,10 +349,9 @@ class VocabVault(QMainWindow):
         self.tables = {} 
         self.data = self.load_data()
         
-        # --- INPUT STATES ---
-        self.shift_active = False # For Long Vowels
-        self.alt_active = False   # For Compounds
-        self.alt_buffer = ""      # Stores the compound sequence (e.g., "s" -> "sk")
+        self.shift_active = False
+        self.alt_active = False 
+        self.alt_buffer = "" 
         
         self.setup_ui()
         self.key_filter = PhysicalKeyFilter(self)
@@ -381,11 +486,9 @@ class VocabVault(QMainWindow):
             row.addStretch()
             layout.addLayout(row)
         
-        # --- MODIFIER ROW ---
         ctrl_row = QHBoxLayout()
         ctrl_row.addStretch()
         
-        # SHIFT BUTTON
         self.shift_btn = QPushButton("SHIFT")
         self.shift_btn.setCheckable(True)
         self.shift_btn.setFixedSize(80, 45)
@@ -397,7 +500,6 @@ class VocabVault(QMainWindow):
         self.shift_btn.toggled.connect(self.toggle_shift)
         ctrl_row.addWidget(self.shift_btn)
 
-        # ALT BUTTON (NEW)
         self.alt_btn = QPushButton("ALT")
         self.alt_btn.setCheckable(True)
         self.alt_btn.setFixedSize(80, 45)
@@ -429,18 +531,12 @@ class VocabVault(QMainWindow):
 
     def toggle_shift(self, checked):
         self.shift_active = checked
-        if checked:
-            # Shift implies Alt is off
-            self.alt_btn.setChecked(False)
+        if checked: self.alt_btn.setChecked(False)
 
     def toggle_alt(self, checked):
         self.alt_active = checked
-        if checked:
-            # Alt implies Shift is off
-            self.shift_btn.setChecked(False)
-        else:
-            # If turning off Alt, clear the buffer
-            self.alt_buffer = ""
+        if checked: self.shift_btn.setChecked(False)
+        else: self.alt_buffer = ""
 
     def replace_last_chars(self, n, new_text):
         for _ in range(n):
@@ -448,73 +544,52 @@ class VocabVault(QMainWindow):
         self.input_conlang.insert(new_text)
 
     def handle_keypress(self, key_id, default_char):
-        
-        # 1. SHIFT MODE (Long Vowels Only)
         if self.shift_active:
-            # Only affect a, e, i, o, u
             if key_id in LONG_VOWEL_MAP:
                 result = LONG_VOWEL_MAP[key_id]
                 self.input_conlang.insert(result)
             else:
-                # If not a vowel, shift does nothing special, just insert regular char
                 self.input_conlang.insert(default_char)
-            
-            # Reset Shift after one use (unless held physically, which re-enables it)
             self.shift_btn.setChecked(False)
             self.input_conlang.setFocus()
             return
 
-        # 2. ALT MODE (Compounds Only)
         if self.alt_active:
             self.input_conlang.insert(default_char)
             self.input_conlang.setFocus()
             self.alt_buffer += key_id
-            
-            # Check for EXACT Match
             if self.alt_buffer in COMBO_MAP:
                 result = COMBO_MAP[self.alt_buffer]
                 self.replace_last_chars(len(self.alt_buffer), result)
-                self.alt_btn.setChecked(False) # Success! Turn off Alt
+                self.alt_btn.setChecked(False)
                 self.alt_buffer = ""
                 return
-
-            # Check if this is a valid PREFIX (start of a combo)
             is_prefix = False
             for code in COMBO_MAP.keys():
                 if code.startswith(self.alt_buffer) and len(code) > len(self.alt_buffer):
                     is_prefix = True
                     break
-            
-            # If it's NOT a valid prefix, we have hit a dead end.
             if not is_prefix:
-                # Dead end. Reset Alt mode, clear buffer.
-                # Note: We leave the characters typed so far in the box (e.g. "s" + "z" -> "sz")
                 self.alt_btn.setChecked(False)
                 self.alt_buffer = ""
-            
             return
 
-        # 3. NORMAL MODE
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
 
     def backspace(self):
         self.input_conlang.backspace()
         self.input_conlang.setFocus()
-        if self.alt_buffer:
-            self.alt_buffer = self.alt_buffer[:-1]
+        if self.alt_buffer: self.alt_buffer = self.alt_buffer[:-1]
 
     def run_generator(self):
         word, structure = WordGenerator.generate_word()
-        # Apply Header-specific visual fixes
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
-        # Apply Table-specific visual fixes to the Input box automatically via RichLineEdit
         self.input_conlang.setText(word)
 
     def add_entry(self):
-        # Must grab plain text for storage, but rich text is purely for display
         conlang = self.input_conlang.text().strip()
         english = self.input_english.text().strip()
         notes = self.input_notes.text().strip()
@@ -539,8 +614,6 @@ class VocabVault(QMainWindow):
         
         for r, item in enumerate(items):
             table.insertRow(r)
-            
-            # Lore Word (Styled with Visual Fixes)
             lore_word_raw = item.get('conlang', '')
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
@@ -550,13 +623,9 @@ class VocabVault(QMainWindow):
             label.setStyleSheet("padding-left: 2px;")
             
             table.setCellWidget(r, 0, label)
-            
-            # English Definition (Standard)
             english_item = QTableWidgetItem(item.get('english', ''))
             english_item.setFont(QFont("Arial", 12))
             table.setItem(r, 1, english_item)
-            
-            # Notes (Standard)
             notes_item = QTableWidgetItem(item.get('notes', ''))
             notes_item.setFont(QFont("Arial", 12))
             table.setItem(r, 2, notes_item)
