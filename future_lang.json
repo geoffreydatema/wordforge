@@ -1,7 +1,7 @@
 {
     "dictionary": [
         {
-            "conlang": "cэԉꟻe",
+            "conlang": "cэԒꟻe",
             "english": "word",
             "notes": "based on Russian слово"
         },
@@ -21,7 +21,7 @@
             "notes": "based on Russian гражданин"
         },
         {
-            "conlang": "aԕpꟻжa",
+            "conlang": "aʒpꟻжa",
             "english": "star",
             "notes": "based on Latin astra"
         },
@@ -41,8 +41,68 @@
             "notes": "Russian проверять"
         },
         {
-            "conlang": "ʜʟdᴋᴇя",
+            "conlang": "ʜɪdᴋᴇя",
             "english": "hinge",
+            "notes": ""
+        },
+        {
+            "conlang": "ɪʜᴛэԒɪdэʜc",
+            "english": "intelligence",
+            "notes": ""
+        },
+        {
+            "conlang": "ᴍoʜɪᴛop",
+            "english": "monitor",
+            "notes": ""
+        },
+        {
+            "conlang": "Бɶᴋ",
+            "english": "book",
+            "notes": ""
+        },
+        {
+            "conlang": "пиᴛʜʌxБиᴋ",
+            "english": "pretend",
+            "notes": ""
+        },
+        {
+            "conlang": "ᴛɪᴋɶpиᴋ",
+            "english": "bird",
+            "notes": ""
+        },
+        {
+            "conlang": "aБʒpaᴋᴛ",
+            "english": "abstract",
+            "notes": ""
+        },
+        {
+            "conlang": "жиϣи",
+            "english": "helmet",
+            "notes": ""
+        },
+        {
+            "conlang": "aҰᴛэp",
+            "english": "after",
+            "notes": ""
+        },
+        {
+            "conlang": "ʌꙖгэp",
+            "english": "anger",
+            "notes": ""
+        },
+        {
+            "conlang": "aϣ",
+            "english": "ask",
+            "notes": ""
+        },
+        {
+            "conlang": "ячaʜ",
+            "english": "floor",
+            "notes": ""
+        },
+        {
+            "conlang": "Удoʜoᴍaʜᴛ",
+            "english": "leader",
             "notes": ""
         }
     ],

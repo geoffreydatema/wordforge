@@ -10,25 +10,25 @@ from PySide6.QtGui import QFont, QColor, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent
 
 # --- LORE CONFIGURATION ---
-VOWELS = ['a', 'э', 'ʟ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я', 's']
-CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'ԉ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ꚇ', 'Ұ', 'њ', 'Ꙗ', 'ԕ']
+VOWELS = ['a', 'э', 'ɪ', 'o', 'h', 'ʌ', 'и', 'ꭅ', 'ꟻ', 'ю', 'e', 'ᴇ', 'У', 'я', 'ɶ']
+CONSONANTS = ['q', 'p', 'ᴛ', 'b', 'п', 'c', 'д', 'v', 'г', 'x', 'd', 'ᴋ', 'Ԓ', 'z', 'ʙ', 'Б', 'ʜ', 'ᴍ', 'ж', 'ц', 'ч', 'ш', 'ϣ', 'Ұ', 'њ', 'Ꙗ', 'ʒ']
 
 # --- VISUAL TWEAKS ---
 
 # 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
-    "ꟻ": "10pt", "У": "10pt", "Б": "10pt", "Ұ": "10pt", "ꚇ": "15pt", "Ꙗ": "11pt"
+    "ꟻ": "10.5pt", "У": "10.5pt", "Б": "10.5pt", "Ұ": "10.5pt", "Ꙗ": "10.5pt", 'Ԓ': '10.5pt'
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
 HEADER_SIZE_CORRECTIONS = {
-    "ꟻ": "17pt", "У": "17pt", "Б": "17pt", "Ұ": "17pt", "ꚇ": "24pt", "Ꙗ": "17pt"
+    "ꟻ": "17pt", "У": "17.5pt", "Б": "17pt", "Ұ": "17pt", "Ꙗ": "17pt", 'Ԓ': '17pt'
 }
 
 # Keyboard Layout
 KEYBOARD_LAYOUT = [
-    [('w', 'q'), ('e', 'э'), ('r', 'p'), ('t', 'ᴛ'), ('y', 'b'), ('u', 'h'), ('i', 'ʟ'), ('o', 'o'), ('p', 'п')],
-    [('a', 'a'), ('s', 'c'), ('d', 'д'), ('f', 'v'), ('g', 'г'), ('h', 'x'), ('j', 'd'), ('k', 'ᴋ'), ('l', 'ԉ')],
+    [('w', 'q'), ('e', 'э'), ('r', 'p'), ('t', 'ᴛ'), ('y', 'b'), ('u', 'h'), ('i', 'ɪ'), ('o', 'o'), ('p', 'п')],
+    [('a', 'a'), ('s', 'c'), ('d', 'д'), ('f', 'v'), ('g', 'г'), ('h', 'x'), ('j', 'd'), ('k', 'ᴋ'), ('l', 'Ԓ')],
     [('z', 'z'), ('v', 'ʙ'), ('b', 'Б'), ('n', 'ʜ'), ('m', 'ᴍ')]
 ]
 
@@ -42,9 +42,9 @@ LONG_VOWEL_MAP = {
 # ALT: Compound Character replacements
 COMBO_MAP = {
     # Vowel Compounds
-    "ya": "я", "ye": "e", "yo": "ᴇ", "oo": "У", "oe": "s",
+    "ya": "я", "ye": "e", "yo": "ᴇ", "oo": "У", "oe": "ɶ",
     # Consonant Compounds
-    "ts": "ц", "zh": "ж", "sh": "ш", "kh": "ч", "sk": "ꚇ", "st": "ԕ",
+    "ts": "ц", "zh": "ж", "sh": "ш", "kh": "ч", "sk": "ϣ", "st": "ʒ",
     "th": "Ұ", "dh": "њ", "ng": "Ꙗ"
 }
 
