@@ -21,8 +21,7 @@ class LORE:
     E_SHORT = 'э'
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
-    U_SHORT = 'h' # Sound /u/ or /ʌ/? Mapped to 'u' key
-    OE_SHORT = 's' # Mapped to 'oe' key (Wait, map says 'oe' -> OE_COMBO)
+    U_SHORT = 'h'
     
     # Long (Shifted)
     A_LONG = 'ʌ'
@@ -33,20 +32,19 @@ class LORE:
     
     # Compounds (Alt)
     YA = 'я'
-    YE = 'e' # Looks like English e
+    YE = 'e'
     YO = 'ᴇ'
     OO = 'У'
     OE = 'ɶ'
 
     # --- CONSONANTS ---
-    # Standard
     Q = 'q'
     P = 'p'
     T = 'ᴛ'
     B = 'b'
     P_CYR = 'п'
     C = 'c'
-    D_CYR = 'д' # Lowercase De
+    D_CYR = 'д'
     V = 'v'
     G_CYR = 'г'
     X = 'x'
@@ -59,7 +57,7 @@ class LORE:
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
     
-    # Compounds / Special
+    # Compounds
     ZH = 'ж'
     TS = 'ц'
     CH = 'ч'
@@ -101,7 +99,7 @@ TABLE_SIZE_CORRECTIONS = {
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
 HEADER_SIZE_CORRECTIONS = {
     LORE.O_LONG: "17pt", 
-    LORE.OO:     "17.5pt", # Note: User specified 17.5pt
+    LORE.OO:     "17.5pt",
     LORE.B_CYR:  "17pt", 
     LORE.TH:     "17pt", 
     LORE.NG:     "17pt", 
@@ -115,7 +113,6 @@ KEYBOARD_LAYOUT = [
     [('z', LORE.Z), ('v', LORE.B_SMALL), ('b', LORE.B_CYR), ('n', LORE.N_SMALL), ('m', LORE.M_SMALL)]
 ]
 
-# --- NEW INPUT MAPPING SEPARATION ---
 
 # SHIFT: Single Character replacements (Long Vowels)
 LONG_VOWEL_MAP = {
@@ -209,19 +206,6 @@ class RichLineEdit(QTextEdit):
         self.textCursor().deletePreviousChar()
 
 class WordGenerator:
-    # Use LORE references for the generator rules
-    SHORT_VOWELS = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, LORE.OE_SHORT]
-    # Note: LORE.OE_SHORT ('s') was in original SHORT_VOWELS list, included here if needed.
-    
-    # Actually, let's stick to the generated list for safety
-    # Filter 's' (English s) out of Short Vowels if it's no longer used as a vowel? 
-    # Your updated VOWELS list has LORE.OE ('ɶ') but not 's'.
-    # I will derive SHORT/LONG from the main VOWELS list to match your new config.
-    
-    # Let's rebuild the specific lists based on your VOWELS definition:
-    # Assumed Short: a, э, ɪ, o, h
-    # Assumed Long: ʌ, и, ꭅ, ꟻ, ю, e, ᴇ, У, я, ɶ
-    
     GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
     GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
                 LORE.YE, LORE.YO, LORE.OO, LORE.YA, LORE.OE]
