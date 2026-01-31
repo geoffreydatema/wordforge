@@ -21,7 +21,7 @@ class LORE:
     E_SHORT = 'э'
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
-    U_SHORT = 'h'
+    U_SHORT = 'ɦ'
     
     # Long (Shifted)
     A_LONG = 'ʌ'
@@ -31,17 +31,17 @@ class LORE:
     U_LONG = 'ю'
     
     # Compounds (Alt)
-    YA = 'я'
+    YA = 'ը'
     YE = 'e'
     YO = 'ᴇ'
     OO = 'У'
     OE = 'ɶ'
 
     # --- CONSONANTS ---
-    Q = 'q'
-    P = 'p'
+    Q = 'Ƿ'
+    P = 'ẟ'
     T = 'ᴛ'
-    B = 'b'
+    B = 'ɓ'
     P_CYR = 'п'
     C = 'c'
     D_CYR = 'д'
@@ -94,6 +94,7 @@ TABLE_SIZE_CORRECTIONS = {
     LORE.TH:     "10.5pt", 
     LORE.NG:     "10.5pt", 
     LORE.L_CYR:  "10.5pt",
+    LORE.Q:      "10pt"
 }
 
 # 2. HEADER CORRECTIONS (Base font ~32px/24pt)
@@ -104,6 +105,7 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.TH:     "17pt", 
     LORE.NG:     "17pt", 
     LORE.L_CYR:  "17pt",
+    LORE.Q:      "17pt"
 }
 
 # Keyboard Layout (Visual Mapping)
