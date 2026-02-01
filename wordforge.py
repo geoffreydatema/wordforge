@@ -20,35 +20,35 @@ class LORE:
     E_SHORT = 'э'
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
-    U_SHORT = 'ɦ' # Changed from 'h'
+    U_SHORT = 'ɦ'
     
     # Long (Shifted)
     A_LONG = 'ʌ'
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ы' # Changed from 'ю'
+    U_LONG = 'ы'
     
-    # Compounds (Alt)
-    AU = 'ѫ' # New
-    EW = 'ը' # New
+    # Compounds (Auto-Ligatures)
+    AU = 'ѫ'
+    EW = 'ը'
     OE = 'ɶ'
-    OW = 'ᴇ' # New (Takes the char previous used for YO)
+    OW = 'ᴇ'
     OO = 'У'
 
     # --- CONSONANTS ---
     # Standard Mappings
-    Q = 'Ƿ'      # Wynn
-    P = 'ʀ'      # Small Cap R
+    Q = 'Ƿ'
+    P = 'ʀ'
     T = 'ᴛ'
-    B = 'ь'      # Soft Sign
+    B = 'ь'
     P_CYR = 'п'
     C = 'c'
     D_CYR = 'д'
     V = 'v'
     G_CYR = 'г'
     X = 'x'
-    D = 'џ'      # Dzhe
+    D = 'џ'
     K_SMALL = 'ᴋ'
     L_CYR = 'Ԓ' 
     Z = 'z'
@@ -57,20 +57,19 @@ class LORE:
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
     
-    # Compounds / Special
+    # Compounds (Auto-Ligatures)
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
-    TH = 'ƌ'     # Changed
-    DH = 'њ'
-    NG = 'ҕ'     # Changed
-    GLOTTAL = '⧅' # New!
+    TH = 'ᴘ'
+    DH = 'ƌ'
+    NG = 'ҕ'
+    GLOTTAL = '⧅'
 
 # ==========================================
 #           LORE CONFIGURATION
 # ==========================================
 
-# Updated lists removing deleted compounds (TS, SK, ST, YA, YE, YO)
 VOWELS = [
     LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, 
     LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
@@ -84,34 +83,38 @@ CONSONANTS = [
 ]
 
 # --- VISUAL TWEAKS ---
-# Updated keys to match new characters.
-# Removed deleted characters (SK, TS, ST).
-# Added new ones that might need sizing help.
-
 TABLE_SIZE_CORRECTIONS = {
-    LORE.O_LONG: "10.5pt", 
-    LORE.OO:     "10.5pt", 
-    LORE.B_CYR:  "10.5pt", 
-    LORE.TH:     "12pt",   # ƌ sometimes renders small
-    LORE.NG:     "12pt",   # ҕ
-    LORE.L_CYR:  "10.5pt",
-    LORE.GLOTTAL:"16pt",   # ⧅ often needs a boost
-    LORE.Q:      "12pt"    # Ƿ
+    LORE.O_LONG:    "10.5pt", 
+    LORE.OO:        "10.5pt", 
+    LORE.B_CYR:     "10.5pt", 
+    LORE.TH:        "12pt",   
+    LORE.NG:        "12pt",   
+    LORE.L_CYR:     "10.5pt",
+    LORE.GLOTTAL:   "16pt",   
+    LORE.Q:         "10pt",
+    LORE.TH:        "15pt",
+    LORE.DH:        "14pt",
+    LORE.NG:        "15pt",
+    LORE.GLOTTAL:   "13pt"
 }
 
 HEADER_SIZE_CORRECTIONS = {
-    LORE.O_LONG: "17pt", 
-    LORE.OO:     "17.5pt",
-    LORE.B_CYR:  "17pt", 
-    LORE.TH:     "20pt", 
-    LORE.NG:     "20pt", 
-    LORE.L_CYR:  "17pt",
-    LORE.GLOTTAL:"26pt",
-    LORE.Q:      "20pt"
+    LORE.O_LONG:    "17pt", 
+    LORE.OO:        "17.5pt",
+    LORE.B_CYR:     "17pt", 
+    LORE.TH:        "20pt", 
+    LORE.NG:        "20pt", 
+    LORE.L_CYR:     "17pt",
+    LORE.GLOTTAL:   "26pt",
+    LORE.Q:         "17pt",
+    LORE.TH:        "15pt",
+    LORE.DH:        "19pt",
+    LORE.NG:        "15pt",
+    LORE.GLOTTAL:   "13pt"
 }
 
-# Keyboard Layout (Visual Mapping)
-# Added GLOTTAL to the first row (mapped to ` key physically)
+# Keyboard Layout
+# Used for Virtual Keyboard AND for looking up the "Lore" character for a specific key
 KEYBOARD_LAYOUT = [
     [('`', LORE.GLOTTAL), ('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
     [('a', LORE.A_SHORT), ('s', LORE.C), ('d', LORE.D_CYR), ('f', LORE.V), ('g', LORE.G_CYR), ('h', LORE.X), ('j', LORE.D), ('k', LORE.K_SMALL), ('l', LORE.L_CYR)],
@@ -120,7 +123,7 @@ KEYBOARD_LAYOUT = [
 
 # --- INPUT MAPPING ---
 
-# SHIFT: Long Vowels (Updated U to new char)
+# SHIFT: Long Vowels
 LONG_VOWEL_MAP = {
     "a": LORE.A_LONG, 
     "e": LORE.E_LONG, 
@@ -129,16 +132,17 @@ LONG_VOWEL_MAP = {
     "u": LORE.U_LONG
 }
 
-# ALT: Compounds (Updated to new list)
+# AUTO-LIGATURES
+# If user types the 2nd letter, and the 1st letter matches the precursor, replace both.
 COMBO_MAP = {
-    # Vowel Compounds
+    # Vowels
     "au": LORE.AU, "ew": LORE.EW, "ow": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
-    # Consonant Compounds
-    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
+    # Consonants
+    "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG
 }
 
-# Added ` to disabled keys so it doesn't type the backtick character alongside the symbol
+# Keys to completely ignore (Physical Q, X, C are essentially unmapped)
 DISABLED_KEYS = ['q', 'x', 'c']
 
 # ==========================================
@@ -209,8 +213,18 @@ class RichLineEdit(QTextEdit):
     def backspace(self):
         self.textCursor().deletePreviousChar()
 
+    def get_prev_char(self):
+        """Helper to look at the character immediately before the cursor"""
+        cursor = self.textCursor()
+        if cursor.atBlockStart():
+            return None
+        
+        # Select previous character
+        cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor)
+        return cursor.selectedText()
+
 class WordGenerator:
-    # Update Generator lists based on new Vowel set
+    # Build lists based on new Vowels
     GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
     GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
                 LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE]
@@ -296,6 +310,7 @@ class PhysicalKeyFilter(QObject):
         super().__init__()
         self.window = parent_window
         self.key_map = {}
+        # Reverse map to find Lore char by Physical Key ID
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
@@ -311,12 +326,10 @@ class PhysicalKeyFilter(QObject):
                 self.window.input_conlang.insert(" ")
                 return True
             
+            # --- MODIFIER DETECTION ---
             if event.modifiers() & Qt.ShiftModifier:
                 self.window.shift_active = True
                 self.window.shift_btn.setChecked(True)
-            if event.modifiers() & Qt.AltModifier:
-                self.window.alt_active = True
-                self.window.alt_btn.setChecked(True)
 
             if event.modifiers() & (Qt.ControlModifier): return False
             
@@ -339,8 +352,12 @@ class VocabVault(QMainWindow):
         self.data = self.load_data()
         
         self.shift_active = False
-        self.alt_active = False 
-        self.alt_buffer = "" 
+        
+        # Build a lookup for "Which lore character does this key produce?"
+        self.key_to_lore = {}
+        for row in KEYBOARD_LAYOUT:
+            for k, char in row:
+                self.key_to_lore[k] = char
         
         self.setup_ui()
         self.key_filter = PhysicalKeyFilter(self)
@@ -374,7 +391,6 @@ class VocabVault(QMainWindow):
         gen_layout = QVBoxLayout(gen_group)
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
-        
         self.gen_result_display.setFixedHeight(80) 
         self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") 
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
@@ -395,15 +411,12 @@ class VocabVault(QMainWindow):
 
         # MANUAL ENTRY
         form_layout = QGridLayout()
-        
         self.input_conlang = RichLineEdit()
         self.input_conlang.setPlaceholderText("New Word")
-        
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
         self.input_english.setFixedHeight(50)
         self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
-        
         self.input_notes = QLineEdit()
         self.input_notes.setPlaceholderText("Etymology / Root Notes")
         self.input_notes.setFixedHeight(50)
@@ -488,20 +501,8 @@ class VocabVault(QMainWindow):
         """)
         self.shift_btn.toggled.connect(self.toggle_shift)
         ctrl_row.addWidget(self.shift_btn)
-
-        self.alt_btn = QPushButton("ALT")
-        self.alt_btn.setCheckable(True)
-        self.alt_btn.setFixedSize(80, 45)
-        self.alt_btn.setStyleSheet("""
-            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; }
-            QPushButton:hover { background-color: #444; border-color: #777; }
-            QPushButton:checked { background-color: #29b6f6; color: black; border-color: #0288d1; }
-        """)
-        self.alt_btn.toggled.connect(self.toggle_alt)
-        ctrl_row.addWidget(self.alt_btn)
         
         CTRL_STYLE = "QPushButton { background-color: #333; color: white; border: 1px solid #555; border-radius: 5px; } QPushButton:hover { background-color: #444; border-color: #777; } QPushButton:pressed { background-color: #222; border-color: #111; }"
-        
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
         space_btn.setStyleSheet(CTRL_STYLE)
@@ -520,12 +521,6 @@ class VocabVault(QMainWindow):
 
     def toggle_shift(self, checked):
         self.shift_active = checked
-        if checked: self.alt_btn.setChecked(False)
-
-    def toggle_alt(self, checked):
-        self.alt_active = checked
-        if checked: self.shift_btn.setChecked(False)
-        else: self.alt_buffer = ""
 
     def replace_last_chars(self, n, new_text):
         for _ in range(n):
@@ -533,6 +528,8 @@ class VocabVault(QMainWindow):
         self.input_conlang.insert(new_text)
 
     def handle_keypress(self, key_id, default_char):
+        
+        # 1. SHIFT MODE (Long Vowels)
         if self.shift_active:
             if key_id in LONG_VOWEL_MAP:
                 result = LONG_VOWEL_MAP[key_id]
@@ -543,33 +540,36 @@ class VocabVault(QMainWindow):
             self.input_conlang.setFocus()
             return
 
-        if self.alt_active:
-            self.input_conlang.insert(default_char)
-            self.input_conlang.setFocus()
-            self.alt_buffer += key_id
-            if self.alt_buffer in COMBO_MAP:
-                result = COMBO_MAP[self.alt_buffer]
-                self.replace_last_chars(len(self.alt_buffer), result)
-                self.alt_btn.setChecked(False)
-                self.alt_buffer = ""
-                return
-            is_prefix = False
-            for code in COMBO_MAP.keys():
-                if code.startswith(self.alt_buffer) and len(code) > len(self.alt_buffer):
-                    is_prefix = True
-                    break
-            if not is_prefix:
-                self.alt_btn.setChecked(False)
-                self.alt_buffer = ""
-            return
+        # 2. AUTO-LIGATURE CHECK
+        # Before inserting the new char, check if (previous + current) makes a combo
+        prev_char = self.input_conlang.get_prev_char()
+        
+        if prev_char:
+            for combo_key, combo_val in COMBO_MAP.items():
+                # Check if this combo ends with the key just pressed
+                # e.g., combo "sh" ends with key "h"
+                if combo_key.endswith(key_id) and len(combo_key) == 2:
+                    prefix_key = combo_key[0] # "s"
+                    
+                    # Look up the Lore character for that prefix key
+                    if prefix_key in self.key_to_lore:
+                        expected_lore_prefix = self.key_to_lore[prefix_key]
+                        
+                        # If what's in the text box matches the Lore prefix...
+                        if prev_char == expected_lore_prefix:
+                            # ...We found a match! Delete the previous char and insert the Combo
+                            self.input_conlang.backspace()
+                            self.input_conlang.insert(combo_val)
+                            self.input_conlang.setFocus()
+                            return
 
+        # 3. NORMAL INSERT
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
 
     def backspace(self):
         self.input_conlang.backspace()
         self.input_conlang.setFocus()
-        if self.alt_buffer: self.alt_buffer = self.alt_buffer[:-1]
 
     def run_generator(self):
         word, structure = WordGenerator.generate_word()
