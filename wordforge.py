@@ -12,7 +12,6 @@ from PySide6.QtCore import Qt, QObject, QEvent
 # ==========================================
 #        MASTER CHARACTER DEFINITIONS
 # ==========================================
-# Change characters here, and they update everywhere.
 
 class LORE:
     # --- VOWELS ---
@@ -21,34 +20,35 @@ class LORE:
     E_SHORT = 'э'
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
-    U_SHORT = 'ɦ'
+    U_SHORT = 'ɦ' # Changed from 'h'
     
     # Long (Shifted)
     A_LONG = 'ʌ'
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ы'
+    U_LONG = 'ы' # Changed from 'ю'
     
     # Compounds (Alt)
-    AU = 'ѫ'
-    EW = 'ը'
+    AU = 'ѫ' # New
+    EW = 'ը' # New
     OE = 'ɶ'
-    OW = 'ᴇ'
+    OW = 'ᴇ' # New (Takes the char previous used for YO)
     OO = 'У'
 
     # --- CONSONANTS ---
-    Q = 'Ƿ'
-    P = 'ʀ'
+    # Standard Mappings
+    Q = 'Ƿ'      # Wynn
+    P = 'ʀ'      # Small Cap R
     T = 'ᴛ'
-    B = 'ь'
+    B = 'ь'      # Soft Sign
     P_CYR = 'п'
     C = 'c'
     D_CYR = 'д'
     V = 'v'
     G_CYR = 'г'
     X = 'x'
-    D = 'џ'
+    D = 'џ'      # Dzhe
     K_SMALL = 'ᴋ'
     L_CYR = 'Ԓ' 
     Z = 'z'
@@ -57,67 +57,70 @@ class LORE:
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
     
-    # Compounds
+    # Compounds / Special
     ZH = 'ж'
-    # TS was removed!
     CH = 'ч'
     SH = 'ш'
-    # SK was removed!
-    TH = 'ƌ'
+    TH = 'ƌ'     # Changed
     DH = 'њ'
-    NG = 'ҕ'
-    # ST was removed
-    GLOTTAL = '⧅' # the glottal is new!
+    NG = 'ҕ'     # Changed
+    GLOTTAL = '⧅' # New!
 
 # ==========================================
 #           LORE CONFIGURATION
 # ==========================================
 
+# Updated lists removing deleted compounds (TS, SK, ST, YA, YE, YO)
 VOWELS = [
     LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, 
     LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
-    LORE.YA, LORE.YE, LORE.YO, LORE.OO, LORE.OE
+    LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE
 ]
 
 CONSONANTS = [
     LORE.Q, LORE.P, LORE.T, LORE.B, LORE.P_CYR, LORE.C, LORE.D_CYR, LORE.V, LORE.G_CYR, 
     LORE.X, LORE.D, LORE.K_SMALL, LORE.L_CYR, LORE.Z, LORE.B_SMALL, LORE.B_CYR, LORE.N_SMALL, LORE.M_SMALL, 
-    LORE.ZH, LORE.TS, LORE.CH, LORE.SH, LORE.SK, LORE.TH, LORE.DH, LORE.NG, LORE.ST
+    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL
 ]
 
 # --- VISUAL TWEAKS ---
+# Updated keys to match new characters.
+# Removed deleted characters (SK, TS, ST).
+# Added new ones that might need sizing help.
 
-# 1. TABLE/INPUT CORRECTIONS (Base font ~14pt)
 TABLE_SIZE_CORRECTIONS = {
     LORE.O_LONG: "10.5pt", 
     LORE.OO:     "10.5pt", 
     LORE.B_CYR:  "10.5pt", 
-    LORE.TH:     "10.5pt", 
-    LORE.NG:     "10.5pt", 
+    LORE.TH:     "12pt",   # ƌ sometimes renders small
+    LORE.NG:     "12pt",   # ҕ
     LORE.L_CYR:  "10.5pt",
-    LORE.Q:      "10pt"
+    LORE.GLOTTAL:"16pt",   # ⧅ often needs a boost
+    LORE.Q:      "12pt"    # Ƿ
 }
 
-# 2. HEADER CORRECTIONS (Base font ~32px/24pt)
 HEADER_SIZE_CORRECTIONS = {
     LORE.O_LONG: "17pt", 
     LORE.OO:     "17.5pt",
     LORE.B_CYR:  "17pt", 
-    LORE.TH:     "17pt", 
-    LORE.NG:     "17pt", 
+    LORE.TH:     "20pt", 
+    LORE.NG:     "20pt", 
     LORE.L_CYR:  "17pt",
-    LORE.Q:      "17pt"
+    LORE.GLOTTAL:"26pt",
+    LORE.Q:      "20pt"
 }
 
 # Keyboard Layout (Visual Mapping)
+# Added GLOTTAL to the first row (mapped to ` key physically)
 KEYBOARD_LAYOUT = [
-    [('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
+    [('`', LORE.GLOTTAL), ('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
     [('a', LORE.A_SHORT), ('s', LORE.C), ('d', LORE.D_CYR), ('f', LORE.V), ('g', LORE.G_CYR), ('h', LORE.X), ('j', LORE.D), ('k', LORE.K_SMALL), ('l', LORE.L_CYR)],
     [('z', LORE.Z), ('v', LORE.B_SMALL), ('b', LORE.B_CYR), ('n', LORE.N_SMALL), ('m', LORE.M_SMALL)]
 ]
 
+# --- INPUT MAPPING ---
 
-# SHIFT: Single Character replacements (Long Vowels)
+# SHIFT: Long Vowels (Updated U to new char)
 LONG_VOWEL_MAP = {
     "a": LORE.A_LONG, 
     "e": LORE.E_LONG, 
@@ -126,15 +129,16 @@ LONG_VOWEL_MAP = {
     "u": LORE.U_LONG
 }
 
-# ALT: Compound Character replacements
+# ALT: Compounds (Updated to new list)
 COMBO_MAP = {
     # Vowel Compounds
-    "ya": LORE.YA, "ye": LORE.YE, "yo": LORE.YO, "oo": LORE.OO, "oe": LORE.OE,
+    "au": LORE.AU, "ew": LORE.EW, "ow": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
     # Consonant Compounds
-    "ts": LORE.TS, "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
-    "sk": LORE.SK, "st": LORE.ST, "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG
+    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
+    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG
 }
 
+# Added ` to disabled keys so it doesn't type the backtick character alongside the symbol
 DISABLED_KEYS = ['q', 'x', 'c']
 
 # ==========================================
@@ -162,9 +166,6 @@ def apply_visual_fixes(text, mode='table'):
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class RichLineEdit(QTextEdit):
-    """
-    A Custom Widget that looks like a QLineEdit but supports Rich Text (HTML).
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setAcceptRichText(True)
@@ -209,9 +210,10 @@ class RichLineEdit(QTextEdit):
         self.textCursor().deletePreviousChar()
 
 class WordGenerator:
+    # Update Generator lists based on new Vowel set
     GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
     GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
-                LORE.YE, LORE.YO, LORE.OO, LORE.YA, LORE.OE]
+                LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE]
     
     ALL_VOWELS = GEN_SHORT + GEN_LONG
 
