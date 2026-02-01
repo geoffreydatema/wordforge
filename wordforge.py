@@ -27,7 +27,7 @@ class LORE:
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ы'
+    U_LONG = 'ʉ'
     
     # Compounds (Auto-Ligatures)
     AU = 'ѫ'
@@ -107,10 +107,10 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.L_CYR:     "17pt",
     LORE.GLOTTAL:   "26pt",
     LORE.Q:         "17pt",
-    LORE.TH:        "15pt",
-    LORE.DH:        "19pt",
-    LORE.NG:        "15pt",
-    LORE.GLOTTAL:   "13pt"
+    LORE.TH:        "24pt",
+    LORE.DH:        "20pt",
+    LORE.NG:        "26pt",
+    LORE.GLOTTAL:   "20pt"
 }
 
 # Keyboard Layout
