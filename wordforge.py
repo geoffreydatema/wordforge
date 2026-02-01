@@ -28,27 +28,27 @@ class LORE:
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ю'
+    U_LONG = 'ы'
     
     # Compounds (Alt)
-    YA = 'ը'
-    YE = 'e'
-    YO = 'ᴇ'
-    OO = 'У'
+    AU = 'ѫ'
+    EW = 'ը'
     OE = 'ɶ'
+    OW = 'ᴇ'
+    OO = 'У'
 
     # --- CONSONANTS ---
     Q = 'Ƿ'
-    P = 'ẟ'
+    P = 'ʀ'
     T = 'ᴛ'
-    B = 'ɓ'
+    B = 'ь'
     P_CYR = 'п'
     C = 'c'
     D_CYR = 'д'
     V = 'v'
     G_CYR = 'г'
     X = 'x'
-    D = 'd'
+    D = 'џ'
     K_SMALL = 'ᴋ'
     L_CYR = 'Ԓ' 
     Z = 'z'
@@ -59,14 +59,15 @@ class LORE:
     
     # Compounds
     ZH = 'ж'
-    TS = 'ц'
+    # TS was removed!
     CH = 'ч'
     SH = 'ш'
-    SK = 'ϣ'
-    TH = 'Ұ'
+    # SK was removed!
+    TH = 'ƌ'
     DH = 'њ'
-    NG = 'Ꙗ'
-    ST = 'ʒ'
+    NG = 'ҕ'
+    # ST was removed
+    GLOTTAL = '⧅' # the glottal is new!
 
 # ==========================================
 #           LORE CONFIGURATION
