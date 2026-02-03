@@ -67,14 +67,14 @@ class LORE:
     GLOTTAL = '⧅'
 
     # Non-Essential Compounds (Shortcuts)
-    TS = 'ӿ'  # New
-    ST = 'ʒ'  # New (Re-added)
-    KS = 'ҵ'  # New
-    SK = 'ϣ'  # New (Re-added)
-    KV = 'Է'  # New
-    SV = '₪'  # New
-    ZV = '⩕'  # New
-    DV = 'ƶ'  # New
+    TS = 'ӿ'
+    ST = 'ʒ'
+    KS = 'ҵ'
+    SK = 'ϣ'
+    KV = 'Է'
+    SV = '₪'
+    ZV = 'ᴝ'
+    DV = 'ƶ'
 
 # ==========================================
 #           LORE CONFIGURATION
@@ -105,10 +105,8 @@ TABLE_SIZE_CORRECTIONS = {
     LORE.L_CYR:  "10.5pt",
     LORE.GLOTTAL:"16pt",   
     LORE.Q:      "12pt",
-    # New Compounds sizing
-    LORE.SK:     "12pt",
-    LORE.SV:     "12pt", # Sheqel often renders large
-    LORE.KV:     "11pt"
+    LORE.SK:     "14pt",
+    LORE.ZV:     "16pt",
 }
 
 HEADER_SIZE_CORRECTIONS = {
@@ -116,14 +114,10 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.OO:     "17.5pt",
     LORE.B_CYR:  "17pt", 
     LORE.TH:     "20pt", 
-    LORE.NG:     "20pt", 
+    LORE.NG:     "22pt", 
     LORE.L_CYR:  "17pt",
     LORE.GLOTTAL:"26pt",
     LORE.Q:      "20pt",
-    # New Compounds sizing
-    LORE.SK:     "20pt",
-    LORE.SV:     "20pt",
-    LORE.KV:     "18pt"
 }
 
 # Keyboard Layout
