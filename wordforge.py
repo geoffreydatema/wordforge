@@ -27,7 +27,7 @@ class LORE:
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ʉ'
+    U_LONG = 'ы'
     
     # Compounds (Auto-Ligatures)
     AU = 'ѫ'
@@ -57,14 +57,24 @@ class LORE:
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
     
-    # Compounds (Auto-Ligatures)
+    # Essential Compounds
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
-    TH = 'ᴘ'
-    DH = 'ƌ'
+    TH = 'ƌ'
+    DH = 'њ'
     NG = 'ҕ'
     GLOTTAL = '⧅'
+
+    # Non-Essential Compounds (Shortcuts)
+    TS = 'ӿ'  # New
+    ST = 'ʒ'  # New (Re-added)
+    KS = 'ҵ'  # New
+    SK = 'ϣ'  # New (Re-added)
+    KV = 'Է'  # New
+    SV = '₪'  # New
+    ZV = '⩕'  # New
+    DV = 'ƶ'  # New
 
 # ==========================================
 #           LORE CONFIGURATION
@@ -79,42 +89,44 @@ VOWELS = [
 CONSONANTS = [
     LORE.Q, LORE.P, LORE.T, LORE.B, LORE.P_CYR, LORE.C, LORE.D_CYR, LORE.V, LORE.G_CYR, 
     LORE.X, LORE.D, LORE.K_SMALL, LORE.L_CYR, LORE.Z, LORE.B_SMALL, LORE.B_CYR, LORE.N_SMALL, LORE.M_SMALL, 
-    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL
+    # Essentials
+    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL,
+    # Non-Essentials (Shortcuts)
+    LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
 # --- VISUAL TWEAKS ---
 TABLE_SIZE_CORRECTIONS = {
-    LORE.O_LONG:    "10.5pt", 
-    LORE.OO:        "10.5pt", 
-    LORE.B_CYR:     "10.5pt", 
-    LORE.TH:        "12pt",   
-    LORE.NG:        "12pt",   
-    LORE.L_CYR:     "10.5pt",
-    LORE.GLOTTAL:   "16pt",   
-    LORE.Q:         "10pt",
-    LORE.TH:        "15pt",
-    LORE.DH:        "14pt",
-    LORE.NG:        "15pt",
-    LORE.GLOTTAL:   "13pt"
+    LORE.O_LONG: "10.5pt", 
+    LORE.OO:     "10.5pt", 
+    LORE.B_CYR:  "10.5pt", 
+    LORE.TH:     "12pt",   
+    LORE.NG:     "12pt",   
+    LORE.L_CYR:  "10.5pt",
+    LORE.GLOTTAL:"16pt",   
+    LORE.Q:      "12pt",
+    # New Compounds sizing
+    LORE.SK:     "12pt",
+    LORE.SV:     "12pt", # Sheqel often renders large
+    LORE.KV:     "11pt"
 }
 
 HEADER_SIZE_CORRECTIONS = {
-    LORE.O_LONG:    "17pt", 
-    LORE.OO:        "17.5pt",
-    LORE.B_CYR:     "17pt", 
-    LORE.TH:        "20pt", 
-    LORE.NG:        "20pt", 
-    LORE.L_CYR:     "17pt",
-    LORE.GLOTTAL:   "26pt",
-    LORE.Q:         "17pt",
-    LORE.TH:        "24pt",
-    LORE.DH:        "20pt",
-    LORE.NG:        "26pt",
-    LORE.GLOTTAL:   "20pt"
+    LORE.O_LONG: "17pt", 
+    LORE.OO:     "17.5pt",
+    LORE.B_CYR:  "17pt", 
+    LORE.TH:     "20pt", 
+    LORE.NG:     "20pt", 
+    LORE.L_CYR:  "17pt",
+    LORE.GLOTTAL:"26pt",
+    LORE.Q:      "20pt",
+    # New Compounds sizing
+    LORE.SK:     "20pt",
+    LORE.SV:     "20pt",
+    LORE.KV:     "18pt"
 }
 
 # Keyboard Layout
-# Used for Virtual Keyboard AND for looking up the "Lore" character for a specific key
 KEYBOARD_LAYOUT = [
     [('`', LORE.GLOTTAL), ('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
     [('a', LORE.A_SHORT), ('s', LORE.C), ('d', LORE.D_CYR), ('f', LORE.V), ('g', LORE.G_CYR), ('h', LORE.X), ('j', LORE.D), ('k', LORE.K_SMALL), ('l', LORE.L_CYR)],
@@ -137,13 +149,15 @@ LONG_VOWEL_MAP = {
 COMBO_MAP = {
     # Vowels
     "au": LORE.AU, "ew": LORE.EW, "ow": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
-    # Consonants
-    "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
-    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG
+    # Consonants (Essential)
+    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
+    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
+    # Consonants (Non-Essential Shortcuts)
+    "ts": LORE.TS, "st": LORE.ST, "ks": LORE.KS, "sk": LORE.SK,
+    "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
-# Keys to completely ignore (Physical Q, X, C are essentially unmapped)
-DISABLED_KEYS = ['q', 'x', 'c']
+DISABLED_KEYS = ['q', 'x', 'c', '`']
 
 # ==========================================
 #              APP LOGIC
@@ -183,7 +197,7 @@ class RichLineEdit(QTextEdit):
             QTextEdit {
                 font-size: 14pt; 
                 font-weight: bold;
-                padding-top: 8px; 
+                padding-top: 12px; 
                 padding-left: 5px;
                 padding-right: 5px;
                 border: 1px solid #555; 
@@ -214,12 +228,9 @@ class RichLineEdit(QTextEdit):
         self.textCursor().deletePreviousChar()
 
     def get_prev_char(self):
-        """Helper to look at the character immediately before the cursor"""
         cursor = self.textCursor()
         if cursor.atBlockStart():
             return None
-        
-        # Select previous character
         cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor)
         return cursor.selectedText()
 
@@ -501,7 +512,7 @@ class VocabVault(QMainWindow):
         """)
         self.shift_btn.toggled.connect(self.toggle_shift)
         ctrl_row.addWidget(self.shift_btn)
-        
+
         CTRL_STYLE = "QPushButton { background-color: #333; color: white; border: 1px solid #555; border-radius: 5px; } QPushButton:hover { background-color: #444; border-color: #777; } QPushButton:pressed { background-color: #222; border-color: #111; }"
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
@@ -521,11 +532,6 @@ class VocabVault(QMainWindow):
 
     def toggle_shift(self, checked):
         self.shift_active = checked
-
-    def replace_last_chars(self, n, new_text):
-        for _ in range(n):
-            self.input_conlang.backspace()
-        self.input_conlang.insert(new_text)
 
     def handle_keypress(self, key_id, default_char):
         
@@ -606,11 +612,7 @@ class VocabVault(QMainWindow):
             lore_word_raw = item.get('conlang', '')
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
-            
-            # LEFT ALIGNMENT & PADDING
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-            label.setStyleSheet("padding-left: 2px;")
-            
             table.setCellWidget(r, 0, label)
             english_item = QTableWidgetItem(item.get('english', ''))
             english_item.setFont(QFont("Arial", 12))
