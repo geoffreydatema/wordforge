@@ -102,7 +102,7 @@ TABLE_SIZE_CORRECTIONS = {
     LORE.B_CYR:     "10.5pt", 
     LORE.L_CYR:     "10.5pt",
     LORE.Q:         "10pt",
-    LORE.GLOTTAL:   "16pt",
+    LORE.GLOTTAL:   "13pt",
     LORE.TH:        "14pt",
     LORE.DH:        "14pt",
     LORE.NG:        "14pt",
@@ -157,7 +157,7 @@ COMBO_MAP = {
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
-DISABLED_KEYS = ['q', 'x', 'c', '`']
+DISABLED_KEYS = ['q', 'x', 'c']
 
 # ==========================================
 #              APP LOGIC
