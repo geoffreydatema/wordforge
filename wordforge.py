@@ -21,14 +21,14 @@ class LORE:
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
     U_SHORT = 'ɦ'
-    
+
     # Long (Shifted)
     A_LONG = 'ʌ'
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
-    U_LONG = 'ы'
-    
+    U_LONG = 'Ʉ'
+
     # Compounds (Auto-Ligatures)
     AU = 'ѫ'
     EW = 'ը'
@@ -56,13 +56,13 @@ class LORE:
     B_CYR = 'Б'
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
-    
-    # Essential Compounds
+
+    # Compounds (Auto-Ligatures)
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
-    TH = 'ƌ'
-    DH = 'њ'
+    TH = 'ᴘ'
+    DH = 'ƌ'
     NG = 'ҕ'
     GLOTTAL = '⧅'
 
@@ -89,35 +89,41 @@ VOWELS = [
 CONSONANTS = [
     LORE.Q, LORE.P, LORE.T, LORE.B, LORE.P_CYR, LORE.C, LORE.D_CYR, LORE.V, LORE.G_CYR, 
     LORE.X, LORE.D, LORE.K_SMALL, LORE.L_CYR, LORE.Z, LORE.B_SMALL, LORE.B_CYR, LORE.N_SMALL, LORE.M_SMALL, 
-    # Essentials
     LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL,
-    # Non-Essentials (Shortcuts)
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
 # --- VISUAL TWEAKS ---
 TABLE_SIZE_CORRECTIONS = {
-    LORE.O_LONG: "10.5pt", 
-    LORE.OO:     "10.5pt", 
-    LORE.B_CYR:  "10.5pt", 
-    LORE.TH:     "12pt",   
-    LORE.NG:     "12pt",   
-    LORE.L_CYR:  "10.5pt",
-    LORE.GLOTTAL:"16pt",   
-    LORE.Q:      "12pt",
-    LORE.SK:     "14pt",
-    LORE.ZV:     "16pt",
+    LORE.U_SHORT:   "14pt", 
+    LORE.O_LONG:    "10.5pt", 
+    LORE.U_LONG:    "10.5pt", 
+    LORE.OO:        "10.5pt", 
+    LORE.B_CYR:     "10.5pt", 
+    LORE.L_CYR:     "10.5pt",
+    LORE.Q:         "10pt",
+    LORE.GLOTTAL:   "16pt",
+    LORE.TH:        "14pt",
+    LORE.DH:        "14pt",
+    LORE.NG:        "14pt",
+    LORE.SK:        "14pt",
+    LORE.ZV:        "16pt",
 }
 
 HEADER_SIZE_CORRECTIONS = {
-    LORE.O_LONG: "17pt", 
-    LORE.OO:     "17.5pt",
-    LORE.B_CYR:  "17pt", 
-    LORE.TH:     "20pt", 
-    LORE.NG:     "22pt", 
-    LORE.L_CYR:  "17pt",
-    LORE.GLOTTAL:"26pt",
-    LORE.Q:      "20pt",
+    LORE.U_SHORT:   "20pt", 
+    LORE.O_LONG:    "17pt",
+    LORE.U_LONG:    "17pt",
+    LORE.OO:        "17.5pt",
+    LORE.B_CYR:     "17pt", 
+    LORE.L_CYR:     "17pt",
+    LORE.Q:         "17pt",
+    LORE.GLOTTAL:   "20pt",
+    LORE.TH:        "23pt",
+    LORE.DH:        "20pt",
+    LORE.NG:        "24pt",
+    LORE.SK:        "24pt",
+    LORE.ZV:        "26pt",
 }
 
 # Keyboard Layout
