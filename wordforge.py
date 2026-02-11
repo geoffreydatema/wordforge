@@ -150,7 +150,7 @@ LONG_VOWEL_MAP = {
 # If user types the 2nd letter, and the 1st letter matches the precursor, replace both.
 COMBO_MAP = {
     # Vowels
-    "au": LORE.AU, "ew": LORE.EW, "ow": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
+    "au": LORE.AU, "eu": LORE.EW, "ou": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
     # Consonants (Essential)
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
