@@ -67,7 +67,7 @@ class LORE:
     GLOTTAL = '⧅'
 
     # Non-Essential Compounds (Shortcuts)
-    TS = 'ӿ'
+    TS = 'ҵ'
     ST = 'ʒ'
     KS = 'ҵ'
     SK = 'ϣ'
