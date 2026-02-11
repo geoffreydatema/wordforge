@@ -69,7 +69,7 @@ class LORE:
     # Non-Essential Compounds (Shortcuts)
     TS = 'ҵ'
     ST = 'ʒ'
-    KS = 'ҵ'
+    KS = 'Ұ'
     SK = 'ϣ'
     KV = 'Է'
     SV = '₪'
@@ -108,6 +108,7 @@ TABLE_SIZE_CORRECTIONS = {
     LORE.NG:        "14pt",
     LORE.SK:        "14pt",
     LORE.ZV:        "16pt",
+    LORE.KS:        "10.5pt"
 }
 
 HEADER_SIZE_CORRECTIONS = {
@@ -124,6 +125,7 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.NG:        "24pt",
     LORE.SK:        "24pt",
     LORE.ZV:        "26pt",
+    LORE.KS:        "17pt"
 }
 
 # Keyboard Layout
@@ -150,7 +152,7 @@ COMBO_MAP = {
     # Vowels
     "au": LORE.AU, "ew": LORE.EW, "ow": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
     # Consonants (Essential)
-    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
+    "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
     # Consonants (Non-Essential Shortcuts)
     "ts": LORE.TS, "st": LORE.ST, "ks": LORE.KS, "sk": LORE.SK,
