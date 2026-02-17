@@ -1,8 +1,3 @@
-"""
-backlog
-    - pronunciation
-    - definition generator
-"""
 import sys
 import json
 import os
@@ -144,7 +139,6 @@ LORE_TO_PRON = {}
 for attr in dir(LORE):
     if not attr.startswith('__') and not callable(getattr(LORE, attr)):
         lore_val = getattr(LORE, attr)
-        # Find matching attribute in PRONUNCIATION
         if hasattr(PRONUNCIATION, attr):
             pron_val = getattr(PRONUNCIATION, attr)
             LORE_TO_PRON[lore_val] = pron_val
@@ -376,7 +370,6 @@ class WordGenerator:
             # --- CALCULATE PRONUNCIATION FOR THIS SYLLABLE ---
             pron_syl = ""
             for char in syllable:
-                # Fallback to ? if mapping missing
                 pron_syl += LORE_TO_PRON.get(char, "?")
             pronunciation_log.append(pron_syl)
 
@@ -426,6 +419,10 @@ class VocabVault(QMainWindow):
         self.tables = {} 
         self.data = self.load_data()
         
+        # --- NEW: LOAD ENGLISH WORDS ---
+        self.common_words = self.load_common_words()
+        # -------------------------------
+
         self.shift_active = False
         
         self.key_to_lore = {}
@@ -445,6 +442,20 @@ class VocabVault(QMainWindow):
                 content = f.read().strip()
                 return json.loads(content) if content else default_data
         except: return default_data
+        
+    # --- NEW FUNCTION TO LOAD TXT FILE ---
+    def load_common_words(self):
+        filename = "1000.txt"
+        if not os.path.exists(filename):
+            print(f"Warning: {filename} not found.")
+            return []
+        try:
+            with open(filename, "r", encoding="utf-8") as f:
+                # Read lines, strip whitespace, ignore empty lines
+                return [line.strip() for line in f if line.strip()]
+        except Exception as e:
+            print(f"Error loading words: {e}")
+            return []
 
     def save_data(self):
         with open(self.filename, 'w', encoding='utf-8') as f:
@@ -470,13 +481,11 @@ class VocabVault(QMainWindow):
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
         
-        # --- NEW PRONUNCIATION LABEL ---
         self.gen_pron_display = QLabel("")
         self.gen_pron_display.setAlignment(Qt.AlignCenter)
         self.gen_pron_display.setStyleSheet("color: #4fc3f7; font-size: 16px; font-weight: bold; margin-bottom: 5px;")
         self.gen_pron_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_pron_display)
-        # -------------------------------
 
         self.gen_structure_display = QLabel("")
         self.gen_structure_display.setAlignment(Qt.AlignCenter)
@@ -671,15 +680,19 @@ class VocabVault(QMainWindow):
 
     def run_generator(self):
         syl_count = self.syllable_slider.value()
-        # NOW RETURNS THREE VALUES
         word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
-        # SET PRONUNCIATION LABEL
         self.gen_pron_display.setText(pron)
         self.input_conlang.setText(word)
+        
+        # --- AUTO FILL RANDOM DEFINITION ---
+        if self.common_words:
+            random_def = random.choice(self.common_words)
+            self.input_english.setText(random_def)
+        # -----------------------------------
 
     def add_entry(self):
         conlang = self.input_conlang.text().strip()
