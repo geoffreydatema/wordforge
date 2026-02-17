@@ -1,6 +1,5 @@
 """
 backlog
-    - syllable length
     - pronunciation
     - definition generator
 """
@@ -12,7 +11,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider) # Added QSlider
+                               QSlider)
 from PySide6.QtGui import QFont, QColor, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
@@ -22,21 +21,16 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 class LORE:
     # --- VOWELS ---
-    # Short
     A_SHORT = 'a'
     E_SHORT = 'э'
     I_SHORT = 'ɪ'
     O_SHORT = 'o'
     U_SHORT = 'ɦ'
-
-    # Long (Shifted)
     A_LONG = 'ʌ'
     E_LONG = 'и'
     I_LONG = 'ꭅ'
     O_LONG = 'ꟻ'
     U_LONG = 'Ʉ'
-
-    # Compounds (Auto-Ligatures)
     AU = 'ѫ'
     EW = 'ը'
     OE = 'ɶ'
@@ -44,7 +38,6 @@ class LORE:
     OO = 'У'
 
     # --- CONSONANTS ---
-    # Standard Mappings
     Q = 'Ƿ'
     P = 'ʀ'
     T = 'ᴛ'
@@ -63,8 +56,6 @@ class LORE:
     B_CYR = 'Б'
     N_SMALL = 'ʜ'
     M_SMALL = 'ᴍ'
-
-    # Compounds (Auto-Ligatures)
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
@@ -72,8 +63,6 @@ class LORE:
     DH = 'ƌ'
     NG = 'ҕ'
     GLOTTAL = '⧅'
-
-    # Non-Essential Compounds (Shortcuts)
     TS = 'ҵ'
     ST = 'ʒ'
     KS = 'Ұ'
@@ -82,6 +71,56 @@ class LORE:
     SV = '₪'
     ZV = 'ᴝ'
     DV = 'ƶ'
+
+class PRONUNCIATION:
+    A_SHORT = 'a'
+    E_SHORT = 'e'
+    I_SHORT = 'i'
+    O_SHORT = 'o'
+    U_SHORT = 'u'
+    A_LONG = 'ay'
+    E_LONG = 'ee'
+    I_LONG = 'eye'
+    O_LONG = 'oi'
+    U_LONG = 'ui'
+    AU = 'ow'
+    EW = 'ew'
+    OE = 'oe'
+    OW = 'oh'
+    OO = 'oo'
+    Q = 'w'
+    P = 'r'
+    T = 't'
+    B = 'y'
+    P_CYR = 'p'
+    C = 's'
+    D_CYR = 'd'
+    V = 'f'
+    G_CYR = 'g'
+    X = 'h'
+    D = 'j'
+    K_SMALL = 'k'
+    L_CYR = 'l' 
+    Z = 'z'
+    B_SMALL = 'b'
+    B_CYR = 'b'
+    N_SMALL = 'n'
+    M_SMALL = 'm'
+    ZH = 'zh'
+    CH = 'ch'
+    SH = 'sh'
+    TH = 'th'
+    DH = 'TH'
+    NG = 'ng'
+    GLOTTAL = '⧅'
+    TS = 'ts'
+    ST = 'st'
+    KS = 'ks'
+    SK = 'sk'
+    KV = 'ks'
+    SV = 'sv'
+    ZV = 'zv'
+    DV = 'dv'
 
 # ==========================================
 #           LORE CONFIGURATION
@@ -99,6 +138,16 @@ CONSONANTS = [
     LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL,
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
+
+# Build a Lookup Dictionary: { LORE_CHAR : PRONUNCIATION_STRING }
+LORE_TO_PRON = {}
+for attr in dir(LORE):
+    if not attr.startswith('__') and not callable(getattr(LORE, attr)):
+        lore_val = getattr(LORE, attr)
+        # Find matching attribute in PRONUNCIATION
+        if hasattr(PRONUNCIATION, attr):
+            pron_val = getattr(PRONUNCIATION, attr)
+            LORE_TO_PRON[lore_val] = pron_val
 
 # --- VISUAL TWEAKS ---
 TABLE_SIZE_CORRECTIONS = {
@@ -254,6 +303,7 @@ class WordGenerator:
     def generate_word(num_syllables=3):
         word = ""
         structure_log = [] 
+        pronunciation_log = []
         
         for i in range(num_syllables):
             structure = random.choices(
@@ -269,6 +319,7 @@ class WordGenerator:
             structure_log.append(structure)
             syllable = ""
             
+            # --- SYLLABLE GENERATION ---
             if structure == "V":
                 v = random.choice(WordGenerator.ALL_VOWELS)
                 if prev_char:
@@ -321,7 +372,15 @@ class WordGenerator:
                 syllable = v + c1 + c2
 
             word += syllable
-        return word, "-".join(structure_log)
+
+            # --- CALCULATE PRONUNCIATION FOR THIS SYLLABLE ---
+            pron_syl = ""
+            for char in syllable:
+                # Fallback to ? if mapping missing
+                pron_syl += LORE_TO_PRON.get(char, "?")
+            pronunciation_log.append(pron_syl)
+
+        return word, "-".join(structure_log), "-".join(pronunciation_log)
 
 class PhysicalKeyFilter(QObject):
     def __init__(self, parent_window):
@@ -410,6 +469,14 @@ class VocabVault(QMainWindow):
         self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") 
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
+        
+        # --- NEW PRONUNCIATION LABEL ---
+        self.gen_pron_display = QLabel("")
+        self.gen_pron_display.setAlignment(Qt.AlignCenter)
+        self.gen_pron_display.setStyleSheet("color: #4fc3f7; font-size: 16px; font-weight: bold; margin-bottom: 5px;")
+        self.gen_pron_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
+        gen_layout.addWidget(self.gen_pron_display)
+        # -------------------------------
 
         self.gen_structure_display = QLabel("")
         self.gen_structure_display.setAlignment(Qt.AlignCenter)
@@ -417,7 +484,6 @@ class VocabVault(QMainWindow):
         self.gen_structure_display.setStyleSheet("color: #888; font-size: 14px; font-style: italic; margin-bottom: 10px;")
         gen_layout.addWidget(self.gen_structure_display)
         
-        # --- SLIDER CONTROL START ---
         slider_container = QHBoxLayout()
         self.syllable_label = QLabel("Syllables: 3")
         self.syllable_label.setStyleSheet("color: #bbb; font-weight: bold;")
@@ -437,7 +503,6 @@ class VocabVault(QMainWindow):
         slider_container.addWidget(self.syllable_label)
         slider_container.addWidget(self.syllable_slider)
         gen_layout.addLayout(slider_container)
-        # --- SLIDER CONTROL END ---
 
         btn_generate = QPushButton("Generate Random Word")
         btn_generate.clicked.connect(self.run_generator)
@@ -605,13 +670,15 @@ class VocabVault(QMainWindow):
         self.input_conlang.setFocus()
 
     def run_generator(self):
-        # NEW: GET VALUE FROM SLIDER
         syl_count = self.syllable_slider.value()
-        word, structure = WordGenerator.generate_word(num_syllables=syl_count)
+        # NOW RETURNS THREE VALUES
+        word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
+        # SET PRONUNCIATION LABEL
+        self.gen_pron_display.setText(pron)
         self.input_conlang.setText(word)
 
     def add_entry(self):
@@ -631,6 +698,7 @@ class VocabVault(QMainWindow):
         self.input_conlang.setFocus() 
         self.gen_result_display.setText("...")
         self.gen_structure_display.setText("")
+        self.gen_pron_display.setText("")
 
     def delete_entry(self, category, index):
         if index < 0 or index >= len(self.data[category]):
