@@ -11,9 +11,10 @@ import random
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
-                               QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit)
+                               QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
+                               QSlider) # Added QSlider
 from PySide6.QtGui import QFont, QColor, QTextCursor
-from PySide6.QtCore import Qt, QObject, QEvent, Signal  # Added Signal here
+from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ==========================================
 #        MASTER CHARACTER DEFINITIONS
@@ -143,7 +144,6 @@ KEYBOARD_LAYOUT = [
 
 # --- INPUT MAPPING ---
 
-# SHIFT: Long Vowels
 LONG_VOWEL_MAP = {
     "a": LORE.A_LONG, 
     "e": LORE.E_LONG, 
@@ -152,7 +152,6 @@ LONG_VOWEL_MAP = {
     "u": LORE.U_LONG
 }
 
-# AUTO-LIGATURES
 COMBO_MAP = {
     # Vowels
     "au": LORE.AU, "eu": LORE.EW, "ou": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
@@ -191,7 +190,6 @@ def apply_visual_fixes(text, mode='table'):
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class RichLineEdit(QTextEdit):
-    # DEFINE CUSTOM SIGNAL
     returnPressed = Signal()
 
     def __init__(self, *args, **kwargs):
@@ -219,7 +217,6 @@ class RichLineEdit(QTextEdit):
 
     def keyPressEvent(self, event):
         if event.key() in (Qt.Key_Return, Qt.Key_Enter):
-            # EMIT SIGNAL INSTEAD OF DOING NOTHING
             self.returnPressed.emit()
             return 
         super().keyPressEvent(event)
@@ -247,7 +244,6 @@ class RichLineEdit(QTextEdit):
         return cursor.selectedText()
 
 class WordGenerator:
-    # Build lists based on new Vowels
     GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
     GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
                 LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE]
@@ -255,12 +251,11 @@ class WordGenerator:
     ALL_VOWELS = GEN_SHORT + GEN_LONG
 
     @staticmethod
-    def generate_word(min_syllables=1, max_syllables=3):
+    def generate_word(num_syllables=3):
         word = ""
         structure_log = [] 
-        syllables = random.randint(min_syllables, max_syllables)
         
-        for i in range(syllables):
+        for i in range(num_syllables):
             structure = random.choices(
                 ["CV", "CVC", "VC", "CVV", "V", "CCV", "VCC"], 
                 weights=[25, 25, 20, 10, 5, 10, 5],
@@ -348,7 +343,6 @@ class PhysicalKeyFilter(QObject):
                 self.window.input_conlang.insert(" ")
                 return True
             
-            # --- MODIFIER DETECTION ---
             if event.modifiers() & Qt.ShiftModifier:
                 self.window.shift_active = True
                 self.window.shift_btn.setChecked(True)
@@ -423,6 +417,28 @@ class VocabVault(QMainWindow):
         self.gen_structure_display.setStyleSheet("color: #888; font-size: 14px; font-style: italic; margin-bottom: 10px;")
         gen_layout.addWidget(self.gen_structure_display)
         
+        # --- SLIDER CONTROL START ---
+        slider_container = QHBoxLayout()
+        self.syllable_label = QLabel("Syllables: 3")
+        self.syllable_label.setStyleSheet("color: #bbb; font-weight: bold;")
+        
+        self.syllable_slider = QSlider(Qt.Horizontal)
+        self.syllable_slider.setMinimum(1)
+        self.syllable_slider.setMaximum(8)
+        self.syllable_slider.setValue(3)
+        self.syllable_slider.setTickPosition(QSlider.TicksBelow)
+        self.syllable_slider.setTickInterval(1)
+        self.syllable_slider.setStyleSheet("""
+            QSlider::groove:horizontal { border: 1px solid #555; height: 8px; background: #333; margin: 2px 0; border-radius: 4px; }
+            QSlider::handle:horizontal { background: #0277bd; border: 1px solid #0277bd; width: 18px; height: 18px; margin: -7px 0; border-radius: 9px; }
+        """)
+        self.syllable_slider.valueChanged.connect(self.update_slider_label)
+        
+        slider_container.addWidget(self.syllable_label)
+        slider_container.addWidget(self.syllable_slider)
+        gen_layout.addLayout(slider_container)
+        # --- SLIDER CONTROL END ---
+
         btn_generate = QPushButton("Generate Random Word")
         btn_generate.clicked.connect(self.run_generator)
         btn_generate.setStyleSheet("QPushButton { background-color: #0277bd; color: white; padding: 8px; border-radius: 4px; font-weight: bold; } QPushButton:hover { background-color: #039be5; } QPushButton:pressed { background-color: #01579b; }")
@@ -433,7 +449,6 @@ class VocabVault(QMainWindow):
         # MANUAL ENTRY
         form_layout = QGridLayout()
         self.input_conlang = RichLineEdit()
-        # CONNECT THE NEW RETURN KEY SIGNAL
         self.input_conlang.returnPressed.connect(self.add_entry)
 
         self.input_conlang.setPlaceholderText("New Word")
@@ -441,7 +456,6 @@ class VocabVault(QMainWindow):
         self.input_english.setPlaceholderText("English Definition")
         self.input_english.setFixedHeight(50)
         self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
-        # Optional: Allow English field to save on enter too
         self.input_english.returnPressed.connect(self.add_entry)
 
         self.input_notes = QLineEdit()
@@ -478,14 +492,12 @@ class VocabVault(QMainWindow):
             tab = QWidget()
             t_layout = QVBoxLayout(tab)
             table = QTableWidget()
-            # CHANGED TO 4 COLUMNS TO ACCOMMODATE DELETE BTN
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
             header = table.horizontalHeader()
             header.setSectionResizeMode(0, QHeaderView.Stretch)
             header.setSectionResizeMode(1, QHeaderView.Stretch)
             header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
-            # Make the delete column small
             header.setSectionResizeMode(3, QHeaderView.Fixed)
             table.setColumnWidth(3, 40)
             
@@ -552,6 +564,9 @@ class VocabVault(QMainWindow):
         layout.addLayout(ctrl_row)
         return container
 
+    def update_slider_label(self, value):
+        self.syllable_label.setText(f"Syllables: {value}")
+
     def toggle_shift(self, checked):
         self.shift_active = checked
 
@@ -590,7 +605,10 @@ class VocabVault(QMainWindow):
         self.input_conlang.setFocus()
 
     def run_generator(self):
-        word, structure = WordGenerator.generate_word()
+        # NEW: GET VALUE FROM SLIDER
+        syl_count = self.syllable_slider.value()
+        word, structure = WordGenerator.generate_word(num_syllables=syl_count)
+        
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
@@ -610,12 +628,11 @@ class VocabVault(QMainWindow):
         self.input_conlang.clear()
         self.input_english.clear()
         self.input_notes.clear()
-        self.input_conlang.setFocus() # Keep focus on input for rapid entry
+        self.input_conlang.setFocus() 
         self.gen_result_display.setText("...")
         self.gen_structure_display.setText("")
 
     def delete_entry(self, category, index):
-        # NEW FUNCTION: Remove item and refresh
         if index < 0 or index >= len(self.data[category]):
             return
         del self.data[category][index]
@@ -644,7 +661,6 @@ class VocabVault(QMainWindow):
             notes_item.setFont(QFont("Arial", 12))
             table.setItem(r, 2, notes_item)
 
-            # ADD DELETE BUTTON
             del_btn = QPushButton("x")
             del_btn.setFixedSize(24, 24)
             del_btn.setStyleSheet("""
@@ -658,10 +674,8 @@ class VocabVault(QMainWindow):
                 }
                 QPushButton:hover { background-color: #b71c1c; }
             """)
-            # Use lambda default args (c=category, i=r) to capture current values
             del_btn.clicked.connect(lambda checked=False, c=category, i=r: self.delete_entry(c, i))
             
-            # Create a container to center the button in the cell
             container = QWidget()
             layout = QHBoxLayout(container)
             layout.setContentsMargins(0,0,0,0)
