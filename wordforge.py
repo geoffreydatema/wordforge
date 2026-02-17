@@ -1,3 +1,9 @@
+"""
+backlog
+    - syllable length
+    - pronunciation
+    - definition generator
+"""
 import sys
 import json
 import os
@@ -7,7 +13,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit)
 from PySide6.QtGui import QFont, QColor, QTextCursor
-from PySide6.QtCore import Qt, QObject, QEvent
+from PySide6.QtCore import Qt, QObject, QEvent, Signal  # Added Signal here
 
 # ==========================================
 #        MASTER CHARACTER DEFINITIONS
@@ -115,7 +121,7 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.U_SHORT:   "20pt", 
     LORE.O_LONG:    "17pt",
     LORE.U_LONG:    "17pt",
-    LORE.OO:        "17.5pt",
+    LORE.OO:        "17.5pt", 
     LORE.B_CYR:     "17pt", 
     LORE.L_CYR:     "17pt",
     LORE.Q:         "17pt",
@@ -147,7 +153,6 @@ LONG_VOWEL_MAP = {
 }
 
 # AUTO-LIGATURES
-# If user types the 2nd letter, and the 1st letter matches the precursor, replace both.
 COMBO_MAP = {
     # Vowels
     "au": LORE.AU, "eu": LORE.EW, "ou": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
@@ -162,7 +167,7 @@ COMBO_MAP = {
 DISABLED_KEYS = ['q', 'x', 'c']
 
 # ==========================================
-#              APP LOGIC
+#               APP LOGIC
 # ==========================================
 
 def apply_visual_fixes(text, mode='table'):
@@ -186,6 +191,9 @@ def apply_visual_fixes(text, mode='table'):
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class RichLineEdit(QTextEdit):
+    # DEFINE CUSTOM SIGNAL
+    returnPressed = Signal()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setAcceptRichText(True)
@@ -211,6 +219,8 @@ class RichLineEdit(QTextEdit):
 
     def keyPressEvent(self, event):
         if event.key() in (Qt.Key_Return, Qt.Key_Enter):
+            # EMIT SIGNAL INSTEAD OF DOING NOTHING
+            self.returnPressed.emit()
             return 
         super().keyPressEvent(event)
 
@@ -323,7 +333,6 @@ class PhysicalKeyFilter(QObject):
         super().__init__()
         self.window = parent_window
         self.key_map = {}
-        # Reverse map to find Lore char by Physical Key ID
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
@@ -366,7 +375,6 @@ class VocabVault(QMainWindow):
         
         self.shift_active = False
         
-        # Build a lookup for "Which lore character does this key produce?"
         self.key_to_lore = {}
         for row in KEYBOARD_LAYOUT:
             for k, char in row:
@@ -425,15 +433,22 @@ class VocabVault(QMainWindow):
         # MANUAL ENTRY
         form_layout = QGridLayout()
         self.input_conlang = RichLineEdit()
+        # CONNECT THE NEW RETURN KEY SIGNAL
+        self.input_conlang.returnPressed.connect(self.add_entry)
+
         self.input_conlang.setPlaceholderText("New Word")
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
         self.input_english.setFixedHeight(50)
         self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
+        # Optional: Allow English field to save on enter too
+        self.input_english.returnPressed.connect(self.add_entry)
+
         self.input_notes = QLineEdit()
         self.input_notes.setPlaceholderText("Etymology / Root Notes")
         self.input_notes.setFixedHeight(50)
         self.input_notes.setStyleSheet("font-size: 14pt; padding: 5px;")
+        self.input_notes.returnPressed.connect(self.add_entry)
         
         form_layout.addWidget(QLabel("Word:"), 0, 0)
         form_layout.addWidget(self.input_conlang, 0, 1)
@@ -463,12 +478,17 @@ class VocabVault(QMainWindow):
             tab = QWidget()
             t_layout = QVBoxLayout(tab)
             table = QTableWidget()
-            table.setColumnCount(3)
-            table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes"])
+            # CHANGED TO 4 COLUMNS TO ACCOMMODATE DELETE BTN
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
             header = table.horizontalHeader()
             header.setSectionResizeMode(0, QHeaderView.Stretch)
             header.setSectionResizeMode(1, QHeaderView.Stretch)
             header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+            # Make the delete column small
+            header.setSectionResizeMode(3, QHeaderView.Fixed)
+            table.setColumnWidth(3, 40)
+            
             self.tables[category] = table
             t_layout.addWidget(table)
             self.tabs.addTab(tab, category.title())
@@ -536,8 +556,6 @@ class VocabVault(QMainWindow):
         self.shift_active = checked
 
     def handle_keypress(self, key_id, default_char):
-        
-        # 1. SHIFT MODE (Long Vowels)
         if self.shift_active:
             if key_id in LONG_VOWEL_MAP:
                 result = LONG_VOWEL_MAP[key_id]
@@ -548,30 +566,22 @@ class VocabVault(QMainWindow):
             self.input_conlang.setFocus()
             return
 
-        # 2. AUTO-LIGATURE CHECK
-        # Before inserting the new char, check if (previous + current) makes a combo
         prev_char = self.input_conlang.get_prev_char()
         
         if prev_char:
             for combo_key, combo_val in COMBO_MAP.items():
-                # Check if this combo ends with the key just pressed
-                # e.g., combo "sh" ends with key "h"
                 if combo_key.endswith(key_id) and len(combo_key) == 2:
-                    prefix_key = combo_key[0] # "s"
+                    prefix_key = combo_key[0] 
                     
-                    # Look up the Lore character for that prefix key
                     if prefix_key in self.key_to_lore:
                         expected_lore_prefix = self.key_to_lore[prefix_key]
                         
-                        # If what's in the text box matches the Lore prefix...
                         if prev_char == expected_lore_prefix:
-                            # ...We found a match! Delete the previous char and insert the Combo
                             self.input_conlang.backspace()
                             self.input_conlang.insert(combo_val)
                             self.input_conlang.setFocus()
                             return
 
-        # 3. NORMAL INSERT
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
 
@@ -600,8 +610,17 @@ class VocabVault(QMainWindow):
         self.input_conlang.clear()
         self.input_english.clear()
         self.input_notes.clear()
+        self.input_conlang.setFocus() # Keep focus on input for rapid entry
         self.gen_result_display.setText("...")
         self.gen_structure_display.setText("")
+
+    def delete_entry(self, category, index):
+        # NEW FUNCTION: Remove item and refresh
+        if index < 0 or index >= len(self.data[category]):
+            return
+        del self.data[category][index]
+        self.save_data()
+        self.refresh_table(category)
 
     def refresh_table(self, category):
         table = self.tables[category]
@@ -616,12 +635,39 @@ class VocabVault(QMainWindow):
             label = QLabel(lore_word_styled)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
             table.setCellWidget(r, 0, label)
+            
             english_item = QTableWidgetItem(item.get('english', ''))
             english_item.setFont(QFont("Arial", 12))
             table.setItem(r, 1, english_item)
+            
             notes_item = QTableWidgetItem(item.get('notes', ''))
             notes_item.setFont(QFont("Arial", 12))
             table.setItem(r, 2, notes_item)
+
+            # ADD DELETE BUTTON
+            del_btn = QPushButton("x")
+            del_btn.setFixedSize(24, 24)
+            del_btn.setStyleSheet("""
+                QPushButton {
+                    background-color: #d32f2f; 
+                    color: white; 
+                    font-weight: bold; 
+                    border: none; 
+                    border-radius: 12px;
+                    padding-bottom: 2px;
+                }
+                QPushButton:hover { background-color: #b71c1c; }
+            """)
+            # Use lambda default args (c=category, i=r) to capture current values
+            del_btn.clicked.connect(lambda checked=False, c=category, i=r: self.delete_entry(c, i))
+            
+            # Create a container to center the button in the cell
+            container = QWidget()
+            layout = QHBoxLayout(container)
+            layout.setContentsMargins(0,0,0,0)
+            layout.setAlignment(Qt.AlignCenter)
+            layout.addWidget(del_btn)
+            table.setCellWidget(r, 3, container)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
