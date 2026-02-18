@@ -301,8 +301,10 @@ class WordGenerator:
         
         for i in range(num_syllables):
             structure = random.choices(
-                ["CV", "CVC", "VC", "CVV", "V", "CCV", "VCC"], 
-                weights=[25, 25, 20, 10, 5, 10, 5],
+                # ["CV", "CVC", "VC", "CVV", "V", "CCV", "VCC"], 
+                # weights=[25, 25, 20, 10, 5, 10, 5],
+                ["CV", "VC", "CVC"], 
+                weights=[50, 25, 25],
                 k=1
             )[0]
             

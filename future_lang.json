@@ -1,106 +1,6 @@
 {
     "dictionary": [
         {
-            "conlang": "cэԒᴇьэ",
-            "english": "word",
-            "notes": ""
-        },
-        {
-            "conlang": "zɶvꭅҵʌ",
-            "english": "random",
-            "notes": ""
-        },
-        {
-            "conlang": "гʀaжʜ",
-            "english": "citizen",
-            "notes": ""
-        },
-        {
-            "conlang": "aʒʀᴇжa",
-            "english": "star",
-            "notes": ""
-        },
-        {
-            "conlang": "zʀaҕa",
-            "english": "crime",
-            "notes": ""
-        },
-        {
-            "conlang": "ᴛэʒ",
-            "english": "test",
-            "notes": ""
-        },
-        {
-            "conlang": "пьaʀoʙ",
-            "english": "to test",
-            "notes": ""
-        },
-        {
-            "conlang": "ʜɪџᴋьэьa",
-            "english": "hinge",
-            "notes": ""
-        },
-        {
-            "conlang": "ɪʜᴛэԒɪџэʜc",
-            "english": "intelligence",
-            "notes": ""
-        },
-        {
-            "conlang": "ᴍoʜɪᴛoʀ",
-            "english": "to monitor/oversee",
-            "notes": ""
-        },
-        {
-            "conlang": "Бɶᴋ",
-            "english": "book",
-            "notes": ""
-        },
-        {
-            "conlang": "пиᴛʜʌxБиᴋ",
-            "english": "pretend",
-            "notes": ""
-        },
-        {
-            "conlang": "ᴛɪᴋɶʀэᴋ",
-            "english": "bird",
-            "notes": ""
-        },
-        {
-            "conlang": "aБʒʀaᴋᴛ",
-            "english": "abstract",
-            "notes": ""
-        },
-        {
-            "conlang": "жиϣи",
-            "english": "helmet",
-            "notes": ""
-        },
-        {
-            "conlang": "avᴛэʀ",
-            "english": "after",
-            "notes": ""
-        },
-        {
-            "conlang": "aҕгэʀ",
-            "english": "anger",
-            "notes": ""
-        },
-        {
-            "conlang": "aϣ",
-            "english": "to ask",
-            "notes": ""
-        },
-        {
-            "conlang": "ьaчaʜ",
-            "english": "floor",
-            "notes": ""
-        },
-        {
-            "conlang": "Удoʜoᴍaʜᴛ",
-            "english": "leader",
-            "notes": ""
-        },
-        {
             "conlang": "oԷoдa",
             "english": "water",
             "notes": "combination of english aqua and russian вода"
@@ -109,6 +9,16 @@
             "conlang": "ᴛꟻ",
             "english": "tea",
             "notes": ""
+        },
+        {
+            "conlang": "covэ",
+            "english": "coffee",
+            "notes": "keeps the c from english but ends up starting with s sound"
+        },
+        {
+            "conlang": "ᴋoжa",
+            "english": "cat",
+            "notes": "based on russian кошка"
         }
     ],
     "phrases": []
