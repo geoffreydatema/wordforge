@@ -19,6 +19,31 @@
             "conlang": "ᴋoжa",
             "english": "cat",
             "notes": "based on russian кошка"
+        },
+        {
+            "conlang": "ᴘʌᴋ",
+            "english": "plant",
+            "notes": "ilana wanted it to start in \"th\""
+        },
+        {
+            "conlang": "дьэ",
+            "english": "yes/yeah",
+            "notes": "shortened version of дьэʙɪч"
+        },
+        {
+            "conlang": "дьэʙɪч",
+            "english": "hell yeah",
+            "notes": "more enthusiastic version of дьэ"
+        },
+        {
+            "conlang": "ʜьэ",
+            "english": "no/nope",
+            "notes": "shortened version of ʜьэгэҵьa"
+        },
+        {
+            "conlang": "ʜьэгэҵьa",
+            "english": "never, more no than no",
+            "notes": "more enthusiastic version of ʜьэ"
         }
     ],
     "phrases": []
