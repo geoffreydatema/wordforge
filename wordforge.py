@@ -535,7 +535,7 @@ class VocabVault(QMainWindow):
         self.input_english.returnPressed.connect(self.add_entry)
 
         self.input_notes = QLineEdit()
-        self.input_notes.setPlaceholderText("Etymology / Root Notes")
+        self.input_notes.setPlaceholderText("Notes")
         self.input_notes.setFixedHeight(50)
         self.input_notes.setStyleSheet("font-size: 14pt; padding: 5px;")
         self.input_notes.returnPressed.connect(self.add_entry)
@@ -544,7 +544,7 @@ class VocabVault(QMainWindow):
         form_layout.addWidget(self.input_conlang, 0, 1)
         form_layout.addWidget(QLabel("Def:"), 1, 0)
         form_layout.addWidget(self.input_english, 1, 1)
-        form_layout.addWidget(QLabel("Root:"), 2, 0)
+        form_layout.addWidget(QLabel("Notes:"), 2, 0)
         form_layout.addWidget(self.input_notes, 2, 1)
         left_layout.addLayout(form_layout)
         

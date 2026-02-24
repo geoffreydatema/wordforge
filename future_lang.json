@@ -8,7 +8,7 @@
         {
             "conlang": "ᴛꟻ",
             "english": "tea",
-            "notes": ""
+            "notes": "thats just what ilana decided"
         },
         {
             "conlang": "covэ",
@@ -44,6 +44,36 @@
             "conlang": "ʜьэгэҵьa",
             "english": "never, more no than no",
             "notes": "more enthusiastic version of ʜьэ"
+        },
+        {
+            "conlang": "чи",
+            "english": "small",
+            "notes": "also the word ending for smallification"
+        },
+        {
+            "conlang": "ca",
+            "english": "action",
+            "notes": "also the word ending for using a noun as a verb"
+        },
+        {
+            "conlang": "Бɪʜ",
+            "english": "thing",
+            "notes": "bing bong"
+        },
+        {
+            "conlang": "Бɪʜca",
+            "english": "verb",
+            "notes": "compound of Бɪʜ and ca"
+        },
+        {
+            "conlang": "ʜУ",
+            "english": "big",
+            "notes": "useful in compound words involving largeness"
+        },
+        {
+            "conlang": "БԒиʜca",
+            "english": "quick",
+            "notes": "first adjective!"
         }
     ],
     "phrases": []
