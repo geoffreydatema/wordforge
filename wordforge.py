@@ -57,7 +57,7 @@ class LORE:
     TH = 'ᴘ'
     DH = 'ƌ'
     NG = 'ҕ'
-    GLOTTAL = '⧅'
+    GLOTTAL = 'ꞟ'
     TS = 'ҵ'
     ST = 'ʒ'
     KS = 'Ұ'
@@ -107,7 +107,7 @@ class PRONUNCIATION:
     TH = 'th'
     DH = 'TH'
     NG = 'ng'
-    GLOTTAL = '⧅'
+    GLOTTAL = 'ꞟ'
     TS = 'ts'
     ST = 'st'
     KS = 'ks'
@@ -152,7 +152,7 @@ TABLE_SIZE_CORRECTIONS = {
     LORE.B_CYR:     "10.5pt", 
     LORE.L_CYR:     "10.5pt",
     LORE.Q:         "10pt",
-    LORE.GLOTTAL:   "13pt",
+    LORE.GLOTTAL:   "14pt",
     LORE.TH:        "14pt",
     LORE.DH:        "14pt",
     LORE.NG:        "14pt",
@@ -169,7 +169,7 @@ HEADER_SIZE_CORRECTIONS = {
     LORE.B_CYR:     "17pt", 
     LORE.L_CYR:     "17pt",
     LORE.Q:         "17pt",
-    LORE.GLOTTAL:   "20pt",
+    LORE.GLOTTAL:   "24pt",
     LORE.TH:        "23pt",
     LORE.DH:        "20pt",
     LORE.NG:        "24pt",
