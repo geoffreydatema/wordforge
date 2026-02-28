@@ -417,7 +417,7 @@ class VocabVault(QMainWindow):
         font = QFont("Arial", 12)
         self.setFont(font)
         self.filename = "future_lang.json"
-        self.categories = ["dictionary", "phrases"]
+        self.categories = ["dictionary", "word endings", "phrases", "other"]
         self.tables = {} 
         self.data = self.load_data()
         

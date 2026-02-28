@@ -81,5 +81,29 @@
             "notes": "it just sounds like a bad word"
         }
     ],
-    "phrases": []
+    "word endings": [
+        {
+            "conlang": "чи",
+            "english": "small",
+            "notes": "a conceptually small version of something"
+        },
+        {
+            "conlang": "ca",
+            "english": "verb form of a noun",
+            "notes": "turns a noun in to a verb"
+        }
+    ],
+    "phrases": [],
+    "other": [
+        {
+            "conlang": "жɶᴛꟻʀoʜ",
+            "english": "image/picture",
+            "notes": ""
+        },
+        {
+            "conlang": "ƶиʀʜoᴛoԒ",
+            "english": "industry",
+            "notes": ""
+        }
+    ]
 }
