@@ -13,43 +13,43 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER DEFINITIONS
 #
-#       aэջohλиეբюռըδεy ნвгдzкηмнпpcтvxզьμжчшяdՑշцპსպէთრც
+#       aэջohλиეբюռըδεyნвгдzкηмнпpcтvxզьμжчшяdՑշцპსպէთრც
 # ========================================================
 
 class LORE:
-    A_SHORT = 'a'
-    E_SHORT = 'э'
-    I_SHORT = 'ջ'
-    O_SHORT = 'o'
-    U_SHORT = 'h'
-    A_LONG = 'λ'
-    E_LONG = 'и'
-    I_LONG = 'ე'
-    O_LONG = 'բ'
-    U_LONG = 'ю'
+    a = 'a'
+    e = 'э'
+    i = 'ջ'
+    o = 'o'
+    u = 'h'
+    A = 'λ'
+    E = 'и'
+    I = 'ე'
+    O = 'բ'
+    U = 'ю'
     AU = 'ռ'
-    EW = 'ը'
+    EU = 'ը'
     OE = 'δ'
-    OW = 'ε'
+    OU = 'ε'
     OO = 'y'
-    B_CYR = 'ნ'
-    B_SMALL = 'в'
-    G_CYR = 'г'
-    D_CYR = 'д'
+    B = 'ნ'
+    V = 'в'
+    G = 'г'
+    D = 'д'
     Z = 'z'
-    K_SMALL = 'ᴋ'
-    L_CYR = 'η' 
-    M_SMALL = 'м'
-    N_SMALL = 'н'
-    P_CYR = 'п'
-    P = 'p'
+    K = 'ᴋ'
+    L = 'η' 
+    M = 'м'
+    N = 'н'
+    P = 'п'
+    R = 'p'
     C = 'c'
     T = 'т'
-    V = 'v'
+    F = 'v'
     X = 'x'
-    Q = 'զ'
-    B = 'ь'
-    D = 'μ'
+    W = 'զ'
+    Y = 'ь'
+    J = 'μ'
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
@@ -64,42 +64,42 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
-    GLOTTAL = 'շ'
+    STOP = 'շ'
 
 class PRONUNCIATION:
-    A_SHORT = 'a'
-    E_SHORT = 'e'
-    I_SHORT = 'i'
-    O_SHORT = 'o'
-    U_SHORT = 'u'
-    A_LONG = 'ay'
-    E_LONG = 'ee'
-    I_LONG = 'eye'
-    O_LONG = 'oi'
-    U_LONG = 'ui'
+    a = 'a'
+    e = 'e'
+    i = 'i'
+    o = 'o'
+    u = 'u'
+    A = 'ay'
+    E = 'ee'
+    I = 'eye'
+    O = 'oi'
+    U = 'ui'
     AU = 'ow'
-    EW = 'ew'
+    EU = 'ew'
     OE = 'oe'
-    OW = 'oh'
+    OU = 'oh'
     OO = 'oo'
-    B_CYR = 'b'
-    B_SMALL = 'v'
-    G_CYR = 'g'
-    D_CYR = 'd'
+    B = 'b'
+    V = 'v'
+    G = 'g'
+    D = 'd'
     Z = 'z'
-    K_SMALL = 'k'
-    L_CYR = 'l' 
-    M_SMALL = 'm'
-    N_SMALL = 'n'
-    P_CYR = 'p'
-    P = 'r'
+    K = 'k'
+    L = 'l' 
+    M = 'm'
+    N = 'n'
+    P = 'p'
+    R = 'r'
     C = 's'
     T = 't'
-    V = 'f'
+    F = 'f'
     X = 'h'
-    Q = 'w'
-    B = 'y'
-    D = 'j'
+    W = 'w'
+    Y = 'y'
+    J = 'j'
     ZH = 'zh'
     CH = 'ch'
     SH = 'sh'
@@ -114,22 +114,22 @@ class PRONUNCIATION:
     SV = 'sv'
     ZV = 'zv'
     DV = 'dv'
-    GLOTTAL = 'շ'
+    STOP = 'շ'
 
 # ==========================================
 #           LORE CONFIGURATION
 # ==========================================
 
 VOWELS = [
-    LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT, 
-    LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
-    LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE
+    LORE.a, LORE.e, LORE.i, LORE.o, LORE.u, 
+    LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
+    LORE.AU, LORE.EU, LORE.OU, LORE.OO, LORE.OE
 ]
 
 CONSONANTS = [
-    LORE.Q, LORE.P, LORE.T, LORE.B, LORE.P_CYR, LORE.C, LORE.D_CYR, LORE.V, LORE.G_CYR, 
-    LORE.X, LORE.D, LORE.K_SMALL, LORE.L_CYR, LORE.Z, LORE.B_SMALL, LORE.B_CYR, LORE.N_SMALL, LORE.M_SMALL, 
-    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.GLOTTAL,
+    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, 
+    LORE.X, LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, 
+    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.STOP,
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
@@ -144,59 +144,59 @@ for attr in dir(LORE):
 
 # --- VISUAL TWEAKS ---
 TABLE_SIZE_CORRECTIONS = {
-    LORE.U_SHORT:   "14pt", 
-    LORE.O_LONG:    "10.5pt", 
-    LORE.U_LONG:    "10.5pt", 
-    LORE.OO:        "10.5pt", 
-    LORE.B_CYR:     "10.5pt", 
-    LORE.L_CYR:     "10.5pt",
-    LORE.Q:         "10pt",
-    LORE.GLOTTAL:   "14pt",
-    LORE.TH:        "14pt",
-    LORE.DH:        "14pt",
-    LORE.NG:        "14pt",
-    LORE.SK:        "14pt",
-    LORE.ZV:        "16pt",
-    LORE.KS:        "10.5pt"
+    # LORE.u:   "14pt", 
+    # LORE.O:    "10.5pt", 
+    # LORE.U:    "10.5pt", 
+    # LORE.OO:        "10.5pt", 
+    # LORE.B:     "10.5pt", 
+    # LORE.L:     "10.5pt",
+    # LORE.W:         "10pt",
+    # LORE.STOP:   "14pt",
+    # LORE.TH:        "14pt",
+    # LORE.DH:        "14pt",
+    # LORE.NG:        "14pt",
+    # LORE.SK:        "14pt",
+    # LORE.ZV:        "16pt",
+    # LORE.KS:        "10.5pt"
 }
 
 HEADER_SIZE_CORRECTIONS = {
-    LORE.U_SHORT:   "20pt", 
-    LORE.O_LONG:    "17pt",
-    LORE.U_LONG:    "17pt",
-    LORE.OO:        "17.5pt", 
-    LORE.B_CYR:     "17pt", 
-    LORE.L_CYR:     "17pt",
-    LORE.Q:         "17pt",
-    LORE.GLOTTAL:   "24pt",
-    LORE.TH:        "23pt",
-    LORE.DH:        "20pt",
-    LORE.NG:        "24pt",
-    LORE.SK:        "24pt",
-    LORE.ZV:        "26pt",
-    LORE.KS:        "17pt"
+    # LORE.u:   "20pt", 
+    # LORE.O:    "17pt",
+    # LORE.U:    "17pt",
+    # LORE.OO:        "17.5pt", 
+    # LORE.B:     "17pt", 
+    # LORE.L:     "17pt",
+    # LORE.W:         "17pt",
+    # LORE.STOP:   "24pt",
+    # LORE.TH:        "23pt",
+    # LORE.DH:        "20pt",
+    # LORE.NG:        "24pt",
+    # LORE.SK:        "24pt",
+    # LORE.ZV:        "26pt",
+    # LORE.KS:        "17pt"
 }
 
 # Keyboard Layout
 KEYBOARD_LAYOUT = [
-    [('`', LORE.GLOTTAL), ('w', LORE.Q), ('e', LORE.E_SHORT), ('r', LORE.P), ('t', LORE.T), ('y', LORE.B), ('u', LORE.U_SHORT), ('i', LORE.I_SHORT), ('o', LORE.O_SHORT), ('p', LORE.P_CYR)],
-    [('a', LORE.A_SHORT), ('s', LORE.C), ('d', LORE.D_CYR), ('f', LORE.V), ('g', LORE.G_CYR), ('h', LORE.X), ('j', LORE.D), ('k', LORE.K_SMALL), ('l', LORE.L_CYR)],
-    [('z', LORE.Z), ('v', LORE.B_SMALL), ('b', LORE.B_CYR), ('n', LORE.N_SMALL), ('m', LORE.M_SMALL)]
+    [('q', LORE.STOP), ('w', LORE.W), ('e', LORE.e), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.u), ('i', LORE.i), ('o', LORE.o), ('p', LORE.P)],
+    [('a', LORE.a), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
+    [('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M)]
 ]
 
 # --- INPUT MAPPING ---
 
 LONG_VOWEL_MAP = {
-    "a": LORE.A_LONG, 
-    "e": LORE.E_LONG, 
-    "i": LORE.I_LONG, 
-    "o": LORE.O_LONG, 
-    "u": LORE.U_LONG
+    "a": LORE.A, 
+    "e": LORE.E, 
+    "i": LORE.I, 
+    "o": LORE.O, 
+    "u": LORE.U
 }
 
 COMBO_MAP = {
     # Vowels
-    "au": LORE.AU, "eu": LORE.EW, "ou": LORE.OW, "oo": LORE.OO, "oe": LORE.OE,
+    "au": LORE.AU, "eu": LORE.EU, "ou": LORE.OU, "oo": LORE.OO, "oe": LORE.OE,
     # Consonants (Essential)
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
@@ -205,7 +205,7 @@ COMBO_MAP = {
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
-DISABLED_KEYS = ['q', 'x', 'c']
+DISABLED_KEYS = ['x', 'c']
 
 # ==========================================
 #               APP LOGIC
@@ -286,9 +286,9 @@ class RichLineEdit(QTextEdit):
         return cursor.selectedText()
 
 class WordGenerator:
-    GEN_SHORT = [LORE.A_SHORT, LORE.E_SHORT, LORE.I_SHORT, LORE.O_SHORT, LORE.U_SHORT]
-    GEN_LONG = [LORE.A_LONG, LORE.E_LONG, LORE.I_LONG, LORE.O_LONG, LORE.U_LONG, 
-                LORE.AU, LORE.EW, LORE.OW, LORE.OO, LORE.OE]
+    GEN_SHORT = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.u]
+    GEN_LONG = [LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
+                LORE.AU, LORE.EU, LORE.OU, LORE.OO, LORE.OE]
     
     ALL_VOWELS = GEN_SHORT + GEN_LONG
 
@@ -420,9 +420,7 @@ class VocabVault(QMainWindow):
         self.tables = {} 
         self.data = self.load_data()
         
-        # --- NEW: LOAD ENGLISH WORDS ---
         self.common_words = self.load_common_words()
-        # -------------------------------
 
         self.shift_active = False
         
@@ -444,7 +442,6 @@ class VocabVault(QMainWindow):
                 return json.loads(content) if content else default_data
         except: return default_data
         
-    # --- NEW FUNCTION TO LOAD TXT FILE ---
     def load_common_words(self):
         filename = "1000.txt"
         if not os.path.exists(filename):
