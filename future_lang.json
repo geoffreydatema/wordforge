@@ -69,6 +69,46 @@
             "conlang": "თhч",
             "english": "bad",
             "notes": "it just sounds like a bad word"
+        },
+        {
+            "conlang": "zи",
+            "english": "no/nope",
+            "notes": "different enough from дьэ"
+        },
+        {
+            "conlang": "ньэгэцьa",
+            "english": "never/more no than no",
+            "notes": "it just sounds enthusiastic"
+        },
+        {
+            "conlang": "пaдըpa",
+            "english": "good",
+            "notes": "sounds like a nice word"
+        },
+        {
+            "conlang": "эc",
+            "english": "many",
+            "notes": "also the word ending for plural"
+        },
+        {
+            "conlang": "თэრεpтyнa",
+            "english": "it is what it is",
+            "notes": "an expression literally translating to \"this is your fortune\""
+        },
+        {
+            "conlang": "თэz",
+            "english": "this",
+            "notes": "from თэრεpтyнa"
+        },
+        {
+            "conlang": "вεp",
+            "english": "your",
+            "notes": "from თэრεpтyнa"
+        },
+        {
+            "conlang": "вεpтyнa",
+            "english": "fortune",
+            "notes": "from თэრεpтyнa"
         }
     ],
     "word endings": [
@@ -81,27 +121,32 @@
             "conlang": "ca",
             "english": "verb form of a noun",
             "notes": "turns a noun into a verb"
+        },
+        {
+            "conlang": "эc",
+            "english": "plural",
+            "notes": "use շэc if word ends in a vowel"
         }
     ],
     "phrases": [],
     "other": [
         {
-            "conlang": "жɶᴛꟻʀoʜ",
+            "conlang": "жδтεpoн",
             "english": "image/picture",
             "notes": ""
         },
         {
-            "conlang": "ƶиʀʜoᴛoԒ",
+            "conlang": "ცиpнoтoη",
             "english": "industry",
             "notes": ""
         },
         {
-            "conlang": "ʙэᴍиʀʜo",
+            "conlang": "вэмиpнo",
             "english": "standard",
             "notes": ""
         },
         {
-            "conlang": "ʒʀʌᴋըʜoᴛ",
+            "conlang": "პpλᴋըнoт",
             "english": "interface",
             "notes": ""
         }
