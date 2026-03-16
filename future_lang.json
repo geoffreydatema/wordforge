@@ -1,19 +1,19 @@
 {
     "dictionary": [
         {
-            "conlang": "oԷoдa",
+            "conlang": "oէoдa",
             "english": "water",
-            "notes": "combination of english aqua and russian вода"
+            "notes": "combination of english water and russian вода"
         },
         {
-            "conlang": "ᴛꟻ",
+            "conlang": "тբ",
             "english": "tea",
-            "notes": "thats just what ilana decided"
+            "notes": "thats just what ilana decided it should be"
         },
         {
             "conlang": "covэ",
             "english": "coffee",
-            "notes": "keeps the c from english but ends up starting with s sound"
+            "notes": "keeps the c from english but ends up starting with an s sound"
         },
         {
             "conlang": "ᴋoжa",
@@ -21,29 +21,19 @@
             "notes": "based on russian кошка"
         },
         {
-            "conlang": "ᴘʌᴋ",
+            "conlang": "яλᴋ",
             "english": "plant",
-            "notes": "ilana wanted it to start in \"th\""
+            "notes": "ilana wanted it to start with \"th\""
         },
         {
             "conlang": "дьэ",
             "english": "yes/yeah",
-            "notes": "shortened version of дьэʙɪч"
+            "notes": "shorten version of дьэвջч"
         },
         {
-            "conlang": "дьэʙɪч",
+            "conlang": "дьэвջч",
             "english": "hell yeah",
             "notes": "more enthusiastic version of дьэ"
-        },
-        {
-            "conlang": "ʜьэ",
-            "english": "no/nope",
-            "notes": "shortened version of ʜьэгэҵьa"
-        },
-        {
-            "conlang": "ʜьэгэҵьa",
-            "english": "never, more no than no",
-            "notes": "more enthusiastic version of ʜьэ"
         },
         {
             "conlang": "чи",
@@ -56,27 +46,27 @@
             "notes": "also the word ending for using a noun as a verb"
         },
         {
-            "conlang": "Бɪʜ",
+            "conlang": "ნջн",
             "english": "thing",
             "notes": "bing bong"
         },
         {
-            "conlang": "Бɪʜca",
+            "conlang": "ნջнca",
             "english": "verb",
-            "notes": "compound of Бɪʜ and ca"
+            "notes": "compound of ნջн and ca"
         },
         {
-            "conlang": "ʜУ",
+            "conlang": "нy",
             "english": "big",
             "notes": "useful in compound words involving largeness"
         },
         {
-            "conlang": "БԒиʜҵa",
+            "conlang": "ნηинцa",
             "english": "quick",
-            "notes": "first adjective!"
+            "notes": "first adjective"
         },
         {
-            "conlang": "₪ɦч",
+            "conlang": "თhч",
             "english": "bad",
             "notes": "it just sounds like a bad word"
         }
@@ -85,12 +75,12 @@
         {
             "conlang": "чи",
             "english": "small",
-            "notes": "a conceptually small version of something"
+            "notes": "a conceptually small version of something (ex. kitten = small cat)"
         },
         {
             "conlang": "ca",
             "english": "verb form of a noun",
-            "notes": "turns a noun in to a verb"
+            "notes": "turns a noun into a verb"
         }
     ],
     "phrases": [],

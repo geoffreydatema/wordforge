@@ -143,39 +143,8 @@ for attr in dir(LORE):
             LORE_TO_PRON[lore_val] = pron_val
 
 # --- VISUAL TWEAKS ---
-TABLE_SIZE_CORRECTIONS = {
-    # LORE.u:   "14pt", 
-    # LORE.O:    "10.5pt", 
-    # LORE.U:    "10.5pt", 
-    # LORE.OO:        "10.5pt", 
-    # LORE.B:     "10.5pt", 
-    # LORE.L:     "10.5pt",
-    # LORE.W:         "10pt",
-    # LORE.STOP:   "14pt",
-    # LORE.TH:        "14pt",
-    # LORE.DH:        "14pt",
-    # LORE.NG:        "14pt",
-    # LORE.SK:        "14pt",
-    # LORE.ZV:        "16pt",
-    # LORE.KS:        "10.5pt"
-}
-
-HEADER_SIZE_CORRECTIONS = {
-    # LORE.u:   "20pt", 
-    # LORE.O:    "17pt",
-    # LORE.U:    "17pt",
-    # LORE.OO:        "17.5pt", 
-    # LORE.B:     "17pt", 
-    # LORE.L:     "17pt",
-    # LORE.W:         "17pt",
-    # LORE.STOP:   "24pt",
-    # LORE.TH:        "23pt",
-    # LORE.DH:        "20pt",
-    # LORE.NG:        "24pt",
-    # LORE.SK:        "24pt",
-    # LORE.ZV:        "26pt",
-    # LORE.KS:        "17pt"
-}
+TABLE_SIZE_CORRECTIONS = {}
+HEADER_SIZE_CORRECTIONS = {}
 
 # Keyboard Layout
 KEYBOARD_LAYOUT = [
@@ -393,7 +362,7 @@ class PhysicalKeyFilter(QObject):
                 self.window.backspace()
                 return True 
             if event.key() == Qt.Key_Space:
-                self.window.input_conlang.insert(" ")
+                self.window.input_conlang.insertPlainText(" ")
                 return True
             
             if event.modifiers() & Qt.ShiftModifier:
@@ -445,14 +414,11 @@ class VocabVault(QMainWindow):
     def load_common_words(self):
         filename = "1000.txt"
         if not os.path.exists(filename):
-            print(f"Warning: {filename} not found.")
             return []
         try:
             with open(filename, "r", encoding="utf-8") as f:
-                # Read lines, strip whitespace, ignore empty lines
                 return [line.strip() for line in f if line.strip()]
         except Exception as e:
-            print(f"Error loading words: {e}")
             return []
 
     def save_data(self):
@@ -623,7 +589,9 @@ class VocabVault(QMainWindow):
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
         space_btn.setStyleSheet(CTRL_STYLE)
-        space_btn.clicked.connect(lambda: self.input_conlang.insert(" "))
+        
+        space_btn.clicked.connect(lambda: self.input_conlang.insertPlainText(" "))
+        
         ctrl_row.addWidget(space_btn)
         
         back_btn = QPushButton("⌫")
