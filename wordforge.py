@@ -13,7 +13,7 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER DEFINITIONS
 #
-#       aэջohλиეբюռըδεyნвгдzкηмнпpcтvxզьμжчшяdՑշцპსպէთრც
+#       aэջohλиეբюռըδεyნвгдzкηмнпpcтvxզьμжчшяdՑцპსպէთრცշ
 # ========================================================
 
 class LORE:
