@@ -16,6 +16,56 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 #       aэջohλиეբюռըδεyნвгдzкηмнпpcтvxզьμжчшяdՑцპსպէთრცշ
 # ========================================================
 
+class DEFINITIONS:
+    a = 'a'     # short a
+    э = 'e'     # short e
+    ջ = 'i'     # short i
+    o = 'o'     # short o
+    h = 'u'     # short u
+    λ = 'ay'    # long a
+    и = 'ee'    # long e
+    ე = 'eye'   # long i
+    բ = 'oi'    # oi as in boy
+    ю = 'ui'    # anglicised ы
+    ռ = 'ow'    # ow as in ouch
+    ը = 'ew'    # ew as in knew
+    δ = 'oe'    # oe as in book
+    ε = 'oh'    # long o
+    y = 'oo'    # oo as in poop
+    ნ = 'b'
+    в = 'v'
+    г = 'g'
+    д = 'd'
+    z = 'z'
+    к = 'k'
+    η = 'l' 
+    м = 'm'
+    н = 'n'
+    п = 'p'
+    p = 'r'
+    c = 's'
+    т = 't'
+    v = 'f'
+    x = 'h'
+    զ = 'w'
+    ь = 'y'
+    μ = 'j'
+    ж = 'zh'    # as in measure
+    ч = 'ch'
+    ш = 'sh'
+    я = 'th'    # unvoiched th as in think
+    d = 'TH'    # voiced th as in this
+    Ց = 'ng'    # anglophone ng sound used in the ing word ending
+    ц = 'ts'
+    პ = 'st'
+    ს = 'ks'
+    պ = 'sk'
+    է = 'kv'
+    თ = 'sv'
+    რ = 'zv'
+    ც = 'dv'
+    շ = 'շ'     # glottal stop as in the british pronunciation of butter without the t
+
 class LORE:
     a = 'a'
     e = 'э'
@@ -67,21 +117,21 @@ class LORE:
     STOP = 'շ'
 
 class PRONUNCIATION:
-    a = 'a'
-    e = 'e'
-    i = 'i'
-    o = 'o'
-    u = 'u'
-    A = 'ay'
-    E = 'ee'
-    I = 'eye'
-    O = 'oi'
-    U = 'ui'
-    AU = 'ow'
-    EU = 'ew'
-    OE = 'oe'
-    OU = 'oh'
-    OO = 'oo'
+    a = 'a'     # short a
+    e = 'e'     # short e
+    i = 'i'     # short i
+    o = 'o'     # short o
+    u = 'u'     # short u
+    A = 'ay'    # long a
+    E = 'ee'    # long e
+    I = 'eye'   # long i
+    O = 'oi'    # oi as in boy
+    U = 'ui'    # anglicised ы
+    AU = 'ow'   # ow as in ouch
+    EU = 'ew'   # ew as in knew
+    OE = 'oe'   # oe as in book
+    OU = 'oh'   # long o
+    OO = 'oo'   # oo as in poop
     B = 'b'
     V = 'v'
     G = 'g'
@@ -100,21 +150,21 @@ class PRONUNCIATION:
     W = 'w'
     Y = 'y'
     J = 'j'
-    ZH = 'zh'
+    ZH = 'zh'   # as in measure
     CH = 'ch'
     SH = 'sh'
-    TH = 'th'
-    DH = 'TH'
-    NG = 'ng'
+    TH = 'th'   # unvoiched th as in think
+    DH = 'TH'   # voiced th as in this
+    NG = 'ng'   # anglophone ng sound used in the ing word ending
     TS = 'ts'
     ST = 'st'
     KS = 'ks'
     SK = 'sk'
-    KV = 'ks'
+    KV = 'kv'
     SV = 'sv'
     ZV = 'zv'
     DV = 'dv'
-    STOP = 'շ'
+    STOP = 'շ'  # glottal stop as in the british pronunciation of butter without the t
 
 # ==========================================
 #           LORE CONFIGURATION

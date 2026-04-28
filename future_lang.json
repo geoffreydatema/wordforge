@@ -156,9 +156,24 @@
             "notes": ""
         },
         {
-            "conlang": "ცεpнoт",
+            "conlang": "ცэpэнтoc",
             "english": "adventure",
             "notes": ""
+        },
+        {
+            "conlang": "aтηaнтջᴋ",
+            "english": "Atlantic",
+            "notes": "proper noun transliteration"
+        },
+        {
+            "conlang": "ьδpδп",
+            "english": "Europe",
+            "notes": "proper noun transliteration"
+        },
+        {
+            "conlang": "aтηьδpε",
+            "english": "North Atlantic Euro-Slavic Coalition",
+            "notes": "proper noun"
         }
     ]
 }
