@@ -114,6 +114,11 @@
             "conlang": "ნэნит",
             "english": "beverage/a drink",
             "notes": "from portugese beverage"
+        },
+        {
+            "conlang": "aηyмջнhм",
+            "english": "aluminum",
+            "notes": "transliteration"
         }
     ],
     "word endings": [
@@ -171,9 +176,19 @@
             "notes": "proper noun transliteration"
         },
         {
-            "conlang": "aтηьδpε",
+            "conlang": "aтηьδpε ᴋεηջшн",
             "english": "North Atlantic Euro-Slavic Coalition",
             "notes": "proper noun"
+        },
+        {
+            "conlang": "aՑгηεcηaв",
+            "english": "Angloslav",
+            "notes": "the name of the Angloslav language and refers to the Angloslav region"
+        },
+        {
+            "conlang": "пacջvջᴋ",
+            "english": "Pacific",
+            "notes": "proper noun transliteration"
         }
     ]
 }
