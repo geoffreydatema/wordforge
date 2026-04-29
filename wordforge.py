@@ -183,7 +183,6 @@ CONSONANTS = [
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
-# Build a Lookup Dictionary: { LORE_CHAR : PRONUNCIATION_STRING }
 LORE_TO_PRON = {}
 for attr in dir(LORE):
     if not attr.startswith('__') and not callable(getattr(LORE, attr)):
@@ -192,39 +191,70 @@ for attr in dir(LORE):
             pron_val = getattr(PRONUNCIATION, attr)
             LORE_TO_PRON[lore_val] = pron_val
 
-# --- VISUAL TWEAKS ---
 TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
 
-# Keyboard Layout
 KEYBOARD_LAYOUT = [
     [('q', LORE.STOP), ('w', LORE.W), ('e', LORE.e), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.u), ('i', LORE.i), ('o', LORE.o), ('p', LORE.P)],
     [('a', LORE.a), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
     [('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M)]
 ]
 
-# --- INPUT MAPPING ---
-
 LONG_VOWEL_MAP = {
-    "a": LORE.A, 
-    "e": LORE.E, 
-    "i": LORE.I, 
-    "o": LORE.O, 
-    "u": LORE.U
+    "a": LORE.A, "e": LORE.E, "i": LORE.I, "o": LORE.O, "u": LORE.U
 }
 
 COMBO_MAP = {
-    # Vowels
     "au": LORE.AU, "eu": LORE.EU, "ou": LORE.OU, "oo": LORE.OO, "oe": LORE.OE,
-    # Consonants (Essential)
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
-    # Consonants (Non-Essential Shortcuts)
     "ts": LORE.TS, "st": LORE.ST, "ks": LORE.KS, "sk": LORE.SK,
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
 DISABLED_KEYS = ['x', 'c']
+
+# ==========================================
+#          KATAKANA CONFIGURATION
+# ==========================================
+KATAKANA_MAP = {
+    # K
+    LORE.K + LORE.a: 'カ', LORE.K + LORE.E: 'キ', LORE.K + LORE.OO: 'ク', LORE.K + LORE.e: 'ケ', LORE.K + LORE.o: 'コ',
+    # S
+    LORE.C + LORE.a: 'サ', LORE.C + LORE.OO: 'ス', LORE.C + LORE.e: 'セ', LORE.C + LORE.o: 'ソ', 
+    # T
+    LORE.T + LORE.a: 'タ', LORE.T + LORE.E: 'チ', LORE.T + LORE.OO: 'ツ', LORE.T + LORE.e: 'テ', LORE.T + LORE.o: 'ト',
+    # N
+    LORE.N + LORE.a: 'ナ', LORE.N + LORE.E: 'ニ', LORE.N + LORE.OO: 'ヌ', LORE.N + LORE.e: 'ネ', LORE.N + LORE.o: 'ノ',
+    # H (Physical 'h' is LORE.X)
+    LORE.X + LORE.a: 'ハ', LORE.X + LORE.E: 'ヒ', LORE.X + LORE.OO: 'フ', LORE.X + LORE.e: 'ヘ', LORE.X + LORE.o: 'ホ',
+    # M
+    LORE.M + LORE.a: 'マ', LORE.M + LORE.E: 'ミ', LORE.M + LORE.OO: 'ム', LORE.M + LORE.e: 'メ', LORE.M + LORE.o: 'モ',
+    # Y
+    LORE.Y + LORE.a: 'ヤ', LORE.Y + LORE.OO: 'ユ', LORE.Y + LORE.o: 'ヨ',
+    # R
+    LORE.R + LORE.a: 'ラ', LORE.R + LORE.E: 'リ', LORE.R + LORE.OO: 'ル', LORE.R + LORE.e: 'レ', LORE.R + LORE.o: 'ロ',
+    # W
+    LORE.W + LORE.a: 'ワ', LORE.W + LORE.o: 'ヲ',
+    # G
+    LORE.G + LORE.a: 'ガ', LORE.G + LORE.E: 'ギ', LORE.G + LORE.OO: 'グ', LORE.G + LORE.e: 'ゲ', LORE.G + LORE.o: 'ゴ',
+    # Z
+    LORE.Z + LORE.a: 'ザ', LORE.Z + LORE.E: 'ジ', LORE.Z + LORE.OO: 'ズ', LORE.Z + LORE.e: 'ゼ', LORE.Z + LORE.o: 'ゾ',
+    # D
+    LORE.D + LORE.a: 'ダ', LORE.D + LORE.E: 'ヂ', LORE.D + LORE.OO: 'ヅ', LORE.D + LORE.e: 'デ', LORE.D + LORE.o: 'ド',
+    # B
+    LORE.B + LORE.a: 'バ', LORE.B + LORE.E: 'ビ', LORE.B + LORE.OO: 'ブ', LORE.B + LORE.e: 'ベ', LORE.B + LORE.o: 'ボ',
+    # P
+    LORE.P + LORE.a: 'パ', LORE.P + LORE.E: 'ピ', LORE.P + LORE.OO: 'プ', LORE.P + LORE.e: 'ペ', LORE.P + LORE.o: 'ポ'
+}
+
+# Special mapping to handle typing 'o' twice to get the 'OO' (ウ) Katakana. 
+# Converts the Katakana 'o' row to the Katakana 'u' row.
+KATAKANA_OO_MAP = {
+    'コ': 'ク', 'ソ': 'ス', 'ト': 'ツ', 'ノ': 'ヌ', 'ホ': 'フ',
+    'モ': 'ム', 'ヨ': 'ユ', 'ロ': 'ル', 'ゴ': 'グ', 'ゾ': 'ズ',
+    'ド': 'ヅ', 'ボ': 'ブ', 'ポ': 'プ'
+}
 
 # ==========================================
 #               APP LOGIC
@@ -299,9 +329,14 @@ class RichLineEdit(QTextEdit):
 
     def get_prev_char(self):
         cursor = self.textCursor()
-        if cursor.atBlockStart():
-            return None
+        if cursor.atBlockStart(): return None
         cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor)
+        return cursor.selectedText()
+
+    def get_last_n_chars(self, n):
+        cursor = self.textCursor()
+        if cursor.positionInBlock() < n: return None
+        cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor, n)
         return cursor.selectedText()
 
 class WordGenerator:
@@ -319,8 +354,6 @@ class WordGenerator:
         
         for i in range(num_syllables):
             structure = random.choices(
-                # ["CV", "CVC", "VC", "CVV", "V", "CCV", "VCC"], 
-                # weights=[25, 25, 20, 10, 5, 10, 5],
                 ["CV", "VC", "CVC"], 
                 weights=[50, 25, 25],
                 k=1
@@ -333,7 +366,6 @@ class WordGenerator:
             structure_log.append(structure)
             syllable = ""
             
-            # --- SYLLABLE GENERATION ---
             if structure == "V":
                 v = random.choice(WordGenerator.ALL_VOWELS)
                 if prev_char:
@@ -387,7 +419,6 @@ class WordGenerator:
 
             word += syllable
 
-            # --- CALCULATE PRONUNCIATION FOR THIS SYLLABLE ---
             pron_syl = ""
             for char in syllable:
                 pron_syl += LORE_TO_PRON.get(char, "?")
@@ -567,7 +598,23 @@ class VocabVault(QMainWindow):
         left_layout.addWidget(self.add_button)
         
         left_layout.addSpacing(15)
-        left_layout.addWidget(QLabel("Touch Keyboard:"))
+        
+        kbd_header_layout = QHBoxLayout()
+        kbd_header_layout.addWidget(QLabel("Touch Keyboard:"))
+        kbd_header_layout.addStretch()
+        
+        self.katakana_mode_btn = QPushButton("Katakana Mode: OFF")
+        self.katakana_mode_btn.setCheckable(True)
+        self.katakana_mode_btn.setStyleSheet("""
+            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 4px; padding: 4px 10px; }
+            QPushButton:hover { background-color: #444; border-color: #777; }
+            QPushButton:checked { background-color: #9c27b0; color: white; border-color: #7b1fa2; }
+        """)
+        self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
+        kbd_header_layout.addWidget(self.katakana_mode_btn)
+        
+        left_layout.addLayout(kbd_header_layout)
+        
         keyboard = self.create_keyboard()
         left_layout.addWidget(keyboard)
         left_layout.addStretch()
@@ -639,9 +686,7 @@ class VocabVault(QMainWindow):
         space_btn = QPushButton("Space")
         space_btn.setFixedSize(150, 45)
         space_btn.setStyleSheet(CTRL_STYLE)
-        
         space_btn.clicked.connect(lambda: self.input_conlang.insertPlainText(" "))
-        
         ctrl_row.addWidget(space_btn)
         
         back_btn = QPushButton("⌫")
@@ -660,6 +705,12 @@ class VocabVault(QMainWindow):
     def toggle_shift(self, checked):
         self.shift_active = checked
 
+    def toggle_katakana_mode(self, checked):
+        if checked:
+            self.katakana_mode_btn.setText("Katakana Mode: ON")
+        else:
+            self.katakana_mode_btn.setText("Katakana Mode: OFF")
+
     def handle_keypress(self, key_id, default_char):
         if self.shift_active:
             if key_id in LONG_VOWEL_MAP:
@@ -669,6 +720,8 @@ class VocabVault(QMainWindow):
                 self.input_conlang.insert(default_char)
             self.shift_btn.setChecked(False)
             self.input_conlang.setFocus()
+
+            self._check_katakana()
             return
 
         prev_char = self.input_conlang.get_prev_char()
@@ -685,10 +738,32 @@ class VocabVault(QMainWindow):
                             self.input_conlang.backspace()
                             self.input_conlang.insert(combo_val)
                             self.input_conlang.setFocus()
+                            self._check_katakana()
                             return
 
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
+        self._check_katakana()
+
+    def _check_katakana(self):
+        """Checks the last two typed characters to see if they form a Katakana."""
+        if not self.katakana_mode_btn.isChecked(): return
+
+        prev_2 = self.input_conlang.get_last_n_chars(2)
+        if not prev_2: return
+
+        # 1. Resolve O + O collision (Transforms Ko+o -> Ku Katakana)
+        if prev_2[0] in KATAKANA_OO_MAP and prev_2[1] == LORE.o:
+            self.input_conlang.backspace()
+            self.input_conlang.backspace()
+            self.input_conlang.insert(KATAKANA_OO_MAP[prev_2[0]])
+            return
+
+        # 2. Resolve standard Consonant + Vowel matches
+        if prev_2 in KATAKANA_MAP:
+            self.input_conlang.backspace()
+            self.input_conlang.backspace()
+            self.input_conlang.insert(KATAKANA_MAP[prev_2])
 
     def backspace(self):
         self.input_conlang.backspace()
@@ -698,6 +773,11 @@ class VocabVault(QMainWindow):
         syl_count = self.syllable_slider.value()
         word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
+        # Process word for Katakana if mode is active
+        if self.katakana_mode_btn.isChecked():
+            for cluster, katakana in KATAKANA_MAP.items():
+                word = word.replace(cluster, katakana)
+
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
@@ -708,7 +788,6 @@ class VocabVault(QMainWindow):
         if self.common_words:
             random_def = random.choice(self.common_words)
             self.input_english.setText(random_def)
-        # -----------------------------------
 
     def add_entry(self):
         conlang = self.input_conlang.text().strip()
