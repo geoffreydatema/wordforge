@@ -243,6 +243,9 @@ for attr in dir(LORE):
             pron_val = getattr(PRONUNCIATION, attr)
             LORE_TO_PRON[lore_val] = pron_val
 
+GLOBAL_KATAKANA_TABLE_SIZE = "11pt"
+GLOBAL_KATAKANA_HEADER_SIZE = "24px"
+
 TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
 
@@ -302,15 +305,19 @@ def apply_visual_fixes(text, mode='table'):
     if mode == 'header':
         corrections = HEADER_SIZE_CORRECTIONS
         base_size = "32px"
+        kata_size = GLOBAL_KATAKANA_HEADER_SIZE
     else:
         corrections = TABLE_SIZE_CORRECTIONS
         base_size = "14pt"
+        kata_size = GLOBAL_KATAKANA_TABLE_SIZE
     
     html = ""
     for char in text:
         if char in corrections:
             scale = corrections[char]
             html += f"<span style='font-size:{scale};'>{char}</span>"
+        elif '\u30A0' <= char <= '\u30FF':  # Check if character is Katakana
+            html += f"<span style='font-size:{kata_size};'>{char}</span>"
         else:
             html += char
             
@@ -550,7 +557,6 @@ class VocabVault(QMainWindow):
         # LEFT PANEL
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        # Widened to 550 to give the tabs a bit more space
         left_panel.setFixedWidth(550) 
         
         # --- LEFT PANEL TABS ---
@@ -684,9 +690,11 @@ class VocabVault(QMainWindow):
         html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Cluster</th><th style='border-bottom: 1px solid white;'>Katakana</th><th style='border-bottom: 1px solid white;'>Pronunciation</th></tr>"
         for cluster, kata in KATAKANA_MAP.items():
             styled_cluster = apply_visual_fixes(cluster, mode='table')
+            # Fix katakana visual sizing in the reference table too
+            styled_kata = f"<span style='font-size:{GLOBAL_KATAKANA_TABLE_SIZE};'>{kata}</span>"
             c1, c2 = cluster[0], cluster[1]
             pron = LORE_TO_PRON.get(c1, "?") + LORE_TO_PRON.get(c2, "?")
-            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_cluster}</td><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt; color: #9c27b0;'>{kata}</td><td style='border-bottom: 1px solid #444; text-align: center;'>{pron}</td></tr>"
+            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_cluster}</td><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt; color: #9c27b0;'>{styled_kata}</td><td style='border-bottom: 1px solid #444; text-align: center;'>{pron}</td></tr>"
         html += "</table>"
         
         self.def_browser.setHtml(html)
@@ -706,7 +714,7 @@ class VocabVault(QMainWindow):
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
             header = table.horizontalHeader()
-            header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(0, QHeaderView.ResizeToContents) # Maintain minimum width wrapping
             header.setSectionResizeMode(1, QHeaderView.Stretch)
             header.setSectionResizeMode(2, QHeaderView.Stretch)
             header.setSectionResizeMode(3, QHeaderView.Fixed)
@@ -897,7 +905,7 @@ class VocabVault(QMainWindow):
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-            label.setMinimumWidth(150)
+            label.setMinimumWidth(150) # Maintain the minimum width requested earlier
             table.setCellWidget(r, 0, label)
             
             english_item = QTableWidgetItem(item.get('english', ''))
