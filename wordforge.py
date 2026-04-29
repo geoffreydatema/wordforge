@@ -6,8 +6,8 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider)
-from PySide6.QtGui import QFont, QColor, QTextCursor
+                               QSlider, QTextBrowser)
+from PySide6.QtGui import QFont, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ========================================================
@@ -183,6 +183,58 @@ CONSONANTS = [
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
+# Alphabet Reference Definitions
+ALPHABET_DEFS = [
+    (LORE.a, "a", "short a"),
+    (LORE.e, "e", "short e"),
+    (LORE.i, "i", "short i"),
+    (LORE.o, "o", "short o"),
+    (LORE.u, "u", "short u"),
+    (LORE.A, "ay", "long a"),
+    (LORE.E, "ee", "long e"),
+    (LORE.I, "eye", "long i"),
+    (LORE.O, "oi", "oi as in boy"),
+    (LORE.U, "ui", "anglicised ы"),
+    (LORE.AU, "ow", "ow as in ouch"),
+    (LORE.EU, "ew", "ew as in knew"),
+    (LORE.OE, "oe", "oe as in book"),
+    (LORE.OU, "oh", "long o"),
+    (LORE.OO, "oo", "oo as in poop"),
+    (LORE.B, "b", ""),
+    (LORE.V, "v", ""),
+    (LORE.G, "g", ""),
+    (LORE.D, "d", ""),
+    (LORE.Z, "z", ""),
+    (LORE.K, "k", ""),
+    (LORE.L, "l", ""),
+    (LORE.M, "m", ""),
+    (LORE.N, "n", ""),
+    (LORE.P, "p", ""),
+    (LORE.R, "r", ""),
+    (LORE.C, "s", ""),
+    (LORE.T, "t", ""),
+    (LORE.F, "f", ""),
+    (LORE.X, "h", ""),
+    (LORE.W, "w", ""),
+    (LORE.Y, "y", ""),
+    (LORE.J, "j", ""),
+    (LORE.ZH, "zh", "as in measure"),
+    (LORE.CH, "ch", ""),
+    (LORE.SH, "sh", ""),
+    (LORE.TH, "th", "unvoiced th as in think"),
+    (LORE.DH, "TH", "voiced th as in this"),
+    (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
+    (LORE.TS, "ts", ""),
+    (LORE.ST, "st", ""),
+    (LORE.KS, "ks", ""),
+    (LORE.SK, "sk", ""),
+    (LORE.KV, "kv", ""),
+    (LORE.SV, "sv", ""),
+    (LORE.ZV, "zv", ""),
+    (LORE.DV, "dv", ""),
+    (LORE.STOP, "շ", "glottal stop as in the british pronunciation of butter without the t")
+]
+
 LORE_TO_PRON = {}
 for attr in dir(LORE):
     if not attr.startswith('__') and not callable(getattr(LORE, attr)):
@@ -218,38 +270,22 @@ DISABLED_KEYS = ['x', 'c']
 #          KATAKANA CONFIGURATION
 # ==========================================
 KATAKANA_MAP = {
-    # K
     LORE.K + LORE.a: 'カ', LORE.K + LORE.E: 'キ', LORE.K + LORE.OO: 'ク', LORE.K + LORE.e: 'ケ', LORE.K + LORE.o: 'コ',
-    # S
     LORE.C + LORE.a: 'サ', LORE.C + LORE.OO: 'ス', LORE.C + LORE.e: 'セ', LORE.C + LORE.o: 'ソ', 
-    # T
     LORE.T + LORE.a: 'タ', LORE.T + LORE.E: 'チ', LORE.T + LORE.OO: 'ツ', LORE.T + LORE.e: 'テ', LORE.T + LORE.o: 'ト',
-    # N
     LORE.N + LORE.a: 'ナ', LORE.N + LORE.E: 'ニ', LORE.N + LORE.OO: 'ヌ', LORE.N + LORE.e: 'ネ', LORE.N + LORE.o: 'ノ',
-    # H (Physical 'h' is LORE.X)
     LORE.X + LORE.a: 'ハ', LORE.X + LORE.E: 'ヒ', LORE.X + LORE.OO: 'フ', LORE.X + LORE.e: 'ヘ', LORE.X + LORE.o: 'ホ',
-    # M
     LORE.M + LORE.a: 'マ', LORE.M + LORE.E: 'ミ', LORE.M + LORE.OO: 'ム', LORE.M + LORE.e: 'メ', LORE.M + LORE.o: 'モ',
-    # Y
     LORE.Y + LORE.a: 'ヤ', LORE.Y + LORE.OO: 'ユ', LORE.Y + LORE.o: 'ヨ',
-    # R
     LORE.R + LORE.a: 'ラ', LORE.R + LORE.E: 'リ', LORE.R + LORE.OO: 'ル', LORE.R + LORE.e: 'レ', LORE.R + LORE.o: 'ロ',
-    # W
     LORE.W + LORE.a: 'ワ', LORE.W + LORE.o: 'ヲ',
-    # G
     LORE.G + LORE.a: 'ガ', LORE.G + LORE.E: 'ギ', LORE.G + LORE.OO: 'グ', LORE.G + LORE.e: 'ゲ', LORE.G + LORE.o: 'ゴ',
-    # Z
     LORE.Z + LORE.a: 'ザ', LORE.Z + LORE.E: 'ジ', LORE.Z + LORE.OO: 'ズ', LORE.Z + LORE.e: 'ゼ', LORE.Z + LORE.o: 'ゾ',
-    # D
     LORE.D + LORE.a: 'ダ', LORE.D + LORE.E: 'ヂ', LORE.D + LORE.OO: 'ヅ', LORE.D + LORE.e: 'デ', LORE.D + LORE.o: 'ド',
-    # B
     LORE.B + LORE.a: 'バ', LORE.B + LORE.E: 'ビ', LORE.B + LORE.OO: 'ブ', LORE.B + LORE.e: 'ベ', LORE.B + LORE.o: 'ボ',
-    # P
     LORE.P + LORE.a: 'パ', LORE.P + LORE.E: 'ピ', LORE.P + LORE.OO: 'プ', LORE.P + LORE.e: 'ペ', LORE.P + LORE.o: 'ポ'
 }
 
-# Special mapping to handle typing 'o' twice to get the 'OO' (ウ) Katakana. 
-# Converts the Katakana 'o' row to the Katakana 'u' row.
 KATAKANA_OO_MAP = {
     'コ': 'ク', 'ソ': 'ス', 'ト': 'ツ', 'ノ': 'ヌ', 'ホ': 'フ',
     'モ': 'ム', 'ヨ': 'ユ', 'ロ': 'ル', 'ゴ': 'グ', 'ゾ': 'ズ',
@@ -514,7 +550,15 @@ class VocabVault(QMainWindow):
         # LEFT PANEL
         left_panel = QWidget()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setFixedWidth(500)
+        # Widened to 550 to give the tabs a bit more space
+        left_panel.setFixedWidth(550) 
+        
+        # --- LEFT PANEL TABS ---
+        self.left_tabs = QTabWidget()
+        
+        # TAB 1: Forge / Keyboard
+        forge_tab = QWidget()
+        forge_layout = QVBoxLayout(forge_tab)
         
         gen_group = QFrame()
         gen_group.setStyleSheet("background-color: #2b2b2b; border-radius: 8px; padding: 10px;")
@@ -562,8 +606,8 @@ class VocabVault(QMainWindow):
         btn_generate.clicked.connect(self.run_generator)
         btn_generate.setStyleSheet("QPushButton { background-color: #0277bd; color: white; padding: 8px; border-radius: 4px; font-weight: bold; } QPushButton:hover { background-color: #039be5; } QPushButton:pressed { background-color: #01579b; }")
         gen_layout.addWidget(btn_generate)
-        left_layout.addWidget(gen_group)
-        left_layout.addSpacing(10)
+        forge_layout.addWidget(gen_group)
+        forge_layout.addSpacing(10)
 
         # MANUAL ENTRY
         form_layout = QGridLayout()
@@ -589,15 +633,15 @@ class VocabVault(QMainWindow):
         form_layout.addWidget(self.input_english, 1, 1)
         form_layout.addWidget(QLabel("Notes:"), 2, 0)
         form_layout.addWidget(self.input_notes, 2, 1)
-        left_layout.addLayout(form_layout)
+        forge_layout.addLayout(form_layout)
         
         self.add_button = QPushButton("Save to Dictionary")
         self.add_button.setMinimumHeight(45)
         self.add_button.setStyleSheet("QPushButton { background-color: #2e7d32; color: white; font-weight: bold; border-radius: 4px; font-size: 16px; } QPushButton:hover { background-color: #388e3c; } QPushButton:pressed { background-color: #1b5e20; }")
         self.add_button.clicked.connect(self.add_entry)
-        left_layout.addWidget(self.add_button)
+        forge_layout.addWidget(self.add_button)
         
-        left_layout.addSpacing(15)
+        forge_layout.addSpacing(15)
         
         kbd_header_layout = QHBoxLayout()
         kbd_header_layout.addWidget(QLabel("Touch Keyboard:"))
@@ -613,11 +657,43 @@ class VocabVault(QMainWindow):
         self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
         kbd_header_layout.addWidget(self.katakana_mode_btn)
         
-        left_layout.addLayout(kbd_header_layout)
+        forge_layout.addLayout(kbd_header_layout)
         
         keyboard = self.create_keyboard()
-        left_layout.addWidget(keyboard)
-        left_layout.addStretch()
+        forge_layout.addWidget(keyboard)
+        forge_layout.addStretch()
+        
+        self.left_tabs.addTab(forge_tab, "Word Forge")
+        
+        # TAB 2: Alphabet Definitions
+        def_tab = QWidget()
+        def_layout = QVBoxLayout(def_tab)
+        
+        self.def_browser = QTextBrowser()
+        self.def_browser.setOpenExternalLinks(False)
+        self.def_browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 12pt; border: 1px solid #444;")
+        
+        # Build Reference HTML
+        html = "<h2>Angloslav Alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
+        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Sound</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
+        for char, sound, notes in ALPHABET_DEFS:
+            styled_char = apply_visual_fixes(char, mode='table')
+            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_char}</td><td style='border-bottom: 1px solid #444;'>{sound}</td><td style='border-bottom: 1px solid #444; font-size: 11pt; color: #bbb;'>{notes}</td></tr>"
+        
+        html += "</table><h2>Katakana Syllabary</h2><table width='100%' cellpadding='6' style='border-collapse: collapse;'>"
+        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Cluster</th><th style='border-bottom: 1px solid white;'>Katakana</th><th style='border-bottom: 1px solid white;'>Pronunciation</th></tr>"
+        for cluster, kata in KATAKANA_MAP.items():
+            styled_cluster = apply_visual_fixes(cluster, mode='table')
+            c1, c2 = cluster[0], cluster[1]
+            pron = LORE_TO_PRON.get(c1, "?") + LORE_TO_PRON.get(c2, "?")
+            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_cluster}</td><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt; color: #9c27b0;'>{kata}</td><td style='border-bottom: 1px solid #444; text-align: center;'>{pron}</td></tr>"
+        html += "</table>"
+        
+        self.def_browser.setHtml(html)
+        def_layout.addWidget(self.def_browser)
+        
+        self.left_tabs.addTab(def_tab, "Definitions")
+        left_layout.addWidget(self.left_tabs)
         
         # RIGHT PANEL
         right_panel = QWidget()
@@ -630,9 +706,9 @@ class VocabVault(QMainWindow):
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
             header = table.horizontalHeader()
-            header.setSectionResizeMode(0, QHeaderView.Stretch)
+            header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
             header.setSectionResizeMode(1, QHeaderView.Stretch)
-            header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+            header.setSectionResizeMode(2, QHeaderView.Stretch)
             header.setSectionResizeMode(3, QHeaderView.Fixed)
             table.setColumnWidth(3, 40)
             
@@ -720,7 +796,6 @@ class VocabVault(QMainWindow):
                 self.input_conlang.insert(default_char)
             self.shift_btn.setChecked(False)
             self.input_conlang.setFocus()
-
             self._check_katakana()
             return
 
@@ -746,20 +821,17 @@ class VocabVault(QMainWindow):
         self._check_katakana()
 
     def _check_katakana(self):
-        """Checks the last two typed characters to see if they form a Katakana."""
         if not self.katakana_mode_btn.isChecked(): return
 
         prev_2 = self.input_conlang.get_last_n_chars(2)
         if not prev_2: return
 
-        # 1. Resolve O + O collision (Transforms Ko+o -> Ku Katakana)
         if prev_2[0] in KATAKANA_OO_MAP and prev_2[1] == LORE.o:
             self.input_conlang.backspace()
             self.input_conlang.backspace()
             self.input_conlang.insert(KATAKANA_OO_MAP[prev_2[0]])
             return
 
-        # 2. Resolve standard Consonant + Vowel matches
         if prev_2 in KATAKANA_MAP:
             self.input_conlang.backspace()
             self.input_conlang.backspace()
@@ -773,7 +845,6 @@ class VocabVault(QMainWindow):
         syl_count = self.syllable_slider.value()
         word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
-        # Process word for Katakana if mode is active
         if self.katakana_mode_btn.isChecked():
             for cluster, katakana in KATAKANA_MAP.items():
                 word = word.replace(cluster, katakana)
@@ -784,7 +855,6 @@ class VocabVault(QMainWindow):
         self.gen_pron_display.setText(pron)
         self.input_conlang.setText(word)
         
-        # --- AUTO FILL RANDOM DEFINITION ---
         if self.common_words:
             random_def = random.choice(self.common_words)
             self.input_english.setText(random_def)
@@ -827,6 +897,7 @@ class VocabVault(QMainWindow):
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+            label.setMinimumWidth(150)
             table.setCellWidget(r, 0, label)
             
             english_item = QTableWidgetItem(item.get('english', ''))
