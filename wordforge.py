@@ -741,6 +741,9 @@ class VocabVault(QMainWindow):
             QPushButton:checked { background-color: #9c27b0; color: white; border-color: #7b1fa2; }
         """)
         self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
+        
+        self.katakana_mode_btn.setChecked(True)
+
         kbd_header_layout.addWidget(self.katakana_mode_btn)
         
         forge_layout.addLayout(kbd_header_layout)
