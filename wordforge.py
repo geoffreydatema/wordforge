@@ -65,7 +65,6 @@ class DEFINITIONS:
     რ = 'zv'
     ც = 'dv'
     շ = 'stop'  # glottal stop
-
     カ = 'ka'
     キ = 'kee'
     ク = 'koo'
@@ -111,13 +110,13 @@ class DEFINITIONS:
     ゲ = 'ge'
     ゴ = 'go'
     ザ = 'za'
-    ジ = 'jee'
+    ジ = 'zee'
     ズ = 'zoo'
     ゼ = 'ze'
     ゾ = 'zo'
     ダ = 'da'
     ヂ = 'dee'
-    ヅ = 'dzoo'
+    ヅ = 'doo'
     デ = 'de'
     ド = 'do'
     バ = 'ba'
