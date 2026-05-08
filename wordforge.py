@@ -428,6 +428,14 @@ class RichLineEdit(QTextEdit):
             }
         """)
 
+    def insertFromMimeData(self, source):
+        if source.hasText():
+            pasted_text = source.text()
+            styled_html = apply_visual_fixes(pasted_text, mode='table')
+            self.textCursor().insertHtml(styled_html)
+        else:
+            super().insertFromMimeData(source)
+
     def keyPressEvent(self, event):
         if event.key() in (Qt.Key_Return, Qt.Key_Enter):
             self.returnPressed.emit()
