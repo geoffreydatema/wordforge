@@ -6,8 +6,8 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser)
-from PySide6.QtGui import QFont, QTextCursor
+                               QSlider, QTextBrowser, QMenu) # --- ADDED QMenu ---
+from PySide6.QtGui import QFont, QColor, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ========================================================
@@ -263,7 +263,6 @@ CONSONANTS = [
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
-# Alphabet Reference Definitions
 ALPHABET_DEFS = [
     (LORE.a, "a", "short a"),
     (LORE.e, "e", "short e"),
@@ -396,7 +395,7 @@ def apply_visual_fixes(text, mode='table'):
         if char in corrections:
             scale = corrections[char]
             html += f"<span style='font-size:{scale};'>{char}</span>"
-        elif '\u30A0' <= char <= '\u30FF':  # Check if character is Katakana
+        elif '\u30A0' <= char <= '\u30FF':  
             html += f"<span style='font-size:{kata_size};'>{char}</span>"
         else:
             html += char
@@ -741,9 +740,7 @@ class VocabVault(QMainWindow):
             QPushButton:checked { background-color: #9c27b0; color: white; border-color: #7b1fa2; }
         """)
         self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
-        
         self.katakana_mode_btn.setChecked(True)
-
         kbd_header_layout.addWidget(self.katakana_mode_btn)
         
         forge_layout.addLayout(kbd_header_layout)
@@ -762,7 +759,6 @@ class VocabVault(QMainWindow):
         self.def_browser.setOpenExternalLinks(False)
         self.def_browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 12pt; border: 1px solid #444;")
         
-        # Build Reference HTML
         html = "<h2>Angloslav Alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
         html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Sound</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
         for char, sound, notes in ALPHABET_DEFS:
@@ -773,7 +769,6 @@ class VocabVault(QMainWindow):
         html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Cluster</th><th style='border-bottom: 1px solid white;'>Katakana</th><th style='border-bottom: 1px solid white;'>Pronunciation</th></tr>"
         for cluster, kata in KATAKANA_MAP.items():
             styled_cluster = apply_visual_fixes(cluster, mode='table')
-            # Fix katakana visual sizing in the reference table too
             styled_kata = f"<span style='font-size:{GLOBAL_KATAKANA_TABLE_SIZE};'>{kata}</span>"
             c1, c2 = cluster[0], cluster[1]
             pron = LORE_TO_PRON.get(c1, "?") + LORE_TO_PRON.get(c2, "?")
@@ -796,8 +791,13 @@ class VocabVault(QMainWindow):
             table = QTableWidget()
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
+            
+            # --- ENABLE CONTEXT MENU FOR COPYING ---
+            table.setContextMenuPolicy(Qt.CustomContextMenu)
+            table.customContextMenuRequested.connect(lambda pos, t=table, c=category: self.show_table_context_menu(pos, t, c))
+            
             header = table.horizontalHeader()
-            header.setSectionResizeMode(0, QHeaderView.ResizeToContents) # Maintain minimum width wrapping
+            header.setSectionResizeMode(0, QHeaderView.ResizeToContents) 
             header.setSectionResizeMode(1, QHeaderView.Stretch)
             header.setSectionResizeMode(2, QHeaderView.Stretch)
             header.setSectionResizeMode(3, QHeaderView.Fixed)
@@ -814,6 +814,40 @@ class VocabVault(QMainWindow):
 
         for category in self.categories:
             self.refresh_table(category)
+
+    def show_table_context_menu(self, pos, table, category):
+        row = table.rowAt(pos.y())
+        col = table.columnAt(pos.x())
+        
+        # Ignore out of bounds clicks or clicks on the delete button column
+        if row < 0 or col < 0 or col == 3:
+            return
+
+        # Fetch plain text directly from the saved data (bypassing HTML)
+        item_data = self.data[category][row]
+        text_to_copy = ""
+        
+        if col == 0:
+            text_to_copy = item_data.get('conlang', '')
+        elif col == 1:
+            text_to_copy = item_data.get('english', '')
+        elif col == 2:
+            text_to_copy = item_data.get('notes', '')
+
+        if not text_to_copy:
+            return
+
+        menu = QMenu(self)
+        menu.setStyleSheet("""
+            QMenu { background-color: #333; color: white; border: 1px solid #555; }
+            QMenu::item:selected { background-color: #0277bd; }
+        """)
+        copy_action = menu.addAction("Copy")
+        
+        action = menu.exec(table.viewport().mapToGlobal(pos))
+        
+        if action == copy_action:
+            QApplication.clipboard().setText(text_to_copy)
 
     def create_keyboard(self):
         container = QWidget()
@@ -988,7 +1022,7 @@ class VocabVault(QMainWindow):
             lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
             label = QLabel(lore_word_styled)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-            label.setMinimumWidth(150) # Maintain the minimum width requested earlier
+            label.setMinimumWidth(150)
             table.setCellWidget(r, 0, label)
             
             english_item = QTableWidgetItem(item.get('english', ''))
