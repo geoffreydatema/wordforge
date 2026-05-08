@@ -323,8 +323,8 @@ for attr in dir(LORE):
             pron_val = getattr(PRONUNCIATION, attr)
             LORE_TO_PRON[lore_val] = pron_val
 
-GLOBAL_KATAKANA_TABLE_SIZE = "11pt"
 GLOBAL_KATAKANA_HEADER_SIZE = "24px"
+GLOBAL_KATAKANA_TABLE_SIZE = "10pt"
 
 TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}

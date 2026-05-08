@@ -119,11 +119,6 @@
             "conlang": "aηyмջнhм",
             "english": "aluminum",
             "notes": "transliteration"
-        },
-        {
-            "conlang": "カэмжεタ",
-            "english": "test",
-            "notes": ""
         }
     ],
     "word endings": [
@@ -141,9 +136,20 @@
             "conlang": "эc",
             "english": "plural",
             "notes": "use շэc if word ends in a vowel"
+        },
+        {
+            "conlang": "эь",
+            "english": "adjective version of a noun",
+            "notes": "turns a noun into an adjective"
         }
     ],
-    "phrases": [],
+    "phrases": [
+        {
+            "conlang": "コcмεc ダズтλ",
+            "english": "Cosmic Datetime",
+            "notes": "universal datetime format"
+        }
+    ],
     "other": [
         {
             "conlang": "жδтεpoн",
@@ -194,6 +200,26 @@
             "conlang": "пacջvջᴋ",
             "english": "Pacific",
             "notes": "proper noun transliteration"
+        },
+        {
+            "conlang": "ニчиμицa",
+            "english": "datetime",
+            "notes": ""
+        },
+        {
+            "conlang": "вэм",
+            "english": "time",
+            "notes": ""
+        },
+        {
+            "conlang": "ダズтλ",
+            "english": "date",
+            "notes": ""
+        },
+        {
+            "conlang": "コcмεc",
+            "english": "cosmos",
+            "notes": ""
         }
     ]
 }
