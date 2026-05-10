@@ -1,209 +1,58 @@
 {
     "dictionary": [
         {
-            "conlang": "oէoдa",
+            "conlang": "oէoダ",
             "english": "water",
-            "notes": "combination of english water and russian вода"
+            "notes": ""
         },
         {
             "conlang": "тբ",
             "english": "tea",
-            "notes": "thats just what ilana decided it should be"
+            "notes": ""
         },
         {
-            "conlang": "covэ",
+            "conlang": "ソvэ",
             "english": "coffee",
-            "notes": "keeps the c from english but ends up starting with an s sound"
+            "notes": ""
         },
         {
-            "conlang": "ᴋoжa",
+            "conlang": "コжa",
             "english": "cat",
-            "notes": "based on russian кошка"
-        },
-        {
-            "conlang": "яλᴋ",
-            "english": "plant",
-            "notes": "ilana wanted it to start with \"th\""
+            "notes": ""
         },
         {
             "conlang": "дьэ",
-            "english": "yes/yeah",
-            "notes": "shorten version of дьэвջч"
+            "english": "yes",
+            "notes": ""
         },
         {
             "conlang": "дьэвջч",
             "english": "hell yeah",
-            "notes": "more enthusiastic version of дьэ"
+            "notes": "enthusiastic yes"
         },
         {
-            "conlang": "чи",
-            "english": "small",
-            "notes": "also the word ending for smallification"
-        },
-        {
-            "conlang": "ca",
-            "english": "action",
-            "notes": "also the word ending for using a noun as a verb"
-        },
-        {
-            "conlang": "ნջн",
-            "english": "thing",
-            "notes": "bing bong"
-        },
-        {
-            "conlang": "ნջнca",
-            "english": "verb",
-            "notes": "compound of ნջн and ca"
-        },
-        {
-            "conlang": "нy",
-            "english": "big",
-            "notes": "useful in compound words involving largeness"
-        },
-        {
-            "conlang": "ნηинцa",
-            "english": "quick",
-            "notes": "first adjective"
-        },
-        {
-            "conlang": "თhч",
-            "english": "bad",
-            "notes": "it just sounds like a bad word"
-        },
-        {
-            "conlang": "zи",
-            "english": "no/nope",
-            "notes": "different enough from дьэ"
-        },
-        {
-            "conlang": "ньэгэцьa",
-            "english": "never/more no than no",
-            "notes": "it just sounds enthusiastic"
-        },
-        {
-            "conlang": "пaдըpa",
-            "english": "good",
-            "notes": "sounds like a nice word"
-        },
-        {
-            "conlang": "эc",
-            "english": "many",
-            "notes": "also the word ending for plural"
-        },
-        {
-            "conlang": "თэრεpтyнa",
-            "english": "it is what it is",
-            "notes": "an expression literally translating to \"this is your fortune\""
-        },
-        {
-            "conlang": "თэz",
-            "english": "this",
-            "notes": "from თэრεpтyнa"
-        },
-        {
-            "conlang": "вεp",
-            "english": "your",
-            "notes": "from თэრεpтyнa"
-        },
-        {
-            "conlang": "вεpтyнa",
-            "english": "fortune",
-            "notes": "from თэრεpтyнa"
-        },
-        {
-            "conlang": "ნэნит",
-            "english": "beverage/a drink",
-            "notes": "from portugese beverage"
-        },
-        {
-            "conlang": "aηyмջнhм",
-            "english": "aluminum",
-            "notes": "transliteration"
-        }
-    ],
-    "word endings": [
-        {
-            "conlang": "чи",
-            "english": "small",
-            "notes": "a conceptually small version of something (ex. kitten = small cat)"
-        },
-        {
-            "conlang": "ca",
-            "english": "verb form of a noun",
-            "notes": "turns a noun into a verb"
-        },
-        {
-            "conlang": "эc",
-            "english": "plural",
-            "notes": "use շэc if word ends in a vowel"
-        },
-        {
-            "conlang": "эь",
-            "english": "adjective version of a noun",
-            "notes": "turns a noun into an adjective"
-        }
-    ],
-    "phrases": [
-        {
-            "conlang": "コcмεc ダズтλ",
-            "english": "Cosmic Datetime",
-            "notes": "universal datetime format"
-        }
-    ],
-    "other": [
-        {
-            "conlang": "жδтεpoн",
-            "english": "image/picture",
+            "conlang": "ньy",
+            "english": "no",
             "notes": ""
         },
         {
-            "conlang": "ცиpнoтoη",
-            "english": "industry",
+            "conlang": "ньyゲцヤ",
+            "english": "never",
+            "notes": "also can be an enthusiastic no"
+        },
+        {
+            "conlang": "ラპэт",
+            "english": "plant",
             "notes": ""
         },
         {
-            "conlang": "вэмиpнo",
-            "english": "standard",
+            "conlang": "нλм",
+            "english": "name",
             "notes": ""
         },
         {
-            "conlang": "პpλᴋըнoт",
-            "english": "interface",
-            "notes": ""
-        },
-        {
-            "conlang": "ცэpэнтoc",
-            "english": "adventure",
-            "notes": ""
-        },
-        {
-            "conlang": "aтηaнтջᴋ",
-            "english": "Atlantic",
-            "notes": "proper noun transliteration"
-        },
-        {
-            "conlang": "ьδpδп",
-            "english": "Europe",
-            "notes": "proper noun transliteration"
-        },
-        {
-            "conlang": "aтηьδpε ᴋεηջшн",
-            "english": "North Atlantic Euro-Slavic Coalition",
-            "notes": "proper noun"
-        },
-        {
-            "conlang": "aՑгηεcηaв",
-            "english": "Angloslav",
-            "notes": "the name of the Angloslav language and refers to the Angloslav region"
-        },
-        {
-            "conlang": "пacջvջᴋ",
-            "english": "Pacific",
-            "notes": "proper noun transliteration"
-        },
-        {
-            "conlang": "ニчиμицa",
-            "english": "datetime",
+            "conlang": "ьyゼラнλм",
+            "english": "username",
             "notes": ""
         },
         {
@@ -219,6 +68,197 @@
         {
             "conlang": "コcмεc",
             "english": "cosmos",
+            "notes": ""
+        },
+        {
+            "conlang": "ᴋpεнεთaт",
+            "english": "datetime",
+            "notes": ""
+        },
+        {
+            "conlang": "スコサ",
+            "english": "small (amount)",
+            "notes": "describes an amount"
+        },
+        {
+            "conlang": "aгжэニa",
+            "english": "action",
+            "notes": "physical action or movement"
+        },
+        {
+            "conlang": "вэш",
+            "english": "thing",
+            "notes": "arbitrary physical object"
+        },
+        {
+            "conlang": "コトвa",
+            "english": "word",
+            "notes": "an individual word (spoken or written)"
+        },
+        {
+            "conlang": "aгжэナコトвa",
+            "english": "verb",
+            "notes": "literally \"action word\""
+        },
+        {
+            "conlang": "ボηopш",
+            "english": "big/large",
+            "notes": "describes a physically large object"
+        },
+        {
+            "conlang": "モη",
+            "english": "small (size)",
+            "notes": "describes a physically small object"
+        },
+        {
+            "conlang": "xეპa",
+            "english": "fast",
+            "notes": "describes a quick action or event"
+        },
+        {
+            "conlang": "თaд",
+            "english": "bad",
+            "notes": ""
+        },
+        {
+            "conlang": "гբク",
+            "english": "good",
+            "notes": ""
+        },
+        {
+            "conlang": "мノソ",
+            "english": "many",
+            "notes": "describes multiple objects or events"
+        },
+        {
+            "conlang": "вεpツナ",
+            "english": "fortune",
+            "notes": ""
+        },
+        {
+            "conlang": "თэრεpツナ",
+            "english": "it is what it is",
+            "notes": "roughly \"here is your fortune\""
+        },
+        {
+            "conlang": "эц",
+            "english": "this",
+            "notes": ""
+        },
+        {
+            "conlang": "თэპa",
+            "english": "here",
+            "notes": ""
+        },
+        {
+            "conlang": "дラノᴋ",
+            "english": "beverage/a drink",
+            "notes": "the liquid itself or a cup of the liquid"
+        },
+        {
+            "conlang": "aηyмջнhм",
+            "english": "aluminum",
+            "notes": "transliteration from english"
+        },
+        {
+            "conlang": "aცэηчoн",
+            "english": "adventure",
+            "notes": ""
+        },
+        {
+            "conlang": "ᴋレжナ",
+            "english": "Krezhna",
+            "notes": "the most common and widely used currency across the known worlds"
+        },
+        {
+            "conlang": "ცэレнトc",
+            "english": "deep space exploration",
+            "notes": "a unique future word meaning deep space exploration"
+        },
+        {
+            "conlang": "パcջvջᴋ",
+            "english": "Pacific",
+            "notes": "proper noun transliteration from English"
+        },
+        {
+            "conlang": "aтηaнтջᴋ",
+            "english": "Atlantic",
+            "notes": "proper noun transliteration from English"
+        },
+        {
+            "conlang": "ьδpδп",
+            "english": "Europe",
+            "notes": "proper noun transliteration from English"
+        },
+        {
+            "conlang": "aՑгηocηaв",
+            "english": "Angloslav",
+            "notes": "the name of this language"
+        },
+        {
+            "conlang": "aтηьδpε ᴋεηջшн",
+            "english": "Atleuro Coalition",
+            "notes": "the Western-Russian coalition preceeding global integration with Japan"
+        },
+        {
+            "conlang": "иモжэнヤ",
+            "english": "image/picture",
+            "notes": "there is no distinction between a digital or printed image"
+        },
+        {
+            "conlang": "пロムპリノპ",
+            "english": "industry",
+            "notes": ""
+        },
+        {
+            "conlang": "vyპaラ",
+            "english": "standard",
+            "notes": "as in the standard way something is done"
+        },
+        {
+            "conlang": "ջнтδvδc",
+            "english": "interface",
+            "notes": "a physical interface with something else like a digital system"
+        }
+    ],
+    "word endings": [
+        {
+            "conlang": "эc",
+            "english": "plural",
+            "notes": "use շэc if word ends in a vowel"
+        },
+        {
+            "conlang": "иь",
+            "english": "turns noun into adjective",
+            "notes": ""
+        }
+    ],
+    "phrases": [
+        {
+            "conlang": "コcмεcиь ᴋpεнεთaт",
+            "english": "universal datetime format",
+            "notes": ""
+        }
+    ],
+    "other": [
+        {
+            "conlang": "жδтεロн",
+            "english": "unused, would be good as a future technical word or species",
+            "notes": ""
+        },
+        {
+            "conlang": "ცиpノトη",
+            "english": "unused, would be good as a future technical term or species",
+            "notes": ""
+        },
+        {
+            "conlang": "вэミpノ",
+            "english": "unused, might work as a specific future description or something social related",
+            "notes": ""
+        },
+        {
+            "conlang": "პpδᴋըノт",
+            "english": "unused, not sure what vibe it has",
             "notes": ""
         }
     ]
