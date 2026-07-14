@@ -244,6 +244,41 @@
             "conlang": "вoч",
             "english": "want",
             "notes": ""
+        },
+        {
+            "conlang": "pиьэპoвa",
+            "english": "rifle",
+            "notes": "a gun with a long barrel"
+        },
+        {
+            "conlang": "гpaպaвa",
+            "english": "gun",
+            "notes": "any type of ranged weapon that fires projectiles"
+        },
+        {
+            "conlang": "ნoηopгpaպaвa",
+            "english": "big/heavy gun",
+            "notes": "a large, high caliber gun wielded by a single unit"
+        },
+        {
+            "conlang": "мэza",
+            "english": "hand",
+            "notes": ""
+        },
+        {
+            "conlang": "мэzгpaպaвa",
+            "english": "pistol/hand cannon",
+            "notes": "a single handed gun of any caliber"
+        },
+        {
+            "conlang": "ᴋивэzηэвьδд",
+            "english": "greatsword/two handed sword",
+            "notes": "a heavy sword wielded with both hands"
+        },
+        {
+            "conlang": "мэzηэвьδд",
+            "english": "sword",
+            "notes": "a sword wielded generally in one hand"
         }
     ],
     "word endings": [
