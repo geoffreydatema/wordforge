@@ -595,7 +595,7 @@ class VocabVault(QMainWindow):
         self.resize(1200, 750)
         font = QFont("Arial", 12)
         self.setFont(font)
-        self.filename = "future_lang.json"
+        self.filename = "dictionary.json"
         self.categories = ["dictionary", "word endings", "phrases", "other"]
         self.tables = {} 
         self.data = self.load_data()
@@ -748,7 +748,7 @@ class VocabVault(QMainWindow):
             QPushButton:checked { background-color: #9c27b0; color: white; border-color: #7b1fa2; }
         """)
         self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
-        self.katakana_mode_btn.setChecked(True)
+        self.katakana_mode_btn.setChecked(False)
         kbd_header_layout.addWidget(self.katakana_mode_btn)
         
         forge_layout.addLayout(kbd_header_layout)
