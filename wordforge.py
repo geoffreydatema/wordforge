@@ -13,7 +13,7 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER DEFINITIONS
 #
-#       aэջohλиეբюռըδεyნвгдzкηмнпpcтvxզьμжчшяdՑцპსպէთრცշ
+#       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdՑфцპსպէთრც
 # ========================================================
 
 class DEFINITIONS:
@@ -32,7 +32,7 @@ class DEFINITIONS:
     δ = 'oe'    # oe as in book
     ε = 'oh'    # long o
     y = 'oo'    # oo as in poop
-    ნ = 'b'
+    б = 'b'
     в = 'v'
     г = 'g'
     д = 'd'
@@ -40,7 +40,7 @@ class DEFINITIONS:
     к = 'k'
     η = 'l' 
     м = 'm'
-    н = 'n'     # Replaces old 'ン'
+    н = 'n'
     п = 'p'
     p = 'r'
     c = 's'
@@ -56,6 +56,7 @@ class DEFINITIONS:
     я = 'th'    # unvoiced th
     d = 'TH'    # voiced th
     Ց = 'ng'    # velar nasal
+    ф = 'tr'
     ц = 'ts'
     პ = 'st'
     ს = 'ks'
@@ -64,7 +65,6 @@ class DEFINITIONS:
     თ = 'sv'
     რ = 'zv'
     ც = 'dv'
-    շ = 'stop'  # glottal stop
     カ = 'ka'
     キ = 'kee'
     ク = 'koo'
@@ -162,7 +162,7 @@ class LORE:
     OE = 'δ'
     OU = 'ε'
     OO = 'y'
-    B = 'ნ'
+    B = 'б'
     V = 'в'
     G = 'г'
     D = 'д'
@@ -186,6 +186,7 @@ class LORE:
     TH = 'я'
     DH = 'd'
     NG = 'Ց'
+    TR = 'ф'
     TS = 'ц'
     ST = 'პ'
     KS = 'ს'
@@ -194,7 +195,6 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
-    STOP = 'շ'
 
 class PRONUNCIATION:
     a = 'a'     # short a
@@ -236,6 +236,7 @@ class PRONUNCIATION:
     TH = 'th'   # unvoiched th as in think
     DH = 'TH'   # voiced th as in this
     NG = 'ng'   # anglophone ng sound used in the ing word ending
+    TR = 'tr'
     TS = 'ts'
     ST = 'st'
     KS = 'ks'
@@ -244,7 +245,6 @@ class PRONUNCIATION:
     SV = 'sv'
     ZV = 'zv'
     DV = 'dv'
-    STOP = 'շ'  # glottal stop as in the british pronunciation of butter without the t
 
 # ==========================================
 #           LORE CONFIGURATION
@@ -259,7 +259,7 @@ VOWELS = [
 CONSONANTS = [
     LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, 
     LORE.X, LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, 
-    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.STOP,
+    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.TR,
     LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
@@ -304,6 +304,7 @@ ALPHABET_DEFS = [
     (LORE.DH, "TH", "voiced th as in this"),
     (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
     (LORE.TS, "ts", ""),
+    (LORE.TR, "tr", ""),
     (LORE.ST, "st", ""),
     (LORE.KS, "ks", ""),
     (LORE.SK, "sk", ""),
@@ -311,7 +312,6 @@ ALPHABET_DEFS = [
     (LORE.SV, "sv", ""),
     (LORE.ZV, "zv", ""),
     (LORE.DV, "dv", ""),
-    (LORE.STOP, "շ", "glottal stop as in the british pronunciation of butter without the t")
 ]
 
 LORE_TO_PRON = {}
@@ -329,7 +329,7 @@ TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
 
 KEYBOARD_LAYOUT = [
-    [('q', LORE.STOP), ('w', LORE.W), ('e', LORE.e), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.u), ('i', LORE.i), ('o', LORE.o), ('p', LORE.P)],
+    [('w', LORE.W), ('e', LORE.e), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.u), ('i', LORE.i), ('o', LORE.o), ('p', LORE.P)],
     [('a', LORE.a), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
     [('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M)]
 ]
@@ -341,12 +341,12 @@ LONG_VOWEL_MAP = {
 COMBO_MAP = {
     "au": LORE.AU, "eu": LORE.EU, "ou": LORE.OU, "oo": LORE.OO, "oe": LORE.OE,
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
-    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG,
+    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "tr": LORE.TR, 
     "ts": LORE.TS, "st": LORE.ST, "ks": LORE.KS, "sk": LORE.SK,
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
-DISABLED_KEYS = ['x', 'c']
+DISABLED_KEYS = ['q', 'x', 'c']
 
 # ==========================================
 #          KATAKANA CONFIGURATION
