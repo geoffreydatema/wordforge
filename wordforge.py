@@ -13,7 +13,7 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER DEFINITIONS
 #
-#       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdՑфцპსպէთრც
+#       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdфՑцპსպէთრც
 # ========================================================
 
 class DEFINITIONS:
@@ -55,8 +55,8 @@ class DEFINITIONS:
     ш = 'sh'
     я = 'th'    # unvoiced th
     d = 'TH'    # voiced th
-    Ց = 'ng'    # velar nasal
-    ф = 'tr'
+    ф = 'ng'    # velar nasal
+    Ց = 'tr'
     ц = 'ts'
     პ = 'st'
     ს = 'ks'
@@ -129,22 +129,6 @@ class DEFINITIONS:
     プ = 'poo'
     ペ = 'pe'
     ポ = 'po'
-    大 = 0
-    了 = 1
-    上 = 2
-    升 = 3
-    日 = 4
-    丘 = 5
-    又 = 6
-    尺 = 7
-    中 = 8
-    石 = 9
-    土 = 10
-    下 = 11
-    王 = 12
-    互 = 13
-    円 = 14
-    巨 = 15
 
 class LORE:
     a = 'a'
@@ -185,8 +169,8 @@ class LORE:
     SH = 'ш'
     TH = 'я'
     DH = 'd'
-    NG = 'Ց'
-    TR = 'ф'
+    NG = 'ф'
+    TR = 'Ց'
     TS = 'ц'
     ST = 'პ'
     KS = 'ს'
