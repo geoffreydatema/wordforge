@@ -171,11 +171,6 @@
             "notes": "a serving of a beverage (usually in a cup or container)"
         },
         {
-            "conlang": "aηyмջниьa",
-            "english": "aluminum",
-            "notes": ""
-        },
-        {
             "conlang": "aცэηэpэнтoн",
             "english": "adventure",
             "notes": ""
@@ -279,20 +274,34 @@
             "conlang": "мэzηэвьδд",
             "english": "sword",
             "notes": "a sword wielded generally in one hand"
-        }
-    ],
-    "word endings": [
-        {
-            "conlang": "эc",
-            "english": "plural",
-            "notes": "use շэc if word ends in a vowel"
         },
         {
-            "conlang": "иь",
-            "english": "turns noun into adjective",
+            "conlang": "ცиpнoтoη",
+            "english": "shack/small building or structure",
             "notes": ""
+        },
+        {
+            "conlang": "жδтεpoн",
+            "english": "weapon",
+            "notes": "a weapon of any type"
+        },
+        {
+            "conlang": "aηyмջниa",
+            "english": "aluminum",
+            "notes": ""
+        },
+        {
+            "conlang": "вэмэpнo",
+            "english": "agility",
+            "notes": ""
+        },
+        {
+            "conlang": "პpδᴋը",
+            "english": "show",
+            "notes": "to show something"
         }
     ],
+    "word endings": [],
     "phrases": [
         {
             "conlang": "ᴋocмεcиь ᴋpoнoთaт",
@@ -300,26 +309,5 @@
             "notes": ""
         }
     ],
-    "other": [
-        {
-            "conlang": "жδтεpoн",
-            "english": "unused",
-            "notes": ""
-        },
-        {
-            "conlang": "ცиpнoтoη",
-            "english": "unused",
-            "notes": ""
-        },
-        {
-            "conlang": "вэмэpнo",
-            "english": "unused",
-            "notes": ""
-        },
-        {
-            "conlang": "პpδᴋջըнoт",
-            "english": "unused",
-            "notes": ""
-        }
-    ]
+    "other": []
 }
