@@ -471,7 +471,7 @@ class PhysicalKeyFilter(QObject):
                 return True 
         return super().eventFilter(obj, event)
 
-class VocabVault(QMainWindow):
+class Wordforge(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Word Forge")
@@ -639,7 +639,7 @@ class VocabVault(QMainWindow):
         self.def_browser.setOpenExternalLinks(False)
         self.def_browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 12pt; border: 1px solid #444;")
         
-        html = "<h2>Angloslav Alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
+        html = "<h2>тэжнop alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
         html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Sound</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
         for char, sound, notes in ALPHABET_DEFS:
             styled_char = apply_visual_fixes(char, mode='table')
@@ -899,6 +899,6 @@ class VocabVault(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
-    window = VocabVault()
+    window = Wordforge()
     window.show()
     sys.exit(app.exec())
