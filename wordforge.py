@@ -6,12 +6,12 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser, QMenu) # --- ADDED QMenu ---
-from PySide6.QtGui import QFont, QColor, QTextCursor
+                               QSlider, QTextBrowser, QMenu)
+from PySide6.QtGui import QFont, QTextCursor
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ========================================================
-#       MASTER CHARACTER DEFINITIONS
+#       MASTER CHARACTER SET
 #
 #       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdфՑцპსպէთრც
 # ========================================================
@@ -65,70 +65,6 @@ class DEFINITIONS:
     თ = 'sv'
     რ = 'zv'
     ც = 'dv'
-    カ = 'ka'
-    キ = 'kee'
-    ク = 'koo'
-    ケ = 'ke'
-    コ = 'ko'
-    サ = 'sa'
-    ス = 'soo'
-    セ = 'se'
-    ソ = 'so'
-    タ = 'ta'
-    チ = 'tee'
-    ツ = 'too'
-    テ = 'te'
-    ト = 'to'
-    ナ = 'na'
-    ニ = 'nee'
-    ヌ = 'noo'
-    ネ = 'ne'
-    ノ = 'no'
-    ハ = 'ha'
-    ヒ = 'hee'
-    フ = 'hoo'
-    ヘ = 'he'
-    ホ = 'ho'
-    マ = 'ma'
-    ミ = 'mee'
-    ム = 'moo'
-    メ = 'me'
-    モ = 'mo'
-    ヤ = 'ya'
-    ユ = 'yoo'
-    ヨ = 'yo'
-    ラ = 'ra'
-    リ = 'ree'
-    ル = 'roo'
-    レ = 're'
-    ロ = 'ro'
-    ワ = 'wa'
-    ヲ = 'wo'
-    ガ = 'ga'
-    ギ = 'gee'
-    グ = 'goo'
-    ゲ = 'ge'
-    ゴ = 'go'
-    ザ = 'za'
-    ジ = 'zee'
-    ズ = 'zoo'
-    ゼ = 'ze'
-    ゾ = 'zo'
-    ダ = 'da'
-    ヂ = 'dee'
-    ヅ = 'doo'
-    デ = 'de'
-    ド = 'do'
-    バ = 'ba'
-    ビ = 'bee'
-    ブ = 'boo'
-    ベ = 'be'
-    ボ = 'bo'
-    パ = 'pa'
-    ピ = 'pee'
-    プ = 'poo'
-    ペ = 'pe'
-    ポ = 'po'
 
 class LORE:
     a = 'a'
@@ -287,8 +223,8 @@ ALPHABET_DEFS = [
     (LORE.TH, "th", "unvoiced th as in think"),
     (LORE.DH, "TH", "voiced th as in this"),
     (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
-    (LORE.TS, "ts", ""),
     (LORE.TR, "tr", ""),
+    (LORE.TS, "ts", ""),
     (LORE.ST, "st", ""),
     (LORE.KS, "ks", ""),
     (LORE.SK, "sk", ""),
@@ -305,9 +241,6 @@ for attr in dir(LORE):
         if hasattr(PRONUNCIATION, attr):
             pron_val = getattr(PRONUNCIATION, attr)
             LORE_TO_PRON[lore_val] = pron_val
-
-GLOBAL_KATAKANA_HEADER_SIZE = "24px"
-GLOBAL_KATAKANA_TABLE_SIZE = "10pt"
 
 TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
@@ -332,55 +265,21 @@ COMBO_MAP = {
 
 DISABLED_KEYS = ['q', 'x', 'c']
 
-# ==========================================
-#          KATAKANA CONFIGURATION
-# ==========================================
-KATAKANA_MAP = {
-    LORE.K + LORE.a: 'カ', LORE.K + LORE.E: 'キ', LORE.K + LORE.OO: 'ク', LORE.K + LORE.e: 'ケ', LORE.K + LORE.o: 'コ',
-    LORE.C + LORE.a: 'サ', LORE.C + LORE.OO: 'ス', LORE.C + LORE.e: 'セ', LORE.C + LORE.o: 'ソ', 
-    LORE.T + LORE.a: 'タ', LORE.T + LORE.E: 'チ', LORE.T + LORE.OO: 'ツ', LORE.T + LORE.e: 'テ', LORE.T + LORE.o: 'ト',
-    LORE.N + LORE.a: 'ナ', LORE.N + LORE.E: 'ニ', LORE.N + LORE.OO: 'ヌ', LORE.N + LORE.e: 'ネ', LORE.N + LORE.o: 'ノ',
-    LORE.X + LORE.a: 'ハ', LORE.X + LORE.E: 'ヒ', LORE.X + LORE.OO: 'フ', LORE.X + LORE.e: 'ヘ', LORE.X + LORE.o: 'ホ',
-    LORE.M + LORE.a: 'マ', LORE.M + LORE.E: 'ミ', LORE.M + LORE.OO: 'ム', LORE.M + LORE.e: 'メ', LORE.M + LORE.o: 'モ',
-    LORE.Y + LORE.a: 'ヤ', LORE.Y + LORE.OO: 'ユ', LORE.Y + LORE.o: 'ヨ',
-    LORE.R + LORE.a: 'ラ', LORE.R + LORE.E: 'リ', LORE.R + LORE.OO: 'ル', LORE.R + LORE.e: 'レ', LORE.R + LORE.o: 'ロ',
-    LORE.W + LORE.a: 'ワ', LORE.W + LORE.o: 'ヲ',
-    LORE.G + LORE.a: 'ガ', LORE.G + LORE.E: 'ギ', LORE.G + LORE.OO: 'グ', LORE.G + LORE.e: 'ゲ', LORE.G + LORE.o: 'ゴ',
-    LORE.Z + LORE.a: 'ザ', LORE.Z + LORE.E: 'ジ', LORE.Z + LORE.OO: 'ズ', LORE.Z + LORE.e: 'ゼ', LORE.Z + LORE.o: 'ゾ',
-    LORE.D + LORE.a: 'ダ', LORE.D + LORE.E: 'ヂ', LORE.D + LORE.OO: 'ヅ', LORE.D + LORE.e: 'デ', LORE.D + LORE.o: 'ド',
-    LORE.B + LORE.a: 'バ', LORE.B + LORE.E: 'ビ', LORE.B + LORE.OO: 'ブ', LORE.B + LORE.e: 'ベ', LORE.B + LORE.o: 'ボ',
-    LORE.P + LORE.a: 'パ', LORE.P + LORE.E: 'ピ', LORE.P + LORE.OO: 'プ', LORE.P + LORE.e: 'ペ', LORE.P + LORE.o: 'ポ'
-}
-
-KATAKANA_OO_MAP = {
-    'コ': 'ク', 'ソ': 'ス', 'ト': 'ツ', 'ノ': 'ヌ', 'ホ': 'フ',
-    'モ': 'ム', 'ヨ': 'ユ', 'ロ': 'ル', 'ゴ': 'グ', 'ゾ': 'ズ',
-    'ド': 'ヅ', 'ボ': 'ブ', 'ポ': 'プ'
-}
-
-# ==========================================
-#               APP LOGIC
-# ==========================================
-
 def apply_visual_fixes(text, mode='table'):
     if not text: return ""
     
     if mode == 'header':
         corrections = HEADER_SIZE_CORRECTIONS
         base_size = "32px"
-        kata_size = GLOBAL_KATAKANA_HEADER_SIZE
     else:
         corrections = TABLE_SIZE_CORRECTIONS
         base_size = "14pt"
-        kata_size = GLOBAL_KATAKANA_TABLE_SIZE
     
     html = ""
     for char in text:
         if char in corrections:
             scale = corrections[char]
             html += f"<span style='font-size:{scale};'>{char}</span>"
-        elif '\u30A0' <= char <= '\u30FF':  
-            html += f"<span style='font-size:{kata_size};'>{char}</span>"
         else:
             html += char
             
@@ -724,17 +623,6 @@ class VocabVault(QMainWindow):
         kbd_header_layout.addWidget(QLabel("Touch Keyboard:"))
         kbd_header_layout.addStretch()
         
-        self.katakana_mode_btn = QPushButton("Katakana Mode: OFF")
-        self.katakana_mode_btn.setCheckable(True)
-        self.katakana_mode_btn.setStyleSheet("""
-            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 4px; padding: 4px 10px; }
-            QPushButton:hover { background-color: #444; border-color: #777; }
-            QPushButton:checked { background-color: #9c27b0; color: white; border-color: #7b1fa2; }
-        """)
-        self.katakana_mode_btn.toggled.connect(self.toggle_katakana_mode)
-        self.katakana_mode_btn.setChecked(False)
-        kbd_header_layout.addWidget(self.katakana_mode_btn)
-        
         forge_layout.addLayout(kbd_header_layout)
         
         keyboard = self.create_keyboard()
@@ -757,14 +645,6 @@ class VocabVault(QMainWindow):
             styled_char = apply_visual_fixes(char, mode='table')
             html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_char}</td><td style='border-bottom: 1px solid #444;'>{sound}</td><td style='border-bottom: 1px solid #444; font-size: 11pt; color: #bbb;'>{notes}</td></tr>"
         
-        html += "</table><h2>Katakana Syllabary</h2><table width='100%' cellpadding='6' style='border-collapse: collapse;'>"
-        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Cluster</th><th style='border-bottom: 1px solid white;'>Katakana</th><th style='border-bottom: 1px solid white;'>Pronunciation</th></tr>"
-        for cluster, kata in KATAKANA_MAP.items():
-            styled_cluster = apply_visual_fixes(cluster, mode='table')
-            styled_kata = f"<span style='font-size:{GLOBAL_KATAKANA_TABLE_SIZE};'>{kata}</span>"
-            c1, c2 = cluster[0], cluster[1]
-            pron = LORE_TO_PRON.get(c1, "?") + LORE_TO_PRON.get(c2, "?")
-            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_cluster}</td><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt; color: #9c27b0;'>{styled_kata}</td><td style='border-bottom: 1px solid #444; text-align: center;'>{pron}</td></tr>"
         html += "</table>"
         
         self.def_browser.setHtml(html)
@@ -784,7 +664,6 @@ class VocabVault(QMainWindow):
             table.setColumnCount(4)
             table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
             
-            # --- ENABLE CONTEXT MENU FOR COPYING ---
             table.setContextMenuPolicy(Qt.CustomContextMenu)
             table.customContextMenuRequested.connect(lambda pos, t=table, c=category: self.show_table_context_menu(pos, t, c))
             
@@ -898,12 +777,6 @@ class VocabVault(QMainWindow):
     def toggle_shift(self, checked):
         self.shift_active = checked
 
-    def toggle_katakana_mode(self, checked):
-        if checked:
-            self.katakana_mode_btn.setText("Katakana Mode: ON")
-        else:
-            self.katakana_mode_btn.setText("Katakana Mode: OFF")
-
     def handle_keypress(self, key_id, default_char):
         if self.shift_active:
             if key_id in LONG_VOWEL_MAP:
@@ -913,7 +786,6 @@ class VocabVault(QMainWindow):
                 self.input_conlang.insert(default_char)
             self.shift_btn.setChecked(False)
             self.input_conlang.setFocus()
-            self._check_katakana()
             return
 
         prev_char = self.input_conlang.get_prev_char()
@@ -930,29 +802,10 @@ class VocabVault(QMainWindow):
                             self.input_conlang.backspace()
                             self.input_conlang.insert(combo_val)
                             self.input_conlang.setFocus()
-                            self._check_katakana()
                             return
 
         self.input_conlang.insert(default_char)
         self.input_conlang.setFocus()
-        self._check_katakana()
-
-    def _check_katakana(self):
-        if not self.katakana_mode_btn.isChecked(): return
-
-        prev_2 = self.input_conlang.get_last_n_chars(2)
-        if not prev_2: return
-
-        if prev_2[0] in KATAKANA_OO_MAP and prev_2[1] == LORE.o:
-            self.input_conlang.backspace()
-            self.input_conlang.backspace()
-            self.input_conlang.insert(KATAKANA_OO_MAP[prev_2[0]])
-            return
-
-        if prev_2 in KATAKANA_MAP:
-            self.input_conlang.backspace()
-            self.input_conlang.backspace()
-            self.input_conlang.insert(KATAKANA_MAP[prev_2])
 
     def backspace(self):
         self.input_conlang.backspace()
@@ -962,10 +815,6 @@ class VocabVault(QMainWindow):
         syl_count = self.syllable_slider.value()
         word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
-        if self.katakana_mode_btn.isChecked():
-            for cluster, katakana in KATAKANA_MAP.items():
-                word = word.replace(cluster, katakana)
-
         styled_word = apply_visual_fixes(word, mode='header')
         self.gen_result_display.setText(styled_word)
         self.gen_structure_display.setText(structure)
