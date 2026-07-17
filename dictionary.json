@@ -324,6 +324,16 @@
             "conlang": "тэжнop",
             "english": "тэжнop language",
             "notes": "the name of the тэжнop language"
+        },
+        {
+            "conlang": "жэpцa",
+            "english": "hi",
+            "notes": "informal hi or hello"
+        },
+        {
+            "conlang": "жэpцвδьтьэ",
+            "english": "hello/greetings",
+            "notes": "formal hello"
         }
     ],
     "word endings": [],

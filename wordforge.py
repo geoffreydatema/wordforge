@@ -352,6 +352,33 @@ class RichLineEdit(QTextEdit):
         cursor.movePosition(QTextCursor.Left, QTextCursor.KeepAnchor, n)
         return cursor.selectedText()
 
+class TyperTextEdit(RichLineEdit):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Remove the fixed 50px height from RichLineEdit
+        self.setMaximumHeight(16777215) 
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.setLineWrapMode(QTextEdit.WidgetWidth)
+        
+        # Override the stylesheet to make the font weight normal
+        self.setStyleSheet("""
+            QTextEdit {
+                font-size: 14pt; 
+                font-weight: normal; /* Normal weight instead of bold */
+                padding-top: 10px; 
+                padding-left: 10px;
+                padding-right: 10px;
+                border: 1px solid #555; 
+                border-radius: 2px;
+                background-color: #2b2b2b; 
+                color: white;
+            }
+        """)
+
+    def keyPressEvent(self, event):
+        # Bypass RichLineEdit's Enter key suppression so we can type paragraphs
+        QTextEdit.keyPressEvent(self, event)
+
 class WordGenerator:
     GEN_SHORT = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.u]
     GEN_LONG = [LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
@@ -453,10 +480,10 @@ class PhysicalKeyFilter(QObject):
             key_text = event.text().lower()
             if key_text in DISABLED_KEYS: return True 
             if event.key() == Qt.Key_Backspace:
-                self.window.backspace()
+                obj.backspace() # Targets the specific widget
                 return True 
             if event.key() == Qt.Key_Space:
-                self.window.input_conlang.insertPlainText(" ")
+                obj.insertPlainText(" ") # Targets the specific widget
                 return True
             
             if event.modifiers() & Qt.ShiftModifier:
@@ -467,7 +494,7 @@ class PhysicalKeyFilter(QObject):
             
             if key_text in self.key_map:
                 lore_char = self.key_map[key_text]
-                self.window.handle_keypress(key_text, lore_char)
+                self.window.handle_keypress(key_text, lore_char, target=obj)
                 return True 
         return super().eventFilter(obj, event)
 
@@ -495,6 +522,7 @@ class Wordforge(QMainWindow):
         self.setup_ui()
         self.key_filter = PhysicalKeyFilter(self)
         self.input_conlang.installEventFilter(self.key_filter)
+        self.typer_input.installEventFilter(self.key_filter)
 
     def load_data(self):
         default_data = {cat: [] for cat in self.categories}
@@ -631,6 +659,24 @@ class Wordforge(QMainWindow):
         
         self.left_tabs.addTab(forge_tab, "Word Forge")
         
+        typer_tab = QWidget()
+        typer_layout = QVBoxLayout(typer_tab)
+        
+        # Top Half: The multi-line text editor
+        self.typer_input = TyperTextEdit()
+        self.typer_input.setPlaceholderText("type in тэжнop...")
+        
+        # Bottom Half: Empty widget for later
+        self.typer_bottom = QWidget()
+        typer_bottom_layout = QVBoxLayout(self.typer_bottom)
+        typer_bottom_layout.addStretch() # Keeps it empty and pushes top half up
+        
+        # Add them to the layout with stretch factors to split it 50/50
+        typer_layout.addWidget(self.typer_input, stretch=1)
+        typer_layout.addWidget(self.typer_bottom, stretch=1)
+        
+        self.left_tabs.addTab(typer_tab, "Typer")
+
         # TAB 2: Alphabet Definitions
         def_tab = QWidget()
         def_layout = QVBoxLayout(def_tab)
@@ -651,6 +697,7 @@ class Wordforge(QMainWindow):
         def_layout.addWidget(self.def_browser)
         
         self.left_tabs.addTab(def_tab, "Definitions")
+
         left_layout.addWidget(self.left_tabs)
         
         # RIGHT PANEL
@@ -777,18 +824,22 @@ class Wordforge(QMainWindow):
     def toggle_shift(self, checked):
         self.shift_active = checked
 
-    def handle_keypress(self, key_id, default_char):
+    def handle_keypress(self, key_id, default_char, target=None):
+        # If no target is passed (e.g., clicking the on-screen touch keyboard), default to Word Forge input
+        if target is None:
+            target = self.input_conlang
+
         if self.shift_active:
             if key_id in LONG_VOWEL_MAP:
                 result = LONG_VOWEL_MAP[key_id]
-                self.input_conlang.insert(result)
+                target.insert(result)
             else:
-                self.input_conlang.insert(default_char)
+                target.insert(default_char)
             self.shift_btn.setChecked(False)
-            self.input_conlang.setFocus()
+            target.setFocus()
             return
 
-        prev_char = self.input_conlang.get_prev_char()
+        prev_char = target.get_prev_char()
         
         if prev_char:
             for combo_key, combo_val in COMBO_MAP.items():
@@ -799,13 +850,13 @@ class Wordforge(QMainWindow):
                         expected_lore_prefix = self.key_to_lore[prefix_key]
                         
                         if prev_char == expected_lore_prefix:
-                            self.input_conlang.backspace()
-                            self.input_conlang.insert(combo_val)
-                            self.input_conlang.setFocus()
+                            target.backspace()
+                            target.insert(combo_val)
+                            target.setFocus()
                             return
 
-        self.input_conlang.insert(default_char)
-        self.input_conlang.setFocus()
+        target.insert(default_char)
+        target.setFocus()
 
     def backspace(self):
         self.input_conlang.backspace()
