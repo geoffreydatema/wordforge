@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
                                QSlider, QTextBrowser, QMenu)
-from PySide6.QtGui import QFont, QTextCursor
+from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ========================================================
@@ -15,6 +15,14 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 #
 #       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdфՑцპსպէთრც
 # ========================================================
+
+# FONT_CONFIGS = {
+#     "BlockMonoExtended": { "is_mono": True, "advance": 48, ... },
+#     "BlockMono": { "is_mono": True, "advance": 24, ... },
+#     "BlockRegular": { "is_mono": False, "default_advance": 24, ... },
+#     "RoundedBold": { "is_mono": False, "default_advance": 24, ... },
+#     "RoundedRegular": { "is_mono": False, "default_advance": 24, ... }
+# }
 
 class DEFINITIONS:
     a = 'a'     # short a
@@ -54,7 +62,7 @@ class DEFINITIONS:
     ч = 'ch'
     ш = 'sh'
     я = 'th'    # unvoiced th
-    d = 'TH'    # voiced th
+    d = 'dh'    # voiced th
     ф = 'ng'    # velar nasal
     Ց = 'tr'
     ц = 'ts'
@@ -65,6 +73,13 @@ class DEFINITIONS:
     თ = 'sv'
     რ = 'zv'
     ც = 'dv'
+
+# Automatically map the conlang character (the variable name) to the filename (the value)
+CHAR_TO_FILENAME = {}
+for attr in dir(DEFINITIONS):
+    if not attr.startswith('__') and not callable(getattr(DEFINITIONS, attr)):
+        filename_prefix = getattr(DEFINITIONS, attr)
+        CHAR_TO_FILENAME[attr] = filename_prefix
 
 class LORE:
     a = 'a'
@@ -87,7 +102,7 @@ class LORE:
     G = 'г'
     D = 'д'
     Z = 'z'
-    K = 'ᴋ'
+    K = 'к'
     L = 'η' 
     M = 'м'
     N = 'н'
@@ -115,6 +130,38 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
+
+FONT_METRICS = {
+    "dir": "fonts/rounded_regular",
+    "text_base_pt": 28,
+    "bitmap_base_scale": 0.17,
+    "line_height": 210,
+    "space_width": 60,
+    "advance_normal": 103,
+    "advance_square": 128,
+    "advance_wide": 155,
+    "padding": 15,
+    "bitmap_offset_x": 0,
+    "bitmap_offset_y": 10,
+    "bitmap_base_char_spacing": 20
+}
+
+CHAR_WIDTHS = {
+    # # Wide Characters
+    LORE.D: FONT_METRICS["advance_square"],
+    LORE.SK: FONT_METRICS["advance_wide"],
+    LORE.KV: FONT_METRICS["advance_square"],
+    LORE.M: FONT_METRICS["advance_square"],
+    LORE.o: FONT_METRICS["advance_square"],
+    LORE.AU: FONT_METRICS["advance_square"],
+    LORE.SH: FONT_METRICS["advance_wide"],
+    LORE.SV: FONT_METRICS["advance_wide"],
+    LORE.TS: FONT_METRICS["advance_square"],
+    LORE.U: FONT_METRICS["advance_square"],
+    LORE.W: FONT_METRICS["advance_square"],
+    LORE.ZH: FONT_METRICS["advance_wide"],
+    LORE.ZV: FONT_METRICS["advance_wide"]
+}
 
 class PRONUNCIATION:
     a = 'a'     # short a
@@ -285,6 +332,110 @@ def apply_visual_fixes(text, mode='table'):
             
     return f"<span style='font-size:{base_size};'>{html}</span>"
 
+class BitmapRenderer(QWidget):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.text_to_render = ""
+        self._pixmap_cache = {}
+        self.font_dir = FONT_METRICS["dir"]
+        
+        # Pull the scale from our unified metrics
+        self.base_scale = FONT_METRICS.get("bitmap_base_scale", 1.0)
+        
+        self.scale = 0.5 * self.base_scale 
+        self.lh_factor = 1.0
+        self.char_spacing = 0
+
+    def update_settings(self, scale_factor, lh_factor, char_spacing):
+        self.scale = scale_factor * self.base_scale
+        self.lh_factor = lh_factor
+        self.char_spacing = char_spacing
+        self.update()
+
+    def set_scale(self, scale_factor):
+        # 3. Multiply the slider's scale factor by the font's base scale
+        self.scale = scale_factor * self.base_scale
+        self.update()
+
+    def set_text(self, new_text):
+        self.text_to_render = new_text
+        self.update() 
+
+    def get_pixmap(self, char):
+        if char in self._pixmap_cache:
+            return self._pixmap_cache[char]
+            
+        file_prefix = CHAR_TO_FILENAME.get(char, char)
+
+        image_path = os.path.join(self.font_dir, f"{file_prefix}.png")
+        
+        if os.path.exists(image_path):
+            pixmap = QPixmap(image_path)
+            self._pixmap_cache[char] = pixmap
+            return pixmap
+            
+        return None 
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setRenderHint(QPainter.SmoothPixmapTransform)
+        painter.fillRect(self.rect(), QColor("#2b2b2b"))
+        painter.scale(self.scale, self.scale)
+        
+        dynamic_lh = FONT_METRICS["line_height"] * self.lh_factor
+        
+        PADDING_SCREEN = FONT_METRICS.get("padding", 10)
+        OFFSET_X = FONT_METRICS.get("bitmap_offset_x", 0)
+        OFFSET_Y = FONT_METRICS.get("bitmap_offset_y", 0)
+        
+        # --- FETCH BASE BITMAP SPACING ---
+        BASE_SPACING = FONT_METRICS.get("bitmap_base_char_spacing", 0)
+        
+        effective_pad_x = 0
+        effective_pad_y = 0
+        effective_char_spacing = 0
+        max_x = self.width() 
+        
+        if self.scale > 0:
+            effective_pad_x = (PADDING_SCREEN + OFFSET_X) / self.scale
+            effective_pad_y = (PADDING_SCREEN + OFFSET_Y) / self.scale
+            
+            # --- COMBINE SLIDER SPACING WITH NATIVE SPACING ---
+            # Un-shrink the slider's screen pixels, then add the raw canvas pixels
+            effective_char_spacing = (self.char_spacing / self.scale) + BASE_SPACING
+            
+            max_x = (self.width() - (PADDING_SCREEN + OFFSET_X)) / self.scale
+        
+        # Start the cursors using the independent X and Y padding
+        cursor_x = effective_pad_x
+        cursor_y = effective_pad_y
+        
+        for char in self.text_to_render:
+            if char == '\n':
+                cursor_x = effective_pad_x # Reset to X padding
+                cursor_y += dynamic_lh
+                continue
+                
+            if char == ' ':
+                cursor_x += FONT_METRICS["space_width"] + effective_char_spacing
+                if cursor_x > max_x:
+                    cursor_x = effective_pad_x 
+                    cursor_y += dynamic_lh
+                continue
+                
+            advance = CHAR_WIDTHS.get(char, FONT_METRICS["advance_normal"]) + effective_char_spacing
+            
+            if cursor_x + advance > max_x:
+                cursor_x = effective_pad_x 
+                cursor_y += dynamic_lh
+            
+            pixmap = self.get_pixmap(char)
+            if pixmap:
+                painter.drawPixmap(int(cursor_x), int(cursor_y), pixmap)
+                
+            cursor_x += advance
+
 class RichLineEdit(QTextEdit):
     returnPressed = Signal()
 
@@ -355,29 +506,77 @@ class RichLineEdit(QTextEdit):
 class TyperTextEdit(RichLineEdit):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Remove the fixed 50px height from RichLineEdit
         self.setMaximumHeight(16777215) 
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setLineWrapMode(QTextEdit.WidgetWidth)
         
-        # Override the stylesheet to make the font weight normal
-        self.setStyleSheet("""
-            QTextEdit {
-                font-size: 14pt; 
-                font-weight: normal; /* Normal weight instead of bold */
-                padding-top: 10px; 
-                padding-left: 10px;
-                padding-right: 10px;
+        # Pull the base size from our unified metrics
+        self.base_pt = FONT_METRICS.get("text_base_pt", 28) 
+        
+        self.line_height_factor = 1.0
+        self.char_spacing = 0
+        
+        self.textChanged.connect(self.apply_block_formatting)
+        self.update_font_settings(0.5, 1.0, 0)
+
+    def update_font_settings(self, scale_factor, lh_factor, char_spacing):
+        self.line_height_factor = lh_factor
+        self.char_spacing = char_spacing
+
+        current_pt = max(8, int(self.base_pt * scale_factor))
+        pad = FONT_METRICS.get("padding", 10) 
+        
+        # Let CSS handle only the container, padding, and base point size
+        self.setStyleSheet(f"""
+            QTextEdit {{
+                font-size: {current_pt}pt; 
+                font-weight: normal; 
+                padding: {pad}px;  
                 border: 1px solid #555; 
                 border-radius: 2px;
                 background-color: #2b2b2b; 
                 color: white;
-            }
+            }}
         """)
+        
+        # We removed the buggy self.setFont() logic from here!
+        self.apply_block_formatting()
+
+    def apply_block_formatting(self):
+        self.blockSignals(True)
+        
+        cursor = self.textCursor()
+        cursor.select(QTextCursor.Document)
+        
+        # 1. Apply Line Height
+        block_fmt = cursor.blockFormat()
+        block_fmt.setLineHeight(float(self.line_height_factor * 100), QTextBlockFormat.ProportionalHeight.value)
+        cursor.setBlockFormat(block_fmt)
+        
+        # 2. Apply Character Spacing
+        char_fmt = cursor.charFormat()
+        if self.char_spacing == 0:
+            # If the slider is at 0, restore the font's beautiful native kerning
+            char_fmt.setFontLetterSpacingType(QFont.PercentageSpacing)
+            char_fmt.setFontLetterSpacing(100.0)
+        else:
+            # If the user moves the slider, apply their exact pixel offset
+            char_fmt.setFontLetterSpacingType(QFont.AbsoluteSpacing)
+            char_fmt.setFontLetterSpacing(float(self.char_spacing))
+            
+        cursor.mergeCharFormat(char_fmt) # merge avoids destroying other styles
+        
+        self.blockSignals(False)
 
     def keyPressEvent(self, event):
-        # Bypass RichLineEdit's Enter key suppression so we can type paragraphs
         QTextEdit.keyPressEvent(self, event)
+        
+    def insert(self, text):
+        self.textCursor().insertText(text)
+        
+    def setText(self, text):
+        self.setPlainText(text)
+        self.moveCursor(QTextCursor.End)
 
 class WordGenerator:
     GEN_SHORT = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.u]
@@ -661,15 +860,68 @@ class Wordforge(QMainWindow):
         
         typer_tab = QWidget()
         typer_layout = QVBoxLayout(typer_tab)
+
+        # --- Typer Controls ---
+        typer_controls_layout = QHBoxLayout()
+        slider_style = """
+            QSlider::groove:horizontal { border: 1px solid #555; height: 8px; background: #333; margin: 2px 0; border-radius: 4px; }
+            QSlider::handle:horizontal { background: #0277bd; border: 1px solid #0277bd; width: 18px; height: 18px; margin: -7px 0; border-radius: 9px; }
+        """
+        label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
+
+        # 1. Size Slider
+        size_layout = QVBoxLayout()
+        self.typer_scale_label = QLabel("Size: 50%")
+        self.typer_scale_label.setStyleSheet(label_style)
+        self.typer_scale_slider = QSlider(Qt.Horizontal)
+        self.typer_scale_slider.setRange(10, 150)
+        self.typer_scale_slider.setValue(50)
+        self.typer_scale_slider.setStyleSheet(slider_style)
+        self.typer_scale_slider.valueChanged.connect(self.update_typer_settings)
+        size_layout.addWidget(self.typer_scale_label)
+        size_layout.addWidget(self.typer_scale_slider)
+
+        # 2. Line Height Slider
+        lh_layout = QVBoxLayout()
+        self.typer_lh_label = QLabel("Line Height: 100%")
+        self.typer_lh_label.setStyleSheet(label_style)
+        self.typer_lh_slider = QSlider(Qt.Horizontal)
+        self.typer_lh_slider.setRange(50, 200)
+        self.typer_lh_slider.setValue(100)
+        self.typer_lh_slider.setStyleSheet(slider_style)
+        self.typer_lh_slider.valueChanged.connect(self.update_typer_settings)
+        lh_layout.addWidget(self.typer_lh_label)
+        lh_layout.addWidget(self.typer_lh_slider)
+
+        # 3. Char Spacing Slider
+        cs_layout = QVBoxLayout()
+        self.typer_cs_label = QLabel("Char Spacing: 0")
+        self.typer_cs_label.setStyleSheet(label_style)
+        self.typer_cs_slider = QSlider(Qt.Horizontal)
+        self.typer_cs_slider.setRange(-20, 50)
+        self.typer_cs_slider.setValue(2)
+        self.typer_cs_slider.setStyleSheet(slider_style)
+        self.typer_cs_slider.valueChanged.connect(self.update_typer_settings)
+        cs_layout.addWidget(self.typer_cs_label)
+        cs_layout.addWidget(self.typer_cs_slider)
+
+        typer_controls_layout.addLayout(size_layout)
+        typer_controls_layout.addLayout(lh_layout)
+        typer_controls_layout.addLayout(cs_layout)
+        
+        typer_layout.addLayout(typer_controls_layout)
         
         # Top Half: The multi-line text editor
         self.typer_input = TyperTextEdit()
-        self.typer_input.setPlaceholderText("type in тэжнop...")
         
-        # Bottom Half: Empty widget for later
-        self.typer_bottom = QWidget()
-        typer_bottom_layout = QVBoxLayout(self.typer_bottom)
-        typer_bottom_layout.addStretch() # Keeps it empty and pushes top half up
+        # Bottom Half: The Custom Font Renderer
+        self.typer_bottom = BitmapRenderer()
+        self.typer_bottom.setMinimumHeight(250) # Ensure it has room to draw at least one line
+        
+        # Connect the text editor so every keystroke updates the bitmap view in real-time
+        self.typer_input.textChanged.connect(
+            lambda: self.typer_bottom.set_text(self.typer_input.toPlainText())
+        )
         
         # Add them to the layout with stretch factors to split it 50/50
         typer_layout.addWidget(self.typer_input, stretch=1)
@@ -732,6 +984,8 @@ class Wordforge(QMainWindow):
 
         for category in self.categories:
             self.refresh_table(category)
+        
+        self.update_typer_settings()
 
     def show_table_context_menu(self, pos, table, category):
         row = table.rowAt(pos.y())
@@ -946,6 +1200,25 @@ class Wordforge(QMainWindow):
             layout.setAlignment(Qt.AlignCenter)
             layout.addWidget(del_btn)
             table.setCellWidget(r, 3, container)
+
+    def update_typer_settings(self, *args):
+        # Grab values from all three sliders
+        size_val = self.typer_scale_slider.value()
+        lh_val = self.typer_lh_slider.value()
+        cs_val = self.typer_cs_slider.value()
+
+        # Update the UI Labels
+        self.typer_scale_label.setText(f"Size: {size_val}%")
+        self.typer_lh_label.setText(f"Line Height: {lh_val}%")
+        self.typer_cs_label.setText(f"Char Spacing: {cs_val}")
+
+        # Convert to math-friendly factors
+        scale_factor = size_val / 100.0
+        lh_factor = lh_val / 100.0
+
+        # Push to both renderers simultaneously
+        self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val)
+        self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
