@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser, QMenu)
+                               QSlider, QTextBrowser, QMenu, QComboBox)
 from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
@@ -131,36 +131,98 @@ class LORE:
     ZV = 'რ'
     DV = 'ც'
 
-FONT_METRICS = {
-    "dir": "fonts/rounded_regular",
-    "text_base_pt": 28,
-    "bitmap_base_scale": 0.17,
-    "line_height": 210,
-    "space_width": 60,
-    "advance_normal": 103,
-    "advance_square": 128,
-    "advance_wide": 155,
-    "padding": 15,
-    "bitmap_offset_x": 0,
-    "bitmap_offset_y": 10,
-    "bitmap_base_char_spacing": 20
+# Place this at the top of your file
+FONT_PROFILES = {
+    "Rounded Regular": {
+        "dir": "fonts/rounded_regular",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 60,
+        "advance_normal": 103,
+        "advance_square": 128,
+        "advance_wide": 155,
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    },
+    "Rounded Bold": {
+        "dir": "fonts/rounded_bold", 
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 60,
+        "advance_normal": 103,
+        "advance_square": 128,
+        "advance_wide": 155,
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    },
+    "Block Regular": {
+        "dir": "fonts/block_regular",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 60,
+        "advance_normal": 103,
+        "advance_square": 128,
+        "advance_wide": 155,
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    },
+    "Block Mono": {
+        "dir": "fonts/block_mono",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 103,    # Adjusted to match the mono width for even word gaps
+        "advance_normal": 103, 
+        "advance_square": 103, # Flattened to smallest width
+        "advance_wide": 103,   # Flattened to smallest width
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    },
+    "Block Extended": {
+        "dir": "fonts/block_extended",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 128,    # Adjusted to match the extended width
+        "advance_normal": 128, # Flattened to middle width
+        "advance_square": 128, # Flattened to middle width
+        "advance_wide": 128,   # Flattened to middle width
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    }
 }
 
+CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[0]
+FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
+
 CHAR_WIDTHS = {
-    # # Wide Characters
-    LORE.D: FONT_METRICS["advance_square"],
-    LORE.SK: FONT_METRICS["advance_wide"],
-    LORE.KV: FONT_METRICS["advance_square"],
-    LORE.M: FONT_METRICS["advance_square"],
-    LORE.o: FONT_METRICS["advance_square"],
-    LORE.AU: FONT_METRICS["advance_square"],
-    LORE.SH: FONT_METRICS["advance_wide"],
-    LORE.SV: FONT_METRICS["advance_wide"],
-    LORE.TS: FONT_METRICS["advance_square"],
-    LORE.U: FONT_METRICS["advance_square"],
-    LORE.W: FONT_METRICS["advance_square"],
-    LORE.ZH: FONT_METRICS["advance_wide"],
-    LORE.ZV: FONT_METRICS["advance_wide"]
+    # Wide & Square Characters
+    LORE.D: "advance_square",
+    LORE.SK: "advance_wide",
+    LORE.KV: "advance_square",
+    LORE.M: "advance_square",
+    LORE.o: "advance_square",
+    LORE.AU: "advance_square",
+    LORE.SH: "advance_wide",
+    LORE.SV: "advance_wide",
+    LORE.TS: "advance_square",
+    LORE.U: "advance_square",
+    LORE.W: "advance_square",
+    LORE.ZH: "advance_wide",
+    LORE.ZV: "advance_wide"
 }
 
 class PRONUNCIATION:
@@ -339,14 +401,13 @@ class BitmapRenderer(QWidget):
         self._pixmap_cache = {}
         self.font_dir = FONT_METRICS["dir"]
         
-        # Pull the scale from our unified metrics
-        self.base_scale = FONT_METRICS.get("bitmap_base_scale", 1.0)
-        
-        self.scale = 0.5 * self.base_scale 
+        self.base_scale = 1.0
+        self.scale = 1.0 
         self.lh_factor = 1.0
         self.char_spacing = 0
 
     def update_settings(self, scale_factor, lh_factor, char_spacing):
+        self.base_scale = FONT_METRICS.get("bitmap_base_scale", 1.0)
         self.scale = scale_factor * self.base_scale
         self.lh_factor = lh_factor
         self.char_spacing = char_spacing
@@ -428,7 +489,8 @@ class BitmapRenderer(QWidget):
                 continue
                 
             # Scale the character advance to screen pixels
-            raw_advance = CHAR_WIDTHS.get(char, FONT_METRICS["advance_normal"])
+            width_key = CHAR_WIDTHS.get(char, "advance_normal")
+            raw_advance = FONT_METRICS[width_key]
             advance = (raw_advance * self.scale) + effective_char_spacing
             
             if cursor_x + advance > max_x:
@@ -516,9 +578,6 @@ class TyperTextEdit(RichLineEdit):
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.setLineWrapMode(QTextEdit.WidgetWidth)
         
-        # Pull the base size from our unified metrics
-        self.base_pt = FONT_METRICS.get("text_base_pt", 28) 
-        
         self.line_height_factor = 1.0
         self.char_spacing = 0
         
@@ -528,6 +587,9 @@ class TyperTextEdit(RichLineEdit):
     def update_font_settings(self, scale_factor, lh_factor, char_spacing):
         self.line_height_factor = lh_factor
         self.char_spacing = char_spacing
+
+        # Pull the base size from our unified metrics
+        self.base_pt = FONT_METRICS.get("text_base_pt", 28) 
 
         current_pt = max(8, int(self.base_pt * scale_factor))
         pad = FONT_METRICS.get("padding", 10) 
@@ -875,6 +937,13 @@ class Wordforge(QMainWindow):
         """
         label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
 
+        # --- Font Selector ---
+        self.font_dropdown = QComboBox()
+        self.font_dropdown.addItems(FONT_PROFILES.keys())
+        self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
+        typer_layout.addWidget(QLabel("Select Font:"))
+        typer_layout.addWidget(self.font_dropdown)
+        
         # 1. Size Slider
         size_layout = QVBoxLayout()
         self.typer_scale_label = QLabel("Size: 50%")
@@ -1225,6 +1294,17 @@ class Wordforge(QMainWindow):
         # Push to both renderers simultaneously
         self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val)
         self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
+    
+    def change_font_profile(self, font_name):
+        global FONT_METRICS
+        FONT_METRICS = FONT_PROFILES[font_name]
+        
+        # Update the bitmap renderer's directory
+        self.typer_bottom.font_dir = FONT_METRICS["dir"]
+        self.typer_bottom._pixmap_cache.clear() # Clear cache so it loads new font images
+        
+        # Re-trigger the update with current slider values
+        self.update_typer_settings()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
