@@ -362,76 +362,82 @@ class BitmapRenderer(QWidget):
         self.update() 
 
     def get_pixmap(self, char):
-        if char in self._pixmap_cache:
-            return self._pixmap_cache[char]
+        # Cache based on BOTH the character and the current scale
+        cache_key = (char, self.scale)
+        if cache_key in self._pixmap_cache:
+            return self._pixmap_cache[cache_key]
             
-        file_prefix = CHAR_TO_FILENAME.get(char, char)
-
+        file_prefix = CHAR_TO_FILENAME.get(char, char) if 'CHAR_TO_FILENAME' in globals() else char
         image_path = os.path.join(self.font_dir, f"{file_prefix}.png")
         
         if os.path.exists(image_path):
-            pixmap = QPixmap(image_path)
-            self._pixmap_cache[char] = pixmap
-            return pixmap
+            orig_pixmap = QPixmap(image_path)
             
-        return None 
+            # Perform a high-quality downscale ONCE, not every frame
+            target_width = int(orig_pixmap.width() * self.scale)
+            target_height = int(orig_pixmap.height() * self.scale)
+            
+            scaled_pixmap = orig_pixmap.scaled(
+                target_width, 
+                target_height, 
+                Qt.IgnoreAspectRatio, 
+                Qt.SmoothTransformation
+            )
+            
+            self._pixmap_cache[cache_key] = scaled_pixmap
+            return scaled_pixmap
+            
+        return None
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)
-        painter.setRenderHint(QPainter.SmoothPixmapTransform)
         painter.fillRect(self.rect(), QColor("#2b2b2b"))
-        painter.scale(self.scale, self.scale)
         
-        dynamic_lh = FONT_METRICS["line_height"] * self.lh_factor
+        # We removed the painter scaling and render hints!
+        
+        # Convert raw metrics to actual screen pixels
+        dynamic_lh = (FONT_METRICS["line_height"] * self.lh_factor) * self.scale
+        scaled_space_width = FONT_METRICS["space_width"] * self.scale
         
         PADDING_SCREEN = FONT_METRICS.get("padding", 10)
         OFFSET_X = FONT_METRICS.get("bitmap_offset_x", 0)
         OFFSET_Y = FONT_METRICS.get("bitmap_offset_y", 0)
         
-        # --- FETCH BASE BITMAP SPACING ---
-        BASE_SPACING = FONT_METRICS.get("bitmap_base_char_spacing", 0)
+        # Base spacing was in raw pixels, so it needs scaling. 
+        # self.char_spacing comes from the UI slider, so it doesn't need scaling.
+        BASE_SPACING_SCALED = FONT_METRICS.get("bitmap_base_char_spacing", 0) * self.scale
+        effective_char_spacing = self.char_spacing + BASE_SPACING_SCALED
         
-        effective_pad_x = 0
-        effective_pad_y = 0
-        effective_char_spacing = 0
-        max_x = self.width() 
+        max_x = self.width() - (PADDING_SCREEN + OFFSET_X)
         
-        if self.scale > 0:
-            effective_pad_x = (PADDING_SCREEN + OFFSET_X) / self.scale
-            effective_pad_y = (PADDING_SCREEN + OFFSET_Y) / self.scale
-            
-            # --- COMBINE SLIDER SPACING WITH NATIVE SPACING ---
-            # Un-shrink the slider's screen pixels, then add the raw canvas pixels
-            effective_char_spacing = (self.char_spacing / self.scale) + BASE_SPACING
-            
-            max_x = (self.width() - (PADDING_SCREEN + OFFSET_X)) / self.scale
-        
-        # Start the cursors using the independent X and Y padding
-        cursor_x = effective_pad_x
-        cursor_y = effective_pad_y
+        # Start the cursors
+        cursor_x = PADDING_SCREEN + OFFSET_X
+        cursor_y = PADDING_SCREEN + OFFSET_Y
         
         for char in self.text_to_render:
             if char == '\n':
-                cursor_x = effective_pad_x # Reset to X padding
+                cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
                 continue
                 
             if char == ' ':
-                cursor_x += FONT_METRICS["space_width"] + effective_char_spacing
+                cursor_x += scaled_space_width + effective_char_spacing
                 if cursor_x > max_x:
-                    cursor_x = effective_pad_x 
+                    cursor_x = PADDING_SCREEN + OFFSET_X 
                     cursor_y += dynamic_lh
                 continue
                 
-            advance = CHAR_WIDTHS.get(char, FONT_METRICS["advance_normal"]) + effective_char_spacing
+            # Scale the character advance to screen pixels
+            raw_advance = CHAR_WIDTHS.get(char, FONT_METRICS["advance_normal"])
+            advance = (raw_advance * self.scale) + effective_char_spacing
             
             if cursor_x + advance > max_x:
-                cursor_x = effective_pad_x 
+                cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
-            
+                
             pixmap = self.get_pixmap(char)
             if pixmap:
+                # Draw exactly at the screen coordinates
                 painter.drawPixmap(int(cursor_x), int(cursor_y), pixmap)
                 
             cursor_x += advance
@@ -899,7 +905,7 @@ class Wordforge(QMainWindow):
         self.typer_cs_label.setStyleSheet(label_style)
         self.typer_cs_slider = QSlider(Qt.Horizontal)
         self.typer_cs_slider.setRange(-20, 50)
-        self.typer_cs_slider.setValue(2)
+        self.typer_cs_slider.setValue(1)
         self.typer_cs_slider.setStyleSheet(slider_style)
         self.typer_cs_slider.valueChanged.connect(self.update_typer_settings)
         cs_layout.addWidget(self.typer_cs_label)
