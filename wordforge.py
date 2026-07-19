@@ -13,16 +13,9 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER SET
 #
-#       aэջohλиეբюռըδεyбвгдzкηмнпpcтvxզьμжчшяdфՑцპსպէთრც
+#       aэջohλиეεyδюбвгдzкռмнпpcтvxqьμжчшяdфըբζՑцპსպէთრც
+#       
 # ========================================================
-
-# FONT_CONFIGS = {
-#     "BlockMonoExtended": { "is_mono": True, "advance": 48, ... },
-#     "BlockMono": { "is_mono": True, "advance": 24, ... },
-#     "BlockRegular": { "is_mono": False, "default_advance": 24, ... },
-#     "RoundedBold": { "is_mono": False, "default_advance": 24, ... },
-#     "RoundedRegular": { "is_mono": False, "default_advance": 24, ... }
-# }
 
 class DEFINITIONS:
     a = 'a'     # short a
@@ -33,20 +26,17 @@ class DEFINITIONS:
     λ = 'ay'    # long a
     и = 'ee'    # long e
     ე = 'eye'   # long i
-    բ = 'oi'    # oi as in boy
-    ю = 'ui'    # anglicised ы
-    ռ = 'ow'    # ow as in ouch
-    ը = 'ew'    # ew as in knew
-    δ = 'oe'    # oe as in book
     ε = 'oh'    # long o
     y = 'oo'    # oo as in poop
+    δ = 'oe'    # oe as in put
+    ю = 'ue'    # ы
     б = 'b'
     в = 'v'
     г = 'g'
     д = 'd'
     z = 'z'
     к = 'k'
-    η = 'l' 
+    ռ = 'l' 
     м = 'm'
     н = 'n'
     п = 'p'
@@ -55,15 +45,18 @@ class DEFINITIONS:
     т = 't'
     v = 'f'
     x = 'h'
-    զ = 'w'
+    q = 'w'
     ь = 'y'
     μ = 'j'
-    ж = 'zh'    # as in measure
+    ж = 'zh'
     ч = 'ch'
     ш = 'sh'
-    я = 'th'    # unvoiced th
-    d = 'dh'    # voiced th
-    ф = 'ng'    # velar nasal
+    я = 'th'
+    d = 'dh'
+    ф = 'ng'
+    ը = 'nd'
+    բ = 'pl'
+    ζ = 'ps'
     Ց = 'tr'
     ц = 'ts'
     პ = 'st'
@@ -74,13 +67,6 @@ class DEFINITIONS:
     რ = 'zv'
     ც = 'dv'
 
-# Automatically map the conlang character (the variable name) to the filename (the value)
-CHAR_TO_FILENAME = {}
-for attr in dir(DEFINITIONS):
-    if not attr.startswith('__') and not callable(getattr(DEFINITIONS, attr)):
-        filename_prefix = getattr(DEFINITIONS, attr)
-        CHAR_TO_FILENAME[attr] = filename_prefix
-
 class LORE:
     a = 'a'
     e = 'э'
@@ -90,20 +76,17 @@ class LORE:
     A = 'λ'
     E = 'и'
     I = 'ე'
-    O = 'բ'
-    U = 'ю'
-    AU = 'ռ'
-    EU = 'ը'
-    OE = 'δ'
-    OU = 'ε'
+    O = 'ε'
     OO = 'y'
+    OE = 'δ'
+    UE = 'ю'
     B = 'б'
     V = 'в'
     G = 'г'
     D = 'д'
     Z = 'z'
     K = 'к'
-    L = 'η' 
+    L = 'ռ' 
     M = 'м'
     N = 'н'
     P = 'п'
@@ -112,7 +95,7 @@ class LORE:
     T = 'т'
     F = 'v'
     X = 'x'
-    W = 'զ'
+    W = 'q'
     Y = 'ь'
     J = 'μ'
     ZH = 'ж'
@@ -121,6 +104,9 @@ class LORE:
     TH = 'я'
     DH = 'd'
     NG = 'ф'
+    ND = 'ը'
+    PL = 'բ'
+    PS = 'ζ'
     TR = 'Ց'
     TS = 'ц'
     ST = 'პ'
@@ -130,6 +116,13 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
+
+# Automatically map the conlang character (the variable name) to the filename (the value)
+CHAR_TO_FILENAME = {}
+for attr in dir(DEFINITIONS):
+    if not attr.startswith('__') and not callable(getattr(DEFINITIONS, attr)):
+        filename_prefix = getattr(DEFINITIONS, attr)
+        CHAR_TO_FILENAME[attr] = filename_prefix
 
 # Place this at the top of your file
 FONT_PROFILES = {
@@ -215,11 +208,9 @@ CHAR_WIDTHS = {
     LORE.KV: "advance_square",
     LORE.M: "advance_square",
     LORE.o: "advance_square",
-    LORE.AU: "advance_square",
     LORE.SH: "advance_wide",
     LORE.SV: "advance_wide",
     LORE.TS: "advance_square",
-    LORE.U: "advance_square",
     LORE.W: "advance_square",
     LORE.ZH: "advance_wide",
     LORE.ZV: "advance_wide"
@@ -234,13 +225,10 @@ class PRONUNCIATION:
     A = 'ay'    # long a
     E = 'ee'    # long e
     I = 'eye'   # long i
-    O = 'oi'    # oi as in boy
-    U = 'ui'    # anglicised ы
-    AU = 'ow'   # ow as in ouch
-    EU = 'ew'   # ew as in knew
-    OE = 'oe'   # oe as in book
-    OU = 'oh'   # long o
+    O = 'oh'    # long o
     OO = 'oo'   # oo as in poop
+    OE = 'oe'   # oe as in put
+    UE = 'ue'   # ы
     B = 'b'
     V = 'v'
     G = 'g'
@@ -264,7 +252,10 @@ class PRONUNCIATION:
     SH = 'sh'
     TH = 'th'   # unvoiched th as in think
     DH = 'TH'   # voiced th as in this
-    NG = 'ng'   # anglophone ng sound used in the ing word ending
+    NG = 'ng'   # anglophone ng sound used in the ing word 
+    ND = 'nd'
+    PL = 'pl'
+    PS = 'ps'
     TR = 'tr'
     TS = 'ts'
     ST = 'st'
@@ -281,15 +272,15 @@ class PRONUNCIATION:
 
 VOWELS = [
     LORE.a, LORE.e, LORE.i, LORE.o, LORE.u, 
-    LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
-    LORE.AU, LORE.EU, LORE.OU, LORE.OO, LORE.OE
+    LORE.A, LORE.E, LORE.I, LORE.O, LORE.OO, 
+    LORE.OE, LORE.UE
 ]
 
 CONSONANTS = [
-    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, 
-    LORE.X, LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, 
-    LORE.ZH, LORE.CH, LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.TR,
-    LORE.TS, LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
+    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, LORE.X,
+    LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, LORE.ZH, LORE.CH,
+    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.ND, LORE.PL, LORE.PS, LORE.TR, LORE.TS,
+    LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
 ALPHABET_DEFS = [
@@ -301,13 +292,10 @@ ALPHABET_DEFS = [
     (LORE.A, "ay", "long a"),
     (LORE.E, "ee", "long e"),
     (LORE.I, "eye", "long i"),
-    (LORE.O, "oi", "oi as in boy"),
-    (LORE.U, "ui", "anglicised ы"),
-    (LORE.AU, "ow", "ow as in ouch"),
-    (LORE.EU, "ew", "ew as in knew"),
-    (LORE.OE, "oe", "oe as in book"),
-    (LORE.OU, "oh", "long o"),
+    (LORE.O, "ow", "long o"),
     (LORE.OO, "oo", "oo as in poop"),
+    (LORE.OE, "oe", "oe as in put"),
+    (LORE.UE, "ue", "ы"),
     (LORE.B, "b", ""),
     (LORE.V, "v", ""),
     (LORE.G, "g", ""),
@@ -332,6 +320,9 @@ ALPHABET_DEFS = [
     (LORE.TH, "th", "unvoiced th as in think"),
     (LORE.DH, "TH", "voiced th as in this"),
     (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
+    (LORE.ND, "nd", ""),
+    (LORE.PL, "pl", ""),
+    (LORE.PS, "ps", ""),
     (LORE.TR, "tr", ""),
     (LORE.TS, "ts", ""),
     (LORE.ST, "st", ""),
@@ -361,14 +352,16 @@ KEYBOARD_LAYOUT = [
 ]
 
 LONG_VOWEL_MAP = {
-    "a": LORE.A, "e": LORE.E, "i": LORE.I, "o": LORE.O, "u": LORE.U
+    "a": LORE.A, "e": LORE.E, "i": LORE.I, "o": LORE.O
 }
 
 COMBO_MAP = {
-    "au": LORE.AU, "eu": LORE.EU, "ou": LORE.OU, "oo": LORE.OO, "oe": LORE.OE,
+    "oo": LORE.OO, "oe": LORE.OE, "ue": LORE.UE,
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
-    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "tr": LORE.TR, 
-    "ts": LORE.TS, "st": LORE.ST, "ks": LORE.KS, "sk": LORE.SK,
+    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "nd": LORE.ND,
+    "pl": LORE.PL, "ps": LORE.PS,
+    "tr": LORE.TR, "ts": LORE.TS, "st": LORE.ST,
+    "ks": LORE.KS, "sk": LORE.SK,
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
@@ -647,11 +640,7 @@ class TyperTextEdit(RichLineEdit):
         self.moveCursor(QTextCursor.End)
 
 class WordGenerator:
-    GEN_SHORT = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.u]
-    GEN_LONG = [LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
-                LORE.AU, LORE.EU, LORE.OU, LORE.OO, LORE.OE]
-    
-    ALL_VOWELS = GEN_SHORT + GEN_LONG
+    ALL_VOWELS = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.A, LORE.E, LORE.I, LORE.O, LORE.OO, LORE.OE, LORE.UE]
 
     @staticmethod
     def generate_word(num_syllables=3):
