@@ -127,7 +127,7 @@ for attr in dir(DEFINITIONS):
 # Place this at the top of your file
 FONT_PROFILES = {
     "Rounded Regular": {
-        "dir": "fonts/rounded_regular",
+        "dir": "fonts/tezhnor_rounded_regular",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -141,7 +141,7 @@ FONT_PROFILES = {
         "bitmap_base_char_spacing": 20
     },
     "Rounded Bold": {
-        "dir": "fonts/rounded_bold", 
+        "dir": "fonts/tezhnor_rounded_bold", 
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -155,7 +155,7 @@ FONT_PROFILES = {
         "bitmap_base_char_spacing": 20
     },
     "Block Regular": {
-        "dir": "fonts/block_regular",
+        "dir": "fonts/tezhnor_block_regular",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -169,7 +169,7 @@ FONT_PROFILES = {
         "bitmap_base_char_spacing": 20
     },
     "Block Mono": {
-        "dir": "fonts/block_mono",
+        "dir": "fonts/tezhnor_block_mono",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -183,7 +183,7 @@ FONT_PROFILES = {
         "bitmap_base_char_spacing": 20
     },
     "Block Extended": {
-        "dir": "fonts/block_extended",
+        "dir": "fonts/tezhnor_block_mono_extended",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -213,7 +213,8 @@ CHAR_WIDTHS = {
     LORE.TS: "advance_square",
     LORE.W: "advance_square",
     LORE.ZH: "advance_wide",
-    LORE.ZV: "advance_wide"
+    LORE.ZV: "advance_wide",
+    LORE.TH: "advance_square"
 }
 
 class PRONUNCIATION:
