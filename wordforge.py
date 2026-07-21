@@ -204,6 +204,7 @@ FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 CHAR_WIDTHS = {
     # Wide & Square Characters
     LORE.O: "advance_square",
+    LORE.UE: "advance_square",
     LORE.D: "advance_square",
     LORE.M: "advance_square",
     LORE.W: "advance_square",
@@ -359,7 +360,7 @@ LONG_VOWEL_MAP = {
 COMBO_MAP = {
     "ay": LORE.AY, "ee": LORE.EE, "iy": LORE.IY, "ow": LORE.OW, "oo": LORE.OO,
     "oe": LORE.OE, "ue": LORE.UE,
-    "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
+    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "nd": LORE.ND,
     "pl": LORE.PL, "ps": LORE.PS,
     "tr": LORE.TR, "ts": LORE.TS, "st": LORE.ST,
@@ -732,24 +733,46 @@ class PhysicalKeyFilter(QObject):
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
+                
+        self.pending_c = False
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.KeyPress:
             key_text = event.text().lower()
-            if key_text in DISABLED_KEYS: return True 
+            
+            if event.modifiers() & Qt.ControlModifier: 
+                self.pending_c = False
+                return False
+
             if event.key() == Qt.Key_Backspace:
-                obj.backspace() # Targets the specific widget
+                self.pending_c = False
+                obj.backspace() 
                 return True 
+                
             if event.key() == Qt.Key_Space:
-                obj.insertPlainText(" ") # Targets the specific widget
+                self.pending_c = False
+                obj.insertPlainText(" ") 
                 return True
 
-            if event.modifiers() & (Qt.ControlModifier): return False
+            if key_text == 'c':
+                self.pending_c = True
+                return True  # Consume the keypress, but don't type anything yet
+
+            if self.pending_c:
+                self.pending_c = False  # Reset the tracker immediately
+                if key_text == 'h':
+                    lore_char = self.key_map.get('ch', 'ч') 
+                    self.window.handle_keypress('ch', lore_char, target=obj)
+                    return True
+
+            if key_text in DISABLED_KEYS: 
+                return True 
             
             if key_text in self.key_map:
                 lore_char = self.key_map[key_text]
                 self.window.handle_keypress(key_text, lore_char, target=obj)
                 return True 
+                
         return super().eventFilter(obj, event)
 
 class Wordforge(QMainWindow):
