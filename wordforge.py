@@ -68,15 +68,15 @@ class DEFINITIONS:
     ც = 'dv'
 
 class LORE:
-    a = 'a'
-    e = 'э'
-    i = 'ջ'
-    o = 'o'
-    u = 'h'
-    A = 'λ'
-    E = 'и'
-    I = 'ე'
-    O = 'ε'
+    A = 'a'
+    E = 'э'
+    I = 'ջ'
+    O = 'o'
+    U = 'h'
+    AY = 'λ'
+    EE = 'и'
+    IY = 'ე'
+    OW = 'ε'
     OO = 'y'
     OE = 'δ'
     UE = 'ю'
@@ -203,30 +203,30 @@ FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
 CHAR_WIDTHS = {
     # Wide & Square Characters
+    LORE.O: "advance_square",
     LORE.D: "advance_square",
-    LORE.SK: "advance_wide",
-    LORE.KV: "advance_square",
     LORE.M: "advance_square",
-    LORE.o: "advance_square",
-    LORE.SH: "advance_wide",
-    LORE.SV: "advance_wide",
-    LORE.TS: "advance_square",
     LORE.W: "advance_square",
     LORE.ZH: "advance_wide",
-    LORE.ZV: "advance_wide",
-    LORE.TH: "advance_square"
+    LORE.SH: "advance_wide",
+    LORE.TH: "advance_square",
+    LORE.SK: "advance_wide",
+    LORE.TS: "advance_square",
+    LORE.KV: "advance_square",
+    LORE.SV: "advance_wide",
+    LORE.ZV: "advance_wide"
 }
 
 class PRONUNCIATION:
-    a = 'a'     # short a
-    e = 'e'     # short e
-    i = 'i'     # short i
-    o = 'o'     # short o
-    u = 'u'     # short u
-    A = 'ay'    # long a
-    E = 'ee'    # long e
-    I = 'eye'   # long i
-    O = 'oh'    # long o
+    A = 'a'     # short a
+    E = 'e'     # short e
+    I = 'i'     # short i
+    O = 'o'     # short o
+    U = 'u'     # short u
+    AY = 'ay'   # long a
+    EE = 'ee'   # long e
+    IY = 'iy'   # long i
+    OW = 'ow'   # long o
     OO = 'oo'   # oo as in poop
     OE = 'oe'   # oe as in put
     UE = 'ue'   # ы
@@ -272,8 +272,8 @@ class PRONUNCIATION:
 # ==========================================
 
 VOWELS = [
-    LORE.a, LORE.e, LORE.i, LORE.o, LORE.u, 
-    LORE.A, LORE.E, LORE.I, LORE.O, LORE.OO, 
+    LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
+    LORE.AY, LORE.EE, LORE.IY, LORE.OW, LORE.OO, 
     LORE.OE, LORE.UE
 ]
 
@@ -285,15 +285,15 @@ CONSONANTS = [
 ]
 
 ALPHABET_DEFS = [
-    (LORE.a, "a", "short a"),
-    (LORE.e, "e", "short e"),
-    (LORE.i, "i", "short i"),
-    (LORE.o, "o", "short o"),
-    (LORE.u, "u", "short u"),
-    (LORE.A, "ay", "long a"),
-    (LORE.E, "ee", "long e"),
-    (LORE.I, "eye", "long i"),
-    (LORE.O, "ow", "long o"),
+    (LORE.A, "a", "short a"),
+    (LORE.E, "e", "short e"),
+    (LORE.I, "i", "short i"),
+    (LORE.O, "o", "short o"),
+    (LORE.U, "u", "short u"),
+    (LORE.AY, "ay", "long a"),
+    (LORE.EE, "ee", "long e"),
+    (LORE.IY, "eye", "long i"),
+    (LORE.OW, "ow", "long o"),
     (LORE.OO, "oo", "oo as in poop"),
     (LORE.OE, "oe", "oe as in put"),
     (LORE.UE, "ue", "ы"),
@@ -347,8 +347,8 @@ TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
 
 KEYBOARD_LAYOUT = [
-    [('w', LORE.W), ('e', LORE.e), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.u), ('i', LORE.i), ('o', LORE.o), ('p', LORE.P)],
-    [('a', LORE.a), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
+    [('w', LORE.W), ('e', LORE.E), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.U), ('i', LORE.I), ('o', LORE.O), ('p', LORE.P)],
+    [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
     [('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M)]
 ]
 
@@ -357,7 +357,8 @@ LONG_VOWEL_MAP = {
 }
 
 COMBO_MAP = {
-    "oo": LORE.OO, "oe": LORE.OE, "ue": LORE.UE,
+    "ay": LORE.AY, "ee": LORE.EE, "iy": LORE.IY, "ow": LORE.OW, "oo": LORE.OO,
+    "oe": LORE.OE, "ue": LORE.UE,
     "zh": LORE.ZH, "sh": LORE.SH, "kh": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "nd": LORE.ND,
     "pl": LORE.PL, "ps": LORE.PS,
@@ -641,7 +642,7 @@ class TyperTextEdit(RichLineEdit):
         self.moveCursor(QTextCursor.End)
 
 class WordGenerator:
-    ALL_VOWELS = [LORE.a, LORE.e, LORE.i, LORE.o, LORE.A, LORE.E, LORE.I, LORE.O, LORE.OO, LORE.OE, LORE.UE]
+    ALL_VOWELS = [LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, LORE.AY, LORE.EE, LORE.IY, LORE.OW, LORE.OO, LORE.OE, LORE.UE]
 
     @staticmethod
     def generate_word(num_syllables=3):
