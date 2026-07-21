@@ -651,76 +651,67 @@ class WordGenerator:
         structure_log = [] 
         pronunciation_log = []
         
+        # Helper functions now purely prevent immediate repetition
+        def get_c(exclude=None):
+            opts = [c for c in CONSONANTS if c != exclude] if exclude else CONSONANTS
+            return random.choice(opts) if opts else random.choice(CONSONANTS)
+
+        def get_v(exclude=None):
+            opts = [v for v in WordGenerator.ALL_VOWELS if v != exclude] if exclude else WordGenerator.ALL_VOWELS
+            return random.choice(opts) if opts else random.choice(WordGenerator.ALL_VOWELS)
+        
         for i in range(num_syllables):
             structure = random.choices(
-                ["CV", "VC", "CVC"], 
-                weights=[50, 25, 25],
+                ["V", "CV", "VC", "CVC", "CVV", "CCV", "VCC"], 
+                weights=[10, 30, 10, 25, 5, 15, 5], 
                 k=1
             )[0]
             
             prev_char = word[-1] if word else None
-            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC", "VCC"]:
+            
+            # Prevent awkward double-vowel boundaries across syllables
+            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC", "VCC", "CVV"]:
                 structure = random.choice(["CV", "CVC", "CCV"])
             
             structure_log.append(structure)
             syllable = ""
             
             if structure == "V":
-                v = random.choice(WordGenerator.ALL_VOWELS)
-                if prev_char:
-                    while v == prev_char: v = random.choice(WordGenerator.ALL_VOWELS)
-                syllable = v
+                syllable = get_v(exclude=prev_char)
+                
             elif structure == "CV":
-                c = random.choice(CONSONANTS)
-                while c == prev_char: c = random.choice(CONSONANTS)
-                v = random.choice(WordGenerator.ALL_VOWELS)
-                syllable = c + v
+                syllable = get_c(exclude=prev_char) + get_v()
+                
             elif structure == "CVC":
-                c1 = random.choice(CONSONANTS)
-                while c1 == prev_char: c1 = random.choice(CONSONANTS)
-                v = random.choice(WordGenerator.ALL_VOWELS)
-                c2 = random.choice(CONSONANTS)
-                while c2 == v: c2 = random.choice(CONSONANTS)
+                c1 = get_c(exclude=prev_char)
+                v = get_v()
+                c2 = get_c(exclude=v)
                 syllable = c1 + v + c2
+                
             elif structure == "VC":
-                valid = WordGenerator.ALL_VOWELS.copy()
-                if prev_char in valid: valid.remove(prev_char)
-                if prev_char in WordGenerator.GEN_SHORT: valid = [x for x in valid if x not in WordGenerator.GEN_SHORT]
-                v = random.choice(valid) if valid else random.choice(WordGenerator.GEN_LONG)
-                c = random.choice(CONSONANTS)
-                while c == v: c = random.choice(CONSONANTS)
-                syllable = v + c
+                v = get_v(exclude=prev_char)
+                syllable = v + get_c(exclude=v)
+                
             elif structure == "CVV":
-                c = random.choice(CONSONANTS)
-                while c == prev_char: c = random.choice(CONSONANTS)
-                pair = random.choice(['LL', 'SL', 'LS'])
-                v1 = random.choice(WordGenerator.GEN_LONG) if pair[0] == 'L' else random.choice(WordGenerator.GEN_SHORT)
-                v2 = random.choice(WordGenerator.GEN_LONG) if pair[1] == 'L' else random.choice(WordGenerator.GEN_SHORT)
-                while v2 == v1: v2 = random.choice(WordGenerator.GEN_LONG) if pair[1] == 'L' else random.choice(WordGenerator.GEN_SHORT)
+                c = get_c(exclude=prev_char)
+                v1 = get_v()
+                v2 = get_v(exclude=v1) # Just ensure it doesn't pick the exact same vowel twice
                 syllable = c + v1 + v2
+                
             elif structure == "CCV":
-                c1 = random.choice(CONSONANTS)
-                while c1 == prev_char: c1 = random.choice(CONSONANTS)
-                c2 = random.choice(CONSONANTS)
-                while c2 == c1: c2 = random.choice(CONSONANTS)
-                v = random.choice(WordGenerator.ALL_VOWELS)
-                syllable = c1 + c2 + v
+                c1 = get_c(exclude=prev_char)
+                c2 = get_c(exclude=c1)
+                syllable = c1 + c2 + get_v()
+                
             elif structure == "VCC":
-                valid = WordGenerator.ALL_VOWELS.copy()
-                if prev_char in valid: valid.remove(prev_char)
-                if prev_char in WordGenerator.GEN_SHORT: valid = [x for x in valid if x not in WordGenerator.GEN_SHORT]
-                v = random.choice(valid) if valid else random.choice(WordGenerator.GEN_LONG)
-                c1 = random.choice(CONSONANTS)
-                while c1 == v: c1 = random.choice(CONSONANTS)
-                c2 = random.choice(CONSONANTS)
-                while c2 == c1: c2 = random.choice(CONSONANTS)
+                v = get_v(exclude=prev_char)
+                c1 = get_c(exclude=v)
+                c2 = get_c(exclude=c1)
                 syllable = v + c1 + c2
 
             word += syllable
 
-            pron_syl = ""
-            for char in syllable:
-                pron_syl += LORE_TO_PRON.get(char, "?")
+            pron_syl = "".join([LORE_TO_PRON.get(char, "?") for char in syllable])
             pronunciation_log.append(pron_syl)
 
         return word, "-".join(structure_log), "-".join(pronunciation_log)
