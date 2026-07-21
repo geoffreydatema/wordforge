@@ -743,10 +743,6 @@ class PhysicalKeyFilter(QObject):
             if event.key() == Qt.Key_Space:
                 obj.insertPlainText(" ") # Targets the specific widget
                 return True
-            
-            if event.modifiers() & Qt.ShiftModifier:
-                self.window.shift_active = True
-                self.window.shift_btn.setChecked(True)
 
             if event.modifiers() & (Qt.ControlModifier): return False
             
@@ -770,8 +766,6 @@ class Wordforge(QMainWindow):
         
         self.common_words = self.load_common_words()
 
-        self.shift_active = False
-        
         self.key_to_lore = {}
         for row in KEYBOARD_LAYOUT:
             for k, char in row:
@@ -1109,17 +1103,6 @@ class Wordforge(QMainWindow):
         
         ctrl_row = QHBoxLayout()
         ctrl_row.addStretch()
-        
-        self.shift_btn = QPushButton("SHIFT")
-        self.shift_btn.setCheckable(True)
-        self.shift_btn.setFixedSize(80, 45)
-        self.shift_btn.setStyleSheet("""
-            QPushButton { background-color: #333; color: white; font-weight: bold; border: 1px solid #555; border-radius: 5px; }
-            QPushButton:hover { background-color: #444; border-color: #777; }
-            QPushButton:checked { background-color: #ff9800; color: black; border-color: #e65100; }
-        """)
-        self.shift_btn.toggled.connect(self.toggle_shift)
-        ctrl_row.addWidget(self.shift_btn)
 
         CTRL_STYLE = "QPushButton { background-color: #333; color: white; border: 1px solid #555; border-radius: 5px; } QPushButton:hover { background-color: #444; border-color: #777; } QPushButton:pressed { background-color: #222; border-color: #111; }"
         space_btn = QPushButton("Space")
@@ -1141,23 +1124,10 @@ class Wordforge(QMainWindow):
     def update_slider_label(self, value):
         self.syllable_label.setText(f"Syllables: {value}")
 
-    def toggle_shift(self, checked):
-        self.shift_active = checked
-
     def handle_keypress(self, key_id, default_char, target=None):
         # If no target is passed (e.g., clicking the on-screen touch keyboard), default to Word Forge input
         if target is None:
             target = self.input_conlang
-
-        if self.shift_active:
-            if key_id in LONG_VOWEL_MAP:
-                result = LONG_VOWEL_MAP[key_id]
-                target.insert(result)
-            else:
-                target.insert(default_char)
-            self.shift_btn.setChecked(False)
-            target.setFocus()
-            return
 
         prev_char = target.get_prev_char()
         
