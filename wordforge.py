@@ -13,7 +13,7 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ========================================================
 #       MASTER CHARACTER SET
 #
-#       aэջohλиეεyδюбвгдzкռмнпpcтvxqьμжчшяdфըբζՑцპსպէთრც
+#       aэջohλиეεyδюбвгдzкямнпpcтvxqьμжчшθdфըբζՑцპსպէთრც
 #       
 # ========================================================
 
@@ -36,7 +36,7 @@ class DEFINITIONS:
     д = 'd'
     z = 'z'
     к = 'k'
-    ռ = 'l' 
+    я = 'l' 
     м = 'm'
     н = 'n'
     п = 'p'
@@ -51,7 +51,7 @@ class DEFINITIONS:
     ж = 'zh'
     ч = 'ch'
     ш = 'sh'
-    я = 'th'
+    θ = 'th'
     d = 'dh'
     ф = 'ng'
     ը = 'nd'
@@ -86,7 +86,7 @@ class LORE:
     D = 'д'
     Z = 'z'
     K = 'к'
-    L = 'ռ' 
+    L = 'я' 
     M = 'м'
     N = 'н'
     P = 'п'
@@ -101,7 +101,7 @@ class LORE:
     ZH = 'ж'
     CH = 'ч'
     SH = 'ш'
-    TH = 'я'
+    TH = 'θ'
     DH = 'd'
     NG = 'ф'
     ND = 'ը'
