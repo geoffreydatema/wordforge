@@ -774,7 +774,7 @@ class Wordforge(QMainWindow):
         font = QFont("Arial", 12)
         self.setFont(font)
         self.filename = "dictionary.json"
-        self.categories = ["dictionary", "word endings", "phrases", "other"]
+        self.categories = ["level0", "level1", "level2+"]
         self.tables = {} 
         self.data = self.load_data()
         
