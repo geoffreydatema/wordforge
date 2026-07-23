@@ -1,7 +1,92 @@
 {
-    "level0": [],
-    "level1": [],
-    "level2+": [
+    "level0": [
+        {
+            "conlang": "дьэ",
+            "english": "yes",
+            "notes": ""
+        },
+        {
+            "conlang": "ньy",
+            "english": "no",
+            "notes": ""
+        },
+        {
+            "conlang": "иz",
+            "english": "many",
+            "notes": ""
+        },
+        {
+            "conlang": "эц",
+            "english": "this",
+            "notes": ""
+        },
+        {
+            "conlang": "თэპ",
+            "english": "here",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэ",
+            "english": "I, me, myself",
+            "notes": ""
+        },
+        {
+            "conlang": "xэpa",
+            "english": "your",
+            "notes": ""
+        },
+        {
+            "conlang": "aд",
+            "english": "and",
+            "notes": ""
+        },
+        {
+            "conlang": "pи",
+            "english": "or",
+            "notes": ""
+        },
+        {
+            "conlang": "aчa",
+            "english": "more",
+            "notes": ""
+        },
+        {
+            "conlang": "жaт",
+            "english": "there",
+            "notes": ""
+        },
+        {
+            "conlang": "coт",
+            "english": "less",
+            "notes": ""
+        },
+        {
+            "conlang": "ცэ",
+            "english": "from",
+            "notes": ""
+        },
+        {
+            "conlang": "дa",
+            "english": "possess",
+            "notes": ""
+        },
+        {
+            "conlang": "штэ",
+            "english": "that",
+            "notes": ""
+        },
+        {
+            "conlang": "qh",
+            "english": "with",
+            "notes": ""
+        },
+        {
+            "conlang": "cэ",
+            "english": "is",
+            "notes": ""
+        }
+    ],
+    "level1": [
         {
             "conlang": "oէoдa",
             "english": "water",
@@ -23,26 +108,6 @@
             "notes": "any cat like animal"
         },
         {
-            "conlang": "дьэ",
-            "english": "yes",
-            "notes": ""
-        },
-        {
-            "conlang": "дьэвջч",
-            "english": "hell yeah",
-            "notes": "enthusiastically yes, absolutely yes"
-        },
-        {
-            "conlang": "ньy",
-            "english": "no",
-            "notes": ""
-        },
-        {
-            "conlang": "ньyгэцьa",
-            "english": "never",
-            "notes": ""
-        },
-        {
             "conlang": "paპэт",
             "english": "plant",
             "notes": ""
@@ -53,13 +118,13 @@
             "notes": ""
         },
         {
-            "conlang": "yპвэтэzнa",
-            "english": "username",
-            "notes": "a name id used on a digital system, often not a person's real name"
-        },
-        {
             "conlang": "yპвaн",
             "english": "user",
+            "notes": ""
+        },
+        {
+            "conlang": "ньyгэцьa",
+            "english": "never",
             "notes": ""
         },
         {
@@ -71,11 +136,6 @@
             "conlang": "ცoжoc",
             "english": "cosmos",
             "notes": "the universe, all of outer space"
-        },
-        {
-            "conlang": "кpoнoთaт",
-            "english": "datetime",
-            "notes": "a full timestamp including the date and time"
         },
         {
             "conlang": "кpэ",
@@ -113,18 +173,8 @@
             "notes": ""
         },
         {
-            "conlang": "պpэшнюдa",
-            "english": "verb",
-            "notes": "action words as a part of speech"
-        },
-        {
             "conlang": "вoяoш",
             "english": "big/large",
-            "notes": ""
-        },
-        {
-            "conlang": "вэя",
-            "english": "small",
             "notes": ""
         },
         {
@@ -143,38 +193,8 @@
             "notes": ""
         },
         {
-            "conlang": "иz",
-            "english": "many",
-            "notes": ""
-        },
-        {
-            "conlang": "вεpтyнa",
-            "english": "fortune",
-            "notes": ""
-        },
-        {
-            "conlang": "თэრεpтyнa",
-            "english": "it is what it is",
-            "notes": "an expression meaning sarcastically, here is your fortune or such is life"
-        },
-        {
-            "conlang": "эц",
-            "english": "this",
-            "notes": ""
-        },
-        {
-            "conlang": "თэპ",
-            "english": "here",
-            "notes": ""
-        },
-        {
             "conlang": "дpaнoгэ",
             "english": "beverage/a drink",
-            "notes": ""
-        },
-        {
-            "conlang": "aცэяэpэнтoн",
-            "english": "adventure",
             "notes": ""
         },
         {
@@ -188,19 +208,9 @@
             "notes": "a sentient humanoid"
         },
         {
-            "conlang": "ცэpэнтoc",
-            "english": "the exploration of deep space and distant worlds",
-            "notes": ""
-        },
-        {
             "conlang": "имoжэньa",
             "english": "image",
             "notes": ""
-        },
-        {
-            "conlang": "пpэպaдypoн",
-            "english": "industry",
-            "notes": "the manufacturing of physical items"
         },
         {
             "conlang": "vyპapa",
@@ -208,24 +218,9 @@
             "notes": "the typical way something is"
         },
         {
-            "conlang": "ջнՑoრoдoн",
-            "english": "interface",
-            "notes": "physical controls for using a digital system"
-        },
-        {
-            "conlang": "ьэ",
-            "english": "I, me, myself",
-            "notes": ""
-        },
-        {
             "conlang": "вoч",
             "english": "want",
             "notes": ""
-        },
-        {
-            "conlang": "pиьэპoв",
-            "english": "rifle",
-            "notes": "a firearm with a long barrel"
         },
         {
             "conlang": "гpaպaв",
@@ -238,6 +233,108 @@
             "notes": ""
         },
         {
+            "conlang": "мэzнэвгo",
+            "english": "sword",
+            "notes": "any weapon with a long blade"
+        },
+        {
+            "conlang": "жδтεpoн",
+            "english": "weapon",
+            "notes": ""
+        },
+        {
+            "conlang": "პpδк",
+            "english": "show",
+            "notes": "to show something"
+        },
+        {
+            "conlang": "ეдδՑy",
+            "english": "nail",
+            "notes": "a hard spike or rivet used to connect materials together"
+        },
+        {
+            "conlang": "vδpջzдo",
+            "english": "clear",
+            "notes": ""
+        },
+        {
+            "conlang": "жэpцa",
+            "english": "hi",
+            "notes": "informal hi or hello"
+        },
+        {
+            "conlang": "жэвδьтьэ",
+            "english": "hello/greetings",
+            "notes": "formal greeting or hello"
+        },
+        {
+            "conlang": "пoштaд",
+            "english": "potato",
+            "notes": ""
+        },
+        {
+            "conlang": "aчюըa",
+            "english": "memory",
+            "notes": ""
+        }
+    ],
+    "level2+": [
+        {
+            "conlang": "дьэвջч",
+            "english": "hell yeah",
+            "notes": "enthusiastically yes, absolutely yes"
+        },
+        {
+            "conlang": "yპвэтэzнa",
+            "english": "username",
+            "notes": "a name id used on a digital system, often not a person's real name"
+        },
+        {
+            "conlang": "кpoнoთaт",
+            "english": "datetime",
+            "notes": "a full timestamp including the date and time"
+        },
+        {
+            "conlang": "պpэшнюдa",
+            "english": "verb",
+            "notes": "action words as a part of speech"
+        },
+        {
+            "conlang": "вεpтyнa",
+            "english": "fortune",
+            "notes": ""
+        },
+        {
+            "conlang": "თэრεpтyнa",
+            "english": "it is what it is",
+            "notes": "an expression meaning sarcastically, here is your fortune or such is life"
+        },
+        {
+            "conlang": "aცэяэpэнтoн",
+            "english": "adventure",
+            "notes": ""
+        },
+        {
+            "conlang": "ცэpэнтoc",
+            "english": "the exploration of deep space and distant worlds",
+            "notes": ""
+        },
+        {
+            "conlang": "пpэպaдypoн",
+            "english": "industry",
+            "notes": "the manufacturing of physical items"
+        },
+        {
+            "conlang": "ջнՑoრoдoн",
+            "english": "interface",
+            "notes": "physical controls for using a digital system"
+        },
+        {
+            "conlang": "pиьэპoв",
+            "english": "rifle",
+            "notes": "a firearm with a long barrel"
+        },
+        {
             "conlang": "штyгpaд",
             "english": "pistol/hand cannon",
             "notes": "a single handed gun"
@@ -248,18 +345,8 @@
             "notes": "a heavy sword wielded with both hands"
         },
         {
-            "conlang": "мэzнэвгo",
-            "english": "sword",
-            "notes": "any weapon with a long blade"
-        },
-        {
             "conlang": "ცиpнoтoя",
             "english": "small building/small structure/shack",
-            "notes": ""
-        },
-        {
-            "conlang": "жδтεpoн",
-            "english": "weapon",
             "notes": ""
         },
         {
@@ -273,24 +360,9 @@
             "notes": ""
         },
         {
-            "conlang": "პpδк",
-            "english": "show",
-            "notes": "to show something"
-        },
-        {
-            "conlang": "ეдδՑy",
-            "english": "nail",
-            "notes": ""
-        },
-        {
             "conlang": "μaՑaპoнoв",
             "english": "constitution",
             "notes": "physical constitution/resiliance"
-        },
-        {
-            "conlang": "vδpջzдo",
-            "english": "clear",
-            "notes": ""
         },
         {
             "conlang": "ջяδшдaz",
@@ -303,48 +375,8 @@
             "notes": "the name of the tezhnor language"
         },
         {
-            "conlang": "жэpцa",
-            "english": "hi",
-            "notes": "informal hi or hello"
-        },
-        {
-            "conlang": "жэвδьтьэ",
-            "english": "hello/greetings",
-            "notes": "formal greeting or hello"
-        },
-        {
-            "conlang": "xэpa",
-            "english": "your",
-            "notes": ""
-        },
-        {
-            "conlang": "aд",
-            "english": "and",
-            "notes": ""
-        },
-        {
-            "conlang": "pи",
-            "english": "or",
-            "notes": ""
-        },
-        {
-            "conlang": "пoштaд",
-            "english": "potato",
-            "notes": ""
-        },
-        {
-            "conlang": "aчa",
-            "english": "more",
-            "notes": ""
-        },
-        {
-            "conlang": "aчюըa",
-            "english": "memory",
-            "notes": ""
-        },
-        {
             "conlang": "чyζюцьhц",
-            "english": "to enjoy doing activities with someone, but not talking to them, an action only friend",
+            "english": "a person you enjoy doing activities with, but not talking to them, an action only friend",
             "notes": ""
         }
     ]
