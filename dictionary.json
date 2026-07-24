@@ -1,6 +1,86 @@
 {
     "level0": [
         {
+            "conlang": "cэ",
+            "english": "is",
+            "notes": ""
+        },
+        {
+            "conlang": "иz",
+            "english": "many/plural affix",
+            "notes": ""
+        },
+        {
+            "conlang": "дa",
+            "english": "of/possession affix",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэ",
+            "english": "I/me",
+            "notes": ""
+        },
+        {
+            "conlang": "шa",
+            "english": "you",
+            "notes": ""
+        },
+        {
+            "conlang": "პoт",
+            "english": "it",
+            "notes": ""
+        },
+        {
+            "conlang": "xэpa",
+            "english": "they/them",
+            "notes": ""
+        },
+        {
+            "conlang": "пoж",
+            "english": "he/him",
+            "notes": ""
+        },
+        {
+            "conlang": "cэнa",
+            "english": "she/her",
+            "notes": ""
+        },
+        {
+            "conlang": "яε",
+            "english": "we/us",
+            "notes": ""
+        },
+        {
+            "conlang": "эц",
+            "english": "this",
+            "notes": ""
+        },
+        {
+            "conlang": "штэ",
+            "english": "that",
+            "notes": ""
+        },
+        {
+            "conlang": "pэz",
+            "english": "these",
+            "notes": ""
+        },
+        {
+            "conlang": "тyя",
+            "english": "those",
+            "notes": ""
+        },
+        {
+            "conlang": "жaт",
+            "english": "there",
+            "notes": ""
+        },
+        {
+            "conlang": "თэპ",
+            "english": "here",
+            "notes": ""
+        },
+        {
             "conlang": "дьэ",
             "english": "yes",
             "notes": ""
@@ -11,48 +91,8 @@
             "notes": ""
         },
         {
-            "conlang": "иz",
-            "english": "many",
-            "notes": ""
-        },
-        {
-            "conlang": "эц",
-            "english": "this",
-            "notes": ""
-        },
-        {
-            "conlang": "თэპ",
-            "english": "here",
-            "notes": ""
-        },
-        {
-            "conlang": "ьэ",
-            "english": "I, me, myself",
-            "notes": ""
-        },
-        {
-            "conlang": "xэpa",
-            "english": "your",
-            "notes": ""
-        },
-        {
-            "conlang": "aд",
-            "english": "and",
-            "notes": ""
-        },
-        {
-            "conlang": "pи",
-            "english": "or",
-            "notes": ""
-        },
-        {
             "conlang": "aчa",
             "english": "more",
-            "notes": ""
-        },
-        {
-            "conlang": "жaт",
-            "english": "there",
             "notes": ""
         },
         {
@@ -66,23 +106,163 @@
             "notes": ""
         },
         {
-            "conlang": "дa",
-            "english": "possess",
-            "notes": ""
-        },
-        {
-            "conlang": "штэ",
-            "english": "that",
-            "notes": ""
-        },
-        {
             "conlang": "qh",
             "english": "with",
             "notes": ""
         },
         {
-            "conlang": "cэ",
-            "english": "is",
+            "conlang": "кy",
+            "english": "to",
+            "notes": ""
+        },
+        {
+            "conlang": "дaza",
+            "english": "single",
+            "notes": ""
+        },
+        {
+            "conlang": "cипa",
+            "english": "some/partial",
+            "notes": ""
+        },
+        {
+            "conlang": "pэш",
+            "english": "all/total",
+            "notes": ""
+        },
+        {
+            "conlang": "тεя",
+            "english": "none/null/nothing",
+            "notes": ""
+        },
+        {
+            "conlang": "ζa",
+            "english": "who",
+            "notes": ""
+        },
+        {
+            "conlang": "чэ",
+            "english": "what",
+            "notes": ""
+        },
+        {
+            "conlang": "zьэ",
+            "english": "where",
+            "notes": ""
+        },
+        {
+            "conlang": "яoc",
+            "english": "how",
+            "notes": ""
+        },
+        {
+            "conlang": "ջтջ",
+            "english": "which",
+            "notes": ""
+        },
+        {
+            "conlang": "вδт",
+            "english": "when",
+            "notes": ""
+        },
+        {
+            "conlang": "ит",
+            "english": "in",
+            "notes": ""
+        },
+        {
+            "conlang": "мoж",
+            "english": "out",
+            "notes": ""
+        },
+        {
+            "conlang": "Ցэ",
+            "english": "before",
+            "notes": ""
+        },
+        {
+            "conlang": "гюнa",
+            "english": "after",
+            "notes": ""
+        },
+        {
+            "conlang": "qac",
+            "english": "now",
+            "notes": ""
+        },
+        {
+            "conlang": "aд",
+            "english": "and",
+            "notes": ""
+        },
+        {
+            "conlang": "pи",
+            "english": "or",
+            "notes": ""
+        },
+        {
+            "conlang": "вo",
+            "english": "if",
+            "notes": ""
+        },
+        {
+            "conlang": "штλ",
+            "english": "then",
+            "notes": ""
+        },
+        {
+            "conlang": "нит",
+            "english": "because",
+            "notes": ""
+        },
+        {
+            "conlang": "вpyპ",
+            "english": "however",
+            "notes": ""
+        },
+        {
+            "conlang": "cит",
+            "english": "each",
+            "notes": ""
+        },
+        {
+            "conlang": "xaპ",
+            "english": "any",
+            "notes": ""
+        },
+        {
+            "conlang": "zичa",
+            "english": "every",
+            "notes": ""
+        },
+        {
+            "conlang": "qaн",
+            "english": "both",
+            "notes": ""
+        },
+        {
+            "conlang": "кия",
+            "english": "few",
+            "notes": ""
+        },
+        {
+            "conlang": "hըaт",
+            "english": "most",
+            "notes": ""
+        },
+        {
+            "conlang": "штия",
+            "english": "another",
+            "notes": ""
+        },
+        {
+            "conlang": "სapa",
+            "english": "enough",
+            "notes": ""
+        },
+        {
+            "conlang": "εpт",
+            "english": "other",
             "notes": ""
         }
     ],
@@ -276,6 +456,11 @@
             "conlang": "aчюըa",
             "english": "memory",
             "notes": ""
+        },
+        {
+            "conlang": "жэcнa",
+            "english": "absolutely/definitely",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -287,7 +472,7 @@
         {
             "conlang": "yპвэтэzнa",
             "english": "username",
-            "notes": "a name id used on a digital system, often not a person's real name"
+            "notes": "an identifier used on a digital system, often not a person's real name"
         },
         {
             "conlang": "кpoнoთaт",
