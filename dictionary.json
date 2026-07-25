@@ -1,269 +1,439 @@
 {
     "level0": [
         {
-            "conlang": "cэ",
-            "english": "is",
-            "notes": "state / copula"
+        "conlang": "cэ",
+        "english": "is",
+        "notes": "state / copula"
         },
         {
-            "conlang": "иz",
-            "english": "many/plural affix",
-            "notes": "plural operator"
+        "conlang": "иz",
+        "english": "many/plural affix",
+        "notes": "plural operator"
         },
         {
-            "conlang": "дa",
-            "english": "of/possession affix",
-            "notes": "possessive linker"
+        "conlang": "дa",
+        "english": "of/possession affix",
+        "notes": "possessive linker"
         },
         {
-            "conlang": "ьэ",
-            "english": "I/me",
-            "notes": "1st person singular"
+        "conlang": "ьэ",
+        "english": "I/me",
+        "notes": "1st person singular"
         },
         {
-            "conlang": "яε",
-            "english": "we/us",
-            "notes": "1st person plural"
+        "conlang": "яε",
+        "english": "we/us",
+        "notes": "1st person plural"
         },
         {
-            "conlang": "шa",
-            "english": "you",
-            "notes": "2nd person"
+        "conlang": "шa",
+        "english": "you",
+        "notes": "2nd person"
         },
         {
-            "conlang": "пoж",
-            "english": "he/him",
-            "notes": "3rd person masculine"
+        "conlang": "пoж",
+        "english": "he/him",
+        "notes": "3rd person masculine"
         },
         {
-            "conlang": "cэнa",
-            "english": "she/her",
-            "notes": "3rd person feminine"
+        "conlang": "cэнa",
+        "english": "she/her",
+        "notes": "3rd person feminine"
         },
         {
-            "conlang": "პoт",
-            "english": "it",
-            "notes": "3rd person neuter / object"
+        "conlang": "პoт",
+        "english": "it",
+        "notes": "3rd person neuter / object"
         },
         {
-            "conlang": "xэpa",
-            "english": "they/them",
-            "notes": "3rd person plural"
+        "conlang": "xэpa",
+        "english": "they/them",
+        "notes": "3rd person plural"
         },
         {
-            "conlang": "эц",
-            "english": "this",
-            "notes": "proximal entity pointer"
+        "conlang": "эц",
+        "english": "this",
+        "notes": "proximal entity pointer"
         },
         {
-            "conlang": "штэ",
-            "english": "that",
-            "notes": "distal entity pointer"
+        "conlang": "штэ",
+        "english": "that",
+        "notes": "distal entity pointer"
         },
         {
-            "conlang": "pэz",
-            "english": "these",
-            "notes": "proximal plural pointer"
+        "conlang": "pэz",
+        "english": "these",
+        "notes": "proximal plural pointer"
         },
         {
-            "conlang": "тyя",
-            "english": "those",
-            "notes": "distal plural pointer"
+        "conlang": "тyя",
+        "english": "those",
+        "notes": "distal plural pointer"
         },
         {
-            "conlang": "თэპ",
-            "english": "here",
-            "notes": "proximal location anchor"
+        "conlang": "თэპ",
+        "english": "here",
+        "notes": "proximal location anchor"
         },
         {
-            "conlang": "жaт",
-            "english": "there",
-            "notes": "distal location anchor"
+        "conlang": "жaт",
+        "english": "there",
+        "notes": "distal location anchor"
         },
         {
-            "conlang": "ζa",
-            "english": "who",
-            "notes": "interrogative (person)"
+        "conlang": "тэ",
+        "english": "question",
+        "notes": "turns a statement into a question"
         },
         {
-            "conlang": "чэ",
-            "english": "what",
-            "notes": "interrogative (thing)"
+        "conlang": "ζa",
+        "english": "who",
+        "notes": "interrogative (person)"
         },
         {
-            "conlang": "zьэ",
-            "english": "where",
-            "notes": "interrogative (location)"
+        "conlang": "чэ",
+        "english": "what",
+        "notes": "interrogative (thing)"
         },
         {
-            "conlang": "вδт",
-            "english": "when",
-            "notes": "interrogative (time)"
+        "conlang": "zьэ",
+        "english": "where",
+        "notes": "interrogative (location)"
         },
         {
-            "conlang": "яoc",
-            "english": "how",
-            "notes": "interrogative (method/manner)"
+        "conlang": "вδт",
+        "english": "when",
+        "notes": "interrogative (time)"
         },
         {
-            "conlang": "ջтջ",
-            "english": "which",
-            "notes": "interrogative (selection)"
+        "conlang": "яoc",
+        "english": "how",
+        "notes": "interrogative (method/manner)"
         },
         {
-            "conlang": "кy",
-            "english": "to",
-            "notes": "directional vector (target)"
+        "conlang": "ջтջ",
+        "english": "which",
+        "notes": "interrogative (selection)"
         },
         {
-            "conlang": "ცэ",
-            "english": "from",
-            "notes": "directional vector (source)"
+        "conlang": "кy",
+        "english": "to",
+        "notes": "directional vector (target)"
         },
         {
-            "conlang": "qh",
-            "english": "with",
-            "notes": "comitative linker"
+        "conlang": "ცэ",
+        "english": "from",
+        "notes": "directional vector (source)"
         },
         {
-            "conlang": "ит",
-            "english": "in",
-            "notes": "interior spatial anchor"
+        "conlang": "xyв",
+        "english": "through",
+        "notes": ""
         },
         {
-            "conlang": "мoж",
-            "english": "out",
-            "notes": "exterior spatial anchor"
+        "conlang": "эpэд",
+        "english": "across",
+        "notes": ""
         },
         {
-            "conlang": "qac",
-            "english": "now",
-            "notes": "present temporal anchor"
+        "conlang": "шиpт",
+        "english": "between",
+        "notes": "intermediate / medial spatial anchor"
         },
         {
-            "conlang": "Ցэ",
-            "english": "before",
-            "notes": "prior temporal anchor"
+        "conlang": "qh",
+        "english": "with",
+        "notes": "comitative linker"
         },
         {
-            "conlang": "гюнa",
-            "english": "after",
-            "notes": "subsequent temporal anchor"
+        "conlang": "pэв",
+        "english": "without",
+        "notes": ""
         },
         {
-            "conlang": "aд",
-            "english": "and",
-            "notes": "conjunction (additive)"
+        "conlang": "нεqт",
+        "english": "on",
+        "notes": ""
         },
         {
-            "conlang": "pи",
-            "english": "or",
-            "notes": "conjunction (alternative)"
+        "conlang": "яδд",
+        "english": "at",
+        "notes": ""
         },
         {
-            "conlang": "вpyპ",
-            "english": "however",
-            "notes": "conjunction (adversative)"
+        "conlang": "ит",
+        "english": "in",
+        "notes": "interior spatial anchor"
         },
         {
-            "conlang": "вo",
-            "english": "if",
-            "notes": "conditional antecedent"
+        "conlang": "мoж",
+        "english": "out",
+        "notes": "exterior spatial anchor"
         },
         {
-            "conlang": "штλ",
-            "english": "then",
-            "notes": "conditional consequent"
+        "conlang": "вoм",
+        "english": "above",
+        "notes": ""
         },
         {
-            "conlang": "нит",
-            "english": "because",
-            "notes": "causal linker"
+        "conlang": "бეт",
+        "english": "over",
+        "notes": ""
         },
         {
-            "conlang": "дьэ",
-            "english": "yes",
-            "notes": "affirmation statement"
+        "conlang": "qэպ",
+        "english": "below",
+        "notes": ""
         },
         {
-            "conlang": "ньy",
-            "english": "no",
-            "notes": "negation statement"
+        "conlang": "cyвa",
+        "english": "under",
+        "notes": ""
         },
         {
-            "conlang": "дaza",
-            "english": "single",
-            "notes": "unitary quantifier"
+        "conlang": "вия",
+        "english": "near",
+        "notes": ""
         },
         {
-            "conlang": "cипa",
-            "english": "some/partial",
-            "notes": "partitive scope operator"
+        "conlang": "yը",
+        "english": "far",
+        "notes": ""
         },
         {
-            "conlang": "pэш",
-            "english": "all/total",
-            "notes": "universal scope operator"
+        "conlang": "cэв",
+        "english": "for",
+        "notes": ""
         },
         {
-            "conlang": "тεя",
-            "english": "none/null/nothing",
-            "notes": "null / zero operator"
+        "conlang": "էa",
+        "english": "by",
+        "notes": ""
         },
         {
-            "conlang": "cит",
-            "english": "each",
-            "notes": "distributive scope"
+        "conlang": "თэнт",
+        "english": "about",
+        "notes": ""
         },
         {
-            "conlang": "zичa",
-            "english": "every",
-            "notes": "exhaustive scope"
+        "conlang": "բδp",
+        "english": "out of",
+        "notes": ""
         },
         {
-            "conlang": "xaპ",
-            "english": "any",
-            "notes": "arbitrary scope"
+        "conlang": "qac",
+        "english": "now",
+        "notes": "present temporal anchor"
         },
         {
-            "conlang": "qaн",
-            "english": "both",
-            "notes": "dual quantifier"
+        "conlang": "иэт",
+        "english": "future/next",
+        "notes": ""
         },
         {
-            "conlang": "кия",
-            "english": "few",
-            "notes": "paucal quantifier"
+        "conlang": "ни",
+        "english": "past/before",
+        "notes": ""
         },
         {
-            "conlang": "hըaт",
-            "english": "most",
-            "notes": "majority scope"
+        "conlang": "Ցэ",
+        "english": "before",
+        "notes": "prior temporal anchor"
         },
         {
-            "conlang": "aчa",
-            "english": "more",
-            "notes": "positive scalar operator"
+        "conlang": "гюнa",
+        "english": "after",
+        "notes": "subsequent temporal anchor"
         },
         {
-            "conlang": "coт",
-            "english": "less",
-            "notes": "negative scalar operator"
+        "conlang": "пpэд",
+        "english": "until",
+        "notes": ""
         },
         {
-            "conlang": "სapa",
-            "english": "enough",
-            "notes": "threshold quantifier"
+        "conlang": "шяջ",
+        "english": "since",
+        "notes": ""
         },
         {
-            "conlang": "εpт",
-            "english": "other",
-            "notes": "differentiation pointer"
+        "conlang": "жэ",
+        "english": "continuous/ongoing",
+        "notes": ""
         },
         {
-            "conlang": "штия",
-            "english": "another",
-            "notes": "additive differentiation pointer"
+        "conlang": "дyмa",
+        "english": "done/finished",
+        "notes": ""
+        },
+        {
+        "conlang": "რac",
+        "english": "imperative/command",
+        "notes": ""
+        },
+        {
+        "conlang": "тэнa",
+        "english": "can/may/allowed",
+        "notes": ""
+        },
+        {
+        "conlang": "цapaт",
+        "english": "must/required",
+        "notes": ""
+        },
+        {
+        "conlang": "aд",
+        "english": "and",
+        "notes": "conjunction (additive)"
+        },
+        {
+        "conlang": "pи",
+        "english": "or",
+        "notes": "conjunction (alternative)"
+        },
+        {
+        "conlang": "вpyპ",
+        "english": "however",
+        "notes": "conjunction (adversative)"
+        },
+        {
+        "conlang": "вo",
+        "english": "if",
+        "notes": "conditional antecedent"
+        },
+        {
+        "conlang": "штλ",
+        "english": "then",
+        "notes": "conditional consequent"
+        },
+        {
+        "conlang": "нит",
+        "english": "because",
+        "notes": "causal linker"
+        },
+        {
+        "conlang": "va",
+        "english": "not",
+        "notes": ""
+        },
+        {
+        "conlang": "дьэ",
+        "english": "yes",
+        "notes": "affirmation statement"
+        },
+        {
+        "conlang": "ньy",
+        "english": "no",
+        "notes": "negation statement"
+        },
+        {
+        "conlang": "дaza",
+        "english": "single",
+        "notes": "unitary quantifier"
+        },
+        {
+        "conlang": "cипa",
+        "english": "some/partial",
+        "notes": "partitive scope operator"
+        },
+        {
+        "conlang": "pэш",
+        "english": "all/total",
+        "notes": "universal scope operator"
+        },
+        {
+        "conlang": "тεя",
+        "english": "none/null/nothing",
+        "notes": "null / zero operator"
+        },
+        {
+        "conlang": "cит",
+        "english": "each",
+        "notes": "distributive scope"
+        },
+        {
+        "conlang": "zичa",
+        "english": "every",
+        "notes": "exhaustive scope"
+        },
+        {
+        "conlang": "xaპ",
+        "english": "any",
+        "notes": "arbitrary scope"
+        },
+        {
+        "conlang": "qиc",
+        "english": "only",
+        "notes": ""
+        },
+        {
+        "conlang": "миpa",
+        "english": "even",
+        "notes": ""
+        },
+        {
+        "conlang": "qaн",
+        "english": "both",
+        "notes": "dual quantifier"
+        },
+        {
+        "conlang": "кия",
+        "english": "few",
+        "notes": "paucal quantifier"
+        },
+        {
+        "conlang": "hըaт",
+        "english": "most",
+        "notes": "majority scope"
+        },
+        {
+        "conlang": "aчa",
+        "english": "more",
+        "notes": "positive scalar operator"
+        },
+        {
+        "conlang": "coт",
+        "english": "less",
+        "notes": "negative scalar operator"
+        },
+        {
+        "conlang": "ըa",
+        "english": "than",
+        "notes": ""
+        },
+        {
+        "conlang": "пε",
+        "english": "as",
+        "notes": ""
+        },
+        {
+        "conlang": "нэpy",
+        "english": "very",
+        "notes": ""
+        },
+        {
+        "conlang": "мэшт",
+        "english": "most",
+        "notes": ""
+        },
+        {
+        "conlang": "სapa",
+        "english": "enough",
+        "notes": "threshold quantifier"
+        },
+        {
+        "conlang": "миzэн",
+        "english": "same",
+        "notes": ""
+        },
+        {
+        "conlang": "εpт",
+        "english": "other",
+        "notes": "differentiation pointer"
+        },
+        {
+        "conlang": "штия",
+        "english": "another",
+        "notes": "additive differentiation pointer"
         }
     ],
     "level1": [
