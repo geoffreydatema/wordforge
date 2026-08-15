@@ -116,6 +116,10 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
+    PERIOD = '╷'
+    QUOTE = '╵'
+    OPEN = '└'
+    CLOSE = '┘'
 
 # Automatically map the conlang character (the variable name) to the filename (the value)
 CHAR_TO_FILENAME = {}
@@ -123,6 +127,11 @@ for attr in dir(DEFINITIONS):
     if not attr.startswith('__') and not callable(getattr(DEFINITIONS, attr)):
         filename_prefix = getattr(DEFINITIONS, attr)
         CHAR_TO_FILENAME[attr] = filename_prefix
+
+CHAR_TO_FILENAME[LORE.PERIOD] = "period"
+CHAR_TO_FILENAME[LORE.QUOTE] = "quote"
+CHAR_TO_FILENAME[LORE.OPEN] = "open"
+CHAR_TO_FILENAME[LORE.CLOSE] = "close"
 
 # Place this at the top of your file
 FONT_PROFILES = {
@@ -350,7 +359,7 @@ HEADER_SIZE_CORRECTIONS = {}
 KEYBOARD_LAYOUT = [
     [('w', LORE.W), ('e', LORE.E), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.U), ('i', LORE.I), ('o', LORE.O), ('p', LORE.P)],
     [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
-    [('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M)]
+    [('└', LORE.OPEN), ('┘', LORE.CLOSE), ('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.PERIOD)]
 ]
 
 LONG_VOWEL_MAP = {
@@ -721,10 +730,30 @@ class PhysicalKeyFilter(QObject):
         super().__init__()
         self.window = parent_window
         self.key_map = {}
+        
+        # 1. Load your standard visual layout
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
                 
+        # 2. Define the hidden punctuation binds
+        punctuation_binds = {
+            '.': LORE.PERIOD,
+            "'": LORE.QUOTE,
+            '"': LORE.QUOTE,
+            '(': LORE.OPEN,
+            '[': LORE.OPEN,
+            '{': LORE.OPEN,
+            '<': LORE.OPEN,
+            ')': LORE.CLOSE,
+            ']': LORE.CLOSE,
+            '}': LORE.CLOSE,
+            '>': LORE.CLOSE
+        }
+        
+        # 3. Merge them into the active key map
+        self.key_map.update(punctuation_binds)
+        
         self.pending_c = False
 
     def eventFilter(self, obj, event):
