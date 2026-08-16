@@ -204,6 +204,20 @@ FONT_PROFILES = {
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
         "bitmap_base_char_spacing": 20
+    },
+    "Block Monoheight": {
+        "dir": "fonts/tezhnor_block_monoheight",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 60,
+        "advance_normal": 103,
+        "advance_square": 128,
+        "advance_wide": 155,
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
     }
 }
 
