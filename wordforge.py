@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser, QMenu, QComboBox)
+                               QSlider, QTextBrowser, QMenu, QComboBox, QDialog)
 from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
@@ -1265,13 +1265,72 @@ class Wordforge(QMainWindow):
         conlang = self.input_conlang.text().strip()
         english = self.input_english.text().strip()
         notes = self.input_notes.text().strip()
+        
         if not conlang or not english:
             QMessageBox.warning(self, "Missing Info", "Need word and definition.")
             return
+
+        # --- 1. VALIDATION CHECK ---
+        conflicts = []
+        conlang_lower = conlang.lower()
+        english_lower = english.lower()
+
+        for category in self.categories:
+            for item in self.data[category]:
+                existing_conlang = item.get("conlang", "").strip().lower()
+                existing_english = item.get("english", "").strip().lower()
+
+                # Generous substring check: Is the new word in the existing word, OR is the existing word in the new word?
+                conlang_conflict = existing_conlang and ((conlang_lower in existing_conlang) or (existing_conlang in conlang_lower))
+                english_conflict = existing_english and ((english_lower in existing_english) or (existing_english in english_lower))
+
+                if conlang_conflict or english_conflict:
+                    # Format it nicely for the popup
+                    c_word = item.get("conlang", "")
+                    e_word = item.get("english", "")
+                    conflicts.append(f"• <b>{c_word}</b> <i>({e_word})</i>")
+
+        # --- 2. SHOW POPUP IF CONFLICTS EXIST ---
+        if conflicts:
+            dialog = QDialog(self)
+            dialog.setWindowTitle("Possible Conflicts Found")
+            dialog.setMinimumSize(400, 300)
+            layout = QVBoxLayout(dialog)
+
+            warning_label = QLabel("The following similar entries already exist in your dictionary:")
+            warning_label.setStyleSheet("color: #ffab91; font-weight: bold; font-size: 12pt;")
+            layout.addWidget(warning_label)
+
+            # Display conflicts in a readable text box
+            browser = QTextBrowser()
+            browser.setHtml("<br>".join(conflicts))
+            browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 14pt; border: 1px solid #555; padding: 5px;")
+            layout.addWidget(browser)
+
+            # Buttons
+            btn_layout = QHBoxLayout()
+            btn_cancel = QPushButton("Cancel")
+            btn_cancel.setStyleSheet("background-color: #555; color: white; font-weight: bold; padding: 8px; border-radius: 4px;")
+            btn_cancel.clicked.connect(dialog.reject)
+            
+            btn_continue = QPushButton("Continue (Add Anyway)")
+            btn_continue.setStyleSheet("background-color: #d32f2f; color: white; font-weight: bold; padding: 8px; border-radius: 4px;")
+            btn_continue.clicked.connect(dialog.accept)
+
+            btn_layout.addWidget(btn_cancel)
+            btn_layout.addWidget(btn_continue)
+            layout.addLayout(btn_layout)
+
+            # If the user clicks Cancel or closes the window, abort the save.
+            if dialog.exec() != QDialog.Accepted:
+                return  
+
+        # --- 3. ADD TO DICTIONARY ---
         cat = self.categories[self.tabs.currentIndex()]
         self.data[cat].append({ "conlang": conlang, "english": english, "notes": notes })
         self.save_data()
         self.refresh_table(cat)
+        
         self.input_conlang.clear()
         self.input_english.clear()
         self.input_notes.clear()
