@@ -201,11 +201,6 @@
             "notes": ""
         },
         {
-            "conlang": "cэв",
-            "english": "for",
-            "notes": ""
-        },
-        {
             "conlang": "էa",
             "english": "by",
             "notes": ""
@@ -434,6 +429,11 @@
             "conlang": "штия",
             "english": "another",
             "notes": "additive differentiation pointer"
+        },
+        {
+            "conlang": "вэтэ",
+            "english": "for",
+            "notes": ""
         }
     ],
     "level1": [

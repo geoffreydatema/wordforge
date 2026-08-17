@@ -1270,19 +1270,29 @@ class Wordforge(QMainWindow):
             QMessageBox.warning(self, "Missing Info", "Need word and definition.")
             return
 
-        # --- 1. VALIDATION CHECK ---
+        # --- 1. VALIDATION CHECK (WHOLE WORDS ONLY) ---
         conflicts = []
-        conlang_lower = conlang.lower()
-        english_lower = english.lower()
+        
+        # Break new inputs into sets of whole words
+        new_c_words = set(w.strip() for w in conlang.lower().split() if w.strip())
+        
+        # For English, replace slashes with spaces first, then split into words
+        new_e_clean = english.lower().replace('/', ' ')
+        new_e_words = set(w.strip() for w in new_e_clean.split() if w.strip())
 
         for category in self.categories:
             for item in self.data[category]:
                 existing_conlang = item.get("conlang", "").strip().lower()
                 existing_english = item.get("english", "").strip().lower()
 
-                # Generous substring check: Is the new word in the existing word, OR is the existing word in the new word?
-                conlang_conflict = existing_conlang and ((conlang_lower in existing_conlang) or (existing_conlang in conlang_lower))
-                english_conflict = existing_english and ((english_lower in existing_english) or (existing_english in english_lower))
+                # Break existing entries into sets of whole words
+                ex_c_words = set(w.strip() for w in existing_conlang.split() if w.strip())
+                ex_e_clean = existing_english.replace('/', ' ')
+                ex_e_words = set(w.strip() for w in ex_e_clean.split() if w.strip())
+
+                # Check for overlap (intersection) between the sets
+                conlang_conflict = bool(new_c_words.intersection(ex_c_words))
+                english_conflict = bool(new_e_words.intersection(ex_e_words))
 
                 if conlang_conflict or english_conflict:
                     # Format it nicely for the popup
@@ -1297,7 +1307,7 @@ class Wordforge(QMainWindow):
             dialog.setMinimumSize(400, 300)
             layout = QVBoxLayout(dialog)
 
-            warning_label = QLabel("The following similar entries already exist in your dictionary:")
+            warning_label = QLabel("The following exact whole words already exist in your dictionary:")
             warning_label.setStyleSheet("color: #ffab91; font-weight: bold; font-size: 12pt;")
             layout.addWidget(warning_label)
 
@@ -1338,7 +1348,7 @@ class Wordforge(QMainWindow):
         self.gen_result_display.setText("...")
         self.gen_structure_display.setText("")
         self.gen_pron_display.setText("")
-
+    
     def delete_entry(self, category, index):
         if index < 0 or index >= len(self.data[category]):
             return
