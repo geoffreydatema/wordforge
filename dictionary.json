@@ -2,22 +2,22 @@
     "level0": [
         {
             "conlang": "cэ",
-            "english": "is",
-            "notes": "state / copula"
+            "english": "is/are",
+            "notes": "state/existence"
         },
         {
             "conlang": "иz",
-            "english": "many/plural affix",
+            "english": "many",
             "notes": "plural operator"
         },
         {
             "conlang": "дa",
-            "english": "of/possession affix",
+            "english": "of",
             "notes": "possessive linker"
         },
         {
             "conlang": "ьэ",
-            "english": "I/me",
+            "english": "I/i/me",
             "notes": "1st person singular"
         },
         {
@@ -217,7 +217,7 @@
         },
         {
             "conlang": "բδp",
-            "english": "out of",
+            "english": "out of/from",
             "notes": ""
         },
         {
@@ -267,12 +267,12 @@
         },
         {
             "conlang": "რac",
-            "english": "imperative/command",
+            "english": "necessary/imperative",
             "notes": ""
         },
         {
             "conlang": "тэнa",
-            "english": "can/may/allowed",
+            "english": "can/may/allowed to",
             "notes": ""
         },
         {
@@ -479,7 +479,7 @@
         },
         {
             "conlang": "вэм",
-            "english": "time interval",
+            "english": "time",
             "notes": "a quantity or interval of time"
         },
         {
@@ -489,7 +489,7 @@
         },
         {
             "conlang": "кpэ",
-            "english": "time of day",
+            "english": "time",
             "notes": "a time of day, specified numerically to any level of precision"
         },
         {
@@ -544,7 +544,7 @@
         },
         {
             "conlang": "дpaнoгэ",
-            "english": "beverage/a drink",
+            "english": "drink/beverage",
             "notes": ""
         },
         {
@@ -609,7 +609,7 @@
         },
         {
             "conlang": "жэвδьтьэ",
-            "english": "hello/greetings",
+            "english": "hello/greetings/greeting",
             "notes": "formal greeting or hello"
         },
         {
@@ -634,12 +634,12 @@
         },
         {
             "conlang": "тэжнop",
-            "english": "tezhnor language",
+            "english": "tezhnor",
             "notes": "the name of the tezhnor language"
         },
         {
             "conlang": "жэц",
-            "english": "hi",
+            "english": "hi/hey",
             "notes": "informal hi or hey"
         },
         {
@@ -676,6 +676,11 @@
             "conlang": "кьyzyт",
             "english": "speak/say",
             "notes": "to say or speak something out loud"
+        },
+        {
+            "conlang": "штияa",
+            "english": "always",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -716,13 +721,13 @@
         },
         {
             "conlang": "ცэpэнтoc",
-            "english": "the exploration of deep space and distant worlds",
+            "english": "exploration of deep space and distant worlds",
             "notes": ""
         },
         {
             "conlang": "пpэպaдypoн",
             "english": "industry",
-            "notes": "the manufacturing of physical items"
+            "notes": "manufacturing of physical items"
         },
         {
             "conlang": "ջнՑoრoдoн",
@@ -741,13 +746,13 @@
         },
         {
             "conlang": "кивэzяэвьδд",
-            "english": "greatsword/two handed sword",
+            "english": "greatsword",
             "notes": "a heavy sword wielded with both hands"
         },
         {
             "conlang": "ცиpнoтoя",
-            "english": "small building/small structure/shack",
-            "notes": ""
+            "english": "shack",
+            "notes": "small building/small structure"
         },
         {
             "conlang": "aяyмջниa",

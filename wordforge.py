@@ -1355,15 +1355,12 @@ class Wordforge(QMainWindow):
         global FONT_METRICS
         FONT_METRICS = FONT_PROFILES[font_name]
         
-        # Update the bitmap renderer's directory
         self.typer_bottom.font_dir = FONT_METRICS["dir"]
-        self.typer_bottom._pixmap_cache.clear() # Clear cache so it loads new font images
+        self.typer_bottom._pixmap_cache.clear()
         
-        # Re-trigger the update with current slider values
         self.update_typer_settings()
 
     def translate_english_to_tezhnor(self):
-        # 1. Build a quick lookup dictionary from your live data
         eng_to_lore = {}
         for category in self.categories:
             for item in self.data[category]:
@@ -1371,13 +1368,11 @@ class Wordforge(QMainWindow):
                 conlang_word = item.get("conlang", "")
                 
                 if eng_definitions:
-                    # Split by slash and assign the conlang word to EVERY english variation
                     for sub_word in eng_definitions.split('/'):
                         clean_eng_word = sub_word.strip()
                         if clean_eng_word:
                             eng_to_lore[clean_eng_word] = conlang_word
 
-        # 2. Define the punctuation mappings
         punct_map = {
             '.': LORE.PERIOD,
             "'": LORE.QUOTE,
@@ -1391,27 +1386,29 @@ class Wordforge(QMainWindow):
             '}': LORE.CLOSE,
             '>': LORE.CLOSE
         }
+        
+        IGNORED_WORDS = {"a", "an", "the"}
 
         english_text = self.english_input.toPlainText()
 
-        # 3. Define the replacement logic for Regex
         def replace_token(match):
             token = match.group(0)
             
-            # If the token is punctuation, return the Tezhnor equivalent
             if token in punct_map:
                 return punct_map[token]
                 
-            # Otherwise, it's a word. Translate it or show <--->
             word = token.lower()
+            
+            if word in IGNORED_WORDS:
+                return ""
+                
             return eng_to_lore.get(word, "<--->")
 
-        # 4. Search pattern: Matches English words (including apostrophes like "don't") 
-        # OR (|) any of your specific punctuation characters.
         pattern = r"[a-zA-Z]+(?:'[a-zA-Z]+)?|[.\"'()\[\]{}<>]"
         translated_text = re.sub(pattern, replace_token, english_text)
 
-        # 5. Push to the Tezhnor text edit
+        translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
+
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
