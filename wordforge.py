@@ -141,6 +141,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 60,
+        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -155,6 +156,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 60,
+        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -169,6 +171,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 60,
+        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -183,6 +186,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 103,    # Adjusted to match the mono width for even word gaps
+        "advance_punctuation": 50,
         "advance_normal": 103, 
         "advance_square": 103, # Flattened to smallest width
         "advance_wide": 103,   # Flattened to smallest width
@@ -197,6 +201,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 128,    # Adjusted to match the extended width
+        "advance_punctuation": 50,
         "advance_normal": 128, # Flattened to middle width
         "advance_square": 128, # Flattened to middle width
         "advance_wide": 128,   # Flattened to middle width
@@ -211,6 +216,7 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.17,
         "line_height": 210,
         "space_width": 60,
+        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -238,7 +244,11 @@ CHAR_WIDTHS = {
     LORE.TS: "advance_square",
     LORE.KV: "advance_square",
     LORE.SV: "advance_wide",
-    LORE.ZV: "advance_wide"
+    LORE.ZV: "advance_wide",
+    LORE.PERIOD: "advance_punctuation",
+    LORE.QUOTE: "advance_punctuation",
+    LORE.OPEN: "advance_punctuation",
+    LORE.CLOSE: "advance_punctuation"
 }
 
 class PRONUNCIATION:
