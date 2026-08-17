@@ -1367,10 +1367,15 @@ class Wordforge(QMainWindow):
         eng_to_lore = {}
         for category in self.categories:
             for item in self.data[category]:
-                eng_word = item.get("english", "").strip().lower()
+                eng_definitions = item.get("english", "").strip().lower()
                 conlang_word = item.get("conlang", "")
-                if eng_word:
-                    eng_to_lore[eng_word] = conlang_word
+                
+                if eng_definitions:
+                    # Split by slash and assign the conlang word to EVERY english variation
+                    for sub_word in eng_definitions.split('/'):
+                        clean_eng_word = sub_word.strip()
+                        if clean_eng_word:
+                            eng_to_lore[clean_eng_word] = conlang_word
 
         # 2. Define the punctuation mappings
         punct_map = {
