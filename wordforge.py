@@ -1372,18 +1372,42 @@ class Wordforge(QMainWindow):
                 if eng_word:
                     eng_to_lore[eng_word] = conlang_word
 
+        # 2. Define the punctuation mappings
+        punct_map = {
+            '.': LORE.PERIOD,
+            "'": LORE.QUOTE,
+            '"': LORE.QUOTE,
+            '(': LORE.OPEN,
+            '[': LORE.OPEN,
+            '{': LORE.OPEN,
+            '<': LORE.OPEN,
+            ')': LORE.CLOSE,
+            ']': LORE.CLOSE,
+            '}': LORE.CLOSE,
+            '>': LORE.CLOSE
+        }
+
         english_text = self.english_input.toPlainText()
 
-        # 2. Define the replacement logic for Regex
-        def replace_word(match):
-            word = match.group(0).lower()
+        # 3. Define the replacement logic for Regex
+        def replace_token(match):
+            token = match.group(0)
+            
+            # If the token is punctuation, return the Tezhnor equivalent
+            if token in punct_map:
+                return punct_map[token]
+                
+            # Otherwise, it's a word. Translate it or show <--->
+            word = token.lower()
             return eng_to_lore.get(word, "<--->")
 
-        # 3. Use Regex to replace only alphanumeric words (preserves spaces, commas, periods)
-        translated_text = re.sub(r"[a-zA-Z]+(?:'[a-zA-Z]+)?", replace_word, english_text)
+        # 4. Search pattern: Matches English words (including apostrophes like "don't") 
+        # OR (|) any of your specific punctuation characters.
+        pattern = r"[a-zA-Z]+(?:'[a-zA-Z]+)?|[.\"'()\[\]{}<>]"
+        translated_text = re.sub(pattern, replace_token, english_text)
 
-        # 4. Push to the Tezhnor text edit (this automatically updates the bitmap)
-        self.typer_input.blockSignals(True) # Block signals briefly to prevent a cursor reset loop
+        # 5. Push to the Tezhnor text edit
+        self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
         self.typer_bottom.set_text(self.typer_input.toPlainText())
