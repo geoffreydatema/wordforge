@@ -2,6 +2,7 @@ import sys
 import json
 import os
 import random
+import re
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
@@ -879,7 +880,7 @@ class Wordforge(QMainWindow):
         # --- LEFT PANEL TABS ---
         self.left_tabs = QTabWidget()
         
-        # TAB 1: Forge / Keyboard
+        # Wordforge
         forge_tab = QWidget()
         forge_layout = QVBoxLayout(forge_tab)
         
@@ -978,24 +979,53 @@ class Wordforge(QMainWindow):
         
         self.left_tabs.addTab(forge_tab, "Word Forge")
         
+        # Typer tab
         typer_tab = QWidget()
         typer_layout = QVBoxLayout(typer_tab)
 
-        # --- Typer Controls ---
-        typer_controls_layout = QHBoxLayout()
+        # 1. Top Section: English Input
+        self.english_input = QTextEdit()
+        self.english_input.setPlaceholderText("Type English here to translate to Tezhnor...")
+        self.english_input.setStyleSheet("""
+            QTextEdit {
+                font-size: 14pt; 
+                padding: 10px; 
+                background-color: #2b2b2b; 
+                color: #81d4fa; 
+                border: 1px solid #555; 
+                border-radius: 2px;
+            }
+        """)
+        self.english_input.textChanged.connect(self.translate_english_to_tezhnor)
+        typer_layout.addWidget(self.english_input, stretch=1)
+
+        # 2. Middle Section: Typer Input
+        self.typer_input = TyperTextEdit()
+        self.typer_input.setPlaceholderText("Tezhnor output...")
+        typer_layout.addWidget(self.typer_input, stretch=1)
+
+        # 3. Controls Section (Moved above the bitmap renderer)
+        typer_controls_container = QVBoxLayout()
+        
+        row1_layout = QHBoxLayout()
+        row2_layout = QHBoxLayout()
+
         slider_style = """
             QSlider::groove:horizontal { border: 1px solid #555; height: 8px; background: #333; margin: 2px 0; border-radius: 4px; }
             QSlider::handle:horizontal { background: #0277bd; border: 1px solid #0277bd; width: 18px; height: 18px; margin: -7px 0; border-radius: 9px; }
         """
         label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
 
-        # --- Font Selector ---
+        # --- ROW 1: Font Selector ---
         self.font_dropdown = QComboBox()
         self.font_dropdown.addItems(FONT_PROFILES.keys())
         self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
-        typer_layout.addWidget(QLabel("Select Font:"))
-        typer_layout.addWidget(self.font_dropdown)
         
+        row1_layout.addWidget(QLabel("Select Font:"))
+        row1_layout.addWidget(self.font_dropdown)
+        row1_layout.addStretch() # Pushes the dropdown to the left so it doesn't stretch weirdly
+        
+        # --- ROW 2: Sliders ---
         # 1. Size Slider
         size_layout = QVBoxLayout()
         self.typer_scale_label = QLabel("Size: 50%")
@@ -1032,31 +1062,29 @@ class Wordforge(QMainWindow):
         cs_layout.addWidget(self.typer_cs_label)
         cs_layout.addWidget(self.typer_cs_slider)
 
-        typer_controls_layout.addLayout(size_layout)
-        typer_controls_layout.addLayout(lh_layout)
-        typer_controls_layout.addLayout(cs_layout)
+        row2_layout.addLayout(size_layout)
+        row2_layout.addLayout(lh_layout)
+        row2_layout.addLayout(cs_layout)
         
-        typer_layout.addLayout(typer_controls_layout)
+        # Add both rows to the main container
+        typer_controls_container.addLayout(row1_layout)
+        typer_controls_container.addLayout(row2_layout)
         
-        # Top Half: The multi-line text editor
-        self.typer_input = TyperTextEdit()
+        typer_layout.addLayout(typer_controls_container)
         
-        # Bottom Half: The Custom Font Renderer
+        # 4. Bottom Section: The Custom Font Renderer
         self.typer_bottom = BitmapRenderer()
-        self.typer_bottom.setMinimumHeight(250) # Ensure it has room to draw at least one line
+        self.typer_bottom.setMinimumHeight(200) 
         
-        # Connect the text editor so every keystroke updates the bitmap view in real-time
         self.typer_input.textChanged.connect(
             lambda: self.typer_bottom.set_text(self.typer_input.toPlainText())
         )
         
-        # Add them to the layout with stretch factors to split it 50/50
-        typer_layout.addWidget(self.typer_input, stretch=1)
         typer_layout.addWidget(self.typer_bottom, stretch=1)
         
         self.left_tabs.addTab(typer_tab, "Typer")
 
-        # TAB 2: Alphabet Definitions
+        # Definitions tab
         def_tab = QWidget()
         def_layout = QVBoxLayout(def_tab)
         
@@ -1333,6 +1361,32 @@ class Wordforge(QMainWindow):
         
         # Re-trigger the update with current slider values
         self.update_typer_settings()
+
+    def translate_english_to_tezhnor(self):
+        # 1. Build a quick lookup dictionary from your live data
+        eng_to_lore = {}
+        for category in self.categories:
+            for item in self.data[category]:
+                eng_word = item.get("english", "").strip().lower()
+                conlang_word = item.get("conlang", "")
+                if eng_word:
+                    eng_to_lore[eng_word] = conlang_word
+
+        english_text = self.english_input.toPlainText()
+
+        # 2. Define the replacement logic for Regex
+        def replace_word(match):
+            word = match.group(0).lower()
+            return eng_to_lore.get(word, "<--->")
+
+        # 3. Use Regex to replace only alphanumeric words (preserves spaces, commas, periods)
+        translated_text = re.sub(r"[a-zA-Z]+(?:'[a-zA-Z]+)?", replace_word, english_text)
+
+        # 4. Push to the Tezhnor text edit (this automatically updates the bitmap)
+        self.typer_input.blockSignals(True) # Block signals briefly to prevent a cursor reset loop
+        self.typer_input.setText(translated_text)
+        self.typer_input.blockSignals(False)
+        self.typer_bottom.set_text(self.typer_input.toPlainText())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
