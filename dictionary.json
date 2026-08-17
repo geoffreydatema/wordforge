@@ -212,7 +212,7 @@
         },
         {
             "conlang": "բδp",
-            "english": "out of/from",
+            "english": "out of/made of",
             "notes": ""
         },
         {
@@ -433,6 +433,21 @@
         {
             "conlang": "вэтэ",
             "english": "for",
+            "notes": ""
+        },
+        {
+            "conlang": "coя",
+            "english": "but",
+            "notes": ""
+        },
+        {
+            "conlang": "dи",
+            "english": "will",
+            "notes": ""
+        },
+        {
+            "conlang": "бюн",
+            "english": "would",
             "notes": ""
         }
     ],
@@ -681,6 +696,96 @@
             "conlang": "штияa",
             "english": "always",
             "notes": ""
+        },
+        {
+            "conlang": "кoя",
+            "english": "zero",
+            "notes": ""
+        },
+        {
+            "conlang": "oтa",
+            "english": "one",
+            "notes": ""
+        },
+        {
+            "conlang": "coн",
+            "english": "two",
+            "notes": ""
+        },
+        {
+            "conlang": "тλp",
+            "english": "three",
+            "notes": ""
+        },
+        {
+            "conlang": "pиc",
+            "english": "four",
+            "notes": ""
+        },
+        {
+            "conlang": "итa",
+            "english": "five",
+            "notes": ""
+        },
+        {
+            "conlang": "пaц",
+            "english": "six",
+            "notes": ""
+        },
+        {
+            "conlang": "нδp",
+            "english": "seven",
+            "notes": ""
+        },
+        {
+            "conlang": "шэт",
+            "english": "eight",
+            "notes": ""
+        },
+        {
+            "conlang": "θaн",
+            "english": "nine",
+            "notes": ""
+        },
+        {
+            "conlang": "բy",
+            "english": "up",
+            "notes": ""
+        },
+        {
+            "conlang": "диp",
+            "english": "use",
+            "notes": ""
+        },
+        {
+            "conlang": "жив",
+            "english": "do",
+            "notes": ""
+        },
+        {
+            "conlang": "oըвδp",
+            "english": "write",
+            "notes": ""
+        },
+        {
+            "conlang": "шиaд",
+            "english": "like",
+            "notes": ""
+        },
+        {
+            "conlang": "нδ",
+            "english": "so/alright then/okay then",
+            "notes": ""
+        },
+        {
+            "conlang": "иphը",
+            "english": "long",
+            "notes": ""
+        },
+        {
+            "conlang": "мижнa",
+            "english": "make",
+            "notes": "build, assemble, or construct in a general sense"
         }
     ],
     "level2+": [
