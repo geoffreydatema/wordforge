@@ -1430,18 +1430,27 @@ class Wordforge(QMainWindow):
         self.update_typer_settings()
 
     def translate_english_to_tezhnor(self):
+        # 1. Build a lookup dictionary that supports MULTIPLE translations per word
         eng_to_lore = {}
         for category in self.categories:
             for item in self.data[category]:
                 eng_definitions = item.get("english", "").strip().lower()
-                conlang_word = item.get("conlang", "")
+                conlang_word = item.get("conlang", "").strip()
                 
-                if eng_definitions:
+                if eng_definitions and conlang_word:
                     for sub_word in eng_definitions.split('/'):
                         clean_eng_word = sub_word.strip()
                         if clean_eng_word:
-                            eng_to_lore[clean_eng_word] = conlang_word
+                            # If the word isn't in the dict yet, start a new list
+                            if clean_eng_word not in eng_to_lore:
+                                eng_to_lore[clean_eng_word] = []
+                            
+                            # Add the conlang word only if it isn't already in the list
+                            # (Prevents duplicate outputs if you defined the exact same word twice)
+                            if conlang_word not in eng_to_lore[clean_eng_word]:
+                                eng_to_lore[clean_eng_word].append(conlang_word)
 
+        # 2. Define the punctuation mappings and ignored words
         punct_map = {
             '.': LORE.PERIOD,
             "'": LORE.QUOTE,
@@ -1460,6 +1469,7 @@ class Wordforge(QMainWindow):
 
         english_text = self.english_input.toPlainText()
 
+        # 3. Define the replacement logic for Regex
         def replace_token(match):
             token = match.group(0)
             
@@ -1471,13 +1481,20 @@ class Wordforge(QMainWindow):
             if word in IGNORED_WORDS:
                 return ""
                 
-            return eng_to_lore.get(word, "<--->")
+            # If the word exists, join ALL possible translations with a slash
+            if word in eng_to_lore:
+                return "/".join(eng_to_lore[word])
+                
+            return "<--->"
 
+        # 4. Search pattern matches English words or punctuation
         pattern = r"[a-zA-Z]+(?:'[a-zA-Z]+)?|[.\"'()\[\]{}<>]"
         translated_text = re.sub(pattern, replace_token, english_text)
 
+        # 5. Clean up extra spaces
         translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
 
+        # 6. Push to the Tezhnor text edit
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)

@@ -2,7 +2,7 @@
     "level0": [
         {
             "conlang": "cэ",
-            "english": "is/are",
+            "english": "is/are/am",
             "notes": "state/existence"
         },
         {
@@ -59,16 +59,6 @@
             "conlang": "штэ",
             "english": "that",
             "notes": "distal entity pointer"
-        },
-        {
-            "conlang": "pэz",
-            "english": "these",
-            "notes": "proximal plural pointer"
-        },
-        {
-            "conlang": "тyя",
-            "english": "those",
-            "notes": "distal plural pointer"
         },
         {
             "conlang": "თэპ",
@@ -449,6 +439,11 @@
             "conlang": "бюн",
             "english": "would",
             "notes": ""
+        },
+        {
+            "conlang": "кa",
+            "english": "have/has",
+            "notes": ""
         }
     ],
     "level1": [
@@ -480,7 +475,7 @@
         {
             "conlang": "эжδн",
             "english": "name",
-            "notes": ""
+            "notes": "the name of something or someone"
         },
         {
             "conlang": "yპвaн",
@@ -786,6 +781,46 @@
             "conlang": "мижнa",
             "english": "make",
             "notes": "build, assemble, or construct in a general sense"
+        },
+        {
+            "conlang": "სaт",
+            "english": "see",
+            "notes": ""
+        },
+        {
+            "conlang": "pиպ",
+            "english": "day",
+            "notes": ""
+        },
+        {
+            "conlang": "иէ",
+            "english": "go",
+            "notes": ""
+        },
+        {
+            "conlang": "шияи",
+            "english": "come",
+            "notes": ""
+        },
+        {
+            "conlang": "кpиըaт",
+            "english": "number",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэф",
+            "english": "sound",
+            "notes": ""
+        },
+        {
+            "conlang": "жюн",
+            "english": "know",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэдaв",
+            "english": "name/label",
+            "notes": "to name or label something or someone"
         }
     ],
     "level2+": [
