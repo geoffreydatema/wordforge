@@ -2,7 +2,7 @@
     "level0": [
         {
             "conlang": "cэ",
-            "english": "is/are/am",
+            "english": "is/are/am/be",
             "notes": "state/existence"
         },
         {
@@ -206,18 +206,8 @@
             "notes": ""
         },
         {
-            "conlang": "qac",
-            "english": "now",
-            "notes": "present temporal anchor"
-        },
-        {
             "conlang": "иэт",
             "english": "future/next",
-            "notes": ""
-        },
-        {
-            "conlang": "ни",
-            "english": "past/before",
             "notes": ""
         },
         {
@@ -443,6 +433,21 @@
         {
             "conlang": "кa",
             "english": "have/has",
+            "notes": ""
+        },
+        {
+            "conlang": "yт",
+            "english": "position",
+            "notes": ""
+        },
+        {
+            "conlang": "yшy",
+            "english": "now",
+            "notes": ""
+        },
+        {
+            "conlang": "ни",
+            "english": "past",
             "notes": ""
         }
     ],
@@ -821,6 +826,196 @@
             "conlang": "ьэдaв",
             "english": "name/label",
             "notes": "to name or label something or someone"
+        },
+        {
+            "conlang": "pyтв",
+            "english": "down",
+            "notes": ""
+        },
+        {
+            "conlang": "чaк",
+            "english": "side",
+            "notes": ""
+        },
+        {
+            "conlang": "ըya",
+            "english": "find",
+            "notes": ""
+        },
+        {
+            "conlang": "xypo",
+            "english": "new",
+            "notes": ""
+        },
+        {
+            "conlang": "цջтигa",
+            "english": "place",
+            "notes": "a region or area"
+        },
+        {
+            "conlang": "кyՑyд",
+            "english": "work",
+            "notes": "to perform actions or duties"
+        },
+        {
+            "conlang": "нитиp",
+            "english": "take",
+            "notes": ""
+        },
+        {
+            "conlang": "жкaяa",
+            "english": "part",
+            "notes": ""
+        },
+        {
+            "conlang": "μит",
+            "english": "get/acquire",
+            "notes": ""
+        },
+        {
+            "conlang": "պиμ",
+            "english": "live/reside",
+            "notes": "to reside or make one's home somewhere"
+        },
+        {
+            "conlang": "кич",
+            "english": "back",
+            "notes": "a location, the opposite of the front"
+        },
+        {
+            "conlang": "cεнa",
+            "english": "year",
+            "notes": ""
+        },
+        {
+            "conlang": "дyэк",
+            "english": "give",
+            "notes": ""
+        },
+        {
+            "conlang": "диzэp",
+            "english": "form/appearance",
+            "notes": "the form, appearance, or shape of something"
+        },
+        {
+            "conlang": "тaяэкδд",
+            "english": "sentence",
+            "notes": "a sequence of words forming a complete thought"
+        },
+        {
+            "conlang": "пpид",
+            "english": "great",
+            "notes": ""
+        },
+        {
+            "conlang": "cюдaт",
+            "english": "think",
+            "notes": ""
+        },
+        {
+            "conlang": "თэн",
+            "english": "help",
+            "notes": ""
+        },
+        {
+            "conlang": "xaд",
+            "english": "low",
+            "notes": ""
+        },
+        {
+            "conlang": "жиպ",
+            "english": "item",
+            "notes": ""
+        },
+        {
+            "conlang": "qэცa",
+            "english": "line",
+            "notes": ""
+        },
+        {
+            "conlang": "эca",
+            "english": "also",
+            "notes": ""
+        },
+        {
+            "conlang": "ζэт",
+            "english": "mean",
+            "notes": "to intend, to have in mind"
+        },
+        {
+            "conlang": "δцэт",
+            "english": "differ",
+            "notes": ""
+        },
+        {
+            "conlang": "ըaтa",
+            "english": "turn",
+            "notes": "to cause to move around an axis"
+        },
+        {
+            "conlang": "სεдa",
+            "english": "cause",
+            "notes": "to make something happen"
+        },
+        {
+            "conlang": "жyд",
+            "english": "move",
+            "notes": ""
+        },
+        {
+            "conlang": "яиp",
+            "english": "right",
+            "notes": "the direction opposite of left"
+        },
+        {
+            "conlang": "мэpк",
+            "english": "boy",
+            "notes": ""
+        },
+        {
+            "conlang": "кяэт",
+            "english": "tell",
+            "notes": "to speak a message to someone"
+        },
+        {
+            "conlang": "պиμэт",
+            "english": "set/collection",
+            "notes": "a collection of items"
+        },
+        {
+            "conlang": "цэpэ",
+            "english": "air",
+            "notes": "generally the gasses composing an atmosphere"
+        },
+        {
+            "conlang": "тиpaд",
+            "english": "play",
+            "notes": "to engage with a game"
+        },
+        {
+            "conlang": "էδд",
+            "english": "end",
+            "notes": ""
+        },
+        {
+            "conlang": "պвит",
+            "english": "put/place",
+            "notes": "to put or place something in a location"
+        },
+        {
+            "conlang": "биaн",
+            "english": "home",
+            "notes": ""
+        },
+        {
+            "conlang": "μջтop",
+            "english": "read",
+            "notes": ""
+        },
+        {
+            "conlang": "яэтэc",
+            "english": "hand",
+            "notes": ""
         }
     ],
     "level2+": [

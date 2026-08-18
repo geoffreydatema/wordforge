@@ -237,7 +237,6 @@ CHAR_WIDTHS = {
     LORE.UE: "advance_square",
     LORE.D: "advance_square",
     LORE.M: "advance_square",
-    LORE.W: "advance_square",
     LORE.ZH: "advance_wide",
     LORE.SH: "advance_wide",
     LORE.TH: "advance_square",
@@ -985,7 +984,7 @@ class Wordforge(QMainWindow):
 
         # 1. Top Section: English Input
         self.english_input = QTextEdit()
-        self.english_input.setPlaceholderText("Type English here to translate to Tezhnor...")
+        # self.english_input.setPlaceholderText("")
         self.english_input.setStyleSheet("""
             QTextEdit {
                 font-size: 14pt; 
@@ -1001,7 +1000,7 @@ class Wordforge(QMainWindow):
 
         # 2. Middle Section: Typer Input
         self.typer_input = TyperTextEdit()
-        self.typer_input.setPlaceholderText("Tezhnor output...")
+        # self.typer_input.setPlaceholderText("")
         typer_layout.addWidget(self.typer_input, stretch=1)
 
         # 3. Controls Section (Moved above the bitmap renderer)
