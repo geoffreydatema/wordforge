@@ -286,11 +286,6 @@
             "notes": "causal linker"
         },
         {
-            "conlang": "va",
-            "english": "not",
-            "notes": ""
-        },
-        {
             "conlang": "дьэ",
             "english": "yes",
             "notes": "affirmation statement"
@@ -449,6 +444,16 @@
             "conlang": "ни",
             "english": "past",
             "notes": ""
+        },
+        {
+            "conlang": "кид",
+            "english": "why",
+            "notes": ""
+        },
+        {
+            "conlang": "тa",
+            "english": "not",
+            "notes": ""
         }
     ],
     "level1": [
@@ -571,11 +576,6 @@
             "conlang": "ეтa",
             "english": "person",
             "notes": "a sentient humanoid"
-        },
-        {
-            "conlang": "имoжэньa",
-            "english": "image",
-            "notes": ""
         },
         {
             "conlang": "vyპapa",
@@ -798,11 +798,6 @@
             "notes": ""
         },
         {
-            "conlang": "иէ",
-            "english": "go",
-            "notes": ""
-        },
-        {
             "conlang": "шияи",
             "english": "come",
             "notes": ""
@@ -1016,6 +1011,151 @@
             "conlang": "яэтэc",
             "english": "hand",
             "notes": ""
+        },
+        {
+            "conlang": "պaвoн",
+            "english": "spell",
+            "notes": "to construct a word out of letters"
+        },
+        {
+            "conlang": "ьэμ",
+            "english": "add",
+            "notes": ""
+        },
+        {
+            "conlang": "paдa",
+            "english": "land",
+            "notes": "solid ground as opposed to an ocean"
+        },
+        {
+            "conlang": "էax",
+            "english": "high",
+            "notes": ""
+        },
+        {
+            "conlang": "θoպив",
+            "english": "follow",
+            "notes": ""
+        },
+        {
+            "conlang": "эպo",
+            "english": "act",
+            "notes": "to take action"
+        },
+        {
+            "conlang": "xaζ",
+            "english": "ask",
+            "notes": ""
+        },
+        {
+            "conlang": "яλдcэ",
+            "english": "change",
+            "notes": ""
+        },
+        {
+            "conlang": "иպ",
+            "english": "go",
+            "notes": ""
+        },
+        {
+            "conlang": "чин",
+            "english": "light",
+            "notes": "light in weight, not heavy"
+        },
+        {
+            "conlang": "პaвპyap",
+            "english": "light/brightness",
+            "notes": "the presence of light, a bright area, not dark"
+        },
+        {
+            "conlang": "кpyպ",
+            "english": "dark/darkness",
+            "notes": "a dark area, a place lacking light"
+        },
+        {
+            "conlang": "нэцд",
+            "english": "kind",
+            "notes": "the category of thing"
+        },
+        {
+            "conlang": "dиպ",
+            "english": "need",
+            "notes": ""
+        },
+        {
+            "conlang": "биь",
+            "english": "off",
+            "notes": ""
+        },
+        {
+            "conlang": "яyшкa",
+            "english": "house",
+            "notes": "the structure where someone or something lives"
+        },
+        {
+            "conlang": "имoжэньa",
+            "english": "image/picture",
+            "notes": ""
+        },
+        {
+            "conlang": "тhცи",
+            "english": "try",
+            "notes": ""
+        },
+        {
+            "conlang": "բyд",
+            "english": "point",
+            "notes": ""
+        },
+        {
+            "conlang": "пac",
+            "english": "again",
+            "notes": ""
+        },
+        {
+            "conlang": "pyвε",
+            "english": "animal",
+            "notes": ""
+        },
+        {
+            "conlang": "мaкapa",
+            "english": "mother",
+            "notes": ""
+        },
+        {
+            "conlang": "дaжи",
+            "english": "planet/world",
+            "notes": ""
+        },
+        {
+            "conlang": "пэшδ",
+            "english": "build",
+            "notes": "to construct something"
+        },
+        {
+            "conlang": "штэк",
+            "english": "ground",
+            "notes": "the natural ground"
+        },
+        {
+            "conlang": "киpдa",
+            "english": "father",
+            "notes": ""
+        },
+        {
+            "conlang": "мюш",
+            "english": "head",
+            "notes": "the body part"
+        },
+        {
+            "conlang": "zиპ",
+            "english": "stand",
+            "notes": "to stand on one's legs"
+        },
+        {
+            "conlang": "яδպy",
+            "english": "own",
+            "notes": "to posess something"
         }
     ],
     "level2+": [
@@ -1118,6 +1258,16 @@
             "conlang": "phнтεв",
             "english": "drive",
             "notes": "to operate or pilot a wheeled or tracked land vehicle"
+        },
+        {
+            "conlang": "yzгoдa",
+            "english": "port",
+            "notes": "a coastal location where ships dock"
+        },
+        {
+            "conlang": "мopzopoн",
+            "english": "self",
+            "notes": "the abstract concept of the self"
         }
     ]
 }
