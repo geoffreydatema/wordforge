@@ -1156,6 +1156,186 @@
             "conlang": "яδպy",
             "english": "own",
             "notes": "to posess something"
+        },
+        {
+            "conlang": "ниμки",
+            "english": "food",
+            "notes": ""
+        },
+        {
+            "conlang": "кaპεy",
+            "english": "page",
+            "notes": "a paper page of a book"
+        },
+        {
+            "conlang": "мэжδн",
+            "english": "country/nation",
+            "notes": "a sovereign nation"
+        },
+        {
+            "conlang": "pyш",
+            "english": "sun",
+            "notes": "the main star at the centre of a solar system"
+        },
+        {
+            "conlang": "вэцδд",
+            "english": "answer",
+            "notes": ""
+        },
+        {
+            "conlang": "вεнэ",
+            "english": "school",
+            "notes": "any type of educational institution"
+        },
+        {
+            "conlang": "qδд",
+            "english": "grow",
+            "notes": ""
+        },
+        {
+            "conlang": "жδպε",
+            "english": "study",
+            "notes": ""
+        },
+        {
+            "conlang": "мэպ",
+            "english": "still/remaining",
+            "notes": "something that remains"
+        },
+        {
+            "conlang": "пoдэպ",
+            "english": "city",
+            "notes": ""
+        },
+        {
+            "conlang": "xypэт",
+            "english": "learn",
+            "notes": ""
+        },
+        {
+            "conlang": "мδpэzэд",
+            "english": "cover",
+            "notes": "something which covers or acts as a covering"
+        },
+        {
+            "conlang": "რεaд",
+            "english": "state",
+            "notes": "the condition or attributes of a closed system"
+        },
+        {
+            "conlang": "кδpжд",
+            "english": "keep",
+            "notes": ""
+        },
+        {
+            "conlang": "էи",
+            "english": "eye",
+            "notes": ""
+        },
+        {
+            "conlang": "шив",
+            "english": "start",
+            "notes": ""
+        },
+        {
+            "conlang": "pиըa",
+            "english": "last",
+            "notes": ""
+        },
+        {
+            "conlang": "εpд",
+            "english": "let/allow",
+            "notes": ""
+        },
+        {
+            "conlang": "პyպδ",
+            "english": "thought",
+            "notes": ""
+        },
+        {
+            "conlang": "zδცλ",
+            "english": "cross",
+            "notes": "to move across an area"
+        },
+        {
+            "conlang": "μют",
+            "english": "farm",
+            "notes": ""
+        },
+        {
+            "conlang": "кaსa",
+            "english": "hard/difficult",
+            "notes": ""
+        },
+        {
+            "conlang": "миpoч",
+            "english": "might/perhaps/possibly",
+            "notes": "an expression of probability or possibility"
+        },
+        {
+            "conlang": "мaжн",
+            "english": "story",
+            "notes": ""
+        },
+        {
+            "conlang": "თyт",
+            "english": "left",
+            "notes": "the direction opposite of right"
+        },
+        {
+            "conlang": "ниრ",
+            "english": "sea",
+            "notes": "a large body of water with some distinct land borders, but can be connected to an ocean"
+        },
+        {
+            "conlang": "кaըδp",
+            "english": "draw",
+            "notes": "to lay down markings or shapes with a writing instrument"
+        },
+        {
+            "conlang": "ζaн",
+            "english": "late",
+            "notes": "coming or remaining after the usual or proper time"
+        },
+        {
+            "conlang": "мижэт",
+            "english": "run",
+            "notes": "the action of something or someone moving quickly under the power of their legs"
+        },
+        {
+            "conlang": "vδдpэ",
+            "english": "while/during",
+            "notes": ""
+        },
+        {
+            "conlang": "pид",
+            "english": "press",
+            "notes": "to push on something"
+        },
+        {
+            "conlang": "бич",
+            "english": "close",
+            "notes": "to block access or move a covering over an opening"
+        },
+        {
+            "conlang": "мoжн",
+            "english": "night",
+            "notes": ""
+        },
+        {
+            "conlang": "гpac",
+            "english": "real",
+            "notes": ""
+        },
+        {
+            "conlang": "иՑa",
+            "english": "life",
+            "notes": ""
+        },
+        {
+            "conlang": "вэт",
+            "english": "north",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -1268,6 +1448,11 @@
             "conlang": "мopzopoн",
             "english": "self",
             "notes": "the abstract concept of the self"
+        },
+        {
+            "conlang": "мэzнэгэвнa",
+            "english": "run/execute/play/invoke",
+            "notes": "to start a system and have it operate"
         }
     ]
 }
