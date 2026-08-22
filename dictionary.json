@@ -1336,6 +1336,51 @@
             "conlang": "вэт",
             "english": "north",
             "notes": ""
+        },
+        {
+            "conlang": "миთиди",
+            "english": "seem/appear/look like",
+            "notes": ""
+        },
+        {
+            "conlang": "paдhк",
+            "english": "together",
+            "notes": ""
+        },
+        {
+            "conlang": "вичи",
+            "english": "child",
+            "notes": ""
+        },
+        {
+            "conlang": "paдya",
+            "english": "white",
+            "notes": ""
+        },
+        {
+            "conlang": "кyպ",
+            "english": "walk",
+            "notes": ""
+        },
+        {
+            "conlang": "жopyպ",
+            "english": "example",
+            "notes": ""
+        },
+        {
+            "conlang": "вaпaპ",
+            "english": "paper",
+            "notes": ""
+        },
+        {
+            "conlang": "պэμ",
+            "english": "group",
+            "notes": ""
+        },
+        {
+            "conlang": "чэθиp",
+            "english": "music",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -1453,6 +1498,11 @@
             "conlang": "мэzнэгэвнa",
             "english": "run/execute/play/invoke",
             "notes": "to start a system and have it operate"
+        },
+        {
+            "conlang": "cмaтиpo",
+            "english": "with ease/easily/without difficulty",
+            "notes": ""
         }
     ]
 }
