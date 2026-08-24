@@ -7,7 +7,7 @@
         },
         {
             "conlang": "иz",
-            "english": "many",
+            "english": "many/several",
             "notes": "plural operator"
         },
         {
@@ -237,7 +237,7 @@
         },
         {
             "conlang": "дyмa",
-            "english": "done/finished",
+            "english": "done/finished/complete",
             "notes": ""
         },
         {
@@ -549,7 +549,7 @@
         },
         {
             "conlang": "xეპa",
-            "english": "fast",
+            "english": "fast/quick",
             "notes": "a fast action or event"
         },
         {
@@ -1239,7 +1239,7 @@
         },
         {
             "conlang": "pиըa",
-            "english": "last",
+            "english": "last/final",
             "notes": ""
         },
         {
@@ -1541,6 +1541,551 @@
             "conlang": "chпиx",
             "english": "plain",
             "notes": "ordinary, uninteresting"
+        },
+        {
+            "conlang": "эპвpaн",
+            "english": "usual",
+            "notes": ""
+        },
+        {
+            "conlang": "жэя",
+            "english": "young",
+            "notes": ""
+        },
+        {
+            "conlang": "мaяՑa",
+            "english": "ready",
+            "notes": ""
+        },
+        {
+            "conlang": "pэж",
+            "english": "red",
+            "notes": ""
+        },
+        {
+            "conlang": "պиzэн",
+            "english": "list",
+            "notes": "a list of items"
+        },
+        {
+            "conlang": "мoтэн",
+            "english": "feel",
+            "notes": "to use the sense of touch to feel something"
+        },
+        {
+            "conlang": "pэнa",
+            "english": "feel",
+            "notes": "to mentally or emotionally experience something"
+        },
+        {
+            "conlang": "zэzтэ",
+            "english": "bird",
+            "notes": ""
+        },
+        {
+            "conlang": "пoн",
+            "english": "soon",
+            "notes": ""
+        },
+        {
+            "conlang": "вoдεaд",
+            "english": "body",
+            "notes": "an animal's body"
+        },
+        {
+            "conlang": "мoкoд",
+            "english": "dog",
+            "notes": ""
+        },
+        {
+            "conlang": "видoм",
+            "english": "family",
+            "notes": ""
+        },
+        {
+            "conlang": "բэპpэ",
+            "english": "direct/point",
+            "notes": "to imply a direction"
+        },
+        {
+            "conlang": "шეнэт",
+            "english": "direct/straightforward",
+            "notes": "proceeding from one point to another"
+        },
+        {
+            "conlang": "xδтв",
+            "english": "leave",
+            "notes": ""
+        },
+        {
+            "conlang": "тэнэpa",
+            "english": "song",
+            "notes": ""
+        },
+        {
+            "conlang": "პpyв",
+            "english": "door",
+            "notes": ""
+        },
+        {
+            "conlang": "шaнтиxa",
+            "english": "measure",
+            "notes": ""
+        },
+        {
+            "conlang": "мэжэнλ",
+            "english": "product",
+            "notes": "a manufactured or assembled product"
+        },
+        {
+            "conlang": "вyд",
+            "english": "black",
+            "notes": ""
+        },
+        {
+            "conlang": "шкpэc",
+            "english": "short",
+            "notes": ""
+        },
+        {
+            "conlang": "кoբoнz",
+            "english": "category/class",
+            "notes": ""
+        },
+        {
+            "conlang": "პaн",
+            "english": "wind",
+            "notes": "the natural movement of air outdoors"
+        },
+        {
+            "conlang": "яazнap",
+            "english": "ship/boat/watercraft",
+            "notes": ""
+        },
+        {
+            "conlang": "шэպьaд",
+            "english": "ship/spaceship/spacecraft/starship",
+            "notes": ""
+        },
+        {
+            "conlang": "кpջcн",
+            "english": "area",
+            "notes": "a regional or geographic area"
+        },
+        {
+            "conlang": "zнэc",
+            "english": "half",
+            "notes": ""
+        },
+        {
+            "conlang": "кpyг",
+            "english": "rock/stone",
+            "notes": ""
+        },
+        {
+            "conlang": "aякac",
+            "english": "order",
+            "notes": "the sequence of items"
+        },
+        {
+            "conlang": "мaкpaд",
+            "english": "order/command",
+            "notes": "a formal or official command or order"
+        },
+        {
+            "conlang": "ջպa",
+            "english": "fire",
+            "notes": ""
+        },
+        {
+            "conlang": "oպ",
+            "english": "south",
+            "notes": ""
+        },
+        {
+            "conlang": "кaxaн",
+            "english": "piece",
+            "notes": ""
+        },
+        {
+            "conlang": "гpэнтaк",
+            "english": "problem",
+            "notes": ""
+        },
+        {
+            "conlang": "нэшнэ",
+            "english": "whole",
+            "notes": ""
+        },
+        {
+            "conlang": "բaф",
+            "english": "pass",
+            "notes": ""
+        },
+        {
+            "conlang": "кpэc",
+            "english": "top",
+            "notes": ""
+        },
+        {
+            "conlang": "гpoպaн",
+            "english": "king/emperor",
+            "notes": ""
+        },
+        {
+            "conlang": "пzэш",
+            "english": "space/outer space",
+            "notes": ""
+        },
+        {
+            "conlang": "qэpн",
+            "english": "space",
+            "notes": "the area between objects"
+        },
+        {
+            "conlang": "ьэzяo",
+            "english": "best",
+            "notes": ""
+        },
+        {
+            "conlang": "zгэн",
+            "english": "hour",
+            "notes": ""
+        },
+        {
+            "conlang": "պaнa",
+            "english": "better",
+            "notes": ""
+        },
+        {
+            "conlang": "cиz",
+            "english": "true",
+            "notes": ""
+        },
+        {
+            "conlang": "էεz",
+            "english": "false",
+            "notes": ""
+        },
+        {
+            "conlang": "cэvниp",
+            "english": "hundred",
+            "notes": ""
+        },
+        {
+            "conlang": "эткнaдo",
+            "english": "remember",
+            "notes": ""
+        },
+        {
+            "conlang": "պpaд",
+            "english": "step",
+            "notes": "a movement of one pace"
+        },
+        {
+            "conlang": "нეp",
+            "english": "early",
+            "notes": ""
+        },
+        {
+            "conlang": "ьoc",
+            "english": "hold",
+            "notes": ""
+        },
+        {
+            "conlang": "vиc",
+            "english": "reach",
+            "notes": ""
+        },
+        {
+            "conlang": "жaн",
+            "english": "west",
+            "notes": ""
+        },
+        {
+            "conlang": "кмиcнδ",
+            "english": "interest",
+            "notes": "interest in something"
+        },
+        {
+            "conlang": "xэвac",
+            "english": "sing",
+            "notes": ""
+        },
+        {
+            "conlang": "пpэc",
+            "english": "listen",
+            "notes": ""
+        },
+        {
+            "conlang": "шoz",
+            "english": "table",
+            "notes": ""
+        },
+        {
+            "conlang": "εьэт",
+            "english": "travel",
+            "notes": ""
+        },
+        {
+            "conlang": "coжэ",
+            "english": "morning",
+            "notes": ""
+        },
+        {
+            "conlang": "էэc",
+            "english": "ten",
+            "notes": ""
+        },
+        {
+            "conlang": "кzиp",
+            "english": "simple",
+            "notes": ""
+        },
+        {
+            "conlang": "ცaըpac",
+            "english": "toward",
+            "notes": ""
+        },
+        {
+            "conlang": "шaтaн",
+            "english": "war",
+            "notes": ""
+        },
+        {
+            "conlang": "шaнкpaд",
+            "english": "lay/lie",
+            "notes": "to lie down flat on a surface"
+        },
+        {
+            "conlang": "гьhдδ",
+            "english": "against",
+            "notes": "against an object"
+        },
+        {
+            "conlang": "aжин",
+            "english": "slow",
+            "notes": ""
+        },
+        {
+            "conlang": "мэzгьoд",
+            "english": "against",
+            "notes": "opposing, not in favour of"
+        },
+        {
+            "conlang": "пocмo",
+            "english": "pattern",
+            "notes": ""
+        },
+        {
+            "conlang": "яyтoн",
+            "english": "centre/center",
+            "notes": ""
+        },
+        {
+            "conlang": "ozδpa",
+            "english": "serve",
+            "notes": ""
+        },
+        {
+            "conlang": "мэжнδ",
+            "english": "love",
+            "notes": "to feel great affection for"
+        },
+        {
+            "conlang": "пьδт",
+            "english": "love",
+            "notes": "strong affection"
+        },
+        {
+            "conlang": "нэш",
+            "english": "money/cash",
+            "notes": ""
+        },
+        {
+            "conlang": "covшh",
+            "english": "appear/show up",
+            "notes": ""
+        },
+        {
+            "conlang": "мyqaz",
+            "english": "rain",
+            "notes": ""
+        },
+        {
+            "conlang": "zкoд",
+            "english": "road",
+            "notes": ""
+        },
+        {
+            "conlang": "жэш",
+            "english": "map",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэբэc",
+            "english": "rule",
+            "notes": "mandatory guidance on how to perform an action"
+        },
+        {
+            "conlang": "ცэպaч",
+            "english": "rule/govern",
+            "notes": ""
+        },
+        {
+            "conlang": "юpac",
+            "english": "voice",
+            "notes": ""
+        },
+        {
+            "conlang": "zгвэт",
+            "english": "pull",
+            "notes": ""
+        },
+        {
+            "conlang": "պpэш",
+            "english": "cold",
+            "notes": ""
+        },
+        {
+            "conlang": "ивεят",
+            "english": "notice",
+            "notes": "to notice something"
+        },
+        {
+            "conlang": "цэпoк",
+            "english": "unit",
+            "notes": ""
+        },
+        {
+            "conlang": "мэμгpэт",
+            "english": "power/influence/authority",
+            "notes": ""
+        },
+        {
+            "conlang": "yzცэч",
+            "english": "power/energy",
+            "notes": ""
+        },
+        {
+            "conlang": "эчкэт",
+            "english": "town",
+            "notes": ""
+        },
+        {
+            "conlang": "пиpa",
+            "english": "certain",
+            "notes": ""
+        },
+        {
+            "conlang": "μэպ",
+            "english": "fly",
+            "notes": ""
+        },
+        {
+            "conlang": "мгaт",
+            "english": "fall",
+            "notes": ""
+        },
+        {
+            "conlang": "эzгэc",
+            "english": "lead",
+            "notes": "to bring along in a particular direction"
+        },
+        {
+            "conlang": "эcьэ",
+            "english": "cry",
+            "notes": "the emotional expression of crying"
+        },
+        {
+            "conlang": "мэжнa",
+            "english": "machine",
+            "notes": ""
+        },
+        {
+            "conlang": "пaч",
+            "english": "note",
+            "notes": "a short written or typed note"
+        },
+        {
+            "conlang": "кpидэт",
+            "english": "wait",
+            "notes": ""
+        },
+        {
+            "conlang": "oдδн",
+            "english": "plan",
+            "notes": ""
+        },
+        {
+            "conlang": "aպpэж",
+            "english": "star",
+            "notes": "the celestial body"
+        },
+        {
+            "conlang": "zэшк",
+            "english": "box",
+            "notes": ""
+        },
+        {
+            "conlang": "фaдa",
+            "english": "rest",
+            "notes": "a break from activity, respite"
+        },
+        {
+            "conlang": "ьhнэ",
+            "english": "rest/remainder",
+            "notes": ""
+        },
+        {
+            "conlang": "cyнэт",
+            "english": "right/correct",
+            "notes": ""
+        },
+        {
+            "conlang": "zмифэт",
+            "english": "able/capable",
+            "notes": ""
+        },
+        {
+            "conlang": "pиcмиa",
+            "english": "beautiful/pretty",
+            "notes": ""
+        },
+        {
+            "conlang": "иცэд",
+            "english": "contain",
+            "notes": ""
+        },
+        {
+            "conlang": "ջдpэc",
+            "english": "front",
+            "notes": ""
+        },
+        {
+            "conlang": "эчэ",
+            "english": "teach",
+            "notes": ""
+        },
+        {
+            "conlang": "բэՑa",
+            "english": "week",
+            "notes": ""
+        },
+        {
+            "conlang": "μэжэт",
+            "english": "develop/design/engineer",
+            "notes": ""
+        },
+        {
+            "conlang": "мoպэ",
+            "english": "green",
+            "notes": ""
+        },
+        {
+            "conlang": "aცиpa",
+            "english": "ocean",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -1663,6 +2208,26 @@
             "conlang": "cмaтиpo",
             "english": "with ease/easily/without difficulty",
             "notes": ""
+        },
+        {
+            "conlang": "oპoмaд",
+            "english": "pose",
+            "notes": "the orientation of body and limbs"
+        },
+        {
+            "conlang": "ьэвэнqεp",
+            "english": "vowel",
+            "notes": ""
+        },
+        {
+            "conlang": "qaтδкpoд",
+            "english": "noun",
+            "notes": ""
+        },
+        {
+            "conlang": "პpэш",
+            "english": "field",
+            "notes": "a large, flat landmass/a meadow"
         }
     ]
 }
