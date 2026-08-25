@@ -432,7 +432,7 @@
         },
         {
             "conlang": "yт",
-            "english": "position",
+            "english": "position/location",
             "notes": ""
         },
         {
@@ -453,6 +453,11 @@
         {
             "conlang": "тa",
             "english": "not",
+            "notes": ""
+        },
+        {
+            "conlang": "pa",
+            "english": "ly/described as/described by",
             "notes": ""
         }
     ],
@@ -529,7 +534,7 @@
         },
         {
             "conlang": "ьδz",
-            "english": "thing",
+            "english": "thing/object",
             "notes": "an arbitrary physical object"
         },
         {
@@ -619,7 +624,7 @@
         },
         {
             "conlang": "vδpջzдo",
-            "english": "clear",
+            "english": "clear/transparent",
             "notes": ""
         },
         {
@@ -2086,6 +2091,361 @@
             "conlang": "aცиpa",
             "english": "ocean",
             "notes": ""
+        },
+        {
+            "conlang": "миzм",
+            "english": "warm",
+            "notes": ""
+        },
+        {
+            "conlang": "тэpa",
+            "english": "free/unconstrained",
+            "notes": "in a state of freedom"
+        },
+        {
+            "conlang": "zгичэc",
+            "english": "free",
+            "notes": "not having a cost"
+        },
+        {
+            "conlang": "cмac",
+            "english": "minute",
+            "notes": ""
+        },
+        {
+            "conlang": "гεpa",
+            "english": "strong",
+            "notes": "physically strong, able to move heavy things"
+        },
+        {
+            "conlang": "мջкэт",
+            "english": "special",
+            "notes": ""
+        },
+        {
+            "conlang": "пδжეд",
+            "english": "mind/consciousness",
+            "notes": "the abstract mental world of the mind"
+        },
+        {
+            "conlang": "ըδш",
+            "english": "behind",
+            "notes": ""
+        },
+        {
+            "conlang": "pэтaн",
+            "english": "tail",
+            "notes": "the body part"
+        },
+        {
+            "conlang": "гэzнδн",
+            "english": "produce/generate",
+            "notes": ""
+        },
+        {
+            "conlang": "ջպaч",
+            "english": "fact",
+            "notes": ""
+        },
+        {
+            "conlang": "пaкλ",
+            "english": "wheel",
+            "notes": ""
+        },
+        {
+            "conlang": "yრэд",
+            "english": "multiply",
+            "notes": "the mathematical operation"
+        },
+        {
+            "conlang": "яэთ",
+            "english": "stay",
+            "notes": ""
+        },
+        {
+            "conlang": "кopнջ",
+            "english": "full",
+            "notes": ""
+        },
+        {
+            "conlang": "ջшнэгвaн",
+            "english": "force",
+            "notes": "the amount of power or strength"
+        },
+        {
+            "conlang": "պигнaxн",
+            "english": "force",
+            "notes": "to physically move something using great power"
+        },
+        {
+            "conlang": "pиთэт",
+            "english": "force",
+            "notes": "to force someone or something to do your bidding"
+        },
+        {
+            "conlang": "вэнz",
+            "english": "blue",
+            "notes": ""
+        },
+        {
+            "conlang": "бэднэт",
+            "english": "decide",
+            "notes": ""
+        },
+        {
+            "conlang": "vaнთэc",
+            "english": "surface",
+            "notes": "the surface of an object"
+        },
+        {
+            "conlang": "гpyc",
+            "english": "deep",
+            "notes": "a physical distance extending a long way down"
+        },
+        {
+            "conlang": "кaცэт",
+            "english": "moon",
+            "notes": "a natural satellite orbiting a planet"
+        },
+        {
+            "conlang": "ջяpaca",
+            "english": "island",
+            "notes": ""
+        },
+        {
+            "conlang": "oრh",
+            "english": "busy",
+            "notes": "occupied"
+        },
+        {
+            "conlang": "тyьэжэв",
+            "english": "system",
+            "notes": "any physical, digital, or abstract system"
+        },
+        {
+            "conlang": "чջvэ",
+            "english": "record",
+            "notes": "to make a record of some information"
+        },
+        {
+            "conlang": "итvи",
+            "english": "common/typical/usual/normal",
+            "notes": ""
+        },
+        {
+            "conlang": "xэкэдpи",
+            "english": "possible",
+            "notes": ""
+        },
+        {
+            "conlang": "кэт",
+            "english": "dry",
+            "notes": ""
+        },
+        {
+            "conlang": "кεՑиo",
+            "english": "wonder",
+            "notes": "to think about"
+        },
+        {
+            "conlang": "dpaдa",
+            "english": "laugh",
+            "notes": ""
+        },
+        {
+            "conlang": "жaдa",
+            "english": "thousand",
+            "notes": ""
+        },
+        {
+            "conlang": "кpиμ",
+            "english": "check",
+            "notes": "a short investigation of something"
+        },
+        {
+            "conlang": "нaчa",
+            "english": "game",
+            "notes": ""
+        },
+        {
+            "conlang": "мqapε",
+            "english": "shape",
+            "notes": ""
+        },
+        {
+            "conlang": "кpидэc",
+            "english": "equate/consider the same",
+            "notes": ""
+        },
+        {
+            "conlang": "мэμ",
+            "english": "hot",
+            "notes": ""
+        },
+        {
+            "conlang": "тиxэн",
+            "english": "miss",
+            "notes": ""
+        },
+        {
+            "conlang": "гδp",
+            "english": "bring",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэчap",
+            "english": "heat",
+            "notes": "the hot space or area"
+        },
+        {
+            "conlang": "тишэш",
+            "english": "snow",
+            "notes": ""
+        },
+        {
+            "conlang": "cмэc",
+            "english": "tired",
+            "notes": "the state of being tired"
+        },
+        {
+            "conlang": "кюшaд",
+            "english": "tire",
+            "notes": "to become tired"
+        },
+        {
+            "conlang": "видиa",
+            "english": "distant/far away",
+            "notes": ""
+        },
+        {
+            "conlang": "эшиq",
+            "english": "fill",
+            "notes": ""
+        },
+        {
+            "conlang": "гэպ",
+            "english": "east",
+            "notes": ""
+        },
+        {
+            "conlang": "гpaчк",
+            "english": "language",
+            "notes": "referring to a spoken and or written language used by a culture"
+        },
+        {
+            "conlang": "pэμд",
+            "english": "among/amongst/amid/amidst",
+            "notes": ""
+        },
+        {
+            "conlang": "жaц",
+            "english": "ball",
+            "notes": ""
+        },
+        {
+            "conlang": "мpэя",
+            "english": "yet",
+            "notes": ""
+        },
+        {
+            "conlang": "миьэ",
+            "english": "wave",
+            "notes": "the waving motion with the hand"
+        },
+        {
+            "conlang": "ьaμэв",
+            "english": "wave",
+            "notes": "the wave pattern which can propagate through a medium"
+        },
+        {
+            "conlang": "պвaт",
+            "english": "drop",
+            "notes": "to drop an object"
+        },
+        {
+            "conlang": "мეкэд",
+            "english": "heart",
+            "notes": "the body part"
+        },
+        {
+            "conlang": "yчэcмa",
+            "english": "heavy",
+            "notes": ""
+        },
+        {
+            "conlang": "cяэըэ",
+            "english": "dance",
+            "notes": ""
+        },
+        {
+            "conlang": "кpэпoв",
+            "english": "engine",
+            "notes": ""
+        },
+        {
+            "conlang": "мэк",
+            "english": "arm",
+            "notes": "the body part"
+        },
+        {
+            "conlang": "пaчкэн",
+            "english": "gift/present",
+            "notes": ""
+        },
+        {
+            "conlang": "вэpд",
+            "english": "wide",
+            "notes": ""
+        },
+        {
+            "conlang": "пьэтэp",
+            "english": "vary",
+            "notes": ""
+        },
+        {
+            "conlang": "гэш",
+            "english": "size",
+            "notes": ""
+        },
+        {
+            "conlang": "яэгэpт",
+            "english": "weight",
+            "notes": ""
+        },
+        {
+            "conlang": "цaтвэ",
+            "english": "general",
+            "notes": "not specific"
+        },
+        {
+            "conlang": "чиպ",
+            "english": "ice",
+            "notes": "water ice"
+        },
+        {
+            "conlang": "ջպия",
+            "english": "circle",
+            "notes": "the abstract circle shape"
+        },
+        {
+            "conlang": "пэгpю",
+            "english": "pair",
+            "notes": ""
+        },
+        {
+            "conlang": "живpэc",
+            "english": "include",
+            "notes": ""
+        },
+        {
+            "conlang": "μpaкac",
+            "english": "divide/separate",
+            "notes": "to divide or separate"
+        },
+        {
+            "conlang": "cмэպpэд",
+            "english": "divide",
+            "notes": "the mathematical operation"
         }
     ],
     "level2+": [
@@ -2228,6 +2588,66 @@
             "conlang": "პpэш",
             "english": "field",
             "notes": "a large, flat landmass/a meadow"
+        },
+        {
+            "conlang": "кpэპovнaд",
+            "english": "void/nothingness",
+            "notes": ""
+        },
+        {
+            "conlang": "нэთэpкa",
+            "english": "course/training",
+            "notes": ""
+        },
+        {
+            "conlang": "qичэcниьэ",
+            "english": "surface",
+            "notes": "the surface of a body of water"
+        },
+        {
+            "conlang": "мэպaq",
+            "english": "gold",
+            "notes": "the element"
+        },
+        {
+            "conlang": "oвнaкэp",
+            "english": "plane",
+            "notes": "a mathematically flat surface"
+        },
+        {
+            "conlang": "тэცэc",
+            "english": "paint",
+            "notes": "to apply paint to a surface"
+        },
+        {
+            "conlang": "иθэpa",
+            "english": "language/way of speaking/manner of speaking",
+            "notes": "the way of saying something, the choice of words"
+        },
+        {
+            "conlang": "кaμպpaтьэ",
+            "english": "grand/magnificent",
+            "notes": ""
+        },
+        {
+            "conlang": "мэՑyв",
+            "english": "present/introduce",
+            "notes": "to formally give or present something"
+        },
+        {
+            "conlang": "μэчpoтэ",
+            "english": "material/substance",
+            "notes": ""
+        },
+        {
+            "conlang": "вapэპэ",
+            "english": "settle",
+            "notes": "to lie down and get comfortable"
+        },
+        {
+            "conlang": "мэчaтвэ",
+            "english": "syllable",
+            "notes": ""
         }
     ]
 }
