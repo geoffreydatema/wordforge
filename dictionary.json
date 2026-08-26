@@ -679,7 +679,7 @@
         },
         {
             "conlang": "თин",
-            "english": "choose",
+            "english": "pick/choose",
             "notes": ""
         },
         {
@@ -2446,6 +2446,101 @@
             "conlang": "cмэպpэд",
             "english": "divide",
             "notes": "the mathematical operation"
+        },
+        {
+            "conlang": "zкидa",
+            "english": "maybe",
+            "notes": ""
+        },
+        {
+            "conlang": "պэт",
+            "english": "sudden",
+            "notes": ""
+        },
+        {
+            "conlang": "aцэьэ",
+            "english": "reason",
+            "notes": "the explanation for something"
+        },
+        {
+            "conlang": "жюxa",
+            "english": "gone",
+            "notes": ""
+        },
+        {
+            "conlang": "ζэкт",
+            "english": "square",
+            "notes": "the square shape"
+        },
+        {
+            "conlang": "кpэкт",
+            "english": "count",
+            "notes": "to count things"
+        },
+        {
+            "conlang": "мջфэv",
+            "english": "length",
+            "notes": ""
+        },
+        {
+            "conlang": "ζaкaე",
+            "english": "represent",
+            "notes": ""
+        },
+        {
+            "conlang": "бպэ",
+            "english": "art",
+            "notes": ""
+        },
+        {
+            "conlang": "voaт",
+            "english": "hunt",
+            "notes": "to hunt something"
+        },
+        {
+            "conlang": "гpиxoв",
+            "english": "hunt",
+            "notes": "the activity of hunting"
+        },
+        {
+            "conlang": "вишк",
+            "english": "forest",
+            "notes": ""
+        },
+        {
+            "conlang": "μεըy",
+            "english": "likely/probable",
+            "notes": ""
+        },
+        {
+            "conlang": "бэcч",
+            "english": "bed",
+            "notes": ""
+        },
+        {
+            "conlang": "гpaвт",
+            "english": "brother",
+            "notes": ""
+        },
+        {
+            "conlang": "гpa",
+            "english": "bro",
+            "notes": ""
+        },
+        {
+            "conlang": "Ցигc",
+            "english": "egg",
+            "notes": ""
+        },
+        {
+            "conlang": "xaжэн",
+            "english": "ride",
+            "notes": "to travel in a vehicle"
+        },
+        {
+            "conlang": "кaтoн",
+            "english": "believe",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -2648,6 +2743,26 @@
             "conlang": "мэчaтвэ",
             "english": "syllable",
             "notes": ""
+        },
+        {
+            "conlang": "vидpид",
+            "english": "subject/topic",
+            "notes": ""
+        },
+        {
+            "conlang": "пьoдa",
+            "english": "geographical region",
+            "notes": ""
+        },
+        {
+            "conlang": "гpoպэтhд",
+            "english": "cell/cage",
+            "notes": ""
+        },
+        {
+            "conlang": "пoкaвδpoд",
+            "english": "cell",
+            "notes": "a cell of a biological organism"
         }
     ]
 }
