@@ -2541,6 +2541,101 @@
             "conlang": "кaтoн",
             "english": "believe",
             "notes": ""
+        },
+        {
+            "conlang": "чэc",
+            "english": "sit",
+            "notes": ""
+        },
+        {
+            "conlang": "дэcэ",
+            "english": "race",
+            "notes": "to run and try to be faster than something or someone else"
+        },
+        {
+            "conlang": "вδдpδ",
+            "english": "window",
+            "notes": ""
+        },
+        {
+            "conlang": "мpaz",
+            "english": "store",
+            "notes": "any physical establishment where you can buy stuff"
+        },
+        {
+            "conlang": "ьδთэμ",
+            "english": "summer",
+            "notes": ""
+        },
+        {
+            "conlang": "мьэгэд",
+            "english": "train",
+            "notes": "any vehicle that moves on tracks"
+        },
+        {
+            "conlang": "миպ",
+            "english": "sleep",
+            "notes": ""
+        },
+        {
+            "conlang": "гэчλ",
+            "english": "prove",
+            "notes": ""
+        },
+        {
+            "conlang": "киди",
+            "english": "leg",
+            "notes": "the body part"
+        },
+        {
+            "conlang": "cეт",
+            "english": "wall",
+            "notes": ""
+        },
+        {
+            "conlang": "итδ",
+            "english": "catch",
+            "notes": "to catch an object"
+        },
+        {
+            "conlang": "რиy",
+            "english": "wish",
+            "notes": ""
+        },
+        {
+            "conlang": "oպви",
+            "english": "sky",
+            "notes": ""
+        },
+        {
+            "conlang": "պaк",
+            "english": "board",
+            "notes": "a rectangular plank of any material"
+        },
+        {
+            "conlang": "иպpэ",
+            "english": "happy",
+            "notes": ""
+        },
+        {
+            "conlang": "гдим",
+            "english": "winter",
+            "notes": ""
+        },
+        {
+            "conlang": "zмэμ",
+            "english": "wild",
+            "notes": "an untamed animal"
+        },
+        {
+            "conlang": "тэθэт",
+            "english": "instrument/musical instrument",
+            "notes": ""
+        },
+        {
+            "conlang": "μиd",
+            "english": "glass",
+            "notes": "the transparent material"
         }
     ],
     "level2+": [
@@ -2763,6 +2858,21 @@
             "conlang": "пoкaвδpoд",
             "english": "cell",
             "notes": "a cell of a biological organism"
+        },
+        {
+            "conlang": "гpэპaвpδд",
+            "english": "race",
+            "notes": "a race within a particular species"
+        },
+        {
+            "conlang": "μидpэт",
+            "english": "exercise",
+            "notes": "a drill or formal rehersal of an activity"
+        },
+        {
+            "conlang": "тидиp",
+            "english": "exercise",
+            "notes": "physical exercise for the body"
         }
     ]
 }
