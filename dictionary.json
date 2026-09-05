@@ -1079,7 +1079,7 @@
         },
         {
             "conlang": "нэцд",
-            "english": "kind",
+            "english": "kind/type",
             "notes": "the category of thing"
         },
         {
@@ -2636,6 +2636,296 @@
             "conlang": "μиd",
             "english": "glass",
             "notes": "the transparent material"
+        },
+        {
+            "conlang": "чикэ",
+            "english": "grass",
+            "notes": ""
+        },
+        {
+            "conlang": "дэμк",
+            "english": "job",
+            "notes": ""
+        },
+        {
+            "conlang": "pэცэpa",
+            "english": "cow",
+            "notes": ""
+        },
+        {
+            "conlang": "гpиц",
+            "english": "edge",
+            "notes": ""
+        },
+        {
+            "conlang": "պиp",
+            "english": "sign",
+            "notes": "any printed sign or digital display serving as a sign"
+        },
+        {
+            "conlang": "poxдa",
+            "english": "visit",
+            "notes": ""
+        },
+        {
+            "conlang": "pиш",
+            "english": "soft",
+            "notes": "a soft feeling or texture of an object"
+        },
+        {
+            "conlang": "мaвa",
+            "english": "fun",
+            "notes": ""
+        },
+        {
+            "conlang": "бpигди",
+            "english": "strange/weird",
+            "notes": ""
+        },
+        {
+            "conlang": "μиპ",
+            "english": "bright",
+            "notes": "describing something that is illuminated"
+        },
+        {
+            "conlang": "нэчa",
+            "english": "gas",
+            "notes": "the phase of matter"
+        },
+        {
+            "conlang": "εкpδ",
+            "english": "weather",
+            "notes": ""
+        },
+        {
+            "conlang": "яεт",
+            "english": "month",
+            "notes": ""
+        },
+        {
+            "conlang": "гpигδд",
+            "english": "million",
+            "notes": ""
+        },
+        {
+            "conlang": "мջдpэв",
+            "english": "bear",
+            "notes": "any bear like animal"
+        },
+        {
+            "conlang": "пpaтьэ",
+            "english": "finish",
+            "notes": ""
+        },
+        {
+            "conlang": "xaცи",
+            "english": "flower",
+            "notes": ""
+        },
+        {
+            "conlang": "жэpиa",
+            "english": "clothes/clothing",
+            "notes": ""
+        },
+        {
+            "conlang": "бэкoт",
+            "english": "cloth",
+            "notes": ""
+        },
+        {
+            "conlang": "μиzэ",
+            "english": "hope",
+            "notes": ""
+        },
+        {
+            "conlang": "гpეдэт",
+            "english": "describe",
+            "notes": ""
+        },
+        {
+            "conlang": "птиc",
+            "english": "jump",
+            "notes": ""
+        },
+        {
+            "conlang": "гичэ",
+            "english": "babe/sweetie/sweetheart",
+            "notes": "casual term of endearment for a spouse or partner"
+        },
+        {
+            "conlang": "pиэдьэ",
+            "english": "baby",
+            "notes": "an actual baby, younger than a toddler"
+        },
+        {
+            "conlang": "иբэც",
+            "english": "village",
+            "notes": ""
+        },
+        {
+            "conlang": "pэтyв",
+            "english": "meet",
+            "notes": "to meet someone for the first time"
+        },
+        {
+            "conlang": "ըλж",
+            "english": "push",
+            "notes": ""
+        },
+        {
+            "conlang": "гдид",
+            "english": "root",
+            "notes": "the root of a plant"
+        },
+        {
+            "conlang": "гpиьy",
+            "english": "buy",
+            "notes": ""
+        },
+        {
+            "conlang": "жэcც",
+            "english": "raise",
+            "notes": "to raise something up"
+        },
+        {
+            "conlang": "თyкpэ",
+            "english": "solve",
+            "notes": ""
+        },
+        {
+            "conlang": "шкpaн",
+            "english": "metal",
+            "notes": ""
+        },
+        {
+            "conlang": "шhc",
+            "english": "hair",
+            "notes": ""
+        },
+        {
+            "conlang": "чэкoвьa",
+            "english": "cook",
+            "notes": "to cook food"
+        },
+        {
+            "conlang": "мaг",
+            "english": "floor",
+            "notes": ""
+        },
+        {
+            "conlang": "μδzջ",
+            "english": "either",
+            "notes": ""
+        },
+        {
+            "conlang": "qaдpэ",
+            "english": "result",
+            "notes": ""
+        },
+        {
+            "conlang": "гдэтaж",
+            "english": "burn",
+            "notes": "to burn with fire"
+        },
+        {
+            "conlang": "иպλп",
+            "english": "hill",
+            "notes": ""
+        },
+        {
+            "conlang": "vэՑδ",
+            "english": "safe",
+            "notes": ""
+        },
+        {
+            "conlang": "иcчэ",
+            "english": "quiet",
+            "notes": ""
+        },
+        {
+            "conlang": "тэш",
+            "english": "silent",
+            "notes": ""
+        },
+        {
+            "conlang": "εяoб",
+            "english": "law",
+            "notes": ""
+        },
+        {
+            "conlang": "чиპ",
+            "english": "bit/small amount",
+            "notes": ""
+        },
+        {
+            "conlang": "кpиyд",
+            "english": "coast",
+            "notes": ""
+        },
+        {
+            "conlang": "aцэд",
+            "english": "tall",
+            "notes": ""
+        },
+        {
+            "conlang": "мэთջ",
+            "english": "sand",
+            "notes": ""
+        },
+        {
+            "conlang": "xьyт",
+            "english": "dirt/soil",
+            "notes": ""
+        },
+        {
+            "conlang": "vacэг",
+            "english": "roll",
+            "notes": "for anything to roll"
+        },
+        {
+            "conlang": "пидэш",
+            "english": "value",
+            "notes": "the value or worth of something"
+        },
+        {
+            "conlang": "тջшэцoв",
+            "english": "temperature",
+            "notes": ""
+        },
+        {
+            "conlang": "ζэc",
+            "english": "finger",
+            "notes": ""
+        },
+        {
+            "conlang": "гpиэц",
+            "english": "fight",
+            "notes": ""
+        },
+        {
+            "conlang": "юшкλ",
+            "english": "lie",
+            "notes": "to tell a lie"
+        },
+        {
+            "conlang": "гишч",
+            "english": "straight",
+            "notes": ""
+        },
+        {
+            "conlang": "тиэгяh",
+            "english": "lie",
+            "notes": "a lie, an untrue statement"
+        },
+        {
+            "conlang": "ეэч",
+            "english": "excite",
+            "notes": ""
+        },
+        {
+            "conlang": "вьэqδд",
+            "english": "natural",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -2873,6 +3163,36 @@
             "conlang": "тидиp",
             "english": "exercise",
             "notes": "physical exercise for the body"
+        },
+        {
+            "conlang": "эткpyтa",
+            "english": "paragraph",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэдpэк",
+            "english": "century",
+            "notes": ""
+        },
+        {
+            "conlang": "кpэтэპaн",
+            "english": "consider",
+            "notes": ""
+        },
+        {
+            "conlang": "кьэт",
+            "english": "copy",
+            "notes": "to copy data or information by any means"
+        },
+        {
+            "conlang": "бэμpэв",
+            "english": "phrase",
+            "notes": ""
+        },
+        {
+            "conlang": "гpaктьэк",
+            "english": "beat/strike/pummel",
+            "notes": ""
         }
     ]
 }
