@@ -864,7 +864,7 @@
         },
         {
             "conlang": "жкaяa",
-            "english": "part",
+            "english": "part/section",
             "notes": ""
         },
         {
@@ -2023,7 +2023,7 @@
             "notes": ""
         },
         {
-            "conlang": "aպpэж",
+            "conlang": "պpэж",
             "english": "star",
             "notes": "the celestial body"
         },
@@ -2404,7 +2404,7 @@
         },
         {
             "conlang": "гэш",
-            "english": "size",
+            "english": "size/scale/magnitude",
             "notes": ""
         },
         {
@@ -2926,6 +2926,181 @@
             "conlang": "вьэqδд",
             "english": "natural",
             "notes": ""
+        },
+        {
+            "conlang": "дижэш",
+            "english": "view/viewpoint",
+            "notes": ""
+        },
+        {
+            "conlang": "zгpэд",
+            "english": "middle",
+            "notes": ""
+        },
+        {
+            "conlang": "кaдиш",
+            "english": "ear",
+            "notes": ""
+        },
+        {
+            "conlang": "фэт",
+            "english": "quite/particularly",
+            "notes": ""
+        },
+        {
+            "conlang": "პэкэж",
+            "english": "broken",
+            "notes": ""
+        },
+        {
+            "conlang": "шaՑδд",
+            "english": "case/circumstance/situation",
+            "notes": ""
+        },
+        {
+            "conlang": "гpaxaк",
+            "english": "kill",
+            "notes": "to kill"
+        },
+        {
+            "conlang": "мэжт",
+            "english": "son",
+            "notes": ""
+        },
+        {
+            "conlang": "яэըջд",
+            "english": "lake",
+            "notes": ""
+        },
+        {
+            "conlang": "нюдa",
+            "english": "moment",
+            "notes": ""
+        },
+        {
+            "conlang": "вимг",
+            "english": "loud",
+            "notes": ""
+        },
+        {
+            "conlang": "вpэя",
+            "english": "spring/spring season",
+            "notes": "the spring season"
+        },
+        {
+            "conlang": "мэчнaθ",
+            "english": "spring",
+            "notes": "the mechanical component"
+        },
+        {
+            "conlang": "պεэд",
+            "english": "speed",
+            "notes": ""
+        },
+        {
+            "conlang": "гpиш",
+            "english": "key",
+            "notes": ""
+        },
+        {
+            "conlang": "виpи",
+            "english": "milk",
+            "notes": ""
+        },
+        {
+            "conlang": "эцaтap",
+            "english": "method",
+            "notes": ""
+        },
+        {
+            "conlang": "ниcэт",
+            "english": "dress",
+            "notes": "not pants, a typically flowy type of clothing worn by women"
+        },
+        {
+            "conlang": "ცaպэ",
+            "english": "surprise",
+            "notes": ""
+        },
+        {
+            "conlang": "yэp",
+            "english": "pay",
+            "notes": ""
+        },
+        {
+            "conlang": "რaдэ",
+            "english": "age",
+            "notes": ""
+        },
+        {
+            "conlang": "qyтε",
+            "english": "cloud",
+            "notes": ""
+        },
+        {
+            "conlang": "битэ",
+            "english": "tiny",
+            "notes": "extremely small"
+        },
+        {
+            "conlang": "кpиaд",
+            "english": "climb",
+            "notes": ""
+        },
+        {
+            "conlang": "мpyд",
+            "english": "cool",
+            "notes": "to cool or become colder"
+        },
+        {
+            "conlang": "нδსaд",
+            "english": "design",
+            "notes": "any shapes, pattern, or illustration, typically artistic in nature"
+        },
+        {
+            "conlang": "фaէэ",
+            "english": "poor",
+            "notes": "lacking money"
+        },
+        {
+            "conlang": "кpეдэ",
+            "english": "people",
+            "notes": "an abstract population or group of people"
+        },
+        {
+            "conlang": "vyд",
+            "english": "bottom",
+            "notes": ""
+        },
+        {
+            "conlang": "мьyд",
+            "english": "stick",
+            "notes": ""
+        },
+        {
+            "conlang": "жиaк",
+            "english": "iron",
+            "notes": ""
+        },
+        {
+            "conlang": "բэт",
+            "english": "flat",
+            "notes": ""
+        },
+        {
+            "conlang": "виzи",
+            "english": "skin",
+            "notes": "the skin of an animal or person"
+        },
+        {
+            "conlang": "vpoт",
+            "english": "smile",
+            "notes": ""
+        },
+        {
+            "conlang": "виyт",
+            "english": "hole",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -3192,6 +3367,46 @@
         {
             "conlang": "гpaктьэк",
             "english": "beat/strike/pummel",
+            "notes": ""
+        },
+        {
+            "conlang": "пэямэдპ",
+            "english": "sense/perceive",
+            "notes": "to sense or perceive something"
+        },
+        {
+            "conlang": "aдэт",
+            "english": "observe",
+            "notes": ""
+        },
+        {
+            "conlang": "цopoპэн",
+            "english": "dictionary",
+            "notes": ""
+        },
+        {
+            "conlang": "Ցэըэպaд",
+            "english": "consonant",
+            "notes": ""
+        },
+        {
+            "conlang": "кюэՑa",
+            "english": "dress/wear clothing",
+            "notes": "to wear particular clothing"
+        },
+        {
+            "conlang": "ижცэpд",
+            "english": "organ/internal organ",
+            "notes": "an internal body part with a particular life support function"
+        },
+        {
+            "conlang": "zεьyтopoж",
+            "english": "experiment",
+            "notes": "an experiment"
+        },
+        {
+            "conlang": "aштyкэт",
+            "english": "crease",
             "notes": ""
         }
     ]
