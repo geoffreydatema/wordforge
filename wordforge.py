@@ -45,20 +45,20 @@ class DEFINITIONS:
     c = 's'
     т = 't'
     v = 'f'
-    x = 'h'
+    x = 'kh'    # hard h
     q = 'w'
     ь = 'y'
     μ = 'j'
     ж = 'zh'
     ч = 'ch'
-    ш = 'sh'
+    ш = 'sh'    # tongue back sh
     θ = 'th'
     d = 'dh'
     ф = 'ng'
     ը = 'nd'
-    բ = 'pl'
-    ζ = 'ps'
-    Ց = 'tr'
+    բ = 'rr'    # rolled r
+    ζ = 'sz'    # tongue forward sh
+    Ց = 'h'     # soft h
     ц = 'ts'
     პ = 'st'
     ს = 'ks'
@@ -95,7 +95,7 @@ class LORE:
     C = 'c'
     T = 'т'
     F = 'v'
-    X = 'x'
+    KH = 'x'
     W = 'q'
     Y = 'ь'
     J = 'μ'
@@ -106,9 +106,9 @@ class LORE:
     DH = 'd'
     NG = 'ф'
     ND = 'ը'
-    PL = 'բ'
-    PS = 'ζ'
-    TR = 'Ց'
+    RR = 'բ'
+    SZ = 'ζ'
+    H = 'Ց'
     TS = 'ц'
     ST = 'პ'
     KS = 'ს'
@@ -252,24 +252,24 @@ CHAR_WIDTHS = {
 }
 
 class PRONUNCIATION:
-    A = 'a'     # short a
-    E = 'e'     # short e
-    I = 'i'     # short i
-    O = 'o'     # short o
-    U = 'u'     # short u
-    AY = 'ay'   # long a
-    EE = 'ee'   # long e
-    IY = 'iy'   # long i
-    OW = 'ow'   # long o
-    OO = 'oo'   # oo as in poop
-    OE = 'oe'   # oe as in put
-    UE = 'ue'   # ы
+    A = 'a'
+    E = 'e'
+    I = 'i'
+    O = 'o'
+    U = 'u'
+    AY = 'ay'
+    EE = 'ee'
+    IY = 'iy'
+    OW = 'ow'
+    OO = 'oo'
+    OE = 'oe'
+    UE = 'ue'
     B = 'b'
     V = 'v'
     G = 'g'
     D = 'd'
     Z = 'z'
-    K = 'k'
+    K = 'kh'
     L = 'l' 
     M = 'm'
     N = 'n'
@@ -278,20 +278,20 @@ class PRONUNCIATION:
     C = 's'
     T = 't'
     F = 'f'
-    X = 'h'
+    KH = 'h'
     W = 'w'
     Y = 'y'
     J = 'j'
-    ZH = 'zh'   # as in measure
+    ZH = 'zh'
     CH = 'ch'
     SH = 'sh'
-    TH = 'th'   # unvoiched th as in think
-    DH = 'TH'   # voiced th as in this
-    NG = 'ng'   # anglophone ng sound used in the ing word 
+    TH = 'th'
+    DH = 'TH'
+    NG = 'ng'
     ND = 'nd'
-    PL = 'pl'
-    PS = 'ps'
-    TR = 'tr'
+    RR = 'rr'
+    SZ = 'sz'
+    H = 'h'
     TS = 'ts'
     ST = 'st'
     KS = 'ks'
@@ -312,9 +312,9 @@ VOWELS = [
 ]
 
 CONSONANTS = [
-    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, LORE.X,
+    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, LORE.KH,
     LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, LORE.ZH, LORE.CH,
-    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.ND, LORE.PL, LORE.PS, LORE.TR, LORE.TS,
+    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.ND, LORE.RR, LORE.SZ, LORE.H, LORE.TS,
     LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
@@ -345,20 +345,20 @@ ALPHABET_DEFS = [
     (LORE.C, "s", ""),
     (LORE.T, "t", ""),
     (LORE.F, "f", ""),
-    (LORE.X, "h", ""),
+    (LORE.KH, "h", "hard h"),
     (LORE.W, "w", ""),
     (LORE.Y, "y", ""),
     (LORE.J, "j", ""),
     (LORE.ZH, "zh", "as in measure"),
     (LORE.CH, "ch", ""),
-    (LORE.SH, "sh", ""),
+    (LORE.SH, "sh", "tongue back sh"),
     (LORE.TH, "th", "unvoiced th as in think"),
     (LORE.DH, "TH", "voiced th as in this"),
     (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
     (LORE.ND, "nd", ""),
-    (LORE.PL, "pl", ""),
-    (LORE.PS, "ps", ""),
-    (LORE.TR, "tr", ""),
+    (LORE.RR, "r", "rolled r"),
+    (LORE.SZ, "sh", "tongue forward sh"),
+    (LORE.H, "h", "soft h"),
     (LORE.TS, "ts", ""),
     (LORE.ST, "st", ""),
     (LORE.KS, "ks", ""),
@@ -382,8 +382,8 @@ HEADER_SIZE_CORRECTIONS = {}
 
 KEYBOARD_LAYOUT = [
     [('w', LORE.W), ('e', LORE.E), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.U), ('i', LORE.I), ('o', LORE.O), ('p', LORE.P)],
-    [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.X), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
-    [('└', LORE.OPEN), ('┘', LORE.CLOSE), ('z', LORE.Z), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.PERIOD)]
+    [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.H), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
+    [('z', LORE.Z), ('x', LORE.KH), ('c', LORE.SZ), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.PERIOD)]
 ]
 
 LONG_VOWEL_MAP = {
@@ -395,13 +395,13 @@ COMBO_MAP = {
     "oe": LORE.OE, "ue": LORE.UE,
     "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
     "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "nd": LORE.ND,
-    "pl": LORE.PL, "ps": LORE.PS,
-    "tr": LORE.TR, "ts": LORE.TS, "st": LORE.ST,
+    "rr": LORE.RR,
+    "ts": LORE.TS, "st": LORE.ST,
     "ks": LORE.KS, "sk": LORE.SK,
     "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
 }
 
-DISABLED_KEYS = ['q', 'x', 'c']
+DISABLED_KEYS = ['q']
 
 def apply_visual_fixes(text, mode='table'):
     if not text: return ""
@@ -777,37 +777,21 @@ class PhysicalKeyFilter(QObject):
         
         # 3. Merge them into the active key map
         self.key_map.update(punctuation_binds)
-        
-        self.pending_c = False
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.KeyPress:
             key_text = event.text().lower()
             
             if event.modifiers() & Qt.ControlModifier: 
-                self.pending_c = False
                 return False
 
             if event.key() == Qt.Key_Backspace:
-                self.pending_c = False
                 obj.backspace() 
                 return True 
                 
             if event.key() == Qt.Key_Space:
-                self.pending_c = False
                 obj.insertPlainText(" ") 
                 return True
-
-            if key_text == 'c':
-                self.pending_c = True
-                return True  # Consume the keypress, but don't type anything yet
-
-            if self.pending_c:
-                self.pending_c = False  # Reset the tracker immediately
-                if key_text == 'h':
-                    lore_char = self.key_map.get('ch', 'ч') 
-                    self.window.handle_keypress('ch', lore_char, target=obj)
-                    return True
 
             if key_text in DISABLED_KEYS: 
                 return True 
