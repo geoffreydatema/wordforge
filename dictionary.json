@@ -669,7 +669,7 @@
         },
         {
             "conlang": "ьэpa",
-            "english": "woman",
+            "english": "woman/lady",
             "notes": ""
         },
         {
@@ -3101,6 +3101,101 @@
             "conlang": "виyт",
             "english": "hole",
             "notes": ""
+        },
+        {
+            "conlang": "xhдთи",
+            "english": "receive",
+            "notes": ""
+        },
+        {
+            "conlang": "բaՑэн",
+            "english": "trade",
+            "notes": ""
+        },
+        {
+            "conlang": "тиδт",
+            "english": "trip",
+            "notes": "to trip over something"
+        },
+        {
+            "conlang": "кλчδc",
+            "english": "office",
+            "notes": "a room where someone formally does their work"
+        },
+        {
+            "conlang": "пpэζ",
+            "english": "row",
+            "notes": "an abstract row of objects"
+        },
+        {
+            "conlang": "иэч",
+            "english": "mouth",
+            "notes": ""
+        },
+        {
+            "conlang": "էyრaд",
+            "english": "exact",
+            "notes": ""
+        },
+        {
+            "conlang": "киλ",
+            "english": "die",
+            "notes": ""
+        },
+        {
+            "conlang": "ьეм",
+            "english": "least",
+            "notes": "the smallest one or example of"
+        },
+        {
+            "conlang": "кpэζтэд",
+            "english": "trouble",
+            "notes": ""
+        },
+        {
+            "conlang": "биyгpэ",
+            "english": "except",
+            "notes": ""
+        },
+        {
+            "conlang": "кяэбpи",
+            "english": "shout",
+            "notes": ""
+        },
+        {
+            "conlang": "բиэт",
+            "english": "join",
+            "notes": ""
+        },
+        {
+            "conlang": "тити",
+            "english": "seed",
+            "notes": "an organic seed which can grow a plant"
+        },
+        {
+            "conlang": "вypэн",
+            "english": "tone",
+            "notes": "the tone of one's speech, the manner of speaking"
+        },
+        {
+            "conlang": "dиpэ",
+            "english": "suggest",
+            "notes": ""
+        },
+        {
+            "conlang": "гpиμэc",
+            "english": "clean",
+            "notes": "to clean something or perform the action of cleaning"
+        },
+        {
+            "conlang": "вopqэт",
+            "english": "clean",
+            "notes": "the state of being clean"
+        },
+        {
+            "conlang": "кpэгaт",
+            "english": "break",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -3407,6 +3502,16 @@
         {
             "conlang": "aштyкэт",
             "english": "crease",
+            "notes": ""
+        },
+        {
+            "conlang": "pюфδც",
+            "english": "melody",
+            "notes": ""
+        },
+        {
+            "conlang": "дичэՑэ",
+            "english": "symbol",
             "notes": ""
         }
     ]
