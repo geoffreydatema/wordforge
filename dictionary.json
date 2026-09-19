@@ -628,7 +628,7 @@
             "notes": ""
         },
         {
-            "conlang": "жэвδьтьэ",
+            "conlang": "pиэчт",
             "english": "hello/greetings/greeting",
             "notes": "formal greeting or hello"
         },
@@ -3296,6 +3296,316 @@
             "conlang": "шюм",
             "english": "save",
             "notes": "to save someone or something from peril"
+        },
+        {
+            "conlang": "гpэкэc",
+            "english": "control",
+            "notes": "to control something"
+        },
+        {
+            "conlang": "нинэд",
+            "english": "fraction/fractional part",
+            "notes": "the fractional part of a number/the general concept of a fractional part"
+        },
+        {
+            "conlang": "ьეэт",
+            "english": "gentle",
+            "notes": ""
+        },
+        {
+            "conlang": "шλpa",
+            "english": "practice",
+            "notes": "to practice a skill"
+        },
+        {
+            "conlang": "гphc",
+            "english": "separate",
+            "notes": "independant, not connected"
+        },
+        {
+            "conlang": "кьδдap",
+            "english": "doctor, medical doctor",
+            "notes": "medical doctor"
+        },
+        {
+            "conlang": "чьycэ",
+            "english": "please",
+            "notes": "a term to politely ask for something"
+        },
+        {
+            "conlang": "xaчэpэт",
+            "english": "protect",
+            "notes": ""
+        },
+        {
+            "conlang": "пpaպa",
+            "english": "noon/midday",
+            "notes": ""
+        },
+        {
+            "conlang": "вoшa",
+            "english": "ring",
+            "notes": "finger jewelry"
+        },
+        {
+            "conlang": "яюpaтэк",
+            "english": "insect",
+            "notes": ""
+        },
+        {
+            "conlang": "xэμьэт",
+            "english": "detailed/intricate",
+            "notes": ""
+        },
+        {
+            "conlang": "λшՑaբa",
+            "english": "period/interval/time period",
+            "notes": ""
+        },
+        {
+            "conlang": "oէypтε",
+            "english": "radio",
+            "notes": "an audio only communication device"
+        },
+        {
+            "conlang": "гьyт",
+            "english": "atom",
+            "notes": ""
+        },
+        {
+            "conlang": "Ցoμэc",
+            "english": "human",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэтբиy",
+            "english": "history",
+            "notes": ""
+        },
+        {
+            "conlang": "тyэpш",
+            "english": "effect",
+            "notes": ""
+        },
+        {
+            "conlang": "pэzни",
+            "english": "electricity",
+            "notes": ""
+        },
+        {
+            "conlang": "вδчэт",
+            "english": "expect",
+            "notes": ""
+        },
+        {
+            "conlang": "тλբλ",
+            "english": "modern",
+            "notes": ""
+        },
+        {
+            "conlang": "шиբи",
+            "english": "crop",
+            "notes": "generally plants or food grown for consumption"
+        },
+        {
+            "conlang": "киг",
+            "english": "hit",
+            "notes": ""
+        },
+        {
+            "conlang": "чьyтpэ",
+            "english": "student",
+            "notes": ""
+        },
+        {
+            "conlang": "qaгэp",
+            "english": "corner",
+            "notes": ""
+        },
+        {
+            "conlang": "qoкэк",
+            "english": "bone",
+            "notes": ""
+        },
+        {
+            "conlang": "ьyьy",
+            "english": "party",
+            "notes": "a celebration gathering"
+        },
+        {
+            "conlang": "тэгoь",
+            "english": "supply",
+            "notes": "to supply someone or something with materials"
+        },
+        {
+            "conlang": "daкբa",
+            "english": "imagine",
+            "notes": ""
+        },
+        {
+            "conlang": "тэг",
+            "english": "rail",
+            "notes": ""
+        },
+        {
+            "conlang": "ьoпюд",
+            "english": "provide",
+            "notes": ""
+        },
+        {
+            "conlang": "cиyт",
+            "english": "agree",
+            "notes": ""
+        },
+        {
+            "conlang": "პoшoc",
+            "english": "chair",
+            "notes": ""
+        },
+        {
+            "conlang": "dpaгλ",
+            "english": "danger",
+            "notes": ""
+        },
+        {
+            "conlang": "პaкa",
+            "english": "muffin",
+            "notes": ""
+        },
+        {
+            "conlang": "ьaфaբэ",
+            "english": "fruit",
+            "notes": ""
+        },
+        {
+            "conlang": "миaμ",
+            "english": "rich/wealthy",
+            "notes": "having a lot of money"
+        },
+        {
+            "conlang": "вyкa",
+            "english": "thick",
+            "notes": ""
+        },
+        {
+            "conlang": "жaμ",
+            "english": "soldier",
+            "notes": ""
+        },
+        {
+            "conlang": "aθpэcьи",
+            "english": "process",
+            "notes": ""
+        },
+        {
+            "conlang": "гpyг",
+            "english": "guess",
+            "notes": "an attempt at stating something with limited or no knowledge"
+        },
+        {
+            "conlang": "чьэгpэ",
+            "english": "guess",
+            "notes": "to guess"
+        },
+        {
+            "conlang": "вλoт",
+            "english": "operate",
+            "notes": "to operate a device or machinery"
+        },
+        {
+            "conlang": "вpaцьэ",
+            "english": "create",
+            "notes": ""
+        },
+        {
+            "conlang": "виэч",
+            "english": "sharp",
+            "notes": ""
+        },
+        {
+            "conlang": "cиэpвa",
+            "english": "everyone",
+            "notes": ""
+        },
+        {
+            "conlang": "μyaբλ",
+            "english": "today",
+            "notes": ""
+        },
+        {
+            "conlang": "vиэ",
+            "english": "wing",
+            "notes": "the anatomical body part"
+        },
+        {
+            "conlang": "шqλтqo",
+            "english": "neighbour/neighbor",
+            "notes": ""
+        },
+        {
+            "conlang": "xapэ",
+            "english": "wash",
+            "notes": ""
+        },
+        {
+            "conlang": "вoкբoтиa",
+            "english": "bat",
+            "notes": "the animal"
+        },
+        {
+            "conlang": "цaμэ",
+            "english": "prefer/rather",
+            "notes": ""
+        },
+        {
+            "conlang": "qютoм",
+            "english": "crowd",
+            "notes": ""
+        },
+        {
+            "conlang": "daм",
+            "english": "corn",
+            "notes": "the vegetable"
+        },
+        {
+            "conlang": "пբиэт",
+            "english": "compare",
+            "notes": ""
+        },
+        {
+            "conlang": "яoxниa",
+            "english": "poem/poetry",
+            "notes": ""
+        },
+        {
+            "conlang": "пaжaт",
+            "english": "string",
+            "notes": ""
+        },
+        {
+            "conlang": "пиyт",
+            "english": "tube",
+            "notes": ""
+        },
+        {
+            "conlang": "бբэтки",
+            "english": "bell",
+            "notes": ""
+        },
+        {
+            "conlang": "вaдyp",
+            "english": "depend",
+            "notes": ""
+        },
+        {
+            "conlang": "кьyм",
+            "english": "meat",
+            "notes": ""
+        },
+        {
+            "conlang": "вaкьэ",
+            "english": "rub",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -3613,6 +3923,46 @@
             "conlang": "дичэՑэ",
             "english": "symbol",
             "notes": ""
+        },
+        {
+            "conlang": "coвpaн",
+            "english": "sovran/sovran alphabet",
+            "notes": "the name of the alphabet used to write tezhnor"
+        },
+        {
+            "conlang": "дpэч",
+            "english": "simulation",
+            "notes": ""
+        },
+        {
+            "conlang": "нεнoსтpэ",
+            "english": "practice",
+            "notes": "the established method of doing something"
+        },
+        {
+            "conlang": "эчиaж",
+            "english": "locate",
+            "notes": "search for or find in a physical place"
+        },
+        {
+            "conlang": "პopиaднδ",
+            "english": "character",
+            "notes": "the moral alignment of someone's personality"
+        },
+        {
+            "conlang": "вэякюpэ",
+            "english": "chemical element",
+            "notes": ""
+        },
+        {
+            "conlang": "oпբaт",
+            "english": "party",
+            "notes": "an organization, especially a military or political one"
+        },
+        {
+            "conlang": "кикբиպa",
+            "english": "capital",
+            "notes": "a capital city"
         }
     ]
 }
