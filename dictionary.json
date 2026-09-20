@@ -539,7 +539,7 @@
         },
         {
             "conlang": "мaპpoд",
-            "english": "matter/affair/event",
+            "english": "matter/affair",
             "notes": ""
         },
         {
@@ -2559,7 +2559,7 @@
         },
         {
             "conlang": "мpaz",
-            "english": "store",
+            "english": "store/shop",
             "notes": "any physical establishment where you can buy stuff"
         },
         {
@@ -3741,6 +3741,196 @@
             "conlang": "ьoдբλ",
             "english": "success",
             "notes": ""
+        },
+        {
+            "conlang": "кицэ",
+            "english": "subtract",
+            "notes": ""
+        },
+        {
+            "conlang": "εaжaд",
+            "english": "event",
+            "notes": "an organized gathering"
+        },
+        {
+            "conlang": "пεzეaд",
+            "english": "particular",
+            "notes": ""
+        },
+        {
+            "conlang": "тюպ",
+            "english": "deal",
+            "notes": ""
+        },
+        {
+            "conlang": "qэპpa",
+            "english": "swim",
+            "notes": ""
+        },
+        {
+            "conlang": "пբoдэж",
+            "english": "opposite",
+            "notes": ""
+        },
+        {
+            "conlang": "тyэнa",
+            "english": "wife",
+            "notes": ""
+        },
+        {
+            "conlang": "თиμ",
+            "english": "boot",
+            "notes": ""
+        },
+        {
+            "conlang": "тoc",
+            "english": "shoe",
+            "notes": ""
+        },
+        {
+            "conlang": "эьyн",
+            "english": "shoulder",
+            "notes": ""
+        },
+        {
+            "conlang": "ьaთэp",
+            "english": "spread",
+            "notes": ""
+        },
+        {
+            "conlang": "cջжиa",
+            "english": "arrange",
+            "notes": ""
+        },
+        {
+            "conlang": "кэтaк",
+            "english": "camp/encampment",
+            "notes": "an encampment"
+        },
+        {
+            "conlang": "пaსэт",
+            "english": "invent",
+            "notes": ""
+        },
+        {
+            "conlang": "жaф",
+            "english": "born",
+            "notes": ""
+        },
+        {
+            "conlang": "qaтьэpэc",
+            "english": "determine",
+            "notes": ""
+        },
+        {
+            "conlang": "пoէaк",
+            "english": "truck",
+            "notes": ""
+        },
+        {
+            "conlang": "пyнδн",
+            "english": "level",
+            "notes": "a level surface"
+        },
+        {
+            "conlang": "тэζэт",
+            "english": "noise",
+            "notes": ""
+        },
+        {
+            "conlang": "ცaшy",
+            "english": "chance",
+            "notes": ""
+        },
+        {
+            "conlang": "гэчт",
+            "english": "gather",
+            "notes": ""
+        },
+        {
+            "conlang": "нaжδн",
+            "english": "shop",
+            "notes": "to shop or browse goods for purchase"
+        },
+        {
+            "conlang": "zэպяδp",
+            "english": "stretch",
+            "notes": ""
+        },
+        {
+            "conlang": "ცэч",
+            "english": "throw",
+            "notes": ""
+        },
+        {
+            "conlang": "яиэт",
+            "english": "shine",
+            "notes": ""
+        },
+        {
+            "conlang": "кьopэμ",
+            "english": "property",
+            "notes": "any type of personal, corporate or governmental property"
+        },
+        {
+            "conlang": "бэткиa",
+            "english": "property",
+            "notes": "real estate"
+        },
+        {
+            "conlang": "тиyк",
+            "english": "select",
+            "notes": ""
+        },
+        {
+            "conlang": "шεш",
+            "english": "wrong",
+            "notes": ""
+        },
+        {
+            "conlang": "vyк",
+            "english": "grey/gray",
+            "notes": ""
+        },
+        {
+            "conlang": "питиaт",
+            "english": "repeat",
+            "notes": ""
+        },
+        {
+            "conlang": "вδμhპ",
+            "english": "require",
+            "notes": ""
+        },
+        {
+            "conlang": "бpoвa",
+            "english": "broad",
+            "notes": ""
+        },
+        {
+            "conlang": "cδრaн",
+            "english": "prepare",
+            "notes": ""
+        },
+        {
+            "conlang": "aжaд",
+            "english": "tomorrow",
+            "notes": ""
+        },
+        {
+            "conlang": "мич",
+            "english": "salt",
+            "notes": ""
+        },
+        {
+            "conlang": "вpэд",
+            "english": "nose",
+            "notes": ""
+        },
+        {
+            "conlang": "ьδպpиa",
+            "english": "plural",
+            "notes": ""
         }
     ],
     "level2+": [
@@ -4138,6 +4328,26 @@
             "conlang": "тьoгբэ",
             "english": "diagram",
             "notes": "a diagram focused on presenting visual or spatial information"
+        },
+        {
+            "conlang": "vэди",
+            "english": "terms",
+            "notes": "requirements which determine an agreement"
+        },
+        {
+            "conlang": "вaкaც",
+            "english": "column",
+            "notes": "a vertical assembly of data or items in a layout"
+        },
+        {
+            "conlang": "aθэμьyoн",
+            "english": "continent",
+            "notes": ""
+        },
+        {
+            "conlang": "ьyбьy",
+            "english": "molecule",
+            "notes": ""
         }
     ]
 }
