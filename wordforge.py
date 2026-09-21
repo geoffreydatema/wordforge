@@ -117,10 +117,10 @@ class LORE:
     SV = 'თ'
     ZV = 'რ'
     DV = 'ც'
-    PERIOD = '╷'
-    QUOTE = '╵'
-    OPEN = '└'
-    CLOSE = '┘'
+    TERMINATOR = '•'
+    QUOTE = "'"
+    BRACKET_OPEN = '['
+    BRACKET_CLOSE = ']'
 
 # Automatically map the conlang character (the variable name) to the filename (the value)
 CHAR_TO_FILENAME = {}
@@ -129,10 +129,10 @@ for attr in dir(DEFINITIONS):
         filename_prefix = getattr(DEFINITIONS, attr)
         CHAR_TO_FILENAME[attr] = filename_prefix
 
-CHAR_TO_FILENAME[LORE.PERIOD] = "period"
+CHAR_TO_FILENAME[LORE.TERMINATOR] = "terminator"
 CHAR_TO_FILENAME[LORE.QUOTE] = "quote"
-CHAR_TO_FILENAME[LORE.OPEN] = "open"
-CHAR_TO_FILENAME[LORE.CLOSE] = "close"
+CHAR_TO_FILENAME[LORE.BRACKET_OPEN] = "bracket_open"
+CHAR_TO_FILENAME[LORE.BRACKET_CLOSE] = "bracket_close"
 
 # Place this at the top of your file
 FONT_PROFILES = {
@@ -245,10 +245,10 @@ CHAR_WIDTHS = {
     LORE.KV: "advance_square",
     LORE.SV: "advance_wide",
     LORE.ZV: "advance_wide",
-    LORE.PERIOD: "advance_punctuation",
+    LORE.TERMINATOR: "advance_punctuation",
     LORE.QUOTE: "advance_punctuation",
-    LORE.OPEN: "advance_punctuation",
-    LORE.CLOSE: "advance_punctuation"
+    LORE.BRACKET_OPEN: "advance_punctuation",
+    LORE.BRACKET_CLOSE: "advance_punctuation"
 }
 
 class PRONUNCIATION:
@@ -383,7 +383,7 @@ HEADER_SIZE_CORRECTIONS = {}
 KEYBOARD_LAYOUT = [
     [('w', LORE.W), ('e', LORE.E), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.U), ('i', LORE.I), ('o', LORE.O), ('p', LORE.P)],
     [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.H), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
-    [('z', LORE.Z), ('x', LORE.KH), ('c', LORE.SZ), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.PERIOD)]
+    [('z', LORE.Z), ('x', LORE.KH), ('c', LORE.SZ), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.TERMINATOR)]
 ]
 
 LONG_VOWEL_MAP = {
@@ -762,17 +762,10 @@ class PhysicalKeyFilter(QObject):
                 
         # 2. Define the hidden punctuation binds
         punctuation_binds = {
-            '.': LORE.PERIOD,
+            '.': LORE.TERMINATOR,
             "'": LORE.QUOTE,
-            '"': LORE.QUOTE,
-            '(': LORE.OPEN,
-            '[': LORE.OPEN,
-            '{': LORE.OPEN,
-            '<': LORE.OPEN,
-            ')': LORE.CLOSE,
-            ']': LORE.CLOSE,
-            '}': LORE.CLOSE,
-            '>': LORE.CLOSE
+            '[': LORE.BRACKET_OPEN,
+            ']': LORE.BRACKET_CLOSE,
         }
         
         # 3. Merge them into the active key map
@@ -1435,17 +1428,10 @@ class Wordforge(QMainWindow):
 
         # 2. Define the punctuation mappings and ignored words
         punct_map = {
-            '.': LORE.PERIOD,
+            '.': LORE.TERMINATOR,
             "'": LORE.QUOTE,
-            '"': LORE.QUOTE,
-            '(': LORE.OPEN,
-            '[': LORE.OPEN,
-            '{': LORE.OPEN,
-            '<': LORE.OPEN,
-            ')': LORE.CLOSE,
-            ']': LORE.CLOSE,
-            '}': LORE.CLOSE,
-            '>': LORE.CLOSE
+            '[': LORE.BRACKET_OPEN,
+            ']': LORE.BRACKET_CLOSE,
         }
         
         IGNORED_WORDS = {"a", "an", "the"}
