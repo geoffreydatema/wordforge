@@ -307,7 +307,7 @@
         },
         {
             "conlang": "pэш",
-            "english": "all/total",
+            "english": "all",
             "notes": "universal scope operator"
         },
         {
@@ -1124,7 +1124,7 @@
         },
         {
             "conlang": "мaкapa",
-            "english": "mother",
+            "english": "mother/mom",
             "notes": ""
         },
         {
@@ -1144,7 +1144,7 @@
         },
         {
             "conlang": "киpдa",
-            "english": "father",
+            "english": "father/dad",
             "notes": ""
         },
         {
@@ -2614,7 +2614,7 @@
         },
         {
             "conlang": "иպpэ",
-            "english": "happy",
+            "english": "happy/glad",
             "notes": ""
         },
         {
@@ -3931,6 +3931,451 @@
             "conlang": "ьδպpиa",
             "english": "plural",
             "notes": ""
+        },
+        {
+            "conlang": "гբиaк",
+            "english": "anger",
+            "notes": ""
+        },
+        {
+            "conlang": "вoьдэ",
+            "english": "claim",
+            "notes": ""
+        },
+        {
+            "conlang": "жижa",
+            "english": "sugar",
+            "notes": ""
+        },
+        {
+            "conlang": "дoж",
+            "english": "death",
+            "notes": ""
+        },
+        {
+            "conlang": "vεтьэ",
+            "english": "skill",
+            "notes": ""
+        },
+        {
+            "conlang": "θpэcьэ",
+            "english": "season",
+            "notes": "a climate season experienced on the surface of a planet as a result of the planet's orbit"
+        },
+        {
+            "conlang": "иცoш",
+            "english": "match",
+            "notes": ""
+        },
+        {
+            "conlang": "пэдэкьδт",
+            "english": "magnet",
+            "notes": ""
+        },
+        {
+            "conlang": "вqoдьэ",
+            "english": "huge/massive",
+            "notes": ""
+        },
+        {
+            "conlang": "гиэζ",
+            "english": "silver",
+            "notes": "silver appearance or colour"
+        },
+        {
+            "conlang": "чoкoc",
+            "english": "silver",
+            "notes": "the element"
+        },
+        {
+            "conlang": "тac",
+            "english": "thanks",
+            "notes": ""
+        },
+        {
+            "conlang": "жиг",
+            "english": "thank",
+            "notes": "to thank someone"
+        },
+        {
+            "conlang": "кaдaш",
+            "english": "branch",
+            "notes": "a branch of a tree"
+        },
+        {
+            "conlang": "шюдьoв",
+            "english": "especially",
+            "notes": ""
+        },
+        {
+            "conlang": "кьэтвaчδ",
+            "english": "fig",
+            "notes": ""
+        },
+        {
+            "conlang": "цეaд",
+            "english": "afraid",
+            "notes": ""
+        },
+        {
+            "conlang": "яьэpэт",
+            "english": "sister",
+            "notes": "a biological sister"
+        },
+        {
+            "conlang": "ζицaд",
+            "english": "steel",
+            "notes": "broadly any type of steel like alloy"
+        },
+        {
+            "conlang": "мьэжэнy",
+            "english": "discuss",
+            "notes": ""
+        },
+        {
+            "conlang": "oшдy",
+            "english": "backward",
+            "notes": ""
+        },
+        {
+            "conlang": "aтьэв",
+            "english": "forward",
+            "notes": ""
+        },
+        {
+            "conlang": "qջμьε",
+            "english": "similar",
+            "notes": ""
+        },
+        {
+            "conlang": "гջтaш",
+            "english": "guide",
+            "notes": "to guide someone or something"
+        },
+        {
+            "conlang": "мьoкэц",
+            "english": "guide",
+            "notes": "a guide"
+        },
+        {
+            "conlang": "чидкьэ",
+            "english": "experience",
+            "notes": ""
+        },
+        {
+            "conlang": "пqэш",
+            "english": "score",
+            "notes": "an accumulated set of points representing accomplishments"
+        },
+        {
+            "conlang": "тaмλ",
+            "english": "score",
+            "notes": "to score a point or goal in a game"
+        },
+        {
+            "conlang": "μyвяэ",
+            "english": "apple",
+            "notes": "broadly any type of apple like fruit"
+        },
+        {
+            "conlang": "тpoчaн",
+            "english": "coat",
+            "notes": "the piece of clothing"
+        },
+        {
+            "conlang": "кьoпт",
+            "english": "card",
+            "notes": "a physical card, often having written information on it"
+        },
+        {
+            "conlang": "вoьop",
+            "english": "band",
+            "notes": "thin material wrapping around objects to bind them together"
+        },
+        {
+            "conlang": "пaრ",
+            "english": "rope",
+            "notes": ""
+        },
+        {
+            "conlang": "cэcэ",
+            "english": "slip",
+            "notes": ""
+        },
+        {
+            "conlang": "თиc",
+            "english": "win",
+            "notes": ""
+        },
+        {
+            "conlang": "пoкoж",
+            "english": "dream",
+            "notes": "a dream experienced while sleeping"
+        },
+        {
+            "conlang": "виэpэc",
+            "english": "evening",
+            "notes": ""
+        },
+        {
+            "conlang": "Ցaдэьэт",
+            "english": "condition",
+            "notes": "a state that must be met in order for something to proceed"
+        },
+        {
+            "conlang": "пьoт",
+            "english": "feed",
+            "notes": "to give food to someone or something"
+        },
+        {
+            "conlang": "azьэpвoн",
+            "english": "condition",
+            "notes": "the state of something, particularly whether it is in good or poor condition"
+        },
+        {
+            "conlang": "кaxэт",
+            "english": "tool",
+            "notes": ""
+        },
+        {
+            "conlang": "пaxaд",
+            "english": "total",
+            "notes": ""
+        },
+        {
+            "conlang": "кaбբa",
+            "english": "basic",
+            "notes": ""
+        },
+        {
+            "conlang": "qэтpaм",
+            "english": "smell",
+            "notes": "to smell"
+        },
+        {
+            "conlang": "θэპивaн",
+            "english": "valley",
+            "notes": ""
+        },
+        {
+            "conlang": "никբэ",
+            "english": "double",
+            "notes": ""
+        },
+        {
+            "conlang": "чaтьэc",
+            "english": "seat",
+            "notes": ""
+        },
+        {
+            "conlang": "твaպ",
+            "english": "master",
+            "notes": "to achieve a high level of skill in a particular area"
+        },
+        {
+            "conlang": "phтa",
+            "english": "parent",
+            "notes": ""
+        },
+        {
+            "conlang": "эსьε",
+            "english": "arrive",
+            "notes": ""
+        },
+        {
+            "conlang": "кэcч",
+            "english": "track",
+            "notes": "to track an object through space"
+        },
+        {
+            "conlang": "պэк",
+            "english": "track",
+            "notes": "a track that a vehicle travels along"
+        },
+        {
+            "conlang": "вεբyд",
+            "english": "instant",
+            "notes": ""
+        },
+        {
+            "conlang": "ьoшт",
+            "english": "shore",
+            "notes": ""
+        },
+        {
+            "conlang": "пpшaт",
+            "english": "division",
+            "notes": ""
+        },
+        {
+            "conlang": "μhшт",
+            "english": "sheet",
+            "notes": ""
+        },
+        {
+            "conlang": "кodдpoж",
+            "english": "original",
+            "notes": ""
+        },
+        {
+            "conlang": "чьэт",
+            "english": "connect",
+            "notes": ""
+        },
+        {
+            "conlang": "гaчyт",
+            "english": "post",
+            "notes": "a short vertical post installed in the ground or floor"
+        },
+        {
+            "conlang": "ьэт",
+            "english": "spend",
+            "notes": "to spend money"
+        },
+        {
+            "conlang": "qapв",
+            "english": "fat",
+            "notes": ""
+        },
+        {
+            "conlang": "պэz",
+            "english": "share",
+            "notes": ""
+        },
+        {
+            "conlang": "вaxт",
+            "english": "bread",
+            "notes": ""
+        },
+        {
+            "conlang": "яaвyя",
+            "english": "proper",
+            "notes": ""
+        },
+        {
+            "conlang": "кδчэт",
+            "english": "charge",
+            "notes": "to charge with electricity"
+        },
+        {
+            "conlang": "жyдբa",
+            "english": "charge",
+            "notes": "to charge money"
+        },
+        {
+            "conlang": "vδм",
+            "english": "bar",
+            "notes": "the abstract shape of a bar"
+        },
+        {
+            "conlang": "дaբλ",
+            "english": "offer",
+            "notes": ""
+        },
+        {
+            "conlang": "бyчэ",
+            "english": "duck",
+            "notes": "any type of duck"
+        },
+        {
+            "conlang": "ьεкьεд",
+            "english": "market",
+            "notes": "an indoor or outdoor gathering of small sellers"
+        },
+        {
+            "conlang": "ջчpэը",
+            "english": "chick",
+            "notes": "a young chicken"
+        },
+        {
+            "conlang": "μиcи",
+            "english": "degree/extent",
+            "notes": "the extent of something"
+        },
+        {
+            "conlang": "λը",
+            "english": "dear",
+            "notes": "important or special, especially of a person"
+        },
+        {
+            "conlang": "гpиэպ",
+            "english": "enemy",
+            "notes": ""
+        },
+        {
+            "conlang": "aтэէa",
+            "english": "reply",
+            "notes": ""
+        },
+        {
+            "conlang": "кьэζ",
+            "english": "drink",
+            "notes": "to drink"
+        },
+        {
+            "conlang": "мюp",
+            "english": "happen/occur",
+            "notes": ""
+        },
+        {
+            "conlang": "μити",
+            "english": "support",
+            "notes": "to support someone or something"
+        },
+        {
+            "conlang": "эთиэт",
+            "english": "speech",
+            "notes": "a speech given by someone"
+        },
+        {
+            "conlang": "тoжqaн",
+            "english": "nature",
+            "notes": "natural planetary features, as opposed to constructed infrastructure"
+        },
+        {
+            "conlang": "гэpэμьэ",
+            "english": "range",
+            "notes": ""
+        },
+        {
+            "conlang": "vavш",
+            "english": "steam",
+            "notes": ""
+        },
+        {
+            "conlang": "жиoятpa",
+            "english": "motion",
+            "notes": ""
+        },
+        {
+            "conlang": "ьyэт",
+            "english": "path",
+            "notes": "a path that something follows"
+        },
+        {
+            "conlang": "мaжoнoя",
+            "english": "liquid",
+            "notes": ""
+        },
+        {
+            "conlang": "кyж",
+            "english": "log",
+            "notes": "a log made from a tree"
+        },
+        {
+            "conlang": "гиμ",
+            "english": "tooth",
+            "notes": ""
+        },
+        {
+            "conlang": "кpaպт",
+            "english": "shell",
+            "notes": ""
+        },
+        {
+            "conlang": "мьoдэж",
+            "english": "neck",
+            "notes": "the body part"
         }
     ],
     "level2+": [
@@ -4026,8 +4471,8 @@
         },
         {
             "conlang": "чyζюцьhц",
-            "english": "a person you enjoy doing activities with, but not talking to them, an action only friend",
-            "notes": ""
+            "english": "action only friend",
+            "notes": "a person you enjoy doing activities with, but not talking to them, an action only friend"
         },
         {
             "conlang": "phнтεв",
@@ -4347,6 +4792,86 @@
         {
             "conlang": "ьyбьy",
             "english": "molecule",
+            "notes": ""
+        },
+        {
+            "conlang": "vqэгьaт",
+            "english": "oxygen",
+            "notes": ""
+        },
+        {
+            "conlang": "яyжэнoд",
+            "english": "suffix",
+            "notes": "a character suffix of a word"
+        },
+        {
+            "conlang": "პoч",
+            "english": "mass",
+            "notes": "the mass of an object"
+        },
+        {
+            "conlang": "кpэчтьэ",
+            "english": "card",
+            "notes": "a card element on a digital user interface"
+        },
+        {
+            "conlang": "вopoмoни",
+            "english": "vision/dream/plan",
+            "notes": "ambitions, visionary plans"
+        },
+        {
+            "conlang": "вoжнoдьλ",
+            "english": "station/facility",
+            "notes": ""
+        },
+        {
+            "conlang": "oცop",
+            "english": "favour/favor",
+            "notes": ""
+        },
+        {
+            "conlang": "hպвэч",
+            "english": "chord",
+            "notes": "a chord of auditory tones, a musical chord"
+        },
+        {
+            "conlang": "μэдzдo",
+            "english": "segment",
+            "notes": ""
+        },
+        {
+            "conlang": "вaպьэк",
+            "english": "slave",
+            "notes": ""
+        },
+        {
+            "conlang": "гьεpтyoн",
+            "english": "population",
+            "notes": ""
+        },
+        {
+            "conlang": "ьэრюдaнa",
+            "english": "populate",
+            "notes": "to populate with living creatures"
+        },
+        {
+            "conlang": "кqapպ",
+            "english": "market",
+            "notes": "a broader market for a particular good or service in an economy"
+        },
+        {
+            "conlang": "ცaчyтьэ",
+            "english": "nature",
+            "notes": "someone's nature"
+        },
+        {
+            "conlang": "aպвиμocнa",
+            "english": "addition",
+            "notes": "the fact something was added"
+        },
+        {
+            "conlang": "qλთδдaдьэ",
+            "english": "quotient",
             "notes": ""
         }
     ]
