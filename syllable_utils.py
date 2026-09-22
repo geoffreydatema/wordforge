@@ -5,7 +5,7 @@ import json
 CONSONANTS = [
     "б", "в", "г", "д", "z", "к", "я", "м", "н", "п", "p", "c", "т", "v", "x", 
     "q", "ь", "μ", "ж", "ч", "ш", "θ", "d", "ф", "ը", "բ", "ζ", "Ց", "ц", "პ", 
-    "ს", "պ", "է", "თ", "რ"
+    "ს", "պ", "է", "თ", "რ", "ც"
 ]
 
 VOWELS = [
@@ -19,33 +19,83 @@ def get_file(path):
     return dictionary
 
 def get_syllables(word):
-    syllable = ""
-    position = 0
-    while position < len(word):
-        character = word[position]
+    syllables = []
+    remainder = word
 
-        # C+V
-        if character in CONSONANTS:
-            print("found c")
-            # pass in word, return (word remainder, syllable)
+    while len(remainder) > 0:
 
-        # V
-        if character in VOWELS:
-            print("found v")
-            # pass in word, return (word remainder, syllable)
+        if len(remainder) > 0:
+            if remainder[0] in CONSONANTS:
+                syllable = ""
+                remainder_position = 0
+                while len(remainder) > 0:
+                    if len(remainder) > 1:
+                        if remainder[remainder_position + 1] in CONSONANTS:
+                            word_end = remainder[remainder_position + 1:]
+                            consonant_cluster = True
+                            for c in word_end:
+                                if c in VOWELS:
+                                    consonant_cluster = False
+                            if consonant_cluster:
+                                syllable += remainder
+                                remainder = ""
+                                break # C+VC+
+                        
+                        if remainder[remainder_position] in VOWELS:
+                            syllable += remainder[remainder_position]
+                            remainder = remainder[1:]
+                            break # C+V
+                        
+                    syllable += remainder[remainder_position]
+                    remainder = remainder[1:]
 
-            # for this branch, it could be V or VC+
+                syllables.append(syllable)
 
-        position += 1
+        if len(remainder) > 0:
+            if remainder[0] in VOWELS:
+                syllable = ""
+                remainder_position = 0
+                while len(remainder) > 0:
+                    if remainder[remainder_position] in VOWELS:
+                        if len(remainder) > 1:
+                            if remainder[remainder_position + 1] in VOWELS:
+                                syllable += remainder[remainder_position]
+                                remainder = remainder[1:]
+                                break # V
+                        else:
+                            syllable += remainder[remainder_position]
+                            remainder = remainder[1:]
+                            break # V at end of word
+
+                        syllable += remainder[remainder_position]
+                        remainder = remainder[1:]
+
+                    elif remainder[remainder_position] in CONSONANTS:
+                        if len(remainder) > 1:
+                            if remainder[remainder_position + 1] in VOWELS:
+                                syllable += remainder[remainder_position]
+                                remainder = remainder[1:]
+                                break # VC+
+                            
+                        else:
+                            syllable += remainder[remainder_position]
+                            remainder = remainder[1:]
+                            break # VC+ at end of word
+
+                        syllable += remainder[remainder_position]
+                        remainder = remainder[1:]
+
+
+                syllables.append(syllable)
+    
+    return syllables
 
 def count_syllables(dictionary):
     for level in dictionary:
         for definition in dictionary.get(level):
             current_word = definition.get("conlang")
             syllables = get_syllables(current_word)
-
-            break
-        break
+            print(syllables)
 
 def get_syllable_list():
     syllable_list = []
@@ -57,4 +107,3 @@ def get_syllable_list():
 
 if __name__ == "__main__":
     syllables = get_syllable_list()
-    print(syllables)
