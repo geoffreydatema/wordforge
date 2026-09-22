@@ -107,8 +107,10 @@ def count_syllables(dictionary):
 def get_syllable_list():
     dictionary = get_file("dictionary.json")
     unsorted_frequencies = count_syllables(dictionary)
-    sorted_frequencies = dict(sorted(unsorted_frequencies.items(), key=lambda item: item[1], reverse=True))
-    print(sorted_frequencies)
+    sorted_frequencies = dict(sorted(unsorted_frequencies.items(), key=lambda item: item[1]))
+
+    for f in sorted_frequencies.items():
+        print(f"{f[0]}\t{f[1]}")
 
 if __name__ == "__main__":
     get_syllable_list()
