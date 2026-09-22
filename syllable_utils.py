@@ -91,19 +91,24 @@ def get_syllables(word):
     return syllables
 
 def count_syllables(dictionary):
+    syllable_frequencies = {}
     for level in dictionary:
         for definition in dictionary.get(level):
             current_word = definition.get("conlang")
             syllables = get_syllables(current_word)
-            print(syllables)
+            for s in syllables:
+                if s in syllable_frequencies.keys():
+                    syllable_frequencies[s] += 1
+                else:
+                    syllable_frequencies[s] = 1
+
+    return syllable_frequencies
 
 def get_syllable_list():
-    syllable_list = []
-
     dictionary = get_file("dictionary.json")
-    count_syllables(dictionary)
-
-    return syllable_list
+    unsorted_frequencies = count_syllables(dictionary)
+    sorted_frequencies = dict(sorted(unsorted_frequencies.items(), key=lambda item: item[1], reverse=True))
+    print(sorted_frequencies)
 
 if __name__ == "__main__":
-    syllables = get_syllable_list()
+    get_syllable_list()
