@@ -4203,7 +4203,7 @@
             "notes": ""
         },
         {
-            "conlang": "пpшaт",
+            "conlang": "пpэшaт",
             "english": "division",
             "notes": ""
         },
@@ -4376,6 +4376,11 @@
             "conlang": "мьoдэж",
             "english": "neck",
             "notes": "the body part"
+        },
+        {
+            "conlang": "ишгиэд",
+            "english": "iron star language",
+            "notes": "the official imperial language of the Iron Star empire"
         }
     ],
     "level2+": [
