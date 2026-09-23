@@ -1,0 +1,41 @@
+шигэьэд pure vowels
+    aэoλиy
+
+шигэьэд converts the following missing тэжнop vowels into other vowels
+    h -> y
+    ю -> э
+    ջ -> э
+    δ -> o
+    ε -> o
+    ე -> λ
+
+шигэьэд pure consonants
+    бвгдzкямнпpcтxqьμжчшцպըէთც
+
+шигэьэд converts missing тэжнop consonants into other consonants
+    v -> x
+    θ -> x
+    d -> д
+    ф -> н
+    բ -> p
+    ζ -> ш
+    Ց -> x
+    პ -> c
+    ს -> к
+    რ -> თ
+
+There are no characters for a single vowel sound. тэжнop words beginning with a single vowel syllable can be approximated by starting the word with:
+    - ьa
+    - ьэ
+    - ьo
+    - λь
+    - иь
+    - yq
+
+шигэьэд syllables
+    - ьa
+    - ьэ
+    - ьo
+    - λь
+    - иь
+    - yq

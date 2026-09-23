@@ -1,0 +1,16 @@
+If a word contains a sound produced by one of the complex consonants, that single consonant must be used.
+    - "тc" must be "ц"
+    - "cт" must be "პ"
+    - "кc" must be "ს"
+    - "cк" must be "պ"
+    - "кp" must be "ը"
+    - "кв" must be "է"
+    - "cв" must be "თ"
+    - "zв" must be "რ"
+    - "дв" must be "ც"
+
+Double letters don't add any sound or phonetic modification to the word, and may not be used.
+
+Vowels may not be combined. Many vowel combinations are too awkward to pronounce (such as "ջэ") but others such as "иэ" must be spelled "иьэ" to clearly distinguish each syllable.
+
+Single vowel syllables are allowed only at the start of a word. Because vowel combinations are not allowed mid word, every other syllable is multi character.
