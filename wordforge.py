@@ -55,7 +55,7 @@ class DEFINITIONS:
     θ = 'th'
     d = 'dh'
     ф = 'ng'
-    ը = 'nd'
+    ը = 'kr'
     բ = 'rr'    # rolled r
     ζ = 'sz'    # tongue forward sh
     Ց = 'h'     # soft h
@@ -105,7 +105,7 @@ class LORE:
     TH = 'θ'
     DH = 'd'
     NG = 'ф'
-    ND = 'ը'
+    KR = 'ը'
     RR = 'բ'
     SZ = 'ζ'
     H = 'Ց'
@@ -288,7 +288,7 @@ class PRONUNCIATION:
     TH = 'th'
     DH = 'TH'
     NG = 'ng'
-    ND = 'nd'
+    KR = 'kr'
     RR = 'rr'
     SZ = 'sz'
     H = 'h'
@@ -314,7 +314,7 @@ VOWELS = [
 CONSONANTS = [
     LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, LORE.KH,
     LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, LORE.ZH, LORE.CH,
-    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.ND, LORE.RR, LORE.SZ, LORE.H, LORE.TS,
+    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.KR, LORE.RR, LORE.SZ, LORE.H, LORE.TS,
     LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
 ]
 
@@ -355,7 +355,7 @@ ALPHABET_DEFS = [
     (LORE.TH, "th", "unvoiced th as in think"),
     (LORE.DH, "TH", "voiced th as in this"),
     (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
-    (LORE.ND, "nd", ""),
+    (LORE.KR, "kr", ""),
     (LORE.RR, "r", "rolled r"),
     (LORE.SZ, "sh", "tongue forward sh"),
     (LORE.H, "h", "soft h"),
@@ -394,7 +394,7 @@ COMBO_MAP = {
     "ay": LORE.AY, "ee": LORE.EE, "iy": LORE.IY, "ow": LORE.OW, "oo": LORE.OO,
     "oe": LORE.OE, "ue": LORE.UE,
     "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
-    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "nd": LORE.ND,
+    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "kr": LORE.KR,
     "rr": LORE.RR,
     "ts": LORE.TS, "st": LORE.ST,
     "ks": LORE.KS, "sk": LORE.SK,
