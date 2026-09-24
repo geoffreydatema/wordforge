@@ -1,3 +1,133 @@
+шигэьэд syllables
+    ьэ  
+    pa  
+    кa  
+    дa  
+    ьa  
+    тэ  
+    ти  
+    мэ  
+    pэ  
+    нa  
+    ըэ  
+    вa  
+    тa  
+    ви  
+    чэ  
+    ьэт 
+    pи  
+    вo  
+    ьy  
+    cэ  
+    мa  
+    ми  
+    нэ  
+    ни  
+    ըa  
+    жэ  
+    пa  
+    ди  
+    ки  
+    шa  
+    вэ  
+    гэ  
+    ьaд 
+    жи  
+    xa  
+    цэ  
+    чa  
+    кo  
+    пo  
+    պa  
+    мo  
+    чи  
+    гpи 
+    дэ  
+    ცэ  
+    дьэ 
+    тy  
+    co  
+    нo  
+    гpa 
+    бэ  
+    ცи  
+    ըи  
+    po  
+    яэ  
+    ცa  
+    гpэ 
+    тьэ 
+    μи  
+    xэ  
+    дy  
+    цa  
+    cи  
+    яa  
+    ши  
+    ьaт 
+    qэ  
+    պи  
+    яy  
+    пэ  
+    пи  
+    μэ  
+    ьo  
+    qa  
+    вy  
+    zи  
+    cy  
+    py  
+    жa  
+    жнa 
+    poн 
+    ըy  
+    гa  
+    би  
+    pэт 
+    дpэ 
+    էy  
+    თэ  
+    zэ  
+    cьэ 
+    дэт 
+    պэ  
+    кэт 
+    кэ  
+    պpэ 
+    ги  
+    ьэч 
+    ьэд 
+    ьyт 
+    кьэ 
+    pтy 
+    жaт
+    ьλ
+    ьи
+    ьy
+    zьэ 
+    кy  
+    էa  
+    za  
+    zэн 
+    шy  
+    თaт 
+    кoc 
+    яo  
+    дpa 
+    zнэ
+    cнa 
+    თин 
+    диp 
+    яи  
+    xy  
+    xaд
+    ca  
+    paд 
+    պo  
+    ცλ 
+    жэт
+    თи
+
 шигэьэд pure vowels
     aэoλиy
 
@@ -28,14 +158,8 @@ There are no characters for a single vowel sound. тэжнop words beginning wit
     - ьa
     - ьэ
     - ьo
-    - λь
-    - иь
-    - yq
+    - ьλ
+    - ьи
+    - ьy
 
-шигэьэд syllables
-    - ьa
-    - ьэ
-    - ьo
-    - λь
-    - иь
-    - yq
+Every syllable in шигэьэд is CV

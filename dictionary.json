@@ -6,7 +6,7 @@
             "notes": "state/existence"
         },
         {
-            "conlang": "иz",
+            "conlang": "zи",
             "english": "many/several",
             "notes": "plural operator"
         },
@@ -41,7 +41,7 @@
             "notes": "3rd person feminine"
         },
         {
-            "conlang": "პoт",
+            "conlang": "პo",
             "english": "it",
             "notes": "3rd person neuter / object"
         },
@@ -51,12 +51,12 @@
             "notes": "3rd person plural"
         },
         {
-            "conlang": "эц",
+            "conlang": "цэ",
             "english": "this",
             "notes": "proximal entity pointer"
         },
         {
-            "conlang": "штэ",
+            "conlang": "штa",
             "english": "that",
             "notes": "distal entity pointer"
         },
@@ -101,7 +101,7 @@
             "notes": "interrogative (method/manner)"
         },
         {
-            "conlang": "ջтջ",
+            "conlang": "тջc",
             "english": "which",
             "notes": "interrogative (selection)"
         },
@@ -151,7 +151,7 @@
             "notes": ""
         },
         {
-            "conlang": "ит",
+            "conlang": "ти",
             "english": "in",
             "notes": "interior spatial anchor"
         },
@@ -201,7 +201,7 @@
             "notes": ""
         },
         {
-            "conlang": "բδp",
+            "conlang": "բδ",
             "english": "out of/made of",
             "notes": ""
         },
@@ -226,7 +226,7 @@
             "notes": ""
         },
         {
-            "conlang": "шяջ",
+            "conlang": "шяэ",
             "english": "since",
             "notes": ""
         },
@@ -256,7 +256,7 @@
             "notes": ""
         },
         {
-            "conlang": "aд",
+            "conlang": "ви",
             "english": "and",
             "notes": "conjunction (additive)"
         },
@@ -291,7 +291,7 @@
             "notes": "affirmation statement"
         },
         {
-            "conlang": "ньy",
+            "conlang": "ըa",
             "english": "no",
             "notes": "negation statement"
         },
@@ -366,7 +366,7 @@
             "notes": "negative scalar operator"
         },
         {
-            "conlang": "ըa",
+            "conlang": "სa",
             "english": "than",
             "notes": ""
         },
@@ -431,7 +431,7 @@
             "notes": ""
         },
         {
-            "conlang": "yт",
+            "conlang": "тy",
             "english": "position/location",
             "notes": ""
         },
@@ -618,7 +618,7 @@
             "notes": "to show something"
         },
         {
-            "conlang": "ეдδՑy",
+            "conlang": "ეдδՑa",
             "english": "nail",
             "notes": "a hard spike or rivet used to connect materials together"
         },
@@ -1058,7 +1058,7 @@
             "notes": ""
         },
         {
-            "conlang": "иպ",
+            "conlang": "պи",
             "english": "go",
             "notes": ""
         },
@@ -1548,7 +1548,7 @@
             "notes": "ordinary, uninteresting"
         },
         {
-            "conlang": "эპвpaн",
+            "conlang": "эპpaн",
             "english": "usual",
             "notes": ""
         },
@@ -1703,7 +1703,7 @@
             "notes": ""
         },
         {
-            "conlang": "oպ",
+            "conlang": "պo",
             "english": "south",
             "notes": ""
         },
@@ -1778,7 +1778,7 @@
             "notes": ""
         },
         {
-            "conlang": "эткнaдo",
+            "conlang": "экнaдo",
             "english": "remember",
             "notes": ""
         },
@@ -4620,7 +4620,7 @@
             "notes": "physical exercise for the body"
         },
         {
-            "conlang": "этըyтa",
+            "conlang": "эըyтa",
             "english": "paragraph",
             "notes": ""
         },

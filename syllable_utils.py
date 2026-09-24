@@ -53,61 +53,40 @@ def get_syllables(word):
 
         if len(remainder) > 0:
             if remainder[0] in VOWELS:
-                syllable = ""
-                remainder_position = 0
-                while len(remainder) > 0:
-                    if remainder[remainder_position] in VOWELS:
-                        if len(remainder) > 1:
-                            if remainder[remainder_position + 1] in VOWELS:
-                                syllable += remainder[remainder_position]
-                                remainder = remainder[1:]
-                                break # V
-                        else:
-                            syllable += remainder[remainder_position]
-                            remainder = remainder[1:]
-                            break # V at end of word
-
-                        syllable += remainder[remainder_position]
-                        remainder = remainder[1:]
-
-                    elif remainder[remainder_position] in CONSONANTS:
-                        if len(remainder) > 1:
-                            if remainder[remainder_position + 1] in VOWELS:
-                                syllable += remainder[remainder_position]
-                                remainder = remainder[1:]
-                                break # VC+
-                            
-                        else:
-                            syllable += remainder[remainder_position]
-                            remainder = remainder[1:]
-                            break # VC+ at end of word
-
-                        syllable += remainder[remainder_position]
-                        remainder = remainder[1:]
-
+                syllable = remainder[0]
+                remainder = remainder[1:]
 
                 syllables.append(syllable)
     
     return syllables
 
 def count_syllables(dictionary):
+    syllable_sets = []
     syllable_frequencies = {}
+
     for level in dictionary:
         for definition in dictionary.get(level):
             current_word = definition.get("conlang")
-            syllables = get_syllables(current_word)
-            for s in syllables:
+            syllable = get_syllables(current_word)
+            syllable_sets.append(syllable)
+            
+            for s in syllable:
                 if s in syllable_frequencies.keys():
                     syllable_frequencies[s] += 1
                 else:
                     syllable_frequencies[s] = 1
 
-    return syllable_frequencies
+    return (syllable_sets, syllable_frequencies)
 
 def get_syllable_list():
     dictionary = get_file("dictionary.json")
-    unsorted_frequencies = count_syllables(dictionary)
+    count_result = count_syllables(dictionary)
+    syllables = count_result[0]
+    unsorted_frequencies = count_result[1]
     sorted_frequencies = dict(sorted(unsorted_frequencies.items(), key=lambda item: item[1], reverse=True))
+
+    # for s in syllables:
+    #     print(s)
 
     c = 0
     for f in sorted_frequencies.items():
@@ -116,5 +95,9 @@ def get_syllable_list():
         if c == 128:
             print("----------------------------")
 
+def romanize():
+    dictionary = get_file("shigeyed_syllables.txt")
+
 if __name__ == "__main__":
     get_syllable_list()
+    # romanize()
