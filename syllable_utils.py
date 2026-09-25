@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-# aэջohλиეεyδюбвгдzкямнпpcтvxqьμжчшθdфըբζՑцპსպէთრც
+# aэջohλиეεyδюбвгдzкямнпpcтvxqьμՑжчшθdфըբζцპსպէთრც
 
 CONSONANTS = [
     "б", "в", "г", "д", "z", "к", "я", "м", "н", "п", "p", "c", "т", "v", "x", 
@@ -188,9 +188,11 @@ def romanize():
         for character in syllable:
             romanized += DEFINITIONS[character]
         romanized_syllables.append(romanized)
-    # print(romanized_syllables)
-    rename_images_to_names("C:/Working/TezhnorAlphabet/syllabary", romanized_syllables)
+    print(romanized_syllables)
+    # rename_images_to_names("C:/Working/TezhnorAlphabet/syllabary", romanized_syllables)
 
 if __name__ == "__main__":
     # get_syllable_list()
     romanize()
+
+    #@! add shigeyed typing to wordforge
