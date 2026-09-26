@@ -21,11 +21,6 @@
             "notes": "1st person singular"
         },
         {
-            "conlang": "яε",
-            "english": "we/us",
-            "notes": "1st person plural"
-        },
-        {
             "conlang": "шa",
             "english": "you",
             "notes": "2nd person"
@@ -459,6 +454,11 @@
             "conlang": "pa",
             "english": "ly/described as/described by",
             "notes": ""
+        },
+        {
+            "conlang": "яa",
+            "english": "we/us",
+            "notes": "1st person plural"
         }
     ],
     "level1": [

@@ -18,123 +18,30 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 #       
 # ========================================================
 
-class DEFINITIONS:
-    a = 'a'     # short a
-    э = 'e'     # short e
-    ջ = 'i'     # short i
-    o = 'o'     # short o
-    h = 'u'     # short u
-    λ = 'ay'    # long a
-    и = 'ee'    # long e
-    ე = 'eye'   # long i
-    ε = 'oh'    # long o
-    y = 'oo'    # oo as in poop
-    δ = 'oe'    # oe as in put
-    ю = 'ue'    # ы
-    б = 'b'
-    в = 'v'
-    г = 'g'
-    д = 'd'
-    z = 'z'
-    к = 'k'
-    я = 'l' 
-    м = 'm'
-    н = 'n'
-    п = 'p'
-    p = 'r'
-    c = 's'
-    т = 't'
-    v = 'f'
-    x = 'kh'    # hard h
-    q = 'w'
-    ь = 'y'
-    μ = 'j'
-    ж = 'zh'
-    ч = 'ch'
-    ш = 'sh'    # tongue back sh
-    θ = 'th'
-    d = 'dh'
-    ф = 'ng'
-    ը = 'kr'
-    բ = 'rr'    # rolled r
-    ζ = 'sz'    # tongue forward sh
-    Ց = 'h'     # soft h
-    ц = 'ts'
-    პ = 'st'
-    ს = 'ks'
-    պ = 'sk'
-    է = 'kv'
-    თ = 'sv'
-    რ = 'zv'
-    ც = 'dv'
+def load_spec():
+    try:
+        with open('tezhnor_spec.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Failed to load tezhnor_spec.json: {e}")
+        sys.exit(1)
 
-class LORE:
-    A = 'a'
-    E = 'э'
-    I = 'ջ'
-    O = 'o'
-    U = 'h'
-    AY = 'λ'
-    EE = 'и'
-    IY = 'ე'
-    OW = 'ε'
-    OO = 'y'
-    OE = 'δ'
-    UE = 'ю'
-    B = 'б'
-    V = 'в'
-    G = 'г'
-    D = 'д'
-    Z = 'z'
-    K = 'к'
-    L = 'я' 
-    M = 'м'
-    N = 'н'
-    P = 'п'
-    R = 'p'
-    C = 'c'
-    T = 'т'
-    F = 'v'
-    KH = 'x'
-    W = 'q'
-    Y = 'ь'
-    J = 'μ'
-    ZH = 'ж'
-    CH = 'ч'
-    SH = 'ш'
-    TH = 'θ'
-    DH = 'd'
-    NG = 'ф'
-    KR = 'ը'
-    RR = 'բ'
-    SZ = 'ζ'
-    H = 'Ց'
-    TS = 'ц'
-    ST = 'პ'
-    KS = 'ს'
-    SK = 'պ'
-    KV = 'է'
-    SV = 'თ'
-    ZV = 'რ'
-    DV = 'ც'
-    TERMINATOR = '•'
-    QUOTE = "'"
-    BRACKET_OPEN = '['
-    BRACKET_CLOSE = ']'
+SPEC = load_spec()
 
-# Automatically map the conlang character (the variable name) to the filename (the value)
-CHAR_TO_FILENAME = {}
-for attr in dir(DEFINITIONS):
-    if not attr.startswith('__') and not callable(getattr(DEFINITIONS, attr)):
-        filename_prefix = getattr(DEFINITIONS, attr)
-        CHAR_TO_FILENAME[attr] = filename_prefix
+TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
+CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
+SYMBOLS = SPEC["symbols"]
+VOWELS = SPEC["vowels"]
+CONSONANTS = SPEC["consonants"]
 
-CHAR_TO_FILENAME[LORE.TERMINATOR] = "terminator"
-CHAR_TO_FILENAME[LORE.QUOTE] = "quote"
-CHAR_TO_FILENAME[LORE.BRACKET_OPEN] = "bracket_open"
-CHAR_TO_FILENAME[LORE.BRACKET_CLOSE] = "bracket_close"
+# Automatically map the conlang character to the filename (for the renderer)
+CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
+for sym_name, sym_char in SYMBOLS.items():
+    CHAR_TO_FILENAME[sym_char] = sym_name
 
-# Place this at the top of your file
+# For the word generator pronunciation mapping
+LORE_TO_PRON = TEZHNOR_TO_CODE.copy()
+
 FONT_PROFILES = {
     "Rounded Regular": {
         "dir": "fonts/tezhnor_rounded_regular",
@@ -231,174 +138,46 @@ FONT_PROFILES = {
 CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[0]
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
-CHAR_WIDTHS = {
-    # Wide & Square Characters
-    LORE.O: "advance_square",
-    LORE.UE: "advance_square",
-    LORE.D: "advance_square",
-    LORE.M: "advance_square",
-    LORE.ZH: "advance_wide",
-    LORE.SH: "advance_wide",
-    LORE.TH: "advance_square",
-    LORE.SK: "advance_wide",
-    LORE.TS: "advance_square",
-    LORE.KV: "advance_square",
-    LORE.SV: "advance_wide",
-    LORE.ZV: "advance_wide",
-    LORE.TERMINATOR: "advance_punctuation",
-    LORE.QUOTE: "advance_punctuation",
-    LORE.BRACKET_OPEN: "advance_punctuation",
-    LORE.BRACKET_CLOSE: "advance_punctuation"
-}
-
-class PRONUNCIATION:
-    A = 'a'
-    E = 'e'
-    I = 'i'
-    O = 'o'
-    U = 'u'
-    AY = 'ay'
-    EE = 'ee'
-    IY = 'iy'
-    OW = 'ow'
-    OO = 'oo'
-    OE = 'oe'
-    UE = 'ue'
-    B = 'b'
-    V = 'v'
-    G = 'g'
-    D = 'd'
-    Z = 'z'
-    K = 'k'
-    L = 'l' 
-    M = 'm'
-    N = 'n'
-    P = 'p'
-    R = 'r'
-    C = 's'
-    T = 't'
-    F = 'f'
-    KH = 'kh'
-    W = 'w'
-    Y = 'y'
-    J = 'j'
-    ZH = 'zh'
-    CH = 'ch'
-    SH = 'sh'
-    TH = 'th'
-    DH = 'TH'
-    NG = 'ng'
-    KR = 'kr'
-    RR = 'rr'
-    SZ = 'sz'
-    H = 'h'
-    TS = 'ts'
-    ST = 'st'
-    KS = 'ks'
-    SK = 'sk'
-    KV = 'kv'
-    SV = 'sv'
-    ZV = 'zv'
-    DV = 'dv'
-
-# ==========================================
-#           LORE CONFIGURATION
-# ==========================================
-
-VOWELS = [
-    LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, 
-    LORE.AY, LORE.EE, LORE.IY, LORE.OW, LORE.OO, 
-    LORE.OE, LORE.UE
-]
-
-CONSONANTS = [
-    LORE.W, LORE.P, LORE.T, LORE.B, LORE.R, LORE.C, LORE.D, LORE.F, LORE.G, LORE.KH,
-    LORE.J, LORE.K, LORE.L, LORE.Z, LORE.V, LORE.Y, LORE.N, LORE.M, LORE.ZH, LORE.CH,
-    LORE.SH, LORE.TH, LORE.DH, LORE.NG, LORE.KR, LORE.RR, LORE.SZ, LORE.H, LORE.TS,
-    LORE.ST, LORE.KS, LORE.SK, LORE.KV, LORE.SV, LORE.ZV, LORE.DV
-]
-
-ALPHABET_DEFS = [
-    (LORE.A, "a", "short a"),
-    (LORE.E, "e", "short e"),
-    (LORE.I, "i", "short i"),
-    (LORE.O, "o", "short o"),
-    (LORE.U, "u", "short u"),
-    (LORE.AY, "ay", "long a"),
-    (LORE.EE, "ee", "long e"),
-    (LORE.IY, "eye", "long i"),
-    (LORE.OW, "ow", "long o"),
-    (LORE.OO, "oo", "oo as in poop"),
-    (LORE.OE, "oe", "oe as in put"),
-    (LORE.UE, "ue", "ы"),
-    (LORE.B, "b", ""),
-    (LORE.V, "v", ""),
-    (LORE.G, "g", ""),
-    (LORE.D, "d", ""),
-    (LORE.Z, "z", ""),
-    (LORE.K, "k", ""),
-    (LORE.L, "l", ""),
-    (LORE.M, "m", ""),
-    (LORE.N, "n", ""),
-    (LORE.P, "p", ""),
-    (LORE.R, "r", ""),
-    (LORE.C, "s", ""),
-    (LORE.T, "t", ""),
-    (LORE.F, "f", ""),
-    (LORE.KH, "h", "hard h"),
-    (LORE.W, "w", ""),
-    (LORE.Y, "y", ""),
-    (LORE.J, "j", ""),
-    (LORE.ZH, "zh", "as in measure"),
-    (LORE.CH, "ch", ""),
-    (LORE.SH, "sh", "tongue back sh"),
-    (LORE.TH, "th", "unvoiced th as in think"),
-    (LORE.DH, "TH", "voiced th as in this"),
-    (LORE.NG, "ng", "anglophone ng sound used in the ing word ending"),
-    (LORE.KR, "kr", ""),
-    (LORE.RR, "r", "rolled r"),
-    (LORE.SZ, "sh", "tongue forward sh"),
-    (LORE.H, "h", "soft h"),
-    (LORE.TS, "ts", ""),
-    (LORE.ST, "st", ""),
-    (LORE.KS, "ks", ""),
-    (LORE.SK, "sk", ""),
-    (LORE.KV, "kv", ""),
-    (LORE.SV, "sv", ""),
-    (LORE.ZV, "zv", ""),
-    (LORE.DV, "dv", ""),
-]
-
-LORE_TO_PRON = {}
-for attr in dir(LORE):
-    if not attr.startswith('__') and not callable(getattr(LORE, attr)):
-        lore_val = getattr(LORE, attr)
-        if hasattr(PRONUNCIATION, attr):
-            pron_val = getattr(PRONUNCIATION, attr)
-            LORE_TO_PRON[lore_val] = pron_val
-
 TABLE_SIZE_CORRECTIONS = {}
 HEADER_SIZE_CORRECTIONS = {}
 
-KEYBOARD_LAYOUT = [
-    [('w', LORE.W), ('e', LORE.E), ('r', LORE.R), ('t', LORE.T), ('y', LORE.Y), ('u', LORE.U), ('i', LORE.I), ('o', LORE.O), ('p', LORE.P)],
-    [('a', LORE.A), ('s', LORE.C), ('d', LORE.D), ('f', LORE.F), ('g', LORE.G), ('h', LORE.H), ('j', LORE.J), ('k', LORE.K), ('l', LORE.L)],
-    [('z', LORE.Z), ('x', LORE.KH), ('c', LORE.SZ), ('v', LORE.V), ('b', LORE.B), ('n', LORE.N), ('m', LORE.M), ('╵', LORE.QUOTE), ('╷', LORE.TERMINATOR)]
-]
-
-LONG_VOWEL_MAP = {
-    "a": LORE.A, "e": LORE.E, "i": LORE.I, "o": LORE.O
+CHAR_WIDTHS = {
+    # Wide & Square Characters
+    CODE_TO_TEZHNOR["o"]: "advance_square",
+    CODE_TO_TEZHNOR["ue"]: "advance_square",
+    CODE_TO_TEZHNOR["d"]: "advance_square",
+    CODE_TO_TEZHNOR["m"]: "advance_square",
+    CODE_TO_TEZHNOR["zh"]: "advance_wide",
+    CODE_TO_TEZHNOR["sh"]: "advance_wide",
+    CODE_TO_TEZHNOR["th"]: "advance_square",
+    CODE_TO_TEZHNOR["sk"]: "advance_wide",
+    CODE_TO_TEZHNOR["ts"]: "advance_square",
+    CODE_TO_TEZHNOR["kv"]: "advance_square",
+    CODE_TO_TEZHNOR["sv"]: "advance_wide",
+    CODE_TO_TEZHNOR["zv"]: "advance_wide",
+    SYMBOLS["terminator"]: "advance_punctuation",
+    SYMBOLS["quote"]: "advance_punctuation",
+    SYMBOLS["bracket_open"]: "advance_punctuation",
+    SYMBOLS["bracket_close"]: "advance_punctuation"
 }
 
+KEYBOARD_LAYOUT = [
+    [('w', CODE_TO_TEZHNOR['w']), ('e', CODE_TO_TEZHNOR['e']), ('r', CODE_TO_TEZHNOR['r']), ('t', CODE_TO_TEZHNOR['t']), ('y', CODE_TO_TEZHNOR['y']), ('u', CODE_TO_TEZHNOR['u']), ('i', CODE_TO_TEZHNOR['i']), ('o', CODE_TO_TEZHNOR['o']), ('p', CODE_TO_TEZHNOR['p'])],
+    [('a', CODE_TO_TEZHNOR['a']), ('s', CODE_TO_TEZHNOR['s']), ('d', CODE_TO_TEZHNOR['d']), ('f', CODE_TO_TEZHNOR['f']), ('g', CODE_TO_TEZHNOR['g']), ('h', CODE_TO_TEZHNOR['h']), ('j', CODE_TO_TEZHNOR['j']), ('k', CODE_TO_TEZHNOR['k']), ('l', CODE_TO_TEZHNOR['l'])],
+    [('z', CODE_TO_TEZHNOR['z']), ('x', CODE_TO_TEZHNOR['kh']), ('c', CODE_TO_TEZHNOR['shch']), ('v', CODE_TO_TEZHNOR['v']), ('b', CODE_TO_TEZHNOR['b']), ('n', CODE_TO_TEZHNOR['n']), ('m', CODE_TO_TEZHNOR['m']), ('╵', SYMBOLS['quote']), ('╷', SYMBOLS['terminator'])]
+]
+
 COMBO_MAP = {
-    "ay": LORE.AY, "ee": LORE.EE, "iy": LORE.IY, "ow": LORE.OW, "oo": LORE.OO,
-    "oe": LORE.OE, "ue": LORE.UE,
-    "zh": LORE.ZH, "sh": LORE.SH, "ch": LORE.CH, 
-    "th": LORE.TH, "dh": LORE.DH, "ng": LORE.NG, "kr": LORE.KR,
-    "rr": LORE.RR,
-    "ts": LORE.TS, "st": LORE.ST,
-    "ks": LORE.KS, "sk": LORE.SK,
-    "kv": LORE.KV, "sv": LORE.SV, "zv": LORE.ZV, "dv": LORE.DV
+    "ay": CODE_TO_TEZHNOR['ay'], "ee": CODE_TO_TEZHNOR['ee'], "iy": CODE_TO_TEZHNOR['iy'], 
+    "ow": CODE_TO_TEZHNOR['ow'], "oo": CODE_TO_TEZHNOR['oo'], "oe": CODE_TO_TEZHNOR['oe'], 
+    "ue": CODE_TO_TEZHNOR['ue'],
+    "zh": CODE_TO_TEZHNOR['zh'], "sh": CODE_TO_TEZHNOR['sh'], "ch": CODE_TO_TEZHNOR['ch'], 
+    "th": CODE_TO_TEZHNOR['th'], "dh": CODE_TO_TEZHNOR['dh'], "ng": CODE_TO_TEZHNOR['ng'], 
+    "kr": CODE_TO_TEZHNOR['kr'], "rr": CODE_TO_TEZHNOR['rr'],
+    "ts": CODE_TO_TEZHNOR['ts'], "st": CODE_TO_TEZHNOR['st'],
+    "ks": CODE_TO_TEZHNOR['ks'], "sk": CODE_TO_TEZHNOR['sk'],
+    "kv": CODE_TO_TEZHNOR['kv'], "sv": CODE_TO_TEZHNOR['sv'], "zv": CODE_TO_TEZHNOR['zv'], 
+    "dv": CODE_TO_TEZHNOR['dv']
 }
 
 DISABLED_KEYS = ['q']
@@ -676,8 +455,6 @@ class TyperTextEdit(RichLineEdit):
         self.moveCursor(QTextCursor.End)
 
 class WordGenerator:
-    ALL_VOWELS = [LORE.A, LORE.E, LORE.I, LORE.O, LORE.U, LORE.AY, LORE.EE, LORE.IY, LORE.OW, LORE.OO, LORE.OE, LORE.UE]
-
     @staticmethod
     def generate_word(num_syllables=3):
         word = ""
@@ -690,8 +467,8 @@ class WordGenerator:
             return random.choice(opts) if opts else random.choice(CONSONANTS)
 
         def get_v(exclude=None):
-            opts = [v for v in WordGenerator.ALL_VOWELS if v != exclude] if exclude else WordGenerator.ALL_VOWELS
-            return random.choice(opts) if opts else random.choice(WordGenerator.ALL_VOWELS)
+            opts = [v for v in VOWELS if v != exclude] if exclude else VOWELS
+            return random.choice(opts) if opts else random.choice(VOWELS)
         
         for i in range(num_syllables):
             structure = random.choices(
@@ -703,7 +480,7 @@ class WordGenerator:
             prev_char = word[-1] if word else None
             
             # Prevent awkward double-vowel boundaries across syllables
-            if prev_char in WordGenerator.ALL_VOWELS and structure in ["V", "VC", "VCC", "CVV"]:
+            if prev_char in VOWELS and structure in ["V", "VC", "VCC", "CVV"]:
                 structure = random.choice(["CV", "CVC", "CCV"])
             
             structure_log.append(structure)
@@ -762,10 +539,10 @@ class PhysicalKeyFilter(QObject):
                 
         # 2. Define the hidden punctuation binds
         punctuation_binds = {
-            '.': LORE.TERMINATOR,
-            "'": LORE.QUOTE,
-            '[': LORE.BRACKET_OPEN,
-            ']': LORE.BRACKET_CLOSE,
+            '.': SYMBOLS['terminator'],
+            "'": SYMBOLS['quote'],
+            '[': SYMBOLS['bracket_open'],
+            ']': SYMBOLS['bracket_close'],
         }
         
         # 3. Merge them into the active key map
@@ -1069,10 +846,11 @@ class Wordforge(QMainWindow):
         self.def_browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 12pt; border: 1px solid #444;")
         
         html = "<h2>тэжнop alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
-        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Sound</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
-        for char, sound, notes in ALPHABET_DEFS:
+        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Code</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
+        
+        for char, code in TEZHNOR_TO_CODE.items():
             styled_char = apply_visual_fixes(char, mode='table')
-            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_char}</td><td style='border-bottom: 1px solid #444;'>{sound}</td><td style='border-bottom: 1px solid #444; font-size: 11pt; color: #bbb;'>{notes}</td></tr>"
+            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_char}</td><td style='border-bottom: 1px solid #444;'>{code}</td><td style='border-bottom: 1px solid #444; font-size: 11pt; color: #bbb;'></td></tr>"
         
         html += "</table>"
         
@@ -1428,10 +1206,10 @@ class Wordforge(QMainWindow):
 
         # 2. Define the punctuation mappings and ignored words
         punct_map = {
-            '.': LORE.TERMINATOR,
-            "'": LORE.QUOTE,
-            '[': LORE.BRACKET_OPEN,
-            ']': LORE.BRACKET_CLOSE,
+            '.': SYMBOLS['terminator'],
+            "'": SYMBOLS['quote'],
+            '[': SYMBOLS['bracket_open'],
+            ']': SYMBOLS['bracket_close'],
         }
         
         IGNORED_WORDS = {"a", "an", "the"}
