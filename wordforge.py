@@ -785,8 +785,20 @@ class Wordforge(QMainWindow):
         # 2. TRANSLATOR TAB
         # ==========================================
         translator_tab = QWidget()
-        typer_layout = QVBoxLayout(translator_tab)
+        translator_layout = QHBoxLayout(translator_tab) # Changed to Horizontal layout
 
+        # --- LEFT SIDE: Editors ---
+        left_editors_widget = QWidget()
+        left_editors_layout = QVBoxLayout(left_editors_widget)
+        left_editors_layout.setContentsMargins(0, 0, 10, 0) # Give some space in the middle
+
+        label_style = "color: #ccc; font-weight: bold; font-size: 11pt; margin-top: 5px;"
+
+        # 1. English Input
+        lbl_eng = QLabel("English Source")
+        lbl_eng.setStyleSheet(label_style)
+        left_editors_layout.addWidget(lbl_eng)
+        
         self.english_input = QTextEdit()
         self.english_input.setStyleSheet("""
             QTextEdit {
@@ -795,11 +807,38 @@ class Wordforge(QMainWindow):
             }
         """)
         self.english_input.textChanged.connect(self.translate_english_to_tezhnor)
-        typer_layout.addWidget(self.english_input, stretch=1)
+        left_editors_layout.addWidget(self.english_input, stretch=1)
 
+        # 2. Tezhnor Typer
+        lbl_tezhnor = QLabel("Tezhnor Typer")
+        lbl_tezhnor.setStyleSheet(label_style)
+        left_editors_layout.addWidget(lbl_tezhnor)
+        
         self.typer_input = TyperTextEdit()
-        typer_layout.addWidget(self.typer_input, stretch=1)
+        left_editors_layout.addWidget(self.typer_input, stretch=1)
 
+        # 3. Shigeyed Typer
+        lbl_shigeyed = QLabel("Shigeyed Typer")
+        lbl_shigeyed.setStyleSheet(label_style)
+        left_editors_layout.addWidget(lbl_shigeyed)
+        
+        self.shigeyed_input = QTextEdit()
+        self.shigeyed_input.setStyleSheet("""
+            QTextEdit {
+                font-size: 14pt; padding: 10px; background-color: #2b2b2b; 
+                color: #ffab91; border: 1px solid #555; border-radius: 2px;
+            }
+        """)
+        left_editors_layout.addWidget(self.shigeyed_input, stretch=1)
+
+        translator_layout.addWidget(left_editors_widget, stretch=1)
+
+        # --- RIGHT SIDE: Displays ---
+        right_displays_widget = QWidget()
+        right_displays_layout = QVBoxLayout(right_displays_widget)
+        right_displays_layout.setContentsMargins(10, 0, 0, 0)
+
+        # Tezhnor Controls
         typer_controls_container = QVBoxLayout()
         row1_layout = QHBoxLayout()
         row2_layout = QHBoxLayout()
@@ -808,19 +847,21 @@ class Wordforge(QMainWindow):
             QSlider::groove:horizontal { border: 1px solid #555; height: 8px; background: #333; margin: 2px 0; border-radius: 4px; }
             QSlider::handle:horizontal { background: #0277bd; border: 1px solid #0277bd; width: 18px; height: 18px; margin: -7px 0; border-radius: 9px; }
         """
-        label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
+        slider_label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
 
         self.font_dropdown = QComboBox()
-        self.font_dropdown.addItems(FONT_PROFILES.keys())
+        # Filter out the Shigeyed font so we don't accidentally set Tezhnor to use Shigeyed bitmaps
+        tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
+        self.font_dropdown.addItems(tezhnor_fonts)
         self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
         
-        row1_layout.addWidget(QLabel("Select Font:"))
+        row1_layout.addWidget(QLabel("Tezhnor Font:"))
         row1_layout.addWidget(self.font_dropdown)
         row1_layout.addStretch() 
         
         size_layout = QVBoxLayout()
         self.typer_scale_label = QLabel("Size: 50%")
-        self.typer_scale_label.setStyleSheet(label_style)
+        self.typer_scale_label.setStyleSheet(slider_label_style)
         self.typer_scale_slider = QSlider(Qt.Horizontal)
         self.typer_scale_slider.setRange(10, 150)
         self.typer_scale_slider.setValue(50)
@@ -831,7 +872,7 @@ class Wordforge(QMainWindow):
 
         lh_layout = QVBoxLayout()
         self.typer_lh_label = QLabel("Line Height: 100%")
-        self.typer_lh_label.setStyleSheet(label_style)
+        self.typer_lh_label.setStyleSheet(slider_label_style)
         self.typer_lh_slider = QSlider(Qt.Horizontal)
         self.typer_lh_slider.setRange(50, 200)
         self.typer_lh_slider.setValue(100)
@@ -842,7 +883,7 @@ class Wordforge(QMainWindow):
 
         cs_layout = QVBoxLayout()
         self.typer_cs_label = QLabel("Char Spacing: 0")
-        self.typer_cs_label.setStyleSheet(label_style)
+        self.typer_cs_label.setStyleSheet(slider_label_style)
         self.typer_cs_slider = QSlider(Qt.Horizontal)
         self.typer_cs_slider.setRange(-20, 50)
         self.typer_cs_slider.setValue(1)
@@ -857,14 +898,37 @@ class Wordforge(QMainWindow):
         
         typer_controls_container.addLayout(row1_layout)
         typer_controls_container.addLayout(row2_layout)
-        typer_layout.addLayout(typer_controls_container)
+        right_displays_layout.addLayout(typer_controls_container)
+        
+        # Tezhnor Display
+        lbl_disp_tezhnor = QLabel("Tezhnor Display")
+        lbl_disp_tezhnor.setStyleSheet(label_style)
+        right_displays_layout.addWidget(lbl_disp_tezhnor)
         
         self.typer_bottom = BitmapRenderer()
         self.typer_bottom.setMinimumHeight(200) 
         self.typer_input.textChanged.connect(
             lambda: self.typer_bottom.set_text(self.typer_input.toPlainText())
         )
-        typer_layout.addWidget(self.typer_bottom, stretch=1)
+        right_displays_layout.addWidget(self.typer_bottom, stretch=1)
+        
+        # Shigeyed Display
+        lbl_disp_shigeyed = QLabel("Shigeyed Display")
+        lbl_disp_shigeyed.setStyleSheet(label_style)
+        right_displays_layout.addWidget(lbl_disp_shigeyed)
+        
+        self.shigeyed_display = BitmapRenderer()
+        self.shigeyed_display.setMinimumHeight(200)
+        
+        # Pre-configure the Shigeyed renderer to use its specific font profile
+        shig_prof = FONT_PROFILES["Shigeyed Bold"]
+        self.shigeyed_display.font_dir = shig_prof["dir"]
+        self.shigeyed_display.base_scale = shig_prof["bitmap_base_scale"]
+        self.shigeyed_display.scale = shig_prof["bitmap_base_scale"] * 0.5 # Defaulting to 50% slider value
+        
+        right_displays_layout.addWidget(self.shigeyed_display, stretch=1)
+
+        translator_layout.addWidget(right_displays_widget, stretch=1)
         
         self.top_tabs.addTab(translator_tab, "Translator")
 
