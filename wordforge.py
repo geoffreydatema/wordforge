@@ -35,10 +35,49 @@ SYMBOLS = SPEC["symbols"]
 VOWELS = SPEC["vowels"]
 CONSONANTS = SPEC["consonants"]
 
-# Automatically map the conlang character to the filename (for the renderer)
+# Automatically map the conlang character to the filename
 CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
 for sym_name, sym_char in SYMBOLS.items():
     CHAR_TO_FILENAME[sym_char] = sym_name
+
+# --- GLOBAL PIXMAP MANAGEMENT ---
+RAW_PIXMAP_CACHE = {}    # Stores original, unscaled images loaded from disk
+SCALED_PIXMAP_CACHE = {} # Stores dynamically scaled images
+
+def preload_font_pixmaps():
+    """Loads all raw bitmap images into memory once at startup, avoiding disk I/O later."""
+    for font_key, profile in FONT_PROFILES.items():
+        font_dir = profile["dir"]
+        for char, filename in CHAR_TO_FILENAME.items():
+            image_path = os.path.join(font_dir, f"{filename}.png")
+            if os.path.exists(image_path):
+                RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
+
+def get_shared_pixmap(char, font_dir, scale):
+    """Returns the scaled pixmap, utilizing the in-memory caches."""
+    cache_key = (char, font_dir, scale)
+    if cache_key in SCALED_PIXMAP_CACHE:
+        return SCALED_PIXMAP_CACHE[cache_key]
+    
+    # Grab the original unscaled image directly from RAM
+    raw_key = (char, font_dir)
+    orig_pixmap = RAW_PIXMAP_CACHE.get(raw_key)
+    
+    if orig_pixmap:
+        target_width = int(orig_pixmap.width() * scale)
+        target_height = int(orig_pixmap.height() * scale)
+        
+        scaled_pixmap = orig_pixmap.scaled(
+            target_width, 
+            target_height, 
+            Qt.IgnoreAspectRatio, 
+            Qt.SmoothTransformation
+        )
+        
+        SCALED_PIXMAP_CACHE[cache_key] = scaled_pixmap
+        return scaled_pixmap
+        
+    return None
 
 # For the word generator pronunciation mapping
 LORE_TO_PRON = TEZHNOR_TO_CODE.copy()
@@ -209,32 +248,8 @@ class BitmapRenderer(QWidget):
         self.update() 
 
     def get_pixmap(self, char):
-        # Cache based on BOTH the character and the current scale
-        cache_key = (char, self.scale)
-        if cache_key in self._pixmap_cache:
-            return self._pixmap_cache[cache_key]
-            
-        file_prefix = CHAR_TO_FILENAME.get(char, char) if 'CHAR_TO_FILENAME' in globals() else char
-        image_path = os.path.join(self.font_dir, f"{file_prefix}.png")
-        
-        if os.path.exists(image_path):
-            orig_pixmap = QPixmap(image_path)
-            
-            # Perform a high-quality downscale ONCE, not every frame
-            target_width = int(orig_pixmap.width() * self.scale)
-            target_height = int(orig_pixmap.height() * self.scale)
-            
-            scaled_pixmap = orig_pixmap.scaled(
-                target_width, 
-                target_height, 
-                Qt.IgnoreAspectRatio, 
-                Qt.SmoothTransformation
-            )
-            
-            self._pixmap_cache[cache_key] = scaled_pixmap
-            return scaled_pixmap
-            
-        return None
+        # We now rely entirely on the globally shared cache!
+        return get_shared_pixmap(char, self.font_dir, self.scale)
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -558,6 +573,8 @@ class Wordforge(QMainWindow):
         self.categories = ["level0", "level1", "level2+"]
         self.tables = {} 
         self.data = self.load_data()
+
+        preload_font_pixmaps()
         
         self.key_to_lore = {}
         for row in KEYBOARD_LAYOUT:
@@ -804,44 +821,63 @@ class Wordforge(QMainWindow):
         def_layout = QVBoxLayout(def_tab)
         
         self.def_table = QTableWidget()
-        self.def_table.setColumnCount(3)
-        self.def_table.setHorizontalHeaderLabels(["Unicode", "Romanization", "Notes"])
+        self.def_table.setColumnCount(4)
+        # 1. Renamed to "Character" and moved to the front
+        self.def_table.setHorizontalHeaderLabels(["Character", "Unicode", "Romanization", "Notes"])
         
-        # Configure table appearance and behavior
         def_header = self.def_table.horizontalHeader()
         def_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
         def_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        def_header.setSectionResizeMode(2, QHeaderView.Stretch)
+        def_header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(3, QHeaderView.Stretch)
         
-        self.def_table.setEditTriggers(QTableWidget.NoEditTriggers) # Make read-only
+        self.def_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
         self.def_table.verticalHeader().setVisible(False)
+        self.def_table.verticalHeader().setDefaultSectionSize(45) # Slightly smaller row height to match the smaller images
         self.def_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
         
         # Populate the table
         self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
         row_idx = 0
+        
+        definition_font = "Rounded Bold" 
+        current_font_dir = FONT_PROFILES[definition_font]["dir"]
+        base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
+        # 2. Made the bitmap scale smaller (down from 0.9)
+        table_icon_scale = base_scale * 0.5
+        
         for char, code in TEZHNOR_TO_CODE.items():
-            # Unicode Column
+            # Column 0: Character (Bitmap)
+            lbl = QLabel()
+            pixmap = get_shared_pixmap(char, current_font_dir, table_icon_scale)
+            if pixmap:
+                lbl.setPixmap(pixmap)
+            lbl.setAlignment(Qt.AlignCenter)
+            
+            # Column 1: Unicode
             char_item = QTableWidgetItem(char)
             char_item.setTextAlignment(Qt.AlignCenter)
             char_item.setFont(QFont("Arial", 16))
             
-            # Romanization Column
+            # Column 2: Romanization
             code_item = QTableWidgetItem(code)
             code_item.setTextAlignment(Qt.AlignCenter)
             code_item.setFont(QFont("Arial", 12))
             
-            # Notes Column (Empty for now, ready for future use)
-            notes_item = QTableWidgetItem(TEZHNOR_TO_PRONUNCIATION.get(char, ""))
-            notes_item.setFont(QFont("Arial", 12))
+            # Column 3: Notes
+            notes_text = TEZHNOR_TO_PRONUNCIATION.get(char, "")
+            notes_item = QTableWidgetItem(notes_text)
+            notes_item.setFont(QFont("Arial", 11))
+            notes_item.setForeground(QColor("#bbb"))
             
-            self.def_table.setItem(row_idx, 0, char_item)
-            self.def_table.setItem(row_idx, 1, code_item)
-            self.def_table.setItem(row_idx, 2, notes_item)
+            # 3. Assign items to their new reordered columns
+            self.def_table.setCellWidget(row_idx, 0, lbl)
+            self.def_table.setItem(row_idx, 1, char_item)
+            self.def_table.setItem(row_idx, 2, code_item)
+            self.def_table.setItem(row_idx, 3, notes_item)
             row_idx += 1
             
-        # Enable sorting after populating so it doesn't scramble during insertion
         self.def_table.setSortingEnabled(True)
 
         def_layout.addWidget(self.def_table)
