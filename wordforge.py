@@ -871,6 +871,23 @@ class Wordforge(QMainWindow):
         right_displays_layout = QVBoxLayout(right_displays_widget)
         right_displays_layout.setContentsMargins(10, 0, 0, 0)
 
+        # --- Active Word Details Panel ---
+        lbl_active_word = QLabel("Active Word Details")
+        lbl_active_word.setStyleSheet(label_style)
+        right_displays_layout.addWidget(lbl_active_word)
+
+        self.active_word_display = QTextEdit()
+        self.active_word_display.setReadOnly(True)
+        self.active_word_display.setFixedHeight(80) # Keep it compact
+        self.active_word_display.setStyleSheet("""
+            QTextEdit {
+                font-size: 12pt; padding: 5px; background-color: #2b2b2b; 
+                color: #e0e0e0; border: 1px solid #555; border-radius: 2px;
+            }
+        """)
+        right_displays_layout.addWidget(self.active_word_display)
+        right_displays_layout.addSpacing(10)
+
         # Tezhnor Controls
         typer_controls_container = QVBoxLayout()
         row1_layout = QHBoxLayout()
@@ -1396,7 +1413,6 @@ class Wordforge(QMainWindow):
                                 eng_to_lore[clean_eng_word] = []
                             
                             # Add the conlang word only if it isn't already in the list
-                            # (Prevents duplicate outputs if you defined the exact same word twice)
                             if conlang_word not in eng_to_lore[clean_eng_word]:
                                 eng_to_lore[clean_eng_word].append(conlang_word)
 
@@ -1411,28 +1427,60 @@ class Wordforge(QMainWindow):
         IGNORED_WORDS = {"a", "an", "the"}
 
         english_text = self.english_input.toPlainText()
-
-        # 3. Define the replacement logic for Regex
-        def replace_token(match):
-            token = match.group(0)
-            
+        current_tezhnor_text = self.typer_input.toPlainText()
+        
+        # 3. Tokenize BOTH texts using split so we can align them positionally
+        # We split by spaces and punctuation, keeping the delimiters intact
+        eng_tokens = [t for t in re.split(r"(\s+|[.\"'()\[\]{}<>•])", english_text) if t]
+        tezhnor_tokens = [t for t in re.split(r"(\s+|[.\"'()\[\]{}<>•])", current_tezhnor_text) if t]
+        
+        # Extract JUST the Tezhnor words (ignore the spaces and punctuation) so we can index them
+        tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t not in punct_map.values() and t not in punct_map.keys()]
+        
+        translated_tokens = []
+        word_index = 0 # Tracks which translation choice we are currently evaluating
+        
+        for token in eng_tokens:
+            if token.isspace():
+                translated_tokens.append(token)
+                continue
+                
             if token in punct_map:
-                return punct_map[token]
+                translated_tokens.append(punct_map[token])
+                continue
+                
+            # Keep other untranslated punctuation intact
+            if token in [".", "\"", "'", "(", ")", "[", "]", "{", "}", "<", ">", "•"]:
+                translated_tokens.append(token)
+                continue
                 
             word = token.lower()
             
             if word in IGNORED_WORDS:
-                return ""
+                continue # Skip without advancing word_index
                 
-            # If the word exists, join ALL possible translations with a slash
+            # If the word exists, check for choice preservation!
             if word in eng_to_lore:
-                return "/".join(eng_to_lore[word])
+                options = eng_to_lore[word]
                 
-            return "<--->"
+                if word_index < len(tezhnor_words):
+                    existing_choice = tezhnor_words[word_index]
+                    # If you manually edited the text to one of the valid options, keep it!
+                    if existing_choice in options:
+                        chosen_word = existing_choice
+                    else:
+                        chosen_word = "/".join(options)
+                else:
+                    chosen_word = "/".join(options)
+                    
+                translated_tokens.append(chosen_word)
+            else:
+                translated_tokens.append("<--->")
+                
+            word_index += 1
 
-        # 4. Search pattern matches English words or punctuation
-        pattern = r"[a-zA-Z]+(?:'[a-zA-Z]+)?|[.\"'()\[\]{}<>]"
-        translated_text = re.sub(pattern, replace_token, english_text)
+        # Rejoin everything back together
+        translated_text = "".join(translated_tokens)
 
         # 5. Clean up extra spaces
         translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
@@ -1443,7 +1491,12 @@ class Wordforge(QMainWindow):
         self.typer_input.blockSignals(False)
         self.typer_bottom.set_text(self.typer_input.toPlainText())
 
-        self.translate_tezhnor_to_shigeyed()
+        # 7. Cascade updates to Shigeyed and Definition Panel
+        if hasattr(self, 'translate_tezhnor_to_shigeyed'):
+            self.translate_tezhnor_to_shigeyed()
+            
+        if hasattr(self, 'update_active_word_panel'):
+            self.update_active_word_panel()
 
     def translate_tezhnor_to_shigeyed(self):
         # Prevent infinite loops if updating programmatically
@@ -1539,6 +1592,59 @@ class Wordforge(QMainWindow):
         self.shigeyed_input.setPlainText("".join(translated_tokens))
         self.shigeyed_input.blockSignals(False)
         self.shigeyed_display.set_text(self.shigeyed_input.toPlainText())
+
+        self.update_active_word_panel()
+
+    def find_dictionary_entry(self, tezhnor_word):
+        """Helper to find a dictionary entry by its Tezhnor spelling from memory."""
+        # If your data is a dictionary grouped by category ("level0", etc.)
+        if isinstance(self.data, dict):
+            for category_list in self.data.values():
+                for entry in category_list:
+                    if entry.get("conlang") == tezhnor_word:
+                        return entry
+                        
+        # Just in case it's actually a flat list of entries
+        elif isinstance(self.data, list):
+            for entry in self.data:
+                if entry.get("conlang") == tezhnor_word:
+                    return entry
+                    
+        return None
+
+    def update_active_word_panel(self):
+        tezhnor_text = self.typer_input.toPlainText()
+        tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
+        
+        # Find the last actual word typed (ignore spaces and punctuation)
+        valid_tokens = [t for t in tokens if t and not t.isspace() and t not in SYMBOLS.values()]
+        
+        if not valid_tokens:
+            self.active_word_display.setHtml("<i>No active word...</i>")
+            return
+            
+        last_token = valid_tokens[-1]
+        
+        # Split by '/' in case there are multiple Tezhnor translations
+        options = last_token.split('/')
+        
+        html_output = ""
+        for opt in options:
+            if not opt: continue
+            
+            entry = self.find_dictionary_entry(opt)
+            if entry:
+                # Fallback to 'definition' if 'english' key isn't used
+                def_text = entry.get("english", entry.get("definition", "Unknown Definition"))
+                notes_text = entry.get("notes", "")
+                
+                # Format with HTML for a clean look
+                notes_html = f" <span style='color:#888;'>({notes_text})</span>" if notes_text else ""
+                html_output += f"<b style='color:#81d4fa;'>{opt}</b>: {def_text}{notes_html}<br>"
+            else:
+                html_output += f"<b style='color:#81d4fa;'>{opt}</b>: <i>Not found in dictionary</i><br>"
+                
+        self.active_word_display.setHtml(html_output)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
