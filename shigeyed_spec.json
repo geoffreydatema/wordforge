@@ -626,5 +626,11 @@
             "თaт",
             "თин"
         ]
+    },
+    "symbols": {
+        "terminator": "•",
+        "quote": "'",
+        "bracket_open": "[",
+        "bracket_close": "]"
     }
 }

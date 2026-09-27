@@ -44,6 +44,10 @@ SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("consonants", []))
 TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
 TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
 SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
+SHIGEYED_SYMBOLS = SHIGEYED_SPEC.get("symbols", {})
+
+for filename, char in SHIGEYED_SYMBOLS.items():
+    SHIGEYED_TO_CODE[char] = filename
 
 TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
 CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
@@ -199,11 +203,11 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 400,
-        "space_width": 60,
+        "space_width": 80,
         "advance_punctuation": 50,
         "advance_normal": 0,
         "advance_square": 0,
-        "advance_wide": 240,
+        "advance_wide": 250,
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
@@ -342,12 +346,14 @@ class BitmapRenderer(QWidget):
                     cursor_y += dynamic_lh
                 continue
                 
-            width_key = "advance_wide" if len(item) > 1 else CHAR_WIDTHS.get(item, "advance_normal")
-            # --- FIX: Read raw advance from local metrics ---
+            if item in SHIGEYED_SYMBOLS.values() or item in SYMBOLS.values():
+                width_key = "advance_punctuation"
+            elif len(item) > 1:
+                width_key = "advance_wide"
+            else:
+                width_key = CHAR_WIDTHS.get(item, "advance_normal")
+                
             raw_advance = metrics.get(width_key, 103)
-            
-            if len(item) == 3: raw_advance += 25
-            if len(item) >= 4: raw_advance += 50
                 
             advance = (raw_advance * self.scale) + effective_char_spacing
             
@@ -1360,13 +1366,18 @@ class Wordforge(QMainWindow):
             self.shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
     
     def change_font_profile(self, font_name):
-        global FONT_METRICS
-        FONT_METRICS = FONT_PROFILES[font_name]
+        global CURRENT_FONT_KEY
+        CURRENT_FONT_KEY = font_name
+        profile = FONT_PROFILES[font_name]
         
-        self.typer_bottom.font_dir = FONT_METRICS["dir"]
-        self.typer_bottom._pixmap_cache.clear()
+        # Update the Tezhnor renderer to look at the new directory
+        self.typer_bottom.font_dir = profile["dir"]
         
+        # Push the scale updates and redraw the screens
         self.update_typer_settings()
+        
+        # Force a refresh of the text to ensure the new font renders immediately
+        self.typer_bottom.set_text(self.typer_input.toPlainText())
 
     def translate_english_to_tezhnor(self):
         # 1. Build a lookup dictionary that supports MULTIPLE translations per word
@@ -1431,6 +1442,8 @@ class Wordforge(QMainWindow):
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
         self.typer_bottom.set_text(self.typer_input.toPlainText())
+
+        self.translate_tezhnor_to_shigeyed()
 
     def translate_tezhnor_to_shigeyed(self):
         # Prevent infinite loops if updating programmatically
