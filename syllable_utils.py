@@ -194,5 +194,3 @@ def romanize():
 if __name__ == "__main__":
     # get_syllable_list()
     romanize()
-
-    #@! add shigeyed typing to wordforge

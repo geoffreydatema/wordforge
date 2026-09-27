@@ -28,6 +28,18 @@ def load_spec():
 
 SPEC = load_spec()
 
+def load_shigeyed_spec():
+    try:
+        with open('shigeyed_spec.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Failed to load shigeyed_spec.json: {e}")
+        return {"shigeyed_to_code": {}, "code_to_shigeyed": {}}
+
+SHIGEYED_SPEC = load_shigeyed_spec()
+SHIGEYED_TO_CODE = SHIGEYED_SPEC["shigeyed_to_code"]
+CODE_TO_SHIGEYED = SHIGEYED_SPEC["code_to_shigeyed"]
+
 TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
 CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
 TEZHNOR_TO_PRONUNCIATION = SPEC["tezhnor_to_pronunciation"]
@@ -48,7 +60,11 @@ def preload_font_pixmaps():
     """Loads all raw bitmap images into memory once at startup, avoiding disk I/O later."""
     for font_key, profile in FONT_PROFILES.items():
         font_dir = profile["dir"]
-        for char, filename in CHAR_TO_FILENAME.items():
+        
+        # Determine which mapping dict to use based on the font directory name
+        mapping = SHIGEYED_TO_CODE if "shigeyed" in font_dir.lower() else CHAR_TO_FILENAME
+        
+        for char, filename in mapping.items():
             image_path = os.path.join(font_dir, f"{filename}.png")
             if os.path.exists(image_path):
                 RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
@@ -160,6 +176,21 @@ FONT_PROFILES = {
     },
     "Block Monoheight": {
         "dir": "fonts/tezhnor_block_monoheight",
+        "text_base_pt": 28,
+        "bitmap_base_scale": 0.17,
+        "line_height": 210,
+        "space_width": 60,
+        "advance_punctuation": 50,
+        "advance_normal": 103,
+        "advance_square": 128,
+        "advance_wide": 155,
+        "padding": 15,
+        "bitmap_offset_x": 5,
+        "bitmap_offset_y": 10,
+        "bitmap_base_char_spacing": 20
+    },
+    "Shigeyed Bold": {
+        "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
         "line_height": 210,
@@ -884,6 +915,60 @@ class Wordforge(QMainWindow):
         self.left_tabs.addTab(def_tab, "Definitions")
 
         left_layout.addWidget(self.left_tabs)
+
+        # Shigeyed tab
+        shig_tab = QWidget()
+        shig_layout = QVBoxLayout(shig_tab)
+        
+        self.shig_table = QTableWidget()
+        self.shig_table.setColumnCount(3)
+        self.shig_table.setHorizontalHeaderLabels(["Character", "Tezhnor", "Romanization"])
+        
+        shig_header = self.shig_table.horizontalHeader()
+        shig_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        shig_header.setSectionResizeMode(1, QHeaderView.Stretch)
+        shig_header.setSectionResizeMode(2, QHeaderView.Stretch)
+        
+        self.shig_table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.shig_table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.shig_table.verticalHeader().setVisible(False)
+        self.shig_table.verticalHeader().setDefaultSectionSize(45)
+        self.shig_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
+        
+        self.shig_table.setRowCount(len(SHIGEYED_TO_CODE))
+        s_row_idx = 0
+        
+        # Fetch the Shigeyed font specs directly
+        shig_font_dir = FONT_PROFILES["Shigeyed Bold"]["dir"]
+        shig_scale = FONT_PROFILES["Shigeyed Bold"]["bitmap_base_scale"] * 0.65
+        
+        for char, code in SHIGEYED_TO_CODE.items():
+            # Column 0: Character (Bitmap)
+            lbl = QLabel()
+            pixmap = get_shared_pixmap(char, shig_font_dir, shig_scale)
+            if pixmap:
+                lbl.setPixmap(pixmap)
+            lbl.setAlignment(Qt.AlignCenter)
+            
+            # Column 1: Tezhnor Equivalent
+            char_item = QTableWidgetItem(char)
+            char_item.setTextAlignment(Qt.AlignCenter)
+            char_item.setFont(QFont("Arial", 16))
+            
+            # Column 2: Romanization
+            code_item = QTableWidgetItem(code)
+            code_item.setTextAlignment(Qt.AlignCenter)
+            code_item.setFont(QFont("Arial", 12))
+            
+            self.shig_table.setCellWidget(s_row_idx, 0, lbl)
+            self.shig_table.setItem(s_row_idx, 1, char_item)
+            self.shig_table.setItem(s_row_idx, 2, code_item)
+            s_row_idx += 1
+            
+        self.shig_table.setSortingEnabled(True)
+
+        shig_layout.addWidget(self.shig_table)
+        self.left_tabs.addTab(shig_tab, "Shigeyed")
         
         # RIGHT PANEL
         right_panel = QWidget()
