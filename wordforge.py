@@ -39,6 +39,11 @@ def load_shigeyed_spec():
 SHIGEYED_SPEC = load_shigeyed_spec()
 SHIGEYED_TO_CODE = SHIGEYED_SPEC["shigeyed_to_code"]
 CODE_TO_SHIGEYED = SHIGEYED_SPEC["code_to_shigeyed"]
+SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("vowels", []))
+SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("consonants", []))
+TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
+TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
+SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
 
 TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
 CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
@@ -193,12 +198,12 @@ FONT_PROFILES = {
         "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.17,
-        "line_height": 210,
+        "line_height": 400,
         "space_width": 60,
         "advance_punctuation": 50,
-        "advance_normal": 103,
-        "advance_square": 128,
-        "advance_wide": 155,
+        "advance_normal": 0,
+        "advance_square": 0,
+        "advance_wide": 240,
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
@@ -254,24 +259,28 @@ class BitmapRenderer(QWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.text_to_render = ""
-        self._pixmap_cache = {}
-        self.font_dir = FONT_METRICS["dir"]
         
-        self.base_scale = 1.0
-        self.scale = 1.0 
+        # Default to the first Tezhnor font
+        self.font_dir = FONT_PROFILES[CURRENT_FONT_KEY]["dir"]
+        self.base_scale = FONT_PROFILES[CURRENT_FONT_KEY]["bitmap_base_scale"]
+        
+        self.scale = self.base_scale
         self.lh_factor = 1.0
         self.char_spacing = 0
 
+    def get_current_metrics(self):
+        """Finds the correct font profile dictionary based on this renderer's font_dir"""
+        for profile in FONT_PROFILES.values():
+            if profile["dir"] == self.font_dir:
+                return profile
+        return FONT_PROFILES[CURRENT_FONT_KEY] # Failsafe fallback
+
     def update_settings(self, scale_factor, lh_factor, char_spacing):
-        self.base_scale = FONT_METRICS.get("bitmap_base_scale", 1.0)
+        metrics = self.get_current_metrics()
+        self.base_scale = metrics.get("bitmap_base_scale", 1.0)
         self.scale = scale_factor * self.base_scale
         self.lh_factor = lh_factor
         self.char_spacing = char_spacing
-        self.update()
-
-    def set_scale(self, scale_factor):
-        # 3. Multiply the slider's scale factor by the font's base scale
-        self.scale = scale_factor * self.base_scale
         self.update()
 
     def set_text(self, new_text):
@@ -279,59 +288,75 @@ class BitmapRenderer(QWidget):
         self.update() 
 
     def get_pixmap(self, char):
-        # We now rely entirely on the globally shared cache!
         return get_shared_pixmap(char, self.font_dir, self.scale)
 
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.fillRect(self.rect(), QColor("#2b2b2b"))
         
-        # We removed the painter scaling and render hints!
+        # --- FIX: Grab metrics specific to THIS renderer's font ---
+        metrics = self.get_current_metrics()
         
-        # Convert raw metrics to actual screen pixels
-        dynamic_lh = (FONT_METRICS["line_height"] * self.lh_factor) * self.scale
-        scaled_space_width = FONT_METRICS["space_width"] * self.scale
+        dynamic_lh = (metrics["line_height"] * self.lh_factor) * self.scale
+        scaled_space_width = metrics["space_width"] * self.scale
         
-        PADDING_SCREEN = FONT_METRICS.get("padding", 10)
-        OFFSET_X = FONT_METRICS.get("bitmap_offset_x", 0)
-        OFFSET_Y = FONT_METRICS.get("bitmap_offset_y", 0)
+        PADDING_SCREEN = metrics.get("padding", 10)
+        OFFSET_X = metrics.get("bitmap_offset_x", 0)
+        OFFSET_Y = metrics.get("bitmap_offset_y", 0)
         
-        # Base spacing was in raw pixels, so it needs scaling. 
-        # self.char_spacing comes from the UI slider, so it doesn't need scaling.
-        BASE_SPACING_SCALED = FONT_METRICS.get("bitmap_base_char_spacing", 0) * self.scale
+        BASE_SPACING_SCALED = metrics.get("bitmap_base_char_spacing", 0) * self.scale
         effective_char_spacing = self.char_spacing + BASE_SPACING_SCALED
         
         max_x = self.width() - (PADDING_SCREEN + OFFSET_X)
         
-        # Start the cursors
         cursor_x = PADDING_SCREEN + OFFSET_X
         cursor_y = PADDING_SCREEN + OFFSET_Y
         
-        for char in self.text_to_render:
-            if char == '\n':
+        is_shigeyed = "shigeyed" in self.font_dir.lower()
+        if is_shigeyed:
+            tokens = []
+            temp = ""
+            for c in self.text_to_render:
+                if c == '-':
+                    if temp: tokens.append(temp); temp = ""
+                elif c in [' ', '\n'] or c in SYMBOLS.values():
+                    if temp: tokens.append(temp); temp = ""
+                    tokens.append(c)
+                else:
+                    temp += c
+            if temp: tokens.append(temp)
+            iterable = tokens
+        else:
+            iterable = self.text_to_render
+            
+        for item in iterable:
+            if item == '\n':
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
                 continue
                 
-            if char == ' ':
+            if item == ' ':
                 cursor_x += scaled_space_width + effective_char_spacing
                 if cursor_x > max_x:
                     cursor_x = PADDING_SCREEN + OFFSET_X 
                     cursor_y += dynamic_lh
                 continue
                 
-            # Scale the character advance to screen pixels
-            width_key = CHAR_WIDTHS.get(char, "advance_normal")
-            raw_advance = FONT_METRICS[width_key]
+            width_key = "advance_wide" if len(item) > 1 else CHAR_WIDTHS.get(item, "advance_normal")
+            # --- FIX: Read raw advance from local metrics ---
+            raw_advance = metrics.get(width_key, 103)
+            
+            if len(item) == 3: raw_advance += 25
+            if len(item) >= 4: raw_advance += 50
+                
             advance = (raw_advance * self.scale) + effective_char_spacing
             
             if cursor_x + advance > max_x:
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
                 
-            pixmap = self.get_pixmap(char)
+            pixmap = self.get_pixmap(item)
             if pixmap:
-                # Draw exactly at the screen coordinates
                 painter.drawPixmap(int(cursor_x), int(cursor_y), pixmap)
                 
             cursor_x += advance
@@ -815,6 +840,7 @@ class Wordforge(QMainWindow):
         left_editors_layout.addWidget(lbl_tezhnor)
         
         self.typer_input = TyperTextEdit()
+        self.typer_input.textChanged.connect(self.translate_tezhnor_to_shigeyed)
         left_editors_layout.addWidget(self.typer_input, stretch=1)
 
         # 3. Shigeyed Typer
@@ -829,6 +855,7 @@ class Wordforge(QMainWindow):
                 color: #ffab91; border: 1px solid #555; border-radius: 2px;
             }
         """)
+        self.shigeyed_input.textChanged.connect(lambda: self.shigeyed_display.set_text(self.shigeyed_input.toPlainText()))
         left_editors_layout.addWidget(self.shigeyed_input, stretch=1)
 
         translator_layout.addWidget(left_editors_widget, stretch=1)
@@ -1324,9 +1351,13 @@ class Wordforge(QMainWindow):
         scale_factor = size_val / 100.0
         lh_factor = lh_val / 100.0
 
-        # Push to both renderers simultaneously
+        # Push to the Tezhnor renderers
         self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val)
         self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
+        
+        # --- NEW: Push to the Shigeyed display ---
+        if hasattr(self, 'shigeyed_display'):
+            self.shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
     
     def change_font_profile(self, font_name):
         global FONT_METRICS
@@ -1400,6 +1431,101 @@ class Wordforge(QMainWindow):
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
         self.typer_bottom.set_text(self.typer_input.toPlainText())
+
+    def translate_tezhnor_to_shigeyed(self):
+        # Prevent infinite loops if updating programmatically
+        self.shigeyed_input.blockSignals(True)
+        
+        tezhnor_text = self.typer_input.toPlainText()
+        
+        # Tokenize word-by-word while preserving spaces/punctuation
+        tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
+        
+        translated_tokens = []
+        
+        for token in tokens:
+            if not token:
+                continue # Safely skip empty regex artifacts without appending
+                
+            if token.isspace() or token in SYMBOLS.values():
+                translated_tokens.append(token)
+                continue
+                
+            # Phase 1: Normalization
+            norm_word = ""
+            for char in token:
+                if char in TEZHNOR_VOWEL_MAP:
+                    norm_word += TEZHNOR_VOWEL_MAP[char]
+                elif char in TEZHNOR_CONSONANT_MAP:
+                    norm_word += TEZHNOR_CONSONANT_MAP[char]
+                else:
+                    norm_word += char
+                    
+            # Phase 2 & 3: Linear Parsing & Lookahead 
+            shigeyed_output = []
+            cursor = 0
+            
+            while cursor < len(norm_word):
+                char = norm_word[cursor]
+                
+                # Check for Vowels
+                if char in SHIGEYED_VOWELS:
+                    if cursor == 0:
+                        # RULE: Leading vowel gets the "ь" prefix
+                        soft_syl = "ь" + char
+                        if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
+                            shigeyed_output.append(soft_syl)
+                        else:
+                            shigeyed_output.append(char) # Failsafe
+                    else:
+                        # RULE: Leftover/Orphaned Vowel mid-word gets flagged
+                        shigeyed_output.append(char + "[!]")
+                    cursor += 1
+                    continue
+                    
+                # Process Consonants
+                if char in SYLLABLES_BY_CONSONANT:
+                    available_syls = SYLLABLES_BY_CONSONANT[char]
+                    matched = False
+                    
+                    # Check lengths greedily (4, 3, then 2)
+                    for length in [4, 3, 2]:
+                        if cursor + length <= len(norm_word):
+                            candidate = norm_word[cursor:cursor+length]
+                            if candidate in available_syls:
+                                
+                                # LOOKAHEAD RULE: If the candidate ends in a consonant (like a CVC) 
+                                # and the next character is a vowel, we MUST reject this match!
+                                ends_in_consonant = candidate[-1] not in SHIGEYED_VOWELS
+                                
+                                if ends_in_consonant and cursor + length < len(norm_word):
+                                    next_char = norm_word[cursor + length]
+                                    if next_char in SHIGEYED_VOWELS:
+                                        continue # Step down to the next shortest syllable length
+                                
+                                # Match accepted!
+                                shigeyed_output.append(candidate)
+                                cursor += length
+                                matched = True
+                                break
+                    
+                    # Fallback (Leftover unsupported consonant cluster)
+                    if not matched:
+                        fallback_syl = available_syls[0] if available_syls else char
+                        shigeyed_output.append(fallback_syl)
+                        cursor += 1
+                        
+                else:
+                    # Unrecognized char safety fallback
+                    shigeyed_output.append(char)
+                    cursor += 1
+                    
+            translated_tokens.append("-".join(shigeyed_output))
+
+        # Push the results to the Typer (this will auto-trigger the display via our lambda signal)
+        self.shigeyed_input.setPlainText("".join(translated_tokens))
+        self.shigeyed_input.blockSignals(False)
+        self.shigeyed_display.set_text(self.shigeyed_input.toPlainText())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
