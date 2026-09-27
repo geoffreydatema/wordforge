@@ -633,19 +633,28 @@ class Wordforge(QMainWindow):
     def setup_ui(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        main_layout = QHBoxLayout(central_widget)
+        
+        # We now use a vertical layout for the whole window to hold the top tabs
+        main_layout = QVBoxLayout(central_widget)
+        
+        self.top_tabs = QTabWidget()
+        
+        # Use native fonts instead of CSS so we don't break the OS theme
+        tab_font = QFont("Arial", 14, QFont.Normal)
+        self.top_tabs.setFont(tab_font)
+        
+        main_layout.addWidget(self.top_tabs)
 
-        # LEFT PANEL
+        # ==========================================
+        # 1. WORDFORGE TAB
+        # ==========================================
+        wordforge_top_tab = QWidget()
+        wf_top_layout = QHBoxLayout(wordforge_top_tab)
+
+        # --- LEFT PANEL: Tools ---
         left_panel = QWidget()
-        left_layout = QVBoxLayout(left_panel)
         left_panel.setFixedWidth(550) 
-        
-        # --- LEFT PANEL TABS ---
-        self.left_tabs = QTabWidget()
-        
-        # Wordforge
-        forge_tab = QWidget()
-        forge_layout = QVBoxLayout(forge_tab)
+        forge_layout = QVBoxLayout(left_panel)
         
         gen_group = QFrame()
         gen_group.setStyleSheet("background-color: #2b2b2b; border-radius: 8px; padding: 10px;")
@@ -653,7 +662,7 @@ class Wordforge(QMainWindow):
         self.gen_result_display = QLabel("...")
         self.gen_result_display.setAlignment(Qt.AlignCenter)
         self.gen_result_display.setFixedHeight(80) 
-        self.gen_result_display.setStyleSheet("color: white; margin-top: 10px;") 
+        self.gen_result_display.setStyleSheet("color: white; margin-top: 10px; font-size: 32px;") 
         self.gen_result_display.setTextInteractionFlags(Qt.TextSelectableByMouse)
         gen_layout.addWidget(self.gen_result_display)
         
@@ -700,8 +709,8 @@ class Wordforge(QMainWindow):
         form_layout = QGridLayout()
         self.input_conlang = RichLineEdit()
         self.input_conlang.returnPressed.connect(self.add_entry)
-
         self.input_conlang.setPlaceholderText("New Word")
+        
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
         self.input_english.setFixedHeight(50)
@@ -727,49 +736,71 @@ class Wordforge(QMainWindow):
         self.add_button.setStyleSheet("QPushButton { background-color: #2e7d32; color: white; font-weight: bold; border-radius: 4px; font-size: 16px; } QPushButton:hover { background-color: #388e3c; } QPushButton:pressed { background-color: #1b5e20; }")
         self.add_button.clicked.connect(self.add_entry)
         forge_layout.addWidget(self.add_button)
-        
         forge_layout.addSpacing(15)
         
         kbd_header_layout = QHBoxLayout()
         kbd_header_layout.addWidget(QLabel("Touch Keyboard:"))
         kbd_header_layout.addStretch()
-        
         forge_layout.addLayout(kbd_header_layout)
         
         keyboard = self.create_keyboard()
         forge_layout.addWidget(keyboard)
         forge_layout.addStretch()
         
-        self.left_tabs.addTab(forge_tab, "Word Forge")
-        
-        # Typer tab
-        typer_tab = QWidget()
-        typer_layout = QVBoxLayout(typer_tab)
+        wf_top_layout.addWidget(left_panel)
 
-        # 1. Top Section: English Input
+        # --- RIGHT PANEL: Dictionary ---
+        right_panel = QWidget()
+        right_layout = QVBoxLayout(right_panel)
+        self.tabs = QTabWidget() # Dictionary categories
+        for category in self.categories:
+            tab = QWidget()
+            t_layout = QVBoxLayout(tab)
+            table = QTableWidget()
+            table.setColumnCount(4)
+            table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
+            
+            table.setContextMenuPolicy(Qt.CustomContextMenu)
+            table.customContextMenuRequested.connect(lambda pos, t=table, c=category: self.show_table_context_menu(pos, t, c))
+            
+            header = table.horizontalHeader()
+            header.setSectionResizeMode(0, QHeaderView.ResizeToContents) 
+            header.setSectionResizeMode(1, QHeaderView.Stretch)
+            header.setSectionResizeMode(2, QHeaderView.Stretch)
+            header.setSectionResizeMode(3, QHeaderView.Fixed)
+            table.setColumnWidth(3, 40)
+            
+            self.tables[category] = table
+            t_layout.addWidget(table)
+            self.tabs.addTab(tab, category.title())
+            
+        right_layout.addWidget(self.tabs)
+        self.stats_label = QLabel("Total Words: 0")
+        right_layout.addWidget(self.stats_label)
+        
+        wf_top_layout.addWidget(right_panel)
+        self.top_tabs.addTab(wordforge_top_tab, "Wordforge")
+
+        # ==========================================
+        # 2. TRANSLATOR TAB
+        # ==========================================
+        translator_tab = QWidget()
+        typer_layout = QVBoxLayout(translator_tab)
+
         self.english_input = QTextEdit()
-        # self.english_input.setPlaceholderText("")
         self.english_input.setStyleSheet("""
             QTextEdit {
-                font-size: 14pt; 
-                padding: 10px; 
-                background-color: #2b2b2b; 
-                color: #81d4fa; 
-                border: 1px solid #555; 
-                border-radius: 2px;
+                font-size: 14pt; padding: 10px; background-color: #2b2b2b; 
+                color: #81d4fa; border: 1px solid #555; border-radius: 2px;
             }
         """)
         self.english_input.textChanged.connect(self.translate_english_to_tezhnor)
         typer_layout.addWidget(self.english_input, stretch=1)
 
-        # 2. Middle Section: Typer Input
         self.typer_input = TyperTextEdit()
-        # self.typer_input.setPlaceholderText("")
         typer_layout.addWidget(self.typer_input, stretch=1)
 
-        # 3. Controls Section (Moved above the bitmap renderer)
         typer_controls_container = QVBoxLayout()
-        
         row1_layout = QHBoxLayout()
         row2_layout = QHBoxLayout()
 
@@ -779,17 +810,14 @@ class Wordforge(QMainWindow):
         """
         label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
 
-        # --- ROW 1: Font Selector ---
         self.font_dropdown = QComboBox()
         self.font_dropdown.addItems(FONT_PROFILES.keys())
         self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
         
         row1_layout.addWidget(QLabel("Select Font:"))
         row1_layout.addWidget(self.font_dropdown)
-        row1_layout.addStretch() # Pushes the dropdown to the left so it doesn't stretch weirdly
+        row1_layout.addStretch() 
         
-        # --- ROW 2: Sliders ---
-        # 1. Size Slider
         size_layout = QVBoxLayout()
         self.typer_scale_label = QLabel("Size: 50%")
         self.typer_scale_label.setStyleSheet(label_style)
@@ -801,7 +829,6 @@ class Wordforge(QMainWindow):
         size_layout.addWidget(self.typer_scale_label)
         size_layout.addWidget(self.typer_scale_slider)
 
-        # 2. Line Height Slider
         lh_layout = QVBoxLayout()
         self.typer_lh_label = QLabel("Line Height: 100%")
         self.typer_lh_label.setStyleSheet(label_style)
@@ -813,7 +840,6 @@ class Wordforge(QMainWindow):
         lh_layout.addWidget(self.typer_lh_label)
         lh_layout.addWidget(self.typer_lh_slider)
 
-        # 3. Char Spacing Slider
         cs_layout = QVBoxLayout()
         self.typer_cs_label = QLabel("Char Spacing: 0")
         self.typer_cs_label.setStyleSheet(label_style)
@@ -829,31 +855,33 @@ class Wordforge(QMainWindow):
         row2_layout.addLayout(lh_layout)
         row2_layout.addLayout(cs_layout)
         
-        # Add both rows to the main container
         typer_controls_container.addLayout(row1_layout)
         typer_controls_container.addLayout(row2_layout)
-        
         typer_layout.addLayout(typer_controls_container)
         
-        # 4. Bottom Section: The Custom Font Renderer
         self.typer_bottom = BitmapRenderer()
         self.typer_bottom.setMinimumHeight(200) 
-        
         self.typer_input.textChanged.connect(
             lambda: self.typer_bottom.set_text(self.typer_input.toPlainText())
         )
-        
         typer_layout.addWidget(self.typer_bottom, stretch=1)
         
-        self.left_tabs.addTab(typer_tab, "Typer")
+        self.top_tabs.addTab(translator_tab, "Translator")
 
-        # Definitions tab
+        # ==========================================
+        # 3. SPECS TAB
+        # ==========================================
+        specs_tab = QWidget()
+        specs_layout = QVBoxLayout(specs_tab)
+        
+        self.specs_subtabs = QTabWidget()
+        
+        # --- TEZHNOR SUBTAB ---
         def_tab = QWidget()
         def_layout = QVBoxLayout(def_tab)
         
         self.def_table = QTableWidget()
         self.def_table.setColumnCount(4)
-        # 1. Renamed to "Character" and moved to the front
         self.def_table.setHorizontalHeaderLabels(["Character", "Unicode", "Romanization", "Notes"])
         
         def_header = self.def_table.horizontalHeader()
@@ -865,44 +893,36 @@ class Wordforge(QMainWindow):
         self.def_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
         self.def_table.verticalHeader().setVisible(False)
-        self.def_table.verticalHeader().setDefaultSectionSize(45) # Slightly smaller row height to match the smaller images
+        self.def_table.verticalHeader().setDefaultSectionSize(45) 
         self.def_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
         
-        # Populate the table
         self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
         row_idx = 0
         
         definition_font = "Rounded Bold" 
         current_font_dir = FONT_PROFILES[definition_font]["dir"]
         base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
-        # 2. Made the bitmap scale smaller (down from 0.9)
-        table_icon_scale = base_scale * 0.5
+        table_icon_scale = base_scale * 0.65 
         
         for char, code in TEZHNOR_TO_CODE.items():
-            # Column 0: Character (Bitmap)
             lbl = QLabel()
             pixmap = get_shared_pixmap(char, current_font_dir, table_icon_scale)
-            if pixmap:
-                lbl.setPixmap(pixmap)
+            if pixmap: lbl.setPixmap(pixmap)
             lbl.setAlignment(Qt.AlignCenter)
             
-            # Column 1: Unicode
             char_item = QTableWidgetItem(char)
             char_item.setTextAlignment(Qt.AlignCenter)
             char_item.setFont(QFont("Arial", 16))
             
-            # Column 2: Romanization
             code_item = QTableWidgetItem(code)
             code_item.setTextAlignment(Qt.AlignCenter)
             code_item.setFont(QFont("Arial", 12))
             
-            # Column 3: Notes
             notes_text = TEZHNOR_TO_PRONUNCIATION.get(char, "")
             notes_item = QTableWidgetItem(notes_text)
             notes_item.setFont(QFont("Arial", 11))
             notes_item.setForeground(QColor("#bbb"))
             
-            # 3. Assign items to their new reordered columns
             self.def_table.setCellWidget(row_idx, 0, lbl)
             self.def_table.setItem(row_idx, 1, char_item)
             self.def_table.setItem(row_idx, 2, code_item)
@@ -910,13 +930,10 @@ class Wordforge(QMainWindow):
             row_idx += 1
             
         self.def_table.setSortingEnabled(True)
-
         def_layout.addWidget(self.def_table)
-        self.left_tabs.addTab(def_tab, "Definitions")
+        self.specs_subtabs.addTab(def_tab, "Tezhnor")
 
-        left_layout.addWidget(self.left_tabs)
-
-        # Shigeyed tab
+        # --- SHIGEYED SUBTAB ---
         shig_tab = QWidget()
         shig_layout = QVBoxLayout(shig_tab)
         
@@ -938,24 +955,19 @@ class Wordforge(QMainWindow):
         self.shig_table.setRowCount(len(SHIGEYED_TO_CODE))
         s_row_idx = 0
         
-        # Fetch the Shigeyed font specs directly
         shig_font_dir = FONT_PROFILES["Shigeyed Bold"]["dir"]
         shig_scale = FONT_PROFILES["Shigeyed Bold"]["bitmap_base_scale"] * 0.65
         
         for char, code in SHIGEYED_TO_CODE.items():
-            # Column 0: Character (Bitmap)
             lbl = QLabel()
             pixmap = get_shared_pixmap(char, shig_font_dir, shig_scale)
-            if pixmap:
-                lbl.setPixmap(pixmap)
+            if pixmap: lbl.setPixmap(pixmap)
             lbl.setAlignment(Qt.AlignCenter)
             
-            # Column 1: Tezhnor Equivalent
             char_item = QTableWidgetItem(char)
             char_item.setTextAlignment(Qt.AlignCenter)
             char_item.setFont(QFont("Arial", 16))
             
-            # Column 2: Romanization
             code_item = QTableWidgetItem(code)
             code_item.setTextAlignment(Qt.AlignCenter)
             code_item.setFont(QFont("Arial", 12))
@@ -966,40 +978,15 @@ class Wordforge(QMainWindow):
             s_row_idx += 1
             
         self.shig_table.setSortingEnabled(True)
-
         shig_layout.addWidget(self.shig_table)
-        self.left_tabs.addTab(shig_tab, "Shigeyed")
-        
-        # RIGHT PANEL
-        right_panel = QWidget()
-        right_layout = QVBoxLayout(right_panel)
-        self.tabs = QTabWidget()
-        for category in self.categories:
-            tab = QWidget()
-            t_layout = QVBoxLayout(tab)
-            table = QTableWidget()
-            table.setColumnCount(4)
-            table.setHorizontalHeaderLabels(["Lore Word", "Definition", "Notes", ""])
-            
-            table.setContextMenuPolicy(Qt.CustomContextMenu)
-            table.customContextMenuRequested.connect(lambda pos, t=table, c=category: self.show_table_context_menu(pos, t, c))
-            
-            header = table.horizontalHeader()
-            header.setSectionResizeMode(0, QHeaderView.ResizeToContents) 
-            header.setSectionResizeMode(1, QHeaderView.Stretch)
-            header.setSectionResizeMode(2, QHeaderView.Stretch)
-            header.setSectionResizeMode(3, QHeaderView.Fixed)
-            table.setColumnWidth(3, 40)
-            
-            self.tables[category] = table
-            t_layout.addWidget(table)
-            self.tabs.addTab(tab, category.title())
-        right_layout.addWidget(self.tabs)
-        self.stats_label = QLabel("Total Words: 0")
-        right_layout.addWidget(self.stats_label)
-        main_layout.addWidget(left_panel)
-        main_layout.addWidget(right_panel)
+        self.specs_subtabs.addTab(shig_tab, "Shigeyed")
 
+        specs_layout.addWidget(self.specs_subtabs)
+        self.top_tabs.addTab(specs_tab, "Specs")
+
+        # ==========================================
+        # POST-SETUP OPERATIONS
+        # ==========================================
         for category in self.categories:
             self.refresh_table(category)
         
