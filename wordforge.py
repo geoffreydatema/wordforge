@@ -585,8 +585,6 @@ class Wordforge(QMainWindow):
         self.tables = {} 
         self.data = self.load_data()
         
-        self.common_words = self.load_common_words()
-
         self.key_to_lore = {}
         for row in KEYBOARD_LAYOUT:
             for k, char in row:
@@ -605,16 +603,6 @@ class Wordforge(QMainWindow):
                 content = f.read().strip()
                 return json.loads(content) if content else default_data
         except: return default_data
-        
-    def load_common_words(self):
-        filename = "1000.txt"
-        if not os.path.exists(filename):
-            return []
-        try:
-            with open(filename, "r", encoding="utf-8") as f:
-                return [line.strip() for line in f if line.strip()]
-        except Exception as e:
-            return []
 
     def save_data(self):
         with open(self.filename, 'w', encoding='utf-8') as f:
@@ -1010,10 +998,6 @@ class Wordforge(QMainWindow):
         self.gen_structure_display.setText(structure)
         self.gen_pron_display.setText(pron)
         self.input_conlang.setText(word)
-        
-        if self.common_words:
-            random_def = random.choice(self.common_words)
-            self.input_english.setText(random_def)
 
     def add_entry(self):
         conlang = self.input_conlang.text().strip()
