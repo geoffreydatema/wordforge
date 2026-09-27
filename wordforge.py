@@ -1613,32 +1613,69 @@ class Wordforge(QMainWindow):
         return None
 
     def update_active_word_panel(self):
-        tezhnor_text = self.typer_input.toPlainText()
-        tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
+        active_tezhnor_words = []
         
-        # Find the last actual word typed (ignore spaces and punctuation)
-        valid_tokens = [t for t in tokens if t and not t.isspace() and t not in SYMBOLS.values()]
-        
-        if not valid_tokens:
+        # Helper to find the word nearest to the active typing cursor
+        def get_word_near_cursor(text_edit):
+            pos = text_edit.textCursor().position()
+            text = text_edit.toPlainText()
+            
+            current_idx = 0
+            tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", text)
+            last_valid_word = None
+            
+            for token in tokens:
+                start_idx = current_idx
+                end_idx = current_idx + len(token)
+                
+                is_word = bool(token.strip()) and token not in [".", "\"", "'", "(", ")", "[", "]", "{", "}", "<", ">", "•"]
+                
+                if is_word:
+                    last_valid_word = token
+                    
+                # If the cursor is touching or inside this token
+                if start_idx <= pos <= end_idx:
+                    if is_word:
+                        return token
+                    else:
+                        # If the cursor is on a space, return the word immediately before it
+                        return last_valid_word
+                        
+                current_idx = end_idx
+                
+            return last_valid_word
+
+        # 1. Determine active word based on which text box you are typing in
+        if hasattr(self, 'english_input') and self.english_input.hasFocus():
+            eng_word = get_word_near_cursor(self.english_input)
+            if eng_word:
+                eng_word = eng_word.lower()
+                # Look up ALL Tezhnor options for this English word
+                for category in self.categories:
+                    for item in self.data[category]:
+                        eng_defs = item.get("english", "").strip().lower()
+                        conlang_word = item.get("conlang", "").strip()
+                        if eng_defs and conlang_word:
+                            for sub_word in eng_defs.split('/'):
+                                if sub_word.strip() == eng_word and conlang_word not in active_tezhnor_words:
+                                    active_tezhnor_words.append(conlang_word)
+        else:
+            # Fallback to the Tezhnor box
+            tezhnor_word = get_word_near_cursor(self.typer_input)
+            if tezhnor_word:
+                active_tezhnor_words = [w for w in tezhnor_word.split('/') if w]
+
+        # 2. Display the definitions
+        if not active_tezhnor_words:
             self.active_word_display.setHtml("<i>No active word...</i>")
             return
             
-        last_token = valid_tokens[-1]
-        
-        # Split by '/' in case there are multiple Tezhnor translations
-        options = last_token.split('/')
-        
         html_output = ""
-        for opt in options:
-            if not opt: continue
-            
+        for opt in active_tezhnor_words:
             entry = self.find_dictionary_entry(opt)
             if entry:
-                # Fallback to 'definition' if 'english' key isn't used
                 def_text = entry.get("english", entry.get("definition", "Unknown Definition"))
                 notes_text = entry.get("notes", "")
-                
-                # Format with HTML for a clean look
                 notes_html = f" <span style='color:#888;'>({notes_text})</span>" if notes_text else ""
                 html_output += f"<b style='color:#81d4fa;'>{opt}</b>: {def_text}{notes_html}<br>"
             else:
