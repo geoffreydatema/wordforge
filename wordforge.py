@@ -30,6 +30,7 @@ SPEC = load_spec()
 
 TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
 CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
+TEZHNOR_TO_PRONUNCIATION = SPEC["tezhnor_to_pronunciation"]
 SYMBOLS = SPEC["symbols"]
 VOWELS = SPEC["vowels"]
 CONSONANTS = SPEC["consonants"]
@@ -138,9 +139,6 @@ FONT_PROFILES = {
 CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[0]
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
-TABLE_SIZE_CORRECTIONS = {}
-HEADER_SIZE_CORRECTIONS = {}
-
 CHAR_WIDTHS = {
     # Wide & Square Characters
     CODE_TO_TEZHNOR["o"]: "advance_square",
@@ -181,26 +179,6 @@ COMBO_MAP = {
 }
 
 DISABLED_KEYS = ['q']
-
-def apply_visual_fixes(text, mode='table'):
-    if not text: return ""
-    
-    if mode == 'header':
-        corrections = HEADER_SIZE_CORRECTIONS
-        base_size = "32px"
-    else:
-        corrections = TABLE_SIZE_CORRECTIONS
-        base_size = "14pt"
-    
-    html = ""
-    for char in text:
-        if char in corrections:
-            scale = corrections[char]
-            html += f"<span style='font-size:{scale};'>{char}</span>"
-        else:
-            html += char
-            
-    return f"<span style='font-size:{base_size};'>{html}</span>"
 
 class BitmapRenderer(QWidget):
     def __init__(self, *args, **kwargs):
@@ -340,9 +318,7 @@ class RichLineEdit(QTextEdit):
 
     def insertFromMimeData(self, source):
         if source.hasText():
-            pasted_text = source.text()
-            styled_html = apply_visual_fixes(pasted_text, mode='table')
-            self.textCursor().insertHtml(styled_html)
+            self.textCursor().insertText(source.text())
         else:
             super().insertFromMimeData(source)
 
@@ -353,16 +329,14 @@ class RichLineEdit(QTextEdit):
         super().keyPressEvent(event)
 
     def setText(self, text):
-        styled = apply_visual_fixes(text, mode='table')
-        self.setHtml(styled)
+        self.setPlainText(text)
         self.moveCursor(QTextCursor.End)
         
     def text(self):
         return self.toPlainText()
         
     def insert(self, text):
-        styled = apply_visual_fixes(text, mode='table')
-        self.textCursor().insertHtml(styled)
+        self.textCursor().insertText(text)
         
     def backspace(self):
         self.textCursor().deletePreviousChar()
@@ -829,22 +803,48 @@ class Wordforge(QMainWindow):
         def_tab = QWidget()
         def_layout = QVBoxLayout(def_tab)
         
-        self.def_browser = QTextBrowser()
-        self.def_browser.setOpenExternalLinks(False)
-        self.def_browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 12pt; border: 1px solid #444;")
+        self.def_table = QTableWidget()
+        self.def_table.setColumnCount(3)
+        self.def_table.setHorizontalHeaderLabels(["Unicode", "Romanization", "Notes"])
         
-        html = "<h2>тэжнop alphabet</h2><table width='100%' cellpadding='6' style='border-collapse: collapse; margin-bottom: 20px;'>"
-        html += "<tr style='background-color: #444;'><th style='border-bottom: 1px solid white;'>Char</th><th style='border-bottom: 1px solid white;'>Code</th><th style='border-bottom: 1px solid white;'>Notes</th></tr>"
+        # Configure table appearance and behavior
+        def_header = self.def_table.horizontalHeader()
+        def_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(2, QHeaderView.Stretch)
         
+        self.def_table.setEditTriggers(QTableWidget.NoEditTriggers) # Make read-only
+        self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.def_table.verticalHeader().setVisible(False)
+        self.def_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
+        
+        # Populate the table
+        self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
+        row_idx = 0
         for char, code in TEZHNOR_TO_CODE.items():
-            styled_char = apply_visual_fixes(char, mode='table')
-            html += f"<tr><td style='border-bottom: 1px solid #444; text-align: center; font-size: 16pt;'>{styled_char}</td><td style='border-bottom: 1px solid #444;'>{code}</td><td style='border-bottom: 1px solid #444; font-size: 11pt; color: #bbb;'></td></tr>"
-        
-        html += "</table>"
-        
-        self.def_browser.setHtml(html)
-        def_layout.addWidget(self.def_browser)
-        
+            # Unicode Column
+            char_item = QTableWidgetItem(char)
+            char_item.setTextAlignment(Qt.AlignCenter)
+            char_item.setFont(QFont("Arial", 16))
+            
+            # Romanization Column
+            code_item = QTableWidgetItem(code)
+            code_item.setTextAlignment(Qt.AlignCenter)
+            code_item.setFont(QFont("Arial", 12))
+            
+            # Notes Column (Empty for now, ready for future use)
+            notes_item = QTableWidgetItem(TEZHNOR_TO_PRONUNCIATION.get(char, ""))
+            notes_item.setFont(QFont("Arial", 12))
+            
+            self.def_table.setItem(row_idx, 0, char_item)
+            self.def_table.setItem(row_idx, 1, code_item)
+            self.def_table.setItem(row_idx, 2, notes_item)
+            row_idx += 1
+            
+        # Enable sorting after populating so it doesn't scramble during insertion
+        self.def_table.setSortingEnabled(True)
+
+        def_layout.addWidget(self.def_table)
         self.left_tabs.addTab(def_tab, "Definitions")
 
         left_layout.addWidget(self.left_tabs)
@@ -993,8 +993,7 @@ class Wordforge(QMainWindow):
         syl_count = self.syllable_slider.value()
         word, structure, pron = WordGenerator.generate_word(num_syllables=syl_count)
         
-        styled_word = apply_visual_fixes(word, mode='header')
-        self.gen_result_display.setText(styled_word)
+        self.gen_result_display.setText(word)
         self.gen_structure_display.setText(structure)
         self.gen_pron_display.setText(pron)
         self.input_conlang.setText(word)
@@ -1103,8 +1102,7 @@ class Wordforge(QMainWindow):
         for r, item in enumerate(items):
             table.insertRow(r)
             lore_word_raw = item.get('conlang', '')
-            lore_word_styled = apply_visual_fixes(lore_word_raw, mode='table')
-            label = QLabel(lore_word_styled)
+            label = QLabel(lore_word_raw)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
             label.setMinimumWidth(150)
             table.setCellWidget(r, 0, label)
