@@ -111,7 +111,7 @@ FONT_PROFILES = {
     "Rounded Regular": {
         "dir": "fonts/tezhnor_rounded_regular",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
         "advance_punctuation": 50,
@@ -126,7 +126,7 @@ FONT_PROFILES = {
     "Rounded Bold": {
         "dir": "fonts/tezhnor_rounded_bold", 
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
         "advance_punctuation": 50,
@@ -141,7 +141,7 @@ FONT_PROFILES = {
     "Block Regular": {
         "dir": "fonts/tezhnor_block_regular",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
         "advance_punctuation": 50,
@@ -156,7 +156,7 @@ FONT_PROFILES = {
     "Block Mono": {
         "dir": "fonts/tezhnor_block_mono",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 103,    # Adjusted to match the mono width for even word gaps
         "advance_punctuation": 50,
@@ -171,7 +171,7 @@ FONT_PROFILES = {
     "Block Extended": {
         "dir": "fonts/tezhnor_block_mono_extended",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 128,    # Adjusted to match the extended width
         "advance_punctuation": 50,
@@ -186,7 +186,7 @@ FONT_PROFILES = {
     "Block Monoheight": {
         "dir": "fonts/tezhnor_block_monoheight",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
         "advance_punctuation": 50,
@@ -201,7 +201,7 @@ FONT_PROFILES = {
     "Shigeyed Bold": {
         "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.17,
+        "bitmap_base_scale": 0.14,
         "line_height": 400,
         "space_width": 80,
         "advance_punctuation": 50,
@@ -215,7 +215,7 @@ FONT_PROFILES = {
     }
 }
 
-CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[0]
+CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[1]
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
 CHAR_WIDTHS = {
@@ -903,6 +903,7 @@ class Wordforge(QMainWindow):
         # Filter out the Shigeyed font so we don't accidentally set Tezhnor to use Shigeyed bitmaps
         tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
         self.font_dropdown.addItems(tezhnor_fonts)
+        self.font_dropdown.setCurrentText("Rounded Bold")
         self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
         
         row1_layout.addWidget(QLabel("Tezhnor Font:"))
