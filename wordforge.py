@@ -1534,18 +1534,15 @@ class Wordforge(QMainWindow):
             while cursor < len(norm_word):
                 char = norm_word[cursor]
                 
-                # Check for Vowels
+                # Check for Standalone/Orphaned Vowels
                 if char in SHIGEYED_VOWELS:
-                    if cursor == 0:
-                        # RULE: Leading vowel gets the "ь" prefix
-                        soft_syl = "ь" + char
-                        if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
-                            shigeyed_output.append(soft_syl)
-                        else:
-                            shigeyed_output.append(char) # Failsafe
+                    # RULE: ANY standalone vowel (start of word or orphaned mid-word) gets the "ь" prefix
+                    soft_syl = "ь" + char
+                    if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
+                        shigeyed_output.append(soft_syl)
                     else:
-                        # RULE: Leftover/Orphaned Vowel mid-word gets flagged
-                        shigeyed_output.append(char + "[!]")
+                        shigeyed_output.append(char) # Failsafe
+                        
                     cursor += 1
                     continue
                     
@@ -1592,8 +1589,10 @@ class Wordforge(QMainWindow):
         self.shigeyed_input.setPlainText("".join(translated_tokens))
         self.shigeyed_input.blockSignals(False)
         self.shigeyed_display.set_text(self.shigeyed_input.toPlainText())
-
-        self.update_active_word_panel()
+        
+        # Update the definition panel
+        if hasattr(self, 'update_active_word_panel'):
+            self.update_active_word_panel()
 
     def find_dictionary_entry(self, tezhnor_word):
         """Helper to find a dictionary entry by its Tezhnor spelling from memory."""
