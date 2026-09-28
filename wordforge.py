@@ -1408,20 +1408,17 @@ class Wordforge(QMainWindow):
                     for sub_word in eng_definitions.split('/'):
                         clean_eng_word = sub_word.strip()
                         if clean_eng_word:
-                            # If the word isn't in the dict yet, start a new list
                             if clean_eng_word not in eng_to_lore:
                                 eng_to_lore[clean_eng_word] = []
-                            
-                            # Add the conlang word only if it isn't already in the list
                             if conlang_word not in eng_to_lore[clean_eng_word]:
                                 eng_to_lore[clean_eng_word].append(conlang_word)
 
         # 2. Define the punctuation mappings and ignored words
         punct_map = {
-            '.': SYMBOLS['terminator'],
-            "'": SYMBOLS['quote'],
-            '[': SYMBOLS['bracket_open'],
-            ']': SYMBOLS['bracket_close'],
+            '.': SYMBOLS.get('terminator', '.'),
+            "'": SYMBOLS.get('quote', "'"),
+            '[': SYMBOLS.get('bracket_open', '['),
+            ']': SYMBOLS.get('bracket_close', ']'),
         }
         
         IGNORED_WORDS = {"a", "an", "the"}
@@ -1430,17 +1427,21 @@ class Wordforge(QMainWindow):
         current_tezhnor_text = self.typer_input.toPlainText()
         
         # 3. Tokenize BOTH texts using split so we can align them positionally
-        # We split by spaces and punctuation, keeping the delimiters intact
-        eng_tokens = [t for t in re.split(r"(\s+|[.\"'()\[\]{}<>•])", english_text) if t]
-        tezhnor_tokens = [t for t in re.split(r"(\s+|[.\"'()\[\]{}<>•])", current_tezhnor_text) if t]
+        split_pattern = r"(<---->|\s+|[.\"'()\[\]{}<>•])"
+        eng_tokens = [t for t in re.split(split_pattern, english_text) if t]
+        tezhnor_tokens = [t for t in re.split(split_pattern, current_tezhnor_text) if t]
         
-        # Extract JUST the Tezhnor words (ignore the spaces and punctuation) so we can index them
-        tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t not in punct_map.values() and t not in punct_map.keys()]
+        # Extract JUST the Tezhnor words (ignore spaces and single punctuation) so we can index them
+        tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t not in punct_map.values() and t not in punct_map.keys() and t not in list(".\"'()[]{}<>•")]
         
         translated_tokens = []
-        word_index = 0 # Tracks which translation choice we are currently evaluating
+        word_index = 0
         
         for token in eng_tokens:
+            if token == "<---->":
+                translated_tokens.append("<---->")
+                continue
+                
             if token.isspace():
                 translated_tokens.append(token)
                 continue
@@ -1457,15 +1458,13 @@ class Wordforge(QMainWindow):
             word = token.lower()
             
             if word in IGNORED_WORDS:
-                continue # Skip without advancing word_index
+                continue 
                 
-            # If the word exists, check for choice preservation!
             if word in eng_to_lore:
                 options = eng_to_lore[word]
                 
                 if word_index < len(tezhnor_words):
                     existing_choice = tezhnor_words[word_index]
-                    # If you manually edited the text to one of the valid options, keep it!
                     if existing_choice in options:
                         chosen_word = existing_choice
                     else:
@@ -1475,21 +1474,20 @@ class Wordforge(QMainWindow):
                     
                 translated_tokens.append(chosen_word)
             else:
-                translated_tokens.append("<--->")
+                translated_tokens.append("<---->")
                 
             word_index += 1
 
-        # Rejoin everything back together
         translated_text = "".join(translated_tokens)
-
-        # 5. Clean up extra spaces
         translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
 
         # 6. Push to the Tezhnor text edit
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
-        self.typer_bottom.set_text(self.typer_input.toPlainText())
+        
+        display_text = self.typer_input.toPlainText().replace("<---->", "[]")
+        self.typer_bottom.set_text(display_text)
 
         # 7. Cascade updates to Shigeyed and Definition Panel
         if hasattr(self, 'translate_tezhnor_to_shigeyed'):
@@ -1499,21 +1497,23 @@ class Wordforge(QMainWindow):
             self.update_active_word_panel()
 
     def translate_tezhnor_to_shigeyed(self):
-        # Prevent infinite loops if updating programmatically
         self.shigeyed_input.blockSignals(True)
-        
         tezhnor_text = self.typer_input.toPlainText()
         
-        # Tokenize word-by-word while preserving spaces/punctuation
-        tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
+        tokens = re.split(r"(<---->|\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
         
         translated_tokens = []
         
         for token in tokens:
             if not token:
-                continue # Safely skip empty regex artifacts without appending
+                continue 
                 
-            if token.isspace() or token in SYMBOLS.values():
+            if token == "<---->":
+                translated_tokens.append(token)
+                continue
+                
+            # Include basic symbols in the passthrough just in case
+            if token.isspace() or token in SYMBOLS.values() or token in list(".\"'()[]{}<>•"):
                 translated_tokens.append(token)
                 continue
                 
@@ -1536,12 +1536,11 @@ class Wordforge(QMainWindow):
                 
                 # Check for Standalone/Orphaned Vowels
                 if char in SHIGEYED_VOWELS:
-                    # RULE: ANY standalone vowel (start of word or orphaned mid-word) gets the "ь" prefix
                     soft_syl = "ь" + char
                     if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
                         shigeyed_output.append(soft_syl)
                     else:
-                        shigeyed_output.append(char) # Failsafe
+                        shigeyed_output.append(char) 
                         
                     cursor += 1
                     continue
@@ -1551,46 +1550,39 @@ class Wordforge(QMainWindow):
                     available_syls = SYLLABLES_BY_CONSONANT[char]
                     matched = False
                     
-                    # Check lengths greedily (4, 3, then 2)
                     for length in [4, 3, 2]:
                         if cursor + length <= len(norm_word):
                             candidate = norm_word[cursor:cursor+length]
                             if candidate in available_syls:
-                                
-                                # LOOKAHEAD RULE: If the candidate ends in a consonant (like a CVC) 
-                                # and the next character is a vowel, we MUST reject this match!
                                 ends_in_consonant = candidate[-1] not in SHIGEYED_VOWELS
                                 
                                 if ends_in_consonant and cursor + length < len(norm_word):
                                     next_char = norm_word[cursor + length]
                                     if next_char in SHIGEYED_VOWELS:
-                                        continue # Step down to the next shortest syllable length
+                                        continue 
                                 
-                                # Match accepted!
                                 shigeyed_output.append(candidate)
                                 cursor += length
                                 matched = True
                                 break
                     
-                    # Fallback (Leftover unsupported consonant cluster)
                     if not matched:
                         fallback_syl = available_syls[0] if available_syls else char
                         shigeyed_output.append(fallback_syl)
                         cursor += 1
                         
                 else:
-                    # Unrecognized char safety fallback
                     shigeyed_output.append(char)
                     cursor += 1
                     
             translated_tokens.append("-".join(shigeyed_output))
 
-        # Push the results to the Typer (this will auto-trigger the display via our lambda signal)
         self.shigeyed_input.setPlainText("".join(translated_tokens))
         self.shigeyed_input.blockSignals(False)
-        self.shigeyed_display.set_text(self.shigeyed_input.toPlainText())
         
-        # Update the definition panel
+        display_text = self.shigeyed_input.toPlainText().replace("<---->", "[]")
+        self.shigeyed_display.set_text(display_text)
+        
         if hasattr(self, 'update_active_word_panel'):
             self.update_active_word_panel()
 
