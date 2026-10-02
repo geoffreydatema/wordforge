@@ -91,7 +91,7 @@
             "notes": "interrogative (time)"
         },
         {
-            "conlang": "яoc",
+            "conlang": "λoc",
             "english": "how",
             "notes": "interrogative (method/manner)"
         },
@@ -141,7 +141,7 @@
             "notes": ""
         },
         {
-            "conlang": "яδд",
+            "conlang": "λδд",
             "english": "at",
             "notes": ""
         },
@@ -176,7 +176,7 @@
             "notes": ""
         },
         {
-            "conlang": "вия",
+            "conlang": "виλ",
             "english": "near",
             "notes": ""
         },
@@ -221,7 +221,7 @@
             "notes": ""
         },
         {
-            "conlang": "шяэ",
+            "conlang": "шλэ",
             "english": "since",
             "notes": ""
         },
@@ -271,7 +271,7 @@
             "notes": "conditional antecedent"
         },
         {
-            "conlang": "штλ",
+            "conlang": "штя",
             "english": "then",
             "notes": "conditional consequent"
         },
@@ -306,7 +306,7 @@
             "notes": "universal scope operator"
         },
         {
-            "conlang": "тεя",
+            "conlang": "тελ",
             "english": "none/null/nothing",
             "notes": "null / zero operator"
         },
@@ -341,7 +341,7 @@
             "notes": "dual quantifier"
         },
         {
-            "conlang": "кия",
+            "conlang": "киλ",
             "english": "few",
             "notes": "paucal quantifier"
         },
@@ -396,7 +396,7 @@
             "notes": "differentiation pointer"
         },
         {
-            "conlang": "штия",
+            "conlang": "штиλ",
             "english": "another",
             "notes": "additive differentiation pointer"
         },
@@ -406,7 +406,7 @@
             "notes": ""
         },
         {
-            "conlang": "coя",
+            "conlang": "coλ",
             "english": "but",
             "notes": ""
         },
@@ -456,7 +456,7 @@
             "notes": ""
         },
         {
-            "conlang": "яa",
+            "conlang": "λa",
             "english": "we/us",
             "notes": "1st person plural"
         }
@@ -543,12 +543,12 @@
             "notes": ""
         },
         {
-            "conlang": "кoяoвa",
+            "conlang": "кoλoвa",
             "english": "word",
             "notes": ""
         },
         {
-            "conlang": "вoяoш",
+            "conlang": "вoλoш",
             "english": "big/large",
             "notes": ""
         },
@@ -698,12 +698,12 @@
             "notes": "to say or speak something out loud"
         },
         {
-            "conlang": "штияa",
+            "conlang": "штиλa",
             "english": "always",
             "notes": ""
         },
         {
-            "conlang": "кoя",
+            "conlang": "кoλ",
             "english": "zero",
             "notes": ""
         },
@@ -718,7 +718,7 @@
             "notes": ""
         },
         {
-            "conlang": "тλp",
+            "conlang": "тяp",
             "english": "three",
             "notes": ""
         },
@@ -803,7 +803,7 @@
             "notes": ""
         },
         {
-            "conlang": "шияи",
+            "conlang": "шиλи",
             "english": "come",
             "notes": ""
         },
@@ -863,7 +863,7 @@
             "notes": ""
         },
         {
-            "conlang": "жкaяa",
+            "conlang": "жкaλa",
             "english": "part/section",
             "notes": ""
         },
@@ -898,7 +898,7 @@
             "notes": "the form, appearance, or shape of something"
         },
         {
-            "conlang": "тaяэкδд",
+            "conlang": "тaλэкδд",
             "english": "sentence",
             "notes": "a sequence of words forming a complete thought"
         },
@@ -963,7 +963,7 @@
             "notes": ""
         },
         {
-            "conlang": "яиp",
+            "conlang": "λиp",
             "english": "right",
             "notes": "the direction opposite of left"
         },
@@ -973,7 +973,7 @@
             "notes": ""
         },
         {
-            "conlang": "кяэт",
+            "conlang": "кλэт",
             "english": "tell",
             "notes": "to speak a message to someone"
         },
@@ -1013,7 +1013,7 @@
             "notes": ""
         },
         {
-            "conlang": "яэтэc",
+            "conlang": "λэтэc",
             "english": "hand",
             "notes": ""
         },
@@ -1053,7 +1053,7 @@
             "notes": ""
         },
         {
-            "conlang": "яλдcэ",
+            "conlang": "λядcэ",
             "english": "change",
             "notes": ""
         },
@@ -1093,7 +1093,7 @@
             "notes": ""
         },
         {
-            "conlang": "яyшкa",
+            "conlang": "λyшкa",
             "english": "house",
             "notes": "the structure where someone or something lives"
         },
@@ -1158,7 +1158,7 @@
             "notes": "to stand on one's legs"
         },
         {
-            "conlang": "яδպy",
+            "conlang": "λδպy",
             "english": "own",
             "notes": "to posess something"
         },
@@ -1258,7 +1258,7 @@
             "notes": ""
         },
         {
-            "conlang": "zδცλ",
+            "conlang": "zδცя",
             "english": "cross",
             "notes": "to move across an area"
         },
@@ -1403,7 +1403,7 @@
             "notes": "a single symbol used as part of a written language"
         },
         {
-            "conlang": "жλд",
+            "conlang": "жяд",
             "english": "river",
             "notes": ""
         },
@@ -1493,7 +1493,7 @@
             "notes": ""
         },
         {
-            "conlang": "պяoв",
+            "conlang": "պλoв",
             "english": "horse",
             "notes": ""
         },
@@ -1553,12 +1553,12 @@
             "notes": ""
         },
         {
-            "conlang": "жэя",
+            "conlang": "жэλ",
             "english": "young",
             "notes": ""
         },
         {
-            "conlang": "мaяՑa",
+            "conlang": "мaλՑa",
             "english": "ready",
             "notes": ""
         },
@@ -1638,7 +1638,7 @@
             "notes": ""
         },
         {
-            "conlang": "мэжэнλ",
+            "conlang": "мэжэня",
             "english": "product",
             "notes": "a manufactured or assembled product"
         },
@@ -1663,7 +1663,7 @@
             "notes": "the natural movement of air outdoors"
         },
         {
-            "conlang": "яazнap",
+            "conlang": "λazнap",
             "english": "ship/boat/watercraft",
             "notes": ""
         },
@@ -1688,7 +1688,7 @@
             "notes": ""
         },
         {
-            "conlang": "aякac",
+            "conlang": "aλкac",
             "english": "order",
             "notes": "the sequence of items"
         },
@@ -1748,7 +1748,7 @@
             "notes": "the area between objects"
         },
         {
-            "conlang": "ьэzяo",
+            "conlang": "ьэzλo",
             "english": "best",
             "notes": ""
         },
@@ -1883,7 +1883,7 @@
             "notes": ""
         },
         {
-            "conlang": "яyтoн",
+            "conlang": "λyтoн",
             "english": "centre/center",
             "notes": ""
         },
@@ -1953,7 +1953,7 @@
             "notes": ""
         },
         {
-            "conlang": "ивεят",
+            "conlang": "ивελт",
             "english": "notice",
             "notes": "to notice something"
         },
@@ -2148,7 +2148,7 @@
             "notes": ""
         },
         {
-            "conlang": "пaкλ",
+            "conlang": "пaкя",
             "english": "wheel",
             "notes": ""
         },
@@ -2158,7 +2158,7 @@
             "notes": "the mathematical operation"
         },
         {
-            "conlang": "яэთ",
+            "conlang": "λэთ",
             "english": "stay",
             "notes": ""
         },
@@ -2208,7 +2208,7 @@
             "notes": "a natural satellite orbiting a planet"
         },
         {
-            "conlang": "ջяpaca",
+            "conlang": "ջλpaca",
             "english": "island",
             "notes": ""
         },
@@ -2343,7 +2343,7 @@
             "notes": ""
         },
         {
-            "conlang": "мpэя",
+            "conlang": "мpэλ",
             "english": "yet",
             "notes": ""
         },
@@ -2373,7 +2373,7 @@
             "notes": ""
         },
         {
-            "conlang": "cяэըэ",
+            "conlang": "cλэըэ",
             "english": "dance",
             "notes": ""
         },
@@ -2408,7 +2408,7 @@
             "notes": ""
         },
         {
-            "conlang": "яэгэpт",
+            "conlang": "λэгэpт",
             "english": "weight",
             "notes": ""
         },
@@ -2423,7 +2423,7 @@
             "notes": "water ice"
         },
         {
-            "conlang": "ջպия",
+            "conlang": "ջպиλ",
             "english": "circle",
             "notes": "the abstract circle shape"
         },
@@ -2578,7 +2578,7 @@
             "notes": ""
         },
         {
-            "conlang": "гэчλ",
+            "conlang": "гэчя",
             "english": "prove",
             "notes": ""
         },
@@ -2698,7 +2698,7 @@
             "notes": ""
         },
         {
-            "conlang": "яεт",
+            "conlang": "λεт",
             "english": "month",
             "notes": ""
         },
@@ -2768,7 +2768,7 @@
             "notes": "to meet someone for the first time"
         },
         {
-            "conlang": "ըλж",
+            "conlang": "ըяж",
             "english": "push",
             "notes": ""
         },
@@ -2828,7 +2828,7 @@
             "notes": "to burn with fire"
         },
         {
-            "conlang": "иպλп",
+            "conlang": "иպяп",
             "english": "hill",
             "notes": ""
         },
@@ -2848,7 +2848,7 @@
             "notes": ""
         },
         {
-            "conlang": "εяoб",
+            "conlang": "ελoб",
             "english": "law",
             "notes": ""
         },
@@ -2903,7 +2903,7 @@
             "notes": ""
         },
         {
-            "conlang": "юшкλ",
+            "conlang": "юшкя",
             "english": "lie",
             "notes": "to tell a lie"
         },
@@ -2913,7 +2913,7 @@
             "notes": ""
         },
         {
-            "conlang": "тиьэгяh",
+            "conlang": "тиьэгλh",
             "english": "lie",
             "notes": "a lie, an untrue statement"
         },
@@ -2968,7 +2968,7 @@
             "notes": ""
         },
         {
-            "conlang": "яэըջд",
+            "conlang": "λэըջд",
             "english": "lake",
             "notes": ""
         },
@@ -2983,7 +2983,7 @@
             "notes": ""
         },
         {
-            "conlang": "вpэя",
+            "conlang": "вpэλ",
             "english": "spring/spring season",
             "notes": "the spring season"
         },
@@ -3118,7 +3118,7 @@
             "notes": "to trip over something"
         },
         {
-            "conlang": "кλчδc",
+            "conlang": "кячδc",
             "english": "office",
             "notes": "a room where someone formally does their work"
         },
@@ -3138,7 +3138,7 @@
             "notes": ""
         },
         {
-            "conlang": "киьλ",
+            "conlang": "киья",
             "english": "die",
             "notes": ""
         },
@@ -3158,7 +3158,7 @@
             "notes": ""
         },
         {
-            "conlang": "кяэбpи",
+            "conlang": "кλэбpи",
             "english": "shout",
             "notes": ""
         },
@@ -3203,7 +3203,7 @@
             "notes": ""
         },
         {
-            "conlang": "виьyя",
+            "conlang": "виьyλ",
             "english": "blow",
             "notes": ""
         },
@@ -3228,7 +3228,7 @@
             "notes": ""
         },
         {
-            "conlang": "δкaცλ",
+            "conlang": "δкaცя",
             "english": "team",
             "notes": ""
         },
@@ -3258,7 +3258,7 @@
             "notes": ""
         },
         {
-            "conlang": "шaдcλ",
+            "conlang": "шaдcя",
             "english": "garden",
             "notes": ""
         },
@@ -3313,7 +3313,7 @@
             "notes": ""
         },
         {
-            "conlang": "шλpa",
+            "conlang": "шяpa",
             "english": "practice",
             "notes": "to practice a skill"
         },
@@ -3348,7 +3348,7 @@
             "notes": "finger jewelry"
         },
         {
-            "conlang": "яюpaтэк",
+            "conlang": "λюpaтэк",
             "english": "insect",
             "notes": ""
         },
@@ -3358,7 +3358,7 @@
             "notes": ""
         },
         {
-            "conlang": "λшՑaբa",
+            "conlang": "яшՑaբa",
             "english": "period/interval/time period",
             "notes": ""
         },
@@ -3398,7 +3398,7 @@
             "notes": ""
         },
         {
-            "conlang": "тλբλ",
+            "conlang": "тяբя",
             "english": "modern",
             "notes": ""
         },
@@ -3463,7 +3463,7 @@
             "notes": ""
         },
         {
-            "conlang": "dpaгλ",
+            "conlang": "dpaгя",
             "english": "danger",
             "notes": ""
         },
@@ -3508,7 +3508,7 @@
             "notes": "to guess"
         },
         {
-            "conlang": "вλьoт",
+            "conlang": "вяьoт",
             "english": "operate",
             "notes": "to operate a device or machinery"
         },
@@ -3528,7 +3528,7 @@
             "notes": ""
         },
         {
-            "conlang": "μyьaբλ",
+            "conlang": "μyьaբя",
             "english": "today",
             "notes": ""
         },
@@ -3538,7 +3538,7 @@
             "notes": "the anatomical body part"
         },
         {
-            "conlang": "шqλтqo",
+            "conlang": "шqятqo",
             "english": "neighbour/neighbor",
             "notes": ""
         },
@@ -3573,7 +3573,7 @@
             "notes": ""
         },
         {
-            "conlang": "яoxниьa",
+            "conlang": "λoxниьa",
             "english": "poem/poetry",
             "notes": ""
         },
@@ -3718,7 +3718,7 @@
             "notes": "any type of rose like flowers"
         },
         {
-            "conlang": "ըλպ",
+            "conlang": "ըяպ",
             "english": "continue",
             "notes": ""
         },
@@ -3738,7 +3738,7 @@
             "notes": ""
         },
         {
-            "conlang": "ьoдբλ",
+            "conlang": "ьoдբя",
             "english": "success",
             "notes": ""
         },
@@ -3853,7 +3853,7 @@
             "notes": "to shop or browse goods for purchase"
         },
         {
-            "conlang": "zэպяδp",
+            "conlang": "zэպλδp",
             "english": "stretch",
             "notes": ""
         },
@@ -3863,7 +3863,7 @@
             "notes": ""
         },
         {
-            "conlang": "яиьэт",
+            "conlang": "λиьэт",
             "english": "shine",
             "notes": ""
         },
@@ -4018,7 +4018,7 @@
             "notes": ""
         },
         {
-            "conlang": "яьэpэт",
+            "conlang": "λьэpэт",
             "english": "sister",
             "notes": "a biological sister"
         },
@@ -4068,12 +4068,12 @@
             "notes": "an accumulated set of points representing accomplishments"
         },
         {
-            "conlang": "тaмλ",
+            "conlang": "тaмя",
             "english": "score",
             "notes": "to score a point or goal in a game"
         },
         {
-            "conlang": "μyвяэ",
+            "conlang": "μyвλэ",
             "english": "apple",
             "notes": "broadly any type of apple like fruit"
         },
@@ -4248,7 +4248,7 @@
             "notes": ""
         },
         {
-            "conlang": "яaвyя",
+            "conlang": "λaвyλ",
             "english": "proper",
             "notes": ""
         },
@@ -4268,7 +4268,7 @@
             "notes": "the abstract shape of a bar"
         },
         {
-            "conlang": "дaբλ",
+            "conlang": "дaբя",
             "english": "offer",
             "notes": ""
         },
@@ -4293,7 +4293,7 @@
             "notes": "the extent of something"
         },
         {
-            "conlang": "λըэ",
+            "conlang": "яըэ",
             "english": "dear",
             "notes": "important or special, especially of a person"
         },
@@ -4343,7 +4343,7 @@
             "notes": ""
         },
         {
-            "conlang": "жиьoятpa",
+            "conlang": "жиьoλтpa",
             "english": "motion",
             "notes": ""
         },
@@ -4353,7 +4353,7 @@
             "notes": "a path that something follows"
         },
         {
-            "conlang": "мaжoнoя",
+            "conlang": "мaжoнoλ",
             "english": "liquid",
             "notes": ""
         },
@@ -4420,7 +4420,7 @@
             "notes": "an expression meaning sarcastically, here is your fortune or such is life"
         },
         {
-            "conlang": "aცэяэpэнтoн",
+            "conlang": "aცэλэpэнтoн",
             "english": "adventure",
             "notes": ""
         },
@@ -4450,17 +4450,17 @@
             "notes": "a single handed gun"
         },
         {
-            "conlang": "кивэzяэвьδд",
+            "conlang": "кивэzλэвьδд",
             "english": "greatsword",
             "notes": "a heavy sword wielded with both hands"
         },
         {
-            "conlang": "ცиpнoтoя",
+            "conlang": "ცиpнoтoλ",
             "english": "shack",
             "notes": "small building/small structure"
         },
         {
-            "conlang": "aяyмջниьa",
+            "conlang": "aλyмջниьa",
             "english": "aluminum",
             "notes": ""
         },
@@ -4475,7 +4475,7 @@
             "notes": "physical constitution/resiliance"
         },
         {
-            "conlang": "ջяδшдaz",
+            "conlang": "ջλδшдaz",
             "english": "solution",
             "notes": ""
         },
@@ -4655,7 +4655,7 @@
             "notes": ""
         },
         {
-            "conlang": "пэямэдპ",
+            "conlang": "пэλмэдპ",
             "english": "sense/perceive",
             "notes": "to sense or perceive something"
         },
@@ -4730,7 +4730,7 @@
             "notes": "the moral alignment of someone's personality"
         },
         {
-            "conlang": "вэякюpэ",
+            "conlang": "вэλкюpэ",
             "english": "chemical element",
             "notes": ""
         },
@@ -4745,7 +4745,7 @@
             "notes": "a capital city"
         },
         {
-            "conlang": "мaявиьεp",
+            "conlang": "мaλвиьεp",
             "english": "writer",
             "notes": "someone who writes professionally or is employed as a writer"
         },
@@ -4810,7 +4810,7 @@
             "notes": ""
         },
         {
-            "conlang": "яyжэнoд",
+            "conlang": "λyжэнoд",
             "english": "suffix",
             "notes": "a character suffix of a word"
         },
@@ -4830,7 +4830,7 @@
             "notes": "ambitions, visionary plans"
         },
         {
-            "conlang": "вoжнoдьλ",
+            "conlang": "вoжнoдья",
             "english": "station/facility",
             "notes": ""
         },
@@ -4880,7 +4880,7 @@
             "notes": "the fact something was added"
         },
         {
-            "conlang": "qλთδдaдьэ",
+            "conlang": "qяთδдaдьэ",
             "english": "quotient",
             "notes": ""
         }
