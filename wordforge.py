@@ -222,6 +222,9 @@ FONT_PROFILES = {
         "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.14,
+        "symbol_scale": 2.0,
+        "symbol_offset_y": 76,
+        "advance_symbol": 120,
         "line_height": 400,
         "space_width": 80,
         "advance_normal": 0,
@@ -306,7 +309,6 @@ class BitmapRenderer(QWidget):
         self.text_to_render = new_text
         self.update() 
 
-    # --- UPDATED: Allow passing a custom scale for dynamic symbol sizing ---
     def get_pixmap(self, char, custom_scale=None):
         active_scale = custom_scale if custom_scale is not None else self.scale
         return get_shared_pixmap(char, self.font_dir, active_scale)
@@ -333,13 +335,15 @@ class BitmapRenderer(QWidget):
         cursor_y = PADDING_SCREEN + OFFSET_Y
         
         is_shigeyed = "shigeyed" in self.font_dir.lower()
+        
+        # Tokenizer
         if is_shigeyed:
             tokens = []
             temp = ""
             for c in self.text_to_render:
                 if c == '-':
                     if temp: tokens.append(temp); temp = ""
-                # --- UPDATED: Recognize all new mapped symbols for Shigeyed ---
+                # Isolates symbols perfectly since PUA placeholders are read as length-1 characters
                 elif c in [' ', '\n'] or c in TYPER_CHAR_TO_SYMBOL_NAME:
                     if temp: tokens.append(temp); temp = ""
                     tokens.append(c)
@@ -349,10 +353,6 @@ class BitmapRenderer(QWidget):
             iterable = tokens
         else:
             iterable = self.text_to_render
-            
-        # The scale correction ratio for Tezhnor symbols printed alongside Shigeyed syllables.
-        # You can tweak this up or down if the symbols feel too big/small in Shigeyed!
-        SHIGEYED_SYMBOL_SCALE = 1.225 
             
         for item in iterable:
             if item == '\n':
@@ -367,13 +367,13 @@ class BitmapRenderer(QWidget):
                     cursor_y += dynamic_lh
                 continue
                 
-            # --- UPDATED: Width routing ---
+            # --- Dynamic Profile-Driven Width and Scale Routing ---
             is_symbol = item in TYPER_CHAR_TO_SYMBOL_NAME
             
             if is_symbol:
-                # All symbols are strictly tied to the normal advance width
-                width_key = "advance_normal"
-                current_item_scale = self.scale * SHIGEYED_SYMBOL_SCALE if is_shigeyed else self.scale
+                width_key = "advance_symbol"
+                symbol_multiplier = metrics.get("symbol_scale", 1.0)
+                current_item_scale = self.scale * symbol_multiplier
             elif len(item) > 1:
                 width_key = "advance_wide"
                 current_item_scale = self.scale
@@ -382,18 +382,29 @@ class BitmapRenderer(QWidget):
                 current_item_scale = self.scale
                 
             raw_advance = metrics.get(width_key, 103)
-                
-            # Use the dynamically adjusted scale for horizontal distance calculation
             advance = (raw_advance * current_item_scale) + effective_char_spacing
             
             if cursor_x + advance > max_x:
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
                 
-            # Pass the custom scale so the pixmap renderer sizes it correctly
             pixmap = self.get_pixmap(item, current_item_scale)
             if pixmap:
-                painter.drawPixmap(int(cursor_x), int(cursor_y), pixmap)
+                active_y = cursor_y
+                
+                # --- AUTO BASELINE ALIGNMENT ---
+                if is_shigeyed and is_symbol:
+                    # Calculates where the bottom of a Shigeyed syllable sits (256px base)
+                    standard_shig_height = 256 * self.scale
+                    # Pushes the symbol down so its bottom edge aligns perfectly with the syllable
+                    active_y += (standard_shig_height - pixmap.height())
+                    
+                # Apply the manual offset (if you still need micro-adjustments)
+                if is_symbol:
+                    raw_y_offset = metrics.get("symbol_offset_y", 0)
+                    active_y += (raw_y_offset * self.scale)
+                    
+                painter.drawPixmap(int(cursor_x), int(active_y), pixmap)
                 
             cursor_x += advance
 
@@ -1466,12 +1477,11 @@ class Wordforge(QMainWindow):
         self.shigeyed_input.blockSignals(True)
         tezhnor_text = self.typer_input.toPlainText()
         
-        # --- NEW: Use the PUA splitting pattern to perfectly isolate symbols ---
+        # --- NEW: Split purely using our robust dynamic global symbol pattern ---
         pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
         tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
         
         tokens = re.split(tezhnor_pattern, tezhnor_text)
-        
         translated_tokens = []
         
         for token in tokens:
@@ -1482,7 +1492,7 @@ class Wordforge(QMainWindow):
                 translated_tokens.append(token)
                 continue
                 
-            # --- NEW: Pass through spaces and ALL mapped symbols unharmed ---
+            # PASS-THROUGH: If it is a space or ANY mapped symbol, pass it straight through!
             if token.isspace() or token in TYPER_CHAR_TO_SYMBOL_NAME:
                 translated_tokens.append(token)
                 continue
@@ -1510,7 +1520,6 @@ class Wordforge(QMainWindow):
                         shigeyed_output.append(soft_syl)
                     else:
                         shigeyed_output.append(char) 
-                        
                     cursor += 1
                     continue
                     
@@ -1538,7 +1547,6 @@ class Wordforge(QMainWindow):
                         fallback_syl = available_syls[0] if available_syls else char
                         shigeyed_output.append(fallback_syl)
                         cursor += 1
-                        
                 else:
                     shigeyed_output.append(char)
                     cursor += 1
