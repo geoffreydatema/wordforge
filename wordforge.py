@@ -51,54 +51,31 @@ TEZHNOR_TO_PRONUNCIATION = SPEC["tezhnor_to_pronunciation"]
 VOWELS = SPEC["vowels"]
 CONSONANTS = SPEC["consonants"]
 
-# --- NEW: Extract ASCII Symbols from JSON and build tokenizer mapping ---
 ASCII_TO_SYMBOL = SPEC.get("ascii_to_symbol", {})
 
-# Sort keys by length descending to greedily match clusters (e.g., '!||' before '!')
 SORTED_ASCII_KEYS = sorted(ASCII_TO_SYMBOL.keys(), key=len, reverse=True)
 
-# Generate the Regex pattern dynamically 
 escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
 SYMBOL_REGEX_PATTERN = f"(<---->|\\s+|{'|'.join(escaped_keys)})" if escaped_keys else "(<---->|\\s+)"
 
-ASCII_TO_TYPER_CHAR = {}
-TYPER_CHAR_TO_SYMBOL_NAME = {}
+TYPER_CHAR_TO_SYMBOL_NAME = ASCII_TO_SYMBOL.copy()
 
-PUA_BASE = 0xE000
-pua_offset = 0
-
-for ascii_str in SORTED_ASCII_KEYS:
-    symbol_name = ASCII_TO_SYMBOL[ascii_str]
-    if len(ascii_str) == 1:
-        char = ascii_str
-    else:
-        # Multi-char symbols get a Private Use Area Unicode placeholder
-        char = chr(PUA_BASE + pua_offset)
-        pua_offset += 1
-        
-    ASCII_TO_TYPER_CHAR[ascii_str] = char
-    TYPER_CHAR_TO_SYMBOL_NAME[char] = symbol_name
-
-# Automatically map the conlang character to the filename
 CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
 
-# --- GLOBAL PIXMAP MANAGEMENT ---
-RAW_PIXMAP_CACHE = {}    # Stores original, unscaled images loaded from disk
-SCALED_PIXMAP_CACHE = {} # Stores dynamically scaled images
+RAW_PIXMAP_CACHE = {}
+SCALED_PIXMAP_CACHE = {}
 
 def preload_font_pixmaps():
     """Loads all raw bitmap images into memory once at startup, avoiding disk I/O later."""
     for font_key, profile in FONT_PROFILES.items():
         font_dir = profile["dir"]
         
-        # 1. Load the standard language characters
         mapping = SHIGEYED_TO_CODE if "shigeyed" in font_dir.lower() else CHAR_TO_FILENAME
         for char, filename in mapping.items():
             image_path = os.path.join(font_dir, f"{filename}.png")
             if os.path.exists(image_path):
                 RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
                 
-        # 2. Load the symbols specific to this font profile
         for char, symbol_name in TYPER_CHAR_TO_SYMBOL_NAME.items():
             image_path = os.path.join(font_dir, f"{symbol_name}.png")
             if os.path.exists(image_path):
@@ -110,7 +87,6 @@ def get_shared_pixmap(char, font_dir, scale):
     if cache_key in SCALED_PIXMAP_CACHE:
         return SCALED_PIXMAP_CACHE[cache_key]
     
-    # Grab the original unscaled image directly from RAM
     raw_key = (char, font_dir)
     orig_pixmap = RAW_PIXMAP_CACHE.get(raw_key)
     
@@ -130,7 +106,6 @@ def get_shared_pixmap(char, font_dir, scale):
         
     return None
 
-# For the word generator pronunciation mapping
 LORE_TO_PRON = TEZHNOR_TO_CODE.copy()
 
 FONT_PROFILES = {
@@ -146,7 +121,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Rounded Bold": {
         "dir": "fonts/tezhnor_rounded_bold", 
@@ -160,7 +135,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Block Regular": {
         "dir": "fonts/tezhnor_block_regular",
@@ -174,7 +149,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Block Mono": {
         "dir": "fonts/tezhnor_block_mono",
@@ -188,7 +163,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Block Extended": {
         "dir": "fonts/tezhnor_block_mono_extended",
@@ -202,7 +177,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Block Monoheight": {
         "dir": "fonts/tezhnor_block_monoheight",
@@ -216,7 +191,7 @@ FONT_PROFILES = {
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_base_char_spacing": 12
     },
     "Shigeyed Bold": {
         "dir": "fonts/shigeyed_bold",
@@ -237,11 +212,10 @@ FONT_PROFILES = {
     }
 }
 
-CURRENT_FONT_KEY = "Rounded Bold" # Set as default!
+CURRENT_FONT_KEY = "Rounded Bold"
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
 CHAR_WIDTHS = {
-    # Wide & Square Characters
     CODE_TO_TEZHNOR["o"]: "advance_square",
     CODE_TO_TEZHNOR["ue"]: "advance_square",
     CODE_TO_TEZHNOR["d"]: "advance_square",
@@ -282,7 +256,6 @@ class BitmapRenderer(QWidget):
         super().__init__(*args, **kwargs)
         self.text_to_render = ""
         
-        # Default to the first Tezhnor font
         self.font_dir = FONT_PROFILES[CURRENT_FONT_KEY]["dir"]
         self.base_scale = FONT_PROFILES[CURRENT_FONT_KEY]["bitmap_base_scale"]
         
@@ -295,7 +268,7 @@ class BitmapRenderer(QWidget):
         for profile in FONT_PROFILES.values():
             if profile["dir"] == self.font_dir:
                 return profile
-        return FONT_PROFILES[CURRENT_FONT_KEY] # Failsafe fallback
+        return FONT_PROFILES[CURRENT_FONT_KEY]
 
     def update_settings(self, scale_factor, lh_factor, char_spacing):
         metrics = self.get_current_metrics()
@@ -336,23 +309,21 @@ class BitmapRenderer(QWidget):
         
         is_shigeyed = "shigeyed" in self.font_dir.lower()
         
-        # Tokenizer
-        if is_shigeyed:
-            tokens = []
-            temp = ""
-            for c in self.text_to_render:
-                if c == '-':
-                    if temp: tokens.append(temp); temp = ""
-                # Isolates symbols perfectly since PUA placeholders are read as length-1 characters
-                elif c in [' ', '\n'] or c in TYPER_CHAR_TO_SYMBOL_NAME:
-                    if temp: tokens.append(temp); temp = ""
-                    tokens.append(c)
+        iterable = []
+        raw_tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, self.text_to_render) if t]
+        
+        for token in raw_tokens:
+            if token in TYPER_CHAR_TO_SYMBOL_NAME or token == "<---->":
+                iterable.append(token)
+            elif token.isspace():
+                iterable.extend(list(token))
+            else:
+                if is_shigeyed:
+                    syls = token.split('·')
+                    for s in syls:
+                        if s: iterable.append(s)
                 else:
-                    temp += c
-            if temp: tokens.append(temp)
-            iterable = tokens
-        else:
-            iterable = self.text_to_render
+                    iterable.extend(list(token))
             
         for item in iterable:
             if item == '\n':
@@ -367,7 +338,6 @@ class BitmapRenderer(QWidget):
                     cursor_y += dynamic_lh
                 continue
                 
-            # --- Dynamic Profile-Driven Width and Scale Routing ---
             is_symbol = item in TYPER_CHAR_TO_SYMBOL_NAME
             
             if is_symbol:
@@ -392,14 +362,10 @@ class BitmapRenderer(QWidget):
             if pixmap:
                 active_y = cursor_y
                 
-                # --- AUTO BASELINE ALIGNMENT ---
                 if is_shigeyed and is_symbol:
-                    # Calculates where the bottom of a Shigeyed syllable sits (256px base)
                     standard_shig_height = 256 * self.scale
-                    # Pushes the symbol down so its bottom edge aligns perfectly with the syllable
                     active_y += (standard_shig_height - pixmap.height())
                     
-                # Apply the manual offset (if you still need micro-adjustments)
                 if is_symbol:
                     raw_y_offset = metrics.get("symbol_offset_y", 0)
                     active_y += (raw_y_offset * self.scale)
@@ -488,13 +454,11 @@ class TyperTextEdit(RichLineEdit):
         self.line_height_factor = lh_factor
         self.char_spacing = char_spacing
 
-        # Pull the base size from our unified metrics
         self.base_pt = FONT_METRICS.get("text_base_pt", 28) 
 
         current_pt = max(8, int(self.base_pt * scale_factor))
         pad = FONT_METRICS.get("padding", 10) 
         
-        # Let CSS handle only the container, padding, and base point size
         self.setStyleSheet(f"""
             QTextEdit {{
                 font-size: {current_pt}pt; 
@@ -515,12 +479,10 @@ class TyperTextEdit(RichLineEdit):
         cursor = self.textCursor()
         cursor.select(QTextCursor.Document)
         
-        # 1. Apply Line Height
         block_fmt = cursor.blockFormat()
         block_fmt.setLineHeight(float(self.line_height_factor * 100), QTextBlockFormat.ProportionalHeight.value)
         cursor.setBlockFormat(block_fmt)
         
-        # 2. Apply Character Spacing
         char_fmt = cursor.charFormat()
         if self.char_spacing == 0:
             char_fmt.setFontLetterSpacingType(QFont.PercentageSpacing)
@@ -550,7 +512,6 @@ class WordGenerator:
         structure_log = [] 
         pronunciation_log = []
         
-        # Helper functions now purely prevent immediate repetition
         def get_c(exclude=None):
             opts = [c for c in CONSONANTS if c != exclude] if exclude else CONSONANTS
             return random.choice(opts) if opts else random.choice(CONSONANTS)
@@ -568,7 +529,6 @@ class WordGenerator:
             
             prev_char = word[-1] if word else None
             
-            # Prevent awkward double-vowel boundaries across syllables
             if prev_char in VOWELS and structure in ["V", "VC", "VCC", "CVV"]:
                 structure = random.choice(["CV", "CVC", "CCV"])
             
@@ -621,16 +581,13 @@ class PhysicalKeyFilter(QObject):
         self.window = parent_window
         self.key_map = {}
         
-        # 1. Load your standard visual layout
         for row in KEYBOARD_LAYOUT:
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
                 
-        # --- UPDATED: Dynamically bind all single-character symbols ---
-        # (Multi-character symbols like != are handled via the English-to-Tezhnor translation engine)
-        for ascii_key, char_val in ASCII_TO_TYPER_CHAR.items():
+        for ascii_key in TYPER_CHAR_TO_SYMBOL_NAME.keys():
             if len(ascii_key) == 1:
-                self.key_map[ascii_key.lower()] = char_val
+                self.key_map[ascii_key.lower()] = ascii_key
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.KeyPress:
@@ -1405,16 +1362,9 @@ class Wordforge(QMainWindow):
         english_text = self.english_input.toPlainText()
         current_tezhnor_text = self.typer_input.toPlainText()
         
-        # --- NEW: Safe tokenization bridging ASCII to Unicode PUA ---
-        # 1. eng_tokens uses the global SYMBOL_REGEX_PATTERN to catch ASCII clusters like '!='
         eng_tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, english_text) if t]
+        tezhnor_tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, current_tezhnor_text) if t]
         
-        # 2. tezhnor_tokens needs to split on the actual PUA characters (since '!=' is stored as '\uE002' inside the Typer)
-        pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
-        tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
-        tezhnor_tokens = [t for t in re.split(tezhnor_pattern, current_tezhnor_text) if t]
-        
-        # Extract JUST the Tezhnor words (ignoring spaces, <---->, and symbols)
         tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t != "<---->" and t not in TYPER_CHAR_TO_SYMBOL_NAME]
         
         translated_tokens = []
@@ -1429,9 +1379,8 @@ class Wordforge(QMainWindow):
                 translated_tokens.append(token)
                 continue
                 
-            # --- NEW: Instantly translate ASCII symbols to their PUA representation ---
-            if token in ASCII_TO_TYPER_CHAR:
-                translated_tokens.append(ASCII_TO_TYPER_CHAR[token])
+            if token in TYPER_CHAR_TO_SYMBOL_NAME:
+                translated_tokens.append(token)
                 continue
                 
             word = token.lower()
@@ -1477,27 +1426,19 @@ class Wordforge(QMainWindow):
         self.shigeyed_input.blockSignals(True)
         tezhnor_text = self.typer_input.toPlainText()
         
-        # --- NEW: Split purely using our robust dynamic global symbol pattern ---
-        pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
-        tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
+        tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, tezhnor_text) if t]
         
-        tokens = re.split(tezhnor_pattern, tezhnor_text)
         translated_tokens = []
         
         for token in tokens:
-            if not token:
-                continue 
-                
             if token == "<---->":
                 translated_tokens.append(token)
                 continue
                 
-            # PASS-THROUGH: If it is a space or ANY mapped symbol, pass it straight through!
             if token.isspace() or token in TYPER_CHAR_TO_SYMBOL_NAME:
                 translated_tokens.append(token)
                 continue
                 
-            # Phase 1: Normalization
             norm_word = ""
             for char in token:
                 if char in TEZHNOR_VOWEL_MAP:
@@ -1507,7 +1448,6 @@ class Wordforge(QMainWindow):
                 else:
                     norm_word += char
                     
-            # Phase 2 & 3: Linear Parsing & Lookahead 
             shigeyed_output = []
             cursor = 0
             
@@ -1551,7 +1491,7 @@ class Wordforge(QMainWindow):
                     shigeyed_output.append(char)
                     cursor += 1
                     
-            translated_tokens.append("-".join(shigeyed_output))
+            translated_tokens.append("·".join(shigeyed_output))
 
         self.shigeyed_input.setPlainText("".join(translated_tokens))
         self.shigeyed_input.blockSignals(False)
@@ -1583,15 +1523,8 @@ class Wordforge(QMainWindow):
             pos = text_edit.textCursor().position()
             text = text_edit.toPlainText()
             
-            pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
-            tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
+            tokens = re.split(SYMBOL_REGEX_PATTERN, text)
             
-            # Use the global SYMBOL_REGEX_PATTERN for English, and the PUA pattern for Tezhnor
-            if text_edit == getattr(self, 'english_input', None):
-                tokens = re.split(SYMBOL_REGEX_PATTERN, text)
-            else:
-                tokens = re.split(tezhnor_pattern, text)
-                
             current_idx = 0
             last_valid_word = None
             
@@ -1599,7 +1532,6 @@ class Wordforge(QMainWindow):
                 start_idx = current_idx
                 end_idx = current_idx + len(token)
                 
-                # Exclude PUA symbols and <----> from being recognized as "words"
                 is_word = bool(token.strip()) and token not in TYPER_CHAR_TO_SYMBOL_NAME and token != "<---->"
                 
                 if is_word:
