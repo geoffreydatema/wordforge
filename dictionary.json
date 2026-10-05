@@ -628,11 +628,6 @@
             "notes": ""
         },
         {
-            "conlang": "pиьэчт",
-            "english": "hello/greetings/greeting",
-            "notes": "formal greeting or hello"
-        },
-        {
             "conlang": "пoштaд",
             "english": "potato",
             "notes": ""
@@ -4386,6 +4381,11 @@
             "conlang": "zэμa",
             "english": "old",
             "notes": ""
+        },
+        {
+            "conlang": "жэтpиa",
+            "english": "hello/greetings/greeting",
+            "notes": "formal greeting or hello"
         }
     ],
     "level2+": [
