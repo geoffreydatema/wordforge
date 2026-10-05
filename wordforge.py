@@ -37,29 +37,50 @@ def load_shigeyed_spec():
         return {"shigeyed_to_code": {}, "code_to_shigeyed": {}}
 
 SHIGEYED_SPEC = load_shigeyed_spec()
-SHIGEYED_TO_CODE = SHIGEYED_SPEC["shigeyed_to_code"]
-CODE_TO_SHIGEYED = SHIGEYED_SPEC["code_to_shigeyed"]
+SHIGEYED_TO_CODE = SHIGEYED_SPEC.get("shigeyed_to_code", {})
+CODE_TO_SHIGEYED = SHIGEYED_SPEC.get("code_to_shigeyed", {})
 SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("vowels", []))
 SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("consonants", []))
 TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
 TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
 SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
-SHIGEYED_SYMBOLS = SHIGEYED_SPEC.get("symbols", {})
-
-for filename, char in SHIGEYED_SYMBOLS.items():
-    SHIGEYED_TO_CODE[char] = filename
 
 TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
 CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
 TEZHNOR_TO_PRONUNCIATION = SPEC["tezhnor_to_pronunciation"]
-SYMBOLS = SPEC["symbols"]
 VOWELS = SPEC["vowels"]
 CONSONANTS = SPEC["consonants"]
 
+# --- NEW: Extract ASCII Symbols from JSON and build tokenizer mapping ---
+ASCII_TO_SYMBOL = SPEC.get("ascii_to_symbol", {})
+
+# Sort keys by length descending to greedily match clusters (e.g., '!||' before '!')
+SORTED_ASCII_KEYS = sorted(ASCII_TO_SYMBOL.keys(), key=len, reverse=True)
+
+# Generate the Regex pattern dynamically 
+escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
+SYMBOL_REGEX_PATTERN = f"(<---->|\\s+|{'|'.join(escaped_keys)})" if escaped_keys else "(<---->|\\s+)"
+
+ASCII_TO_TYPER_CHAR = {}
+TYPER_CHAR_TO_SYMBOL_NAME = {}
+
+PUA_BASE = 0xE000
+pua_offset = 0
+
+for ascii_str in SORTED_ASCII_KEYS:
+    symbol_name = ASCII_TO_SYMBOL[ascii_str]
+    if len(ascii_str) == 1:
+        char = ascii_str
+    else:
+        # Multi-char symbols get a Private Use Area Unicode placeholder
+        char = chr(PUA_BASE + pua_offset)
+        pua_offset += 1
+        
+    ASCII_TO_TYPER_CHAR[ascii_str] = char
+    TYPER_CHAR_TO_SYMBOL_NAME[char] = symbol_name
+
 # Automatically map the conlang character to the filename
 CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
-for sym_name, sym_char in SYMBOLS.items():
-    CHAR_TO_FILENAME[sym_char] = sym_name
 
 # --- GLOBAL PIXMAP MANAGEMENT ---
 RAW_PIXMAP_CACHE = {}    # Stores original, unscaled images loaded from disk
@@ -70,11 +91,16 @@ def preload_font_pixmaps():
     for font_key, profile in FONT_PROFILES.items():
         font_dir = profile["dir"]
         
-        # Determine which mapping dict to use based on the font directory name
+        # 1. Load the standard language characters
         mapping = SHIGEYED_TO_CODE if "shigeyed" in font_dir.lower() else CHAR_TO_FILENAME
-        
         for char, filename in mapping.items():
             image_path = os.path.join(font_dir, f"{filename}.png")
+            if os.path.exists(image_path):
+                RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
+                
+        # 2. Load the symbols specific to this font profile
+        for char, symbol_name in TYPER_CHAR_TO_SYMBOL_NAME.items():
+            image_path = os.path.join(font_dir, f"{symbol_name}.png")
             if os.path.exists(image_path):
                 RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
 
@@ -114,7 +140,6 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
-        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -129,7 +154,6 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
-        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -144,7 +168,6 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
-        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -158,11 +181,10 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.18,
         "line_height": 210,
-        "space_width": 103,    # Adjusted to match the mono width for even word gaps
-        "advance_punctuation": 50,
+        "space_width": 103,    
         "advance_normal": 103, 
-        "advance_square": 103, # Flattened to smallest width
-        "advance_wide": 103,   # Flattened to smallest width
+        "advance_square": 103, 
+        "advance_wide": 103,   
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
@@ -173,11 +195,10 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.18,
         "line_height": 210,
-        "space_width": 128,    # Adjusted to match the extended width
-        "advance_punctuation": 50,
-        "advance_normal": 128, # Flattened to middle width
-        "advance_square": 128, # Flattened to middle width
-        "advance_wide": 128,   # Flattened to middle width
+        "space_width": 128,    
+        "advance_normal": 128, 
+        "advance_square": 128, 
+        "advance_wide": 128,   
         "padding": 15,
         "bitmap_offset_x": 5,
         "bitmap_offset_y": 10,
@@ -189,7 +210,6 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.18,
         "line_height": 210,
         "space_width": 60,
-        "advance_punctuation": 50,
         "advance_normal": 103,
         "advance_square": 128,
         "advance_wide": 155,
@@ -204,7 +224,6 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.14,
         "line_height": 400,
         "space_width": 80,
-        "advance_punctuation": 50,
         "advance_normal": 0,
         "advance_square": 0,
         "advance_wide": 250,
@@ -215,7 +234,7 @@ FONT_PROFILES = {
     }
 }
 
-CURRENT_FONT_KEY = list(FONT_PROFILES.keys())[1]
+CURRENT_FONT_KEY = "Rounded Bold" # Set as default!
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
 CHAR_WIDTHS = {
@@ -232,16 +251,12 @@ CHAR_WIDTHS = {
     CODE_TO_TEZHNOR["kv"]: "advance_square",
     CODE_TO_TEZHNOR["sv"]: "advance_wide",
     CODE_TO_TEZHNOR["zv"]: "advance_wide",
-    SYMBOLS["terminator"]: "advance_punctuation",
-    SYMBOLS["quote"]: "advance_punctuation",
-    SYMBOLS["bracket_open"]: "advance_punctuation",
-    SYMBOLS["bracket_close"]: "advance_punctuation"
 }
 
 KEYBOARD_LAYOUT = [
     [('w', CODE_TO_TEZHNOR['w']), ('e', CODE_TO_TEZHNOR['e']), ('r', CODE_TO_TEZHNOR['r']), ('t', CODE_TO_TEZHNOR['t']), ('y', CODE_TO_TEZHNOR['y']), ('u', CODE_TO_TEZHNOR['u']), ('i', CODE_TO_TEZHNOR['i']), ('o', CODE_TO_TEZHNOR['o']), ('p', CODE_TO_TEZHNOR['p'])],
     [('a', CODE_TO_TEZHNOR['a']), ('s', CODE_TO_TEZHNOR['s']), ('d', CODE_TO_TEZHNOR['d']), ('f', CODE_TO_TEZHNOR['f']), ('g', CODE_TO_TEZHNOR['g']), ('h', CODE_TO_TEZHNOR['h']), ('j', CODE_TO_TEZHNOR['j']), ('k', CODE_TO_TEZHNOR['k']), ('l', CODE_TO_TEZHNOR['l'])],
-    [('z', CODE_TO_TEZHNOR['z']), ('x', CODE_TO_TEZHNOR['kh']), ('c', CODE_TO_TEZHNOR['shch']), ('v', CODE_TO_TEZHNOR['v']), ('b', CODE_TO_TEZHNOR['b']), ('n', CODE_TO_TEZHNOR['n']), ('m', CODE_TO_TEZHNOR['m']), ('╵', SYMBOLS['quote']), ('╷', SYMBOLS['terminator'])]
+    [('z', CODE_TO_TEZHNOR['z']), ('x', CODE_TO_TEZHNOR['kh']), ('c', CODE_TO_TEZHNOR['shch']), ('v', CODE_TO_TEZHNOR['v']), ('b', CODE_TO_TEZHNOR['b']), ('n', CODE_TO_TEZHNOR['n']), ('m', CODE_TO_TEZHNOR['m'])]
 ]
 
 COMBO_MAP = {
@@ -291,14 +306,15 @@ class BitmapRenderer(QWidget):
         self.text_to_render = new_text
         self.update() 
 
-    def get_pixmap(self, char):
-        return get_shared_pixmap(char, self.font_dir, self.scale)
+    # --- UPDATED: Allow passing a custom scale for dynamic symbol sizing ---
+    def get_pixmap(self, char, custom_scale=None):
+        active_scale = custom_scale if custom_scale is not None else self.scale
+        return get_shared_pixmap(char, self.font_dir, active_scale)
 
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.fillRect(self.rect(), QColor("#2b2b2b"))
         
-        # --- FIX: Grab metrics specific to THIS renderer's font ---
         metrics = self.get_current_metrics()
         
         dynamic_lh = (metrics["line_height"] * self.lh_factor) * self.scale
@@ -323,7 +339,8 @@ class BitmapRenderer(QWidget):
             for c in self.text_to_render:
                 if c == '-':
                     if temp: tokens.append(temp); temp = ""
-                elif c in [' ', '\n'] or c in SYMBOLS.values():
+                # --- UPDATED: Recognize all new mapped symbols for Shigeyed ---
+                elif c in [' ', '\n'] or c in TYPER_CHAR_TO_SYMBOL_NAME:
                     if temp: tokens.append(temp); temp = ""
                     tokens.append(c)
                 else:
@@ -332,6 +349,10 @@ class BitmapRenderer(QWidget):
             iterable = tokens
         else:
             iterable = self.text_to_render
+            
+        # The scale correction ratio for Tezhnor symbols printed alongside Shigeyed syllables.
+        # You can tweak this up or down if the symbols feel too big/small in Shigeyed!
+        SHIGEYED_SYMBOL_SCALE = 1.225 
             
         for item in iterable:
             if item == '\n':
@@ -346,22 +367,31 @@ class BitmapRenderer(QWidget):
                     cursor_y += dynamic_lh
                 continue
                 
-            if item in SHIGEYED_SYMBOLS.values() or item in SYMBOLS.values():
-                width_key = "advance_punctuation"
+            # --- UPDATED: Width routing ---
+            is_symbol = item in TYPER_CHAR_TO_SYMBOL_NAME
+            
+            if is_symbol:
+                # All symbols are strictly tied to the normal advance width
+                width_key = "advance_normal"
+                current_item_scale = self.scale * SHIGEYED_SYMBOL_SCALE if is_shigeyed else self.scale
             elif len(item) > 1:
                 width_key = "advance_wide"
+                current_item_scale = self.scale
             else:
                 width_key = CHAR_WIDTHS.get(item, "advance_normal")
+                current_item_scale = self.scale
                 
             raw_advance = metrics.get(width_key, 103)
                 
-            advance = (raw_advance * self.scale) + effective_char_spacing
+            # Use the dynamically adjusted scale for horizontal distance calculation
+            advance = (raw_advance * current_item_scale) + effective_char_spacing
             
             if cursor_x + advance > max_x:
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
                 
-            pixmap = self.get_pixmap(item)
+            # Pass the custom scale so the pixmap renderer sizes it correctly
+            pixmap = self.get_pixmap(item, current_item_scale)
             if pixmap:
                 painter.drawPixmap(int(cursor_x), int(cursor_y), pixmap)
                 
@@ -466,7 +496,6 @@ class TyperTextEdit(RichLineEdit):
             }}
         """)
         
-        # We removed the buggy self.setFont() logic from here!
         self.apply_block_formatting()
 
     def apply_block_formatting(self):
@@ -483,15 +512,13 @@ class TyperTextEdit(RichLineEdit):
         # 2. Apply Character Spacing
         char_fmt = cursor.charFormat()
         if self.char_spacing == 0:
-            # If the slider is at 0, restore the font's beautiful native kerning
             char_fmt.setFontLetterSpacingType(QFont.PercentageSpacing)
             char_fmt.setFontLetterSpacing(100.0)
         else:
-            # If the user moves the slider, apply their exact pixel offset
             char_fmt.setFontLetterSpacingType(QFont.AbsoluteSpacing)
             char_fmt.setFontLetterSpacing(float(self.char_spacing))
             
-        cursor.mergeCharFormat(char_fmt) # merge avoids destroying other styles
+        cursor.mergeCharFormat(char_fmt)
         
         self.blockSignals(False)
 
@@ -556,7 +583,7 @@ class WordGenerator:
             elif structure == "CVV":
                 c = get_c(exclude=prev_char)
                 v1 = get_v()
-                v2 = get_v(exclude=v1) # Just ensure it doesn't pick the exact same vowel twice
+                v2 = get_v(exclude=v1) 
                 syllable = c + v1 + v2
                 
             elif structure == "CCV":
@@ -588,16 +615,11 @@ class PhysicalKeyFilter(QObject):
             for key_id, lore_char in row:
                 self.key_map[key_id] = lore_char
                 
-        # 2. Define the hidden punctuation binds
-        punctuation_binds = {
-            '.': SYMBOLS['terminator'],
-            "'": SYMBOLS['quote'],
-            '[': SYMBOLS['bracket_open'],
-            ']': SYMBOLS['bracket_close'],
-        }
-        
-        # 3. Merge them into the active key map
-        self.key_map.update(punctuation_binds)
+        # --- UPDATED: Dynamically bind all single-character symbols ---
+        # (Multi-character symbols like != are handled via the English-to-Tezhnor translation engine)
+        for ascii_key, char_val in ASCII_TO_TYPER_CHAR.items():
+            if len(ascii_key) == 1:
+                self.key_map[ascii_key.lower()] = char_val
 
     def eventFilter(self, obj, event):
         if event.type() == QEvent.KeyPress:
@@ -665,15 +687,11 @@ class Wordforge(QMainWindow):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
-        # We now use a vertical layout for the whole window to hold the top tabs
         main_layout = QVBoxLayout(central_widget)
         
         self.top_tabs = QTabWidget()
-        
-        # Use native fonts instead of CSS so we don't break the OS theme
         tab_font = QFont("Arial", 14, QFont.Normal)
         self.top_tabs.setFont(tab_font)
-        
         main_layout.addWidget(self.top_tabs)
 
         # ==========================================
@@ -783,7 +801,7 @@ class Wordforge(QMainWindow):
         # --- RIGHT PANEL: Dictionary ---
         right_panel = QWidget()
         right_layout = QVBoxLayout(right_panel)
-        self.tabs = QTabWidget() # Dictionary categories
+        self.tabs = QTabWidget() 
         for category in self.categories:
             tab = QWidget()
             t_layout = QVBoxLayout(tab)
@@ -816,16 +834,15 @@ class Wordforge(QMainWindow):
         # 2. TRANSLATOR TAB
         # ==========================================
         translator_tab = QWidget()
-        translator_layout = QHBoxLayout(translator_tab) # Changed to Horizontal layout
+        translator_layout = QHBoxLayout(translator_tab) 
 
         # --- LEFT SIDE: Editors ---
         left_editors_widget = QWidget()
         left_editors_layout = QVBoxLayout(left_editors_widget)
-        left_editors_layout.setContentsMargins(0, 0, 10, 0) # Give some space in the middle
+        left_editors_layout.setContentsMargins(0, 0, 10, 0) 
 
         label_style = "color: #ccc; font-weight: bold; font-size: 11pt; margin-top: 5px;"
 
-        # 1. English Input
         lbl_eng = QLabel("English Source")
         lbl_eng.setStyleSheet(label_style)
         left_editors_layout.addWidget(lbl_eng)
@@ -840,7 +857,6 @@ class Wordforge(QMainWindow):
         self.english_input.textChanged.connect(self.translate_english_to_tezhnor)
         left_editors_layout.addWidget(self.english_input, stretch=1)
 
-        # 2. Tezhnor Typer
         lbl_tezhnor = QLabel("Tezhnor Typer")
         lbl_tezhnor.setStyleSheet(label_style)
         left_editors_layout.addWidget(lbl_tezhnor)
@@ -849,7 +865,6 @@ class Wordforge(QMainWindow):
         self.typer_input.textChanged.connect(self.translate_tezhnor_to_shigeyed)
         left_editors_layout.addWidget(self.typer_input, stretch=1)
 
-        # 3. Shigeyed Typer
         lbl_shigeyed = QLabel("Shigeyed Typer")
         lbl_shigeyed.setStyleSheet(label_style)
         left_editors_layout.addWidget(lbl_shigeyed)
@@ -871,14 +886,13 @@ class Wordforge(QMainWindow):
         right_displays_layout = QVBoxLayout(right_displays_widget)
         right_displays_layout.setContentsMargins(10, 0, 0, 0)
 
-        # --- Active Word Details Panel ---
         lbl_active_word = QLabel("Active Word Details")
         lbl_active_word.setStyleSheet(label_style)
         right_displays_layout.addWidget(lbl_active_word)
 
         self.active_word_display = QTextEdit()
         self.active_word_display.setReadOnly(True)
-        self.active_word_display.setFixedHeight(80) # Keep it compact
+        self.active_word_display.setFixedHeight(80) 
         self.active_word_display.setStyleSheet("""
             QTextEdit {
                 font-size: 12pt; padding: 5px; background-color: #2b2b2b; 
@@ -888,7 +902,6 @@ class Wordforge(QMainWindow):
         right_displays_layout.addWidget(self.active_word_display)
         right_displays_layout.addSpacing(10)
 
-        # Tezhnor Controls
         typer_controls_container = QVBoxLayout()
         row1_layout = QHBoxLayout()
         row2_layout = QHBoxLayout()
@@ -900,7 +913,6 @@ class Wordforge(QMainWindow):
         slider_label_style = "color: #bbb; font-weight: bold; font-size: 10pt;"
 
         self.font_dropdown = QComboBox()
-        # Filter out the Shigeyed font so we don't accidentally set Tezhnor to use Shigeyed bitmaps
         tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
         self.font_dropdown.addItems(tezhnor_fonts)
         self.font_dropdown.setCurrentText("Rounded Bold")
@@ -951,7 +963,6 @@ class Wordforge(QMainWindow):
         typer_controls_container.addLayout(row2_layout)
         right_displays_layout.addLayout(typer_controls_container)
         
-        # Tezhnor Display
         lbl_disp_tezhnor = QLabel("Tezhnor Display")
         lbl_disp_tezhnor.setStyleSheet(label_style)
         right_displays_layout.addWidget(lbl_disp_tezhnor)
@@ -963,7 +974,6 @@ class Wordforge(QMainWindow):
         )
         right_displays_layout.addWidget(self.typer_bottom, stretch=1)
         
-        # Shigeyed Display
         lbl_disp_shigeyed = QLabel("Shigeyed Display")
         lbl_disp_shigeyed.setStyleSheet(label_style)
         right_displays_layout.addWidget(lbl_disp_shigeyed)
@@ -971,11 +981,10 @@ class Wordforge(QMainWindow):
         self.shigeyed_display = BitmapRenderer()
         self.shigeyed_display.setMinimumHeight(200)
         
-        # Pre-configure the Shigeyed renderer to use its specific font profile
         shig_prof = FONT_PROFILES["Shigeyed Bold"]
         self.shigeyed_display.font_dir = shig_prof["dir"]
         self.shigeyed_display.base_scale = shig_prof["bitmap_base_scale"]
-        self.shigeyed_display.scale = shig_prof["bitmap_base_scale"] * 0.5 # Defaulting to 50% slider value
+        self.shigeyed_display.scale = shig_prof["bitmap_base_scale"] * 0.5 
         
         right_displays_layout.addWidget(self.shigeyed_display, stretch=1)
 
@@ -1111,11 +1120,9 @@ class Wordforge(QMainWindow):
         row = table.rowAt(pos.y())
         col = table.columnAt(pos.x())
         
-        # Ignore out of bounds clicks or clicks on the delete button column
         if row < 0 or col < 0 or col == 3:
             return
 
-        # Fetch plain text directly from the saved data (bypassing HTML)
         item_data = self.data[category][row]
         text_to_copy = ""
         
@@ -1185,7 +1192,6 @@ class Wordforge(QMainWindow):
         self.syllable_label.setText(f"Syllables: {value}")
 
     def handle_keypress(self, key_id, default_char, target=None):
-        # If no target is passed (e.g., clicking the on-screen touch keyboard), default to Word Forge input
         if target is None:
             target = self.input_conlang
 
@@ -1230,13 +1236,8 @@ class Wordforge(QMainWindow):
             QMessageBox.warning(self, "Missing Info", "Need word and definition.")
             return
 
-        # --- 1. VALIDATION CHECK (WHOLE WORDS ONLY) ---
         conflicts = []
-        
-        # Break new inputs into sets of whole words
         new_c_words = set(w.strip() for w in conlang.lower().split() if w.strip())
-        
-        # For English, replace slashes with spaces first, then split into words
         new_e_clean = english.lower().replace('/', ' ')
         new_e_words = set(w.strip() for w in new_e_clean.split() if w.strip())
 
@@ -1245,22 +1246,18 @@ class Wordforge(QMainWindow):
                 existing_conlang = item.get("conlang", "").strip().lower()
                 existing_english = item.get("english", "").strip().lower()
 
-                # Break existing entries into sets of whole words
                 ex_c_words = set(w.strip() for w in existing_conlang.split() if w.strip())
                 ex_e_clean = existing_english.replace('/', ' ')
                 ex_e_words = set(w.strip() for w in ex_e_clean.split() if w.strip())
 
-                # Check for overlap (intersection) between the sets
                 conlang_conflict = bool(new_c_words.intersection(ex_c_words))
                 english_conflict = bool(new_e_words.intersection(ex_e_words))
 
                 if conlang_conflict or english_conflict:
-                    # Format it nicely for the popup
                     c_word = item.get("conlang", "")
                     e_word = item.get("english", "")
                     conflicts.append(f"• <b>{c_word}</b> <i>({e_word})</i>")
 
-        # --- 2. SHOW POPUP IF CONFLICTS EXIST ---
         if conflicts:
             dialog = QDialog(self)
             dialog.setWindowTitle("Possible Conflicts Found")
@@ -1271,13 +1268,11 @@ class Wordforge(QMainWindow):
             warning_label.setStyleSheet("color: #ffab91; font-weight: bold; font-size: 12pt;")
             layout.addWidget(warning_label)
 
-            # Display conflicts in a readable text box
             browser = QTextBrowser()
             browser.setHtml("<br>".join(conflicts))
             browser.setStyleSheet("background-color: #2b2b2b; color: white; font-size: 14pt; border: 1px solid #555; padding: 5px;")
             layout.addWidget(browser)
 
-            # Buttons
             btn_layout = QHBoxLayout()
             btn_cancel = QPushButton("Cancel")
             btn_cancel.setStyleSheet("background-color: #555; color: white; font-weight: bold; padding: 8px; border-radius: 4px;")
@@ -1291,11 +1286,9 @@ class Wordforge(QMainWindow):
             btn_layout.addWidget(btn_continue)
             layout.addLayout(btn_layout)
 
-            # If the user clicks Cancel or closes the window, abort the save.
             if dialog.exec() != QDialog.Accepted:
                 return  
 
-        # --- 3. ADD TO DICTIONARY ---
         cat = self.categories[self.tabs.currentIndex()]
         self.data[cat].append({ "conlang": conlang, "english": english, "notes": notes })
         self.save_data()
@@ -1341,14 +1334,7 @@ class Wordforge(QMainWindow):
             del_btn = QPushButton("x")
             del_btn.setFixedSize(24, 24)
             del_btn.setStyleSheet("""
-                QPushButton {
-                    background-color: #d32f2f; 
-                    color: white; 
-                    font-weight: bold; 
-                    border: none; 
-                    border-radius: 12px;
-                    padding-bottom: 2px;
-                }
+                QPushButton { background-color: #d32f2f; color: white; font-weight: bold; border: none; border-radius: 12px; padding-bottom: 2px; }
                 QPushButton:hover { background-color: #b71c1c; }
             """)
             del_btn.clicked.connect(lambda checked=False, c=category, i=r: self.delete_entry(c, i))
@@ -1361,25 +1347,20 @@ class Wordforge(QMainWindow):
             table.setCellWidget(r, 3, container)
 
     def update_typer_settings(self, *args):
-        # Grab values from all three sliders
         size_val = self.typer_scale_slider.value()
         lh_val = self.typer_lh_slider.value()
         cs_val = self.typer_cs_slider.value()
 
-        # Update the UI Labels
         self.typer_scale_label.setText(f"Size: {size_val}%")
         self.typer_lh_label.setText(f"Line Height: {lh_val}%")
         self.typer_cs_label.setText(f"Char Spacing: {cs_val}")
 
-        # Convert to math-friendly factors
         scale_factor = size_val / 100.0
         lh_factor = lh_val / 100.0
 
-        # Push to the Tezhnor renderers
         self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val)
         self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
         
-        # --- NEW: Push to the Shigeyed display ---
         if hasattr(self, 'shigeyed_display'):
             self.shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
     
@@ -1388,17 +1369,11 @@ class Wordforge(QMainWindow):
         CURRENT_FONT_KEY = font_name
         profile = FONT_PROFILES[font_name]
         
-        # Update the Tezhnor renderer to look at the new directory
         self.typer_bottom.font_dir = profile["dir"]
-        
-        # Push the scale updates and redraw the screens
         self.update_typer_settings()
-        
-        # Force a refresh of the text to ensure the new font renders immediately
         self.typer_bottom.set_text(self.typer_input.toPlainText())
 
     def translate_english_to_tezhnor(self):
-        # 1. Build a lookup dictionary that supports MULTIPLE translations per word
         eng_to_lore = {}
         for category in self.categories:
             for item in self.data[category]:
@@ -1414,26 +1389,22 @@ class Wordforge(QMainWindow):
                             if conlang_word not in eng_to_lore[clean_eng_word]:
                                 eng_to_lore[clean_eng_word].append(conlang_word)
 
-        # 2. Define the punctuation mappings and ignored words
-        punct_map = {
-            '.': SYMBOLS.get('terminator', '.'),
-            "'": SYMBOLS.get('quote', "'"),
-            '[': SYMBOLS.get('bracket_open', '['),
-            ']': SYMBOLS.get('bracket_close', ']'),
-        }
-        
         IGNORED_WORDS = {"a", "an", "the"}
 
         english_text = self.english_input.toPlainText()
         current_tezhnor_text = self.typer_input.toPlainText()
         
-        # 3. Tokenize BOTH texts using split so we can align them positionally
-        split_pattern = r"(<---->|\s+|[.\"'()\[\]{}<>•])"
-        eng_tokens = [t for t in re.split(split_pattern, english_text) if t]
-        tezhnor_tokens = [t for t in re.split(split_pattern, current_tezhnor_text) if t]
+        # --- NEW: Safe tokenization bridging ASCII to Unicode PUA ---
+        # 1. eng_tokens uses the global SYMBOL_REGEX_PATTERN to catch ASCII clusters like '!='
+        eng_tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, english_text) if t]
         
-        # Extract JUST the Tezhnor words (ignore spaces and single punctuation) so we can index them
-        tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t not in punct_map.values() and t not in punct_map.keys() and t not in list(".\"'()[]{}<>•")]
+        # 2. tezhnor_tokens needs to split on the actual PUA characters (since '!=' is stored as '\uE002' inside the Typer)
+        pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
+        tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
+        tezhnor_tokens = [t for t in re.split(tezhnor_pattern, current_tezhnor_text) if t]
+        
+        # Extract JUST the Tezhnor words (ignoring spaces, <---->, and symbols)
+        tezhnor_words = [t for t in tezhnor_tokens if not t.isspace() and t != "<---->" and t not in TYPER_CHAR_TO_SYMBOL_NAME]
         
         translated_tokens = []
         word_index = 0
@@ -1447,13 +1418,9 @@ class Wordforge(QMainWindow):
                 translated_tokens.append(token)
                 continue
                 
-            if token in punct_map:
-                translated_tokens.append(punct_map[token])
-                continue
-                
-            # Keep other untranslated punctuation intact
-            if token in [".", "\"", "'", "(", ")", "[", "]", "{", "}", "<", ">", "•"]:
-                translated_tokens.append(token)
+            # --- NEW: Instantly translate ASCII symbols to their PUA representation ---
+            if token in ASCII_TO_TYPER_CHAR:
+                translated_tokens.append(ASCII_TO_TYPER_CHAR[token])
                 continue
                 
             word = token.lower()
@@ -1482,7 +1449,6 @@ class Wordforge(QMainWindow):
         translated_text = "".join(translated_tokens)
         translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
 
-        # 6. Push to the Tezhnor text edit
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.blockSignals(False)
@@ -1490,7 +1456,6 @@ class Wordforge(QMainWindow):
         display_text = self.typer_input.toPlainText().replace("<---->", "[]")
         self.typer_bottom.set_text(display_text)
 
-        # 7. Cascade updates to Shigeyed and Definition Panel
         if hasattr(self, 'translate_tezhnor_to_shigeyed'):
             self.translate_tezhnor_to_shigeyed()
             
@@ -1501,7 +1466,11 @@ class Wordforge(QMainWindow):
         self.shigeyed_input.blockSignals(True)
         tezhnor_text = self.typer_input.toPlainText()
         
-        tokens = re.split(r"(<---->|\s+|[.\"'()\[\]{}<>•])", tezhnor_text)
+        # --- NEW: Use the PUA splitting pattern to perfectly isolate symbols ---
+        pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
+        tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
+        
+        tokens = re.split(tezhnor_pattern, tezhnor_text)
         
         translated_tokens = []
         
@@ -1513,8 +1482,8 @@ class Wordforge(QMainWindow):
                 translated_tokens.append(token)
                 continue
                 
-            # Include basic symbols in the passthrough just in case
-            if token.isspace() or token in SYMBOLS.values() or token in list(".\"'()[]{}<>•"):
+            # --- NEW: Pass through spaces and ALL mapped symbols unharmed ---
+            if token.isspace() or token in TYPER_CHAR_TO_SYMBOL_NAME:
                 translated_tokens.append(token)
                 continue
                 
@@ -1535,7 +1504,6 @@ class Wordforge(QMainWindow):
             while cursor < len(norm_word):
                 char = norm_word[cursor]
                 
-                # Check for Standalone/Orphaned Vowels
                 if char in SHIGEYED_VOWELS:
                     soft_syl = "ь" + char
                     if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
@@ -1546,7 +1514,6 @@ class Wordforge(QMainWindow):
                     cursor += 1
                     continue
                     
-                # Process Consonants
                 if char in SYLLABLES_BY_CONSONANT:
                     available_syls = SYLLABLES_BY_CONSONANT[char]
                     matched = False
@@ -1588,15 +1555,12 @@ class Wordforge(QMainWindow):
             self.update_active_word_panel()
 
     def find_dictionary_entry(self, tezhnor_word):
-        """Helper to find a dictionary entry by its Tezhnor spelling from memory."""
-        # If your data is a dictionary grouped by category ("level0", etc.)
         if isinstance(self.data, dict):
             for category_list in self.data.values():
                 for entry in category_list:
                     if entry.get("conlang") == tezhnor_word:
                         return entry
                         
-        # Just in case it's actually a flat list of entries
         elif isinstance(self.data, list):
             for entry in self.data:
                 if entry.get("conlang") == tezhnor_word:
@@ -1607,42 +1571,46 @@ class Wordforge(QMainWindow):
     def update_active_word_panel(self):
         active_tezhnor_words = []
         
-        # Helper to find the word nearest to the active typing cursor
         def get_word_near_cursor(text_edit):
             pos = text_edit.textCursor().position()
             text = text_edit.toPlainText()
             
+            pua_chars = "".join(re.escape(c) for c in TYPER_CHAR_TO_SYMBOL_NAME.keys())
+            tezhnor_pattern = f"(<---->|\\s+|[{pua_chars}])" if pua_chars else r"(<---->|\s+)"
+            
+            # Use the global SYMBOL_REGEX_PATTERN for English, and the PUA pattern for Tezhnor
+            if text_edit == getattr(self, 'english_input', None):
+                tokens = re.split(SYMBOL_REGEX_PATTERN, text)
+            else:
+                tokens = re.split(tezhnor_pattern, text)
+                
             current_idx = 0
-            tokens = re.split(r"(\s+|[.\"'()\[\]{}<>•])", text)
             last_valid_word = None
             
             for token in tokens:
                 start_idx = current_idx
                 end_idx = current_idx + len(token)
                 
-                is_word = bool(token.strip()) and token not in [".", "\"", "'", "(", ")", "[", "]", "{", "}", "<", ">", "•"]
+                # Exclude PUA symbols and <----> from being recognized as "words"
+                is_word = bool(token.strip()) and token not in TYPER_CHAR_TO_SYMBOL_NAME and token != "<---->"
                 
                 if is_word:
                     last_valid_word = token
                     
-                # If the cursor is touching or inside this token
                 if start_idx <= pos <= end_idx:
                     if is_word:
                         return token
                     else:
-                        # If the cursor is on a space, return the word immediately before it
                         return last_valid_word
                         
                 current_idx = end_idx
                 
             return last_valid_word
 
-        # 1. Determine active word based on which text box you are typing in
         if hasattr(self, 'english_input') and self.english_input.hasFocus():
             eng_word = get_word_near_cursor(self.english_input)
             if eng_word:
                 eng_word = eng_word.lower()
-                # Look up ALL Tezhnor options for this English word
                 for category in self.categories:
                     for item in self.data[category]:
                         eng_defs = item.get("english", "").strip().lower()
@@ -1652,12 +1620,10 @@ class Wordforge(QMainWindow):
                                 if sub_word.strip() == eng_word and conlang_word not in active_tezhnor_words:
                                     active_tezhnor_words.append(conlang_word)
         else:
-            # Fallback to the Tezhnor box
             tezhnor_word = get_word_near_cursor(self.typer_input)
             if tezhnor_word:
                 active_tezhnor_words = [w for w in tezhnor_word.split('/') if w]
 
-        # 2. Display the definitions
         if not active_tezhnor_words:
             self.active_word_display.setHtml("<i>No active word...</i>")
             return
