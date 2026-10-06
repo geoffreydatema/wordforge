@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser, QMenu, QComboBox, QDialog)
+                               QSlider, QTextBrowser, QMenu, QComboBox, QDialog, QScrollArea)
 from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat, QFontDatabase
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
@@ -1149,6 +1149,99 @@ class Wordforge(QMainWindow):
         self.top_tabs.addTab(specs_tab, "Specs")
 
         # ==========================================
+        # 4. RENDER TAB
+        # ==========================================
+        render_tab = QWidget()
+        render_layout = QVBoxLayout(render_tab)
+        
+        # --- TOP: Controls ---
+        render_controls_layout = QHBoxLayout()
+        
+        # Bitmap Font Selector
+        self.render_font_dropdown = QComboBox()
+        tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
+        self.render_font_dropdown.addItems(tezhnor_fonts)
+        self.render_font_dropdown.setCurrentText(CURRENT_FONT_KEY)
+        self.render_font_dropdown.currentTextChanged.connect(self.change_font_profile)
+        
+        render_controls_layout.addWidget(QLabel("Tezhnor Font:"))
+        render_controls_layout.addWidget(self.render_font_dropdown)
+        render_controls_layout.addSpacing(20)
+        
+        # Sliders
+        self.render_scale_label = QLabel("Size: 150%")
+        self.render_scale_label.setStyleSheet(slider_label_style)
+        self.render_scale_slider = QSlider(Qt.Horizontal)
+        self.render_scale_slider.setRange(50, 500)
+        self.render_scale_slider.setValue(150)
+        self.render_scale_slider.setStyleSheet(slider_style)
+        self.render_scale_slider.valueChanged.connect(self.update_render_settings)
+        
+        self.render_lh_label = QLabel("Line Height: 100%")
+        self.render_lh_label.setStyleSheet(slider_label_style)
+        self.render_lh_slider = QSlider(Qt.Horizontal)
+        self.render_lh_slider.setRange(50, 200)
+        self.render_lh_slider.setValue(100)
+        self.render_lh_slider.setStyleSheet(slider_style)
+        self.render_lh_slider.valueChanged.connect(self.update_render_settings)
+        
+        self.render_cs_label = QLabel("Char Spacing: 0")
+        self.render_cs_label.setStyleSheet(slider_label_style)
+        self.render_cs_slider = QSlider(Qt.Horizontal)
+        self.render_cs_slider.setRange(-20, 50)
+        self.render_cs_slider.setValue(1)
+        self.render_cs_slider.setStyleSheet(slider_style)
+        self.render_cs_slider.valueChanged.connect(self.update_render_settings)
+        
+        render_controls_layout.addWidget(self.render_scale_label)
+        render_controls_layout.addWidget(self.render_scale_slider)
+        render_controls_layout.addSpacing(15)
+        render_controls_layout.addWidget(self.render_lh_label)
+        render_controls_layout.addWidget(self.render_lh_slider)
+        render_controls_layout.addSpacing(15)
+        render_controls_layout.addWidget(self.render_cs_label)
+        render_controls_layout.addWidget(self.render_cs_slider)
+        
+        render_layout.addLayout(render_controls_layout)
+        
+        # --- BOTTOM: Subtabs ---
+        self.render_subtabs = QTabWidget()
+        
+        # Tezhnor Subtab
+        render_tezhnor_tab = QWidget()
+        render_tezhnor_layout = QVBoxLayout(render_tezhnor_tab)
+        
+        self.render_tezhnor_scroll = QScrollArea()
+        self.render_tezhnor_scroll.setWidgetResizable(True)
+        self.render_tezhnor_display = BitmapRenderer()
+        self.render_tezhnor_display.setMinimumSize(4000, 4000) # Massive canvas for scrolling
+        self.render_tezhnor_scroll.setWidget(self.render_tezhnor_display)
+        
+        render_tezhnor_layout.addWidget(self.render_tezhnor_scroll)
+        self.render_subtabs.addTab(render_tezhnor_tab, "Tezhnor")
+        
+        # Shigeyed Subtab
+        render_shigeyed_tab = QWidget()
+        render_shigeyed_layout = QVBoxLayout(render_shigeyed_tab)
+        
+        self.render_shigeyed_scroll = QScrollArea()
+        self.render_shigeyed_scroll.setWidgetResizable(True)
+        self.render_shigeyed_display = BitmapRenderer()
+        self.render_shigeyed_display.setMinimumSize(4000, 4000)
+        
+        # Lock it to the Shigeyed profile
+        self.render_shigeyed_display.font_dir = shig_prof["dir"]
+        self.render_shigeyed_display.base_scale = shig_prof["bitmap_base_scale"]
+        
+        self.render_shigeyed_scroll.setWidget(self.render_shigeyed_display)
+        
+        render_shigeyed_layout.addWidget(self.render_shigeyed_scroll)
+        self.render_subtabs.addTab(render_shigeyed_tab, "Shigeyed")
+        
+        render_layout.addWidget(self.render_subtabs)
+        self.top_tabs.addTab(render_tab, "Render")
+
+        # ==========================================
         # POST-SETUP OPERATIONS
         # ==========================================
         for category in self.categories:
@@ -1411,15 +1504,54 @@ class Wordforge(QMainWindow):
         
         if hasattr(self, 'shigeyed_display'):
             self.shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
+
+    def update_render_settings(self):
+        if not hasattr(self, 'render_scale_slider'):
+            return
+            
+        size_val = self.render_scale_slider.value()
+        lh_val = self.render_lh_slider.value()
+        cs_val = self.render_cs_slider.value()
+
+        self.render_scale_label.setText(f"Size: {size_val}%")
+        self.render_lh_label.setText(f"Line Height: {lh_val}%")
+        self.render_cs_label.setText(f"Char Spacing: {cs_val}")
+
+        scale_factor = size_val / 100.0
+        lh_factor = lh_val / 100.0
+
+        if hasattr(self, 'render_tezhnor_display'):
+            self.render_tezhnor_display.update_settings(scale_factor, lh_factor, cs_val)
+            
+        if hasattr(self, 'render_shigeyed_display'):
+            self.render_shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
     
     def change_font_profile(self, font_name):
         global CURRENT_FONT_KEY
         CURRENT_FONT_KEY = font_name
         profile = FONT_PROFILES[font_name]
         
+        # Synchronize both dropdown selectors without infinite loop signals
+        if hasattr(self, 'font_dropdown'):
+            self.font_dropdown.blockSignals(True)
+            self.font_dropdown.setCurrentText(font_name)
+            self.font_dropdown.blockSignals(False)
+            
+        if hasattr(self, 'render_font_dropdown'):
+            self.render_font_dropdown.blockSignals(True)
+            self.render_font_dropdown.setCurrentText(font_name)
+            self.render_font_dropdown.blockSignals(False)
+
+        # Update Translator Tab Display
         self.typer_bottom.font_dir = profile["dir"]
         self.update_typer_settings()
         self.typer_bottom.set_text(self.typer_input.toPlainText())
+        
+        # Update Render Tab Display
+        if hasattr(self, 'render_tezhnor_display'):
+            self.render_tezhnor_display.font_dir = profile["dir"]
+            self.update_render_settings()
+            self.render_tezhnor_display.set_text(self.typer_input.toPlainText())
 
     def translate_english_to_tezhnor(self):
         eng_to_lore = {}
@@ -1503,6 +1635,9 @@ class Wordforge(QMainWindow):
         if hasattr(self, 'update_active_word_panel'):
             self.update_active_word_panel()
 
+        if hasattr(self, 'render_tezhnor_display'):
+            self.render_tezhnor_display.set_text(display_text)
+
     def translate_tezhnor_to_shigeyed(self):
         self.shigeyed_input.blockSignals(True)
         tezhnor_text = self.typer_input.toPlainText()
@@ -1582,6 +1717,9 @@ class Wordforge(QMainWindow):
         
         if hasattr(self, 'update_active_word_panel'):
             self.update_active_word_panel()
+
+        if hasattr(self, 'render_shigeyed_display'):
+            self.render_shigeyed_display.set_text(display_text)
 
     def find_dictionary_entry(self, tezhnor_word):
         if isinstance(self.data, dict):
