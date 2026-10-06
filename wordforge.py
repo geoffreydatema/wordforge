@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
                                QSlider, QTextBrowser, QMenu, QComboBox, QDialog)
-from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat
+from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat, QFontDatabase
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ========================================================
@@ -65,6 +65,8 @@ CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
 RAW_PIXMAP_CACHE = {}
 SCALED_PIXMAP_CACHE = {}
 
+LOADED_UNICODE_FONTS = ["Arial - Regular", "Arial - Bold"] # Default fallbacks
+
 def preload_font_pixmaps():
     """Loads all raw bitmap images into memory once at startup, avoiding disk I/O later."""
     for font_key, profile in FONT_PROFILES.items():
@@ -80,6 +82,32 @@ def preload_font_pixmaps():
             image_path = os.path.join(font_dir, f"{symbol_name}.png")
             if os.path.exists(image_path):
                 RAW_PIXMAP_CACHE[(char, font_dir)] = QPixmap(image_path)
+
+def load_unicode_fonts():
+    """Loads custom TTF fonts and extracts exact Family + Style combinations."""
+    LOADED_UNICODE_FONTS.clear()
+    LOADED_UNICODE_FONTS.extend(["Arial - Regular", "Arial - Bold"])
+    
+    ttf_files = [
+        "NotoSansTezhnor_Bold.ttf",
+        "NotoSansTezhnor_Light.ttf",
+        "NotoSansTezhnor_Regular.ttf",
+        "NotoSerifTezhnor_Bold.ttf",
+        "NotoSerifTezhnor_Light.ttf",
+        "NotoSerifTezhnor_Regular.ttf"
+    ]
+    families = set()
+    for ttf in ttf_files:
+        path = ttf if os.path.exists(ttf) else os.path.join("fonts", ttf)
+        if os.path.exists(path):
+            font_id = QFontDatabase.addApplicationFont(path)
+            if font_id != -1:
+                for family in QFontDatabase.applicationFontFamilies(font_id):
+                    families.add(family)
+                    
+    for family in sorted(list(families)):
+        for style in QFontDatabase.styles(family):
+            LOADED_UNICODE_FONTS.append(f"{family} - {style}")
 
 def get_shared_pixmap(char, font_dir, scale):
     """Returns the scaled pixmap, utilizing the in-memory caches."""
@@ -446,23 +474,38 @@ class TyperTextEdit(RichLineEdit):
         
         self.line_height_factor = 1.0
         self.char_spacing = 0
+        self.font_family = "Arial"
         
         self.textChanged.connect(self.apply_block_formatting)
-        self.update_font_settings(0.5, 1.0, 0)
+        self.update_font_settings(0.5, 1.0, 0, "Arial - Regular")
 
-    def update_font_settings(self, scale_factor, lh_factor, char_spacing):
+    def update_font_settings(self, scale_factor, lh_factor, char_spacing, font_selection="Arial - Regular"):
         self.line_height_factor = lh_factor
         self.char_spacing = char_spacing
+        self.font_selection = font_selection
 
         self.base_pt = FONT_METRICS.get("text_base_pt", 28) 
-
         current_pt = max(8, int(self.base_pt * scale_factor))
         pad = FONT_METRICS.get("padding", 10) 
         
+        if " - " in font_selection:
+            family, style_str = font_selection.split(" - ", 1)
+        else:
+            family, style_str = font_selection, "Regular"
+            
+        # Get the exact font object directly from Qt's database
+        new_font = QFontDatabase.font(family, style_str, current_pt)
+        
+        # Store the font so we can use it in apply_block_formatting
+        self.active_custom_font = new_font 
+        
+        # Apply it cleanly to the widget and document
+        self.setFont(new_font)
+        self.document().setDefaultFont(new_font)
+        
+        # Only use CSS for the box styling now
         self.setStyleSheet(f"""
             QTextEdit {{
-                font-size: {current_pt}pt; 
-                font-weight: normal; 
                 padding: {pad}px;  
                 border: 1px solid #555; 
                 border-radius: 2px;
@@ -479,11 +522,18 @@ class TyperTextEdit(RichLineEdit):
         cursor = self.textCursor()
         cursor.select(QTextCursor.Document)
         
+        # 1. Apply Line Height
         block_fmt = cursor.blockFormat()
         block_fmt.setLineHeight(float(self.line_height_factor * 100), QTextBlockFormat.ProportionalHeight.value)
         cursor.setBlockFormat(block_fmt)
         
+        # 2. Apply Character Spacing & Font
         char_fmt = cursor.charFormat()
+        
+        # --- FIX: Explicitly apply the font to the characters so old fonts don't get stuck! ---
+        if hasattr(self, 'active_custom_font'):
+            char_fmt.setFont(self.active_custom_font)
+        
         if self.char_spacing == 0:
             char_fmt.setFontLetterSpacingType(QFont.PercentageSpacing)
             char_fmt.setFontLetterSpacing(100.0)
@@ -627,6 +677,7 @@ class Wordforge(QMainWindow):
         self.data = self.load_data()
 
         preload_font_pixmaps()
+        load_unicode_fonts()
         
         self.key_to_lore = {}
         for row in KEYBOARD_LAYOUT:
@@ -825,10 +876,31 @@ class Wordforge(QMainWindow):
         self.english_input.textChanged.connect(self.translate_english_to_tezhnor)
         left_editors_layout.addWidget(self.english_input, stretch=1)
 
+        # --- UPDATED: Tezhnor Typer Header with Font Dropdown ---
+        tezhnor_header_layout = QHBoxLayout()
+        
         lbl_tezhnor = QLabel("Tezhnor Typer")
         lbl_tezhnor.setStyleSheet(label_style)
-        left_editors_layout.addWidget(lbl_tezhnor)
+        tezhnor_header_layout.addWidget(lbl_tezhnor)
         
+        tezhnor_header_layout.addStretch()
+        
+        # 1. We MUST create the combo box first and attach it to 'self'
+        self.unicode_font_dropdown = QComboBox()
+        
+        # 2. Now we can safely add the items to it!
+        self.unicode_font_dropdown.addItems(LOADED_UNICODE_FONTS)
+        
+        self.unicode_font_dropdown.setStyleSheet("""
+            QComboBox { background-color: #333; color: white; border: 1px solid #555; border-radius: 2px; padding: 2px; font-size: 10pt; }
+            QComboBox::drop-down { border: none; }
+        """)
+        self.unicode_font_dropdown.currentTextChanged.connect(self.change_unicode_font)
+        tezhnor_header_layout.addWidget(self.unicode_font_dropdown)
+        
+        left_editors_layout.addLayout(tezhnor_header_layout)
+        
+        # Typer text edit
         self.typer_input = TyperTextEdit()
         self.typer_input.textChanged.connect(self.translate_tezhnor_to_shigeyed)
         left_editors_layout.addWidget(self.typer_input, stretch=1)
@@ -1314,7 +1386,10 @@ class Wordforge(QMainWindow):
             layout.addWidget(del_btn)
             table.setCellWidget(r, 3, container)
 
-    def update_typer_settings(self, *args):
+    def change_unicode_font(self, font_name):
+        self.update_typer_settings(new_font=font_name)
+
+    def update_typer_settings(self, *args, new_font=None):
         size_val = self.typer_scale_slider.value()
         lh_val = self.typer_lh_slider.value()
         cs_val = self.typer_cs_slider.value()
@@ -1326,7 +1401,12 @@ class Wordforge(QMainWindow):
         scale_factor = size_val / 100.0
         lh_factor = lh_val / 100.0
 
-        self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val)
+        if new_font is not None:
+            ff_name = new_font
+        else:
+            ff_name = self.unicode_font_dropdown.currentText()
+            
+        self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val, ff_name)
         self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
         
         if hasattr(self, 'shigeyed_display'):
@@ -1411,6 +1491,7 @@ class Wordforge(QMainWindow):
 
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
+        self.typer_input.apply_block_formatting()
         self.typer_input.blockSignals(False)
         
         display_text = self.typer_input.toPlainText().replace("<---->", "[]")
