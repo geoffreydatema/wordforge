@@ -850,7 +850,123 @@ class Wordforge(QMainWindow):
         self.top_tabs.addTab(wordforge_top_tab, "Wordforge")
 
         # ==========================================
-        # 2. TRANSLATOR TAB
+        # 3. SPECS TAB
+        # ==========================================
+        specs_tab = QWidget()
+        specs_layout = QVBoxLayout(specs_tab)
+        
+        self.specs_subtabs = QTabWidget()
+        
+        # --- TEZHNOR SUBTAB ---
+        def_tab = QWidget()
+        def_layout = QVBoxLayout(def_tab)
+        
+        self.def_table = QTableWidget()
+        self.def_table.setColumnCount(4)
+        self.def_table.setHorizontalHeaderLabels(["Character", "Unicode", "Romanization", "Notes"])
+        
+        def_header = self.def_table.horizontalHeader()
+        def_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(3, QHeaderView.Stretch)
+        
+        self.def_table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.def_table.verticalHeader().setVisible(False)
+        self.def_table.verticalHeader().setDefaultSectionSize(45) 
+        self.def_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
+        
+        self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
+        row_idx = 0
+        
+        definition_font = "Rounded Bold" 
+        current_font_dir = FONT_PROFILES[definition_font]["dir"]
+        base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
+        table_icon_scale = base_scale * 0.65 
+        
+        for char, code in TEZHNOR_TO_CODE.items():
+            lbl = QLabel()
+            pixmap = get_shared_pixmap(char, current_font_dir, table_icon_scale)
+            if pixmap: lbl.setPixmap(pixmap)
+            lbl.setAlignment(Qt.AlignCenter)
+            
+            char_item = QTableWidgetItem(char)
+            char_item.setTextAlignment(Qt.AlignCenter)
+            char_item.setFont(QFont("Arial", 16))
+            
+            code_item = QTableWidgetItem(code)
+            code_item.setTextAlignment(Qt.AlignCenter)
+            code_item.setFont(QFont("Arial", 12))
+            
+            notes_text = TEZHNOR_TO_PRONUNCIATION.get(char, "")
+            notes_item = QTableWidgetItem(notes_text)
+            notes_item.setFont(QFont("Arial", 11))
+            notes_item.setForeground(QColor("#bbb"))
+            
+            self.def_table.setCellWidget(row_idx, 0, lbl)
+            self.def_table.setItem(row_idx, 1, char_item)
+            self.def_table.setItem(row_idx, 2, code_item)
+            self.def_table.setItem(row_idx, 3, notes_item)
+            row_idx += 1
+            
+        self.def_table.setSortingEnabled(True)
+        def_layout.addWidget(self.def_table)
+        self.specs_subtabs.addTab(def_tab, "Tezhnor")
+
+        # --- SHIGEYED SUBTAB ---
+        shig_tab = QWidget()
+        shig_layout = QVBoxLayout(shig_tab)
+        
+        self.shig_table = QTableWidget()
+        self.shig_table.setColumnCount(3)
+        self.shig_table.setHorizontalHeaderLabels(["Character", "Tezhnor", "Romanization"])
+        
+        shig_header = self.shig_table.horizontalHeader()
+        shig_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        shig_header.setSectionResizeMode(1, QHeaderView.Stretch)
+        shig_header.setSectionResizeMode(2, QHeaderView.Stretch)
+        
+        self.shig_table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.shig_table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.shig_table.verticalHeader().setVisible(False)
+        self.shig_table.verticalHeader().setDefaultSectionSize(45)
+        self.shig_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
+        
+        self.shig_table.setRowCount(len(SHIGEYED_TO_CODE))
+        s_row_idx = 0
+        
+        shig_font_dir = FONT_PROFILES["Shigeyed Bold"]["dir"]
+        shig_scale = FONT_PROFILES["Shigeyed Bold"]["bitmap_base_scale"] * 0.65
+        
+        for char, code in SHIGEYED_TO_CODE.items():
+            lbl = QLabel()
+            pixmap = get_shared_pixmap(char, shig_font_dir, shig_scale)
+            if pixmap: lbl.setPixmap(pixmap)
+            lbl.setAlignment(Qt.AlignCenter)
+            
+            char_item = QTableWidgetItem(char)
+            char_item.setTextAlignment(Qt.AlignCenter)
+            char_item.setFont(QFont("Arial", 16))
+            
+            code_item = QTableWidgetItem(code)
+            code_item.setTextAlignment(Qt.AlignCenter)
+            code_item.setFont(QFont("Arial", 12))
+            
+            self.shig_table.setCellWidget(s_row_idx, 0, lbl)
+            self.shig_table.setItem(s_row_idx, 1, char_item)
+            self.shig_table.setItem(s_row_idx, 2, code_item)
+            s_row_idx += 1
+            
+        self.shig_table.setSortingEnabled(True)
+        shig_layout.addWidget(self.shig_table)
+        self.specs_subtabs.addTab(shig_tab, "Shigeyed")
+
+        specs_layout.addWidget(self.specs_subtabs)
+        self.top_tabs.addTab(specs_tab, "Specs")
+        
+        # ==========================================
+        # 2. TRANSLATE TAB
         # ==========================================
         translator_tab = QWidget()
         translator_layout = QHBoxLayout(translator_tab) 
@@ -1030,123 +1146,7 @@ class Wordforge(QMainWindow):
 
         translator_layout.addWidget(right_displays_widget, stretch=1)
         
-        self.top_tabs.addTab(translator_tab, "Translator")
-
-        # ==========================================
-        # 3. SPECS TAB
-        # ==========================================
-        specs_tab = QWidget()
-        specs_layout = QVBoxLayout(specs_tab)
-        
-        self.specs_subtabs = QTabWidget()
-        
-        # --- TEZHNOR SUBTAB ---
-        def_tab = QWidget()
-        def_layout = QVBoxLayout(def_tab)
-        
-        self.def_table = QTableWidget()
-        self.def_table.setColumnCount(4)
-        self.def_table.setHorizontalHeaderLabels(["Character", "Unicode", "Romanization", "Notes"])
-        
-        def_header = self.def_table.horizontalHeader()
-        def_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        def_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        def_header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
-        def_header.setSectionResizeMode(3, QHeaderView.Stretch)
-        
-        self.def_table.setEditTriggers(QTableWidget.NoEditTriggers)
-        self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
-        self.def_table.verticalHeader().setVisible(False)
-        self.def_table.verticalHeader().setDefaultSectionSize(45) 
-        self.def_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
-        
-        self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
-        row_idx = 0
-        
-        definition_font = "Rounded Bold" 
-        current_font_dir = FONT_PROFILES[definition_font]["dir"]
-        base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
-        table_icon_scale = base_scale * 0.65 
-        
-        for char, code in TEZHNOR_TO_CODE.items():
-            lbl = QLabel()
-            pixmap = get_shared_pixmap(char, current_font_dir, table_icon_scale)
-            if pixmap: lbl.setPixmap(pixmap)
-            lbl.setAlignment(Qt.AlignCenter)
-            
-            char_item = QTableWidgetItem(char)
-            char_item.setTextAlignment(Qt.AlignCenter)
-            char_item.setFont(QFont("Arial", 16))
-            
-            code_item = QTableWidgetItem(code)
-            code_item.setTextAlignment(Qt.AlignCenter)
-            code_item.setFont(QFont("Arial", 12))
-            
-            notes_text = TEZHNOR_TO_PRONUNCIATION.get(char, "")
-            notes_item = QTableWidgetItem(notes_text)
-            notes_item.setFont(QFont("Arial", 11))
-            notes_item.setForeground(QColor("#bbb"))
-            
-            self.def_table.setCellWidget(row_idx, 0, lbl)
-            self.def_table.setItem(row_idx, 1, char_item)
-            self.def_table.setItem(row_idx, 2, code_item)
-            self.def_table.setItem(row_idx, 3, notes_item)
-            row_idx += 1
-            
-        self.def_table.setSortingEnabled(True)
-        def_layout.addWidget(self.def_table)
-        self.specs_subtabs.addTab(def_tab, "Tezhnor")
-
-        # --- SHIGEYED SUBTAB ---
-        shig_tab = QWidget()
-        shig_layout = QVBoxLayout(shig_tab)
-        
-        self.shig_table = QTableWidget()
-        self.shig_table.setColumnCount(3)
-        self.shig_table.setHorizontalHeaderLabels(["Character", "Tezhnor", "Romanization"])
-        
-        shig_header = self.shig_table.horizontalHeader()
-        shig_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        shig_header.setSectionResizeMode(1, QHeaderView.Stretch)
-        shig_header.setSectionResizeMode(2, QHeaderView.Stretch)
-        
-        self.shig_table.setEditTriggers(QTableWidget.NoEditTriggers)
-        self.shig_table.setSelectionBehavior(QTableWidget.SelectRows)
-        self.shig_table.verticalHeader().setVisible(False)
-        self.shig_table.verticalHeader().setDefaultSectionSize(45)
-        self.shig_table.setStyleSheet("background-color: #2b2b2b; color: white; gridline-color: #444;")
-        
-        self.shig_table.setRowCount(len(SHIGEYED_TO_CODE))
-        s_row_idx = 0
-        
-        shig_font_dir = FONT_PROFILES["Shigeyed Bold"]["dir"]
-        shig_scale = FONT_PROFILES["Shigeyed Bold"]["bitmap_base_scale"] * 0.65
-        
-        for char, code in SHIGEYED_TO_CODE.items():
-            lbl = QLabel()
-            pixmap = get_shared_pixmap(char, shig_font_dir, shig_scale)
-            if pixmap: lbl.setPixmap(pixmap)
-            lbl.setAlignment(Qt.AlignCenter)
-            
-            char_item = QTableWidgetItem(char)
-            char_item.setTextAlignment(Qt.AlignCenter)
-            char_item.setFont(QFont("Arial", 16))
-            
-            code_item = QTableWidgetItem(code)
-            code_item.setTextAlignment(Qt.AlignCenter)
-            code_item.setFont(QFont("Arial", 12))
-            
-            self.shig_table.setCellWidget(s_row_idx, 0, lbl)
-            self.shig_table.setItem(s_row_idx, 1, char_item)
-            self.shig_table.setItem(s_row_idx, 2, code_item)
-            s_row_idx += 1
-            
-        self.shig_table.setSortingEnabled(True)
-        shig_layout.addWidget(self.shig_table)
-        self.specs_subtabs.addTab(shig_tab, "Shigeyed")
-
-        specs_layout.addWidget(self.specs_subtabs)
-        self.top_tabs.addTab(specs_tab, "Specs")
+        self.top_tabs.addTab(translator_tab, "Translate")
 
         # ==========================================
         # 4. RENDER TAB
