@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                                QHBoxLayout, QTabWidget, QLineEdit, QPushButton, 
                                QTableWidget, QTableWidgetItem, QHeaderView, 
                                QMessageBox, QGridLayout, QFrame, QLabel, QTextEdit,
-                               QSlider, QTextBrowser, QMenu, QComboBox, QDialog, QScrollArea)
+                               QSlider, QTextBrowser, QMenu, QComboBox, QDialog, QScrollArea, QFileDialog)
 from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat, QFontDatabase
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
@@ -292,7 +292,6 @@ class BitmapRenderer(QWidget):
         self.char_spacing = 0
 
     def get_current_metrics(self):
-        """Finds the correct font profile dictionary based on this renderer's font_dir"""
         for profile in FONT_PROFILES.values():
             if profile["dir"] == self.font_dir:
                 return profile
@@ -317,7 +316,25 @@ class BitmapRenderer(QWidget):
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.fillRect(self.rect(), QColor("#2b2b2b"))
+        self._draw_layout(painter)
+
+    def export_to_pixmap(self):
+        # 1. Do a dry-run to find the exact boundary size of the text
+        width, height = self._draw_layout(painter=None)
         
+        # 2. Create a blank image of that exact size and fill it with solid black
+        export_pix = QPixmap(width, height)
+        export_pix.fill(QColor("black"))
+        
+        # 3. Draw the exact same text layout directly onto the image
+        painter = QPainter(export_pix)
+        self._draw_layout(painter)
+        painter.end()
+        
+        return export_pix
+
+    def _draw_layout(self, painter=None):
+        """Unified math engine: draws to screen if painter is provided, otherwise calculates bounding box."""
         metrics = self.get_current_metrics()
         
         dynamic_lh = (metrics["line_height"] * self.lh_factor) * self.scale
@@ -352,11 +369,15 @@ class BitmapRenderer(QWidget):
                         if s: iterable.append(s)
                 else:
                     iterable.extend(list(token))
-            
+                    
+        actual_max_x = cursor_x
+        actual_max_y = cursor_y + dynamic_lh
+        
         for item in iterable:
             if item == '\n':
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
+                actual_max_y = max(actual_max_y, cursor_y + dynamic_lh)
                 continue
                 
             if item == ' ':
@@ -364,6 +385,8 @@ class BitmapRenderer(QWidget):
                 if cursor_x > max_x:
                     cursor_x = PADDING_SCREEN + OFFSET_X 
                     cursor_y += dynamic_lh
+                    actual_max_y = max(actual_max_y, cursor_y + dynamic_lh)
+                actual_max_x = max(actual_max_x, cursor_x)
                 continue
                 
             is_symbol = item in TYPER_CHAR_TO_SYMBOL_NAME
@@ -385,6 +408,7 @@ class BitmapRenderer(QWidget):
             if cursor_x + advance > max_x:
                 cursor_x = PADDING_SCREEN + OFFSET_X 
                 cursor_y += dynamic_lh
+                actual_max_y = max(actual_max_y, cursor_y + dynamic_lh)
                 
             pixmap = self.get_pixmap(item, current_item_scale)
             if pixmap:
@@ -398,9 +422,15 @@ class BitmapRenderer(QWidget):
                     raw_y_offset = metrics.get("symbol_offset_y", 0)
                     active_y += (raw_y_offset * self.scale)
                     
-                painter.drawPixmap(int(cursor_x), int(active_y), pixmap)
+                if painter:
+                    painter.drawPixmap(int(cursor_x), int(active_y), pixmap)
+                    
+                actual_max_y = max(actual_max_y, active_y + pixmap.height())
                 
             cursor_x += advance
+            actual_max_x = max(actual_max_x, cursor_x)
+            
+        return int(actual_max_x + PADDING_SCREEN), int(actual_max_y + PADDING_SCREEN)
 
 class RichLineEdit(QTextEdit):
     returnPressed = Signal()
@@ -1202,6 +1232,12 @@ class Wordforge(QMainWindow):
         render_controls_layout.addWidget(self.render_cs_label)
         render_controls_layout.addWidget(self.render_cs_slider)
         
+        render_controls_layout.addStretch()
+        self.btn_export_png = QPushButton("Render to Disk")
+        self.btn_export_png.setStyleSheet("background-color: #2e7d32; color: white; font-weight: bold; padding: 6px 15px; border-radius: 4px;")
+        self.btn_export_png.clicked.connect(self.export_render_to_png)
+        render_controls_layout.addWidget(self.btn_export_png)
+        
         render_layout.addLayout(render_controls_layout)
         
         # --- BOTTOM: Subtabs ---
@@ -1525,6 +1561,23 @@ class Wordforge(QMainWindow):
             
         if hasattr(self, 'render_shigeyed_display'):
             self.render_shigeyed_display.update_settings(scale_factor, lh_factor, cs_val)
+
+    def export_render_to_png(self):
+        # Determine whether Tezhnor or Shigeyed tab is currently active
+        is_shigeyed = self.render_subtabs.currentIndex() == 1
+        target_display = self.render_shigeyed_display if is_shigeyed else self.render_tezhnor_display
+        default_name = "shigeyed_render.png" if is_shigeyed else "tezhnor_render.png"
+            
+        if not target_display.text_to_render.strip():
+            QMessageBox.warning(self, "Empty Render", "There is no text to render!")
+            return
+            
+        file_path, _ = QFileDialog.getSaveFileName(self, "Render to Disk", default_name, "PNG Images (*.png)")
+        
+        if file_path:
+            # Trigger the off-screen generation
+            pixmap = target_display.export_to_pixmap()
+            pixmap.save(file_path, "PNG")
     
     def change_font_profile(self, font_name):
         global CURRENT_FONT_KEY
