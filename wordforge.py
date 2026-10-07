@@ -225,9 +225,7 @@ FONT_PROFILES = {
         "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.14,
-        "symbol_scale": 2.0,
-        "symbol_offset_y": 77,
-        "advance_symbol": 103,
+        "advance_symbol": 200,
         "line_height": 400,
         "space_width": 80,
         "advance_normal": 0,
@@ -393,8 +391,7 @@ class BitmapRenderer(QWidget):
             
             if is_symbol:
                 width_key = "advance_symbol"
-                symbol_multiplier = metrics.get("symbol_scale", 1.0)
-                current_item_scale = self.scale * symbol_multiplier
+                current_item_scale = self.scale 
             elif len(item) > 1:
                 width_key = "advance_wide"
                 current_item_scale = self.scale
@@ -413,14 +410,6 @@ class BitmapRenderer(QWidget):
             pixmap = self.get_pixmap(item, current_item_scale)
             if pixmap:
                 active_y = cursor_y
-                
-                if is_shigeyed and is_symbol:
-                    standard_shig_height = 256 * self.scale
-                    active_y += (standard_shig_height - pixmap.height())
-                    
-                if is_symbol:
-                    raw_y_offset = metrics.get("symbol_offset_y", 0)
-                    active_y += (raw_y_offset * self.scale)
                     
                 if painter:
                     painter.drawPixmap(int(cursor_x), int(active_y), pixmap)
