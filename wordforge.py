@@ -11,12 +11,23 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
 from PySide6.QtGui import QFont, QTextCursor, QPainter, QPixmap, QColor, QTextBlockFormat, QFontDatabase
 from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
-# ========================================================
-#       MASTER CHARACTER SET
-#
-#       aэջohяиეεyδюбвгдzкλмнпpcтvxqьμжчшθdфբζՑцპსպըէთრც
-#       
-# ========================================================
+# ===============================================================
+# 
+# lower case:   аэջоμяиეεуδюбвгдzкλмнпрстvхqьբhեжчшθdфζцპպთსըէრც
+# upper case:   АЭՋОUЯИJЕУΣЮБВГΔZКΛМНПРСТVХQЬFՑԵЖЧШΘDФΞЦპЩდსԸԷრձ
+
+# ===============================================================
+
+# BACKLOG
+#   - switch dictionary definitions to store uppercase
+#   - clean up spec loading below (dict keys have changed)
+#   - switch to new fonts
+#   - analyse syllable frequency with updated characters
+#   - generate shigeyed font using syllables
+#   - load shigeyed
+#   - do another pass for symbol assignment to graveyard operators
+#   - name symbols
+#   - generate symbol textures and add to fonts
 
 def load_spec():
     try:
