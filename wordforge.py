@@ -19,7 +19,6 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ===============================================================
 
 # BACKLOG
-#   - switch dictionary definitions to store uppercase
 #   - clean up spec loading below (dict keys have changed)
 #   - switch to new fonts
 #   - analyse syllable frequency with updated characters

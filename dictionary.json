@@ -1,4886 +1,4886 @@
 {
     "level0": [
         {
-            "conlang": "cэ",
+            "conlang": "СЭ",
             "english": "is/are/am/be",
             "notes": "state/existence"
         },
         {
-            "conlang": "zи",
+            "conlang": "ZИ",
             "english": "many/several",
             "notes": "plural operator"
         },
         {
-            "conlang": "дa",
+            "conlang": "ΔА",
             "english": "of",
             "notes": "possessive linker"
         },
         {
-            "conlang": "ьэ",
+            "conlang": "ЬЭ",
             "english": "I/i/me",
             "notes": "1st person singular"
         },
         {
-            "conlang": "шa",
+            "conlang": "ША",
             "english": "you",
             "notes": "2nd person"
         },
         {
-            "conlang": "пoж",
+            "conlang": "ПОЖ",
             "english": "he/him",
             "notes": "3rd person masculine"
         },
         {
-            "conlang": "cэнa",
+            "conlang": "СЭНА",
             "english": "she/her",
             "notes": "3rd person feminine"
         },
         {
-            "conlang": "პo",
+            "conlang": "პО",
             "english": "it",
             "notes": "3rd person neuter / object"
         },
         {
-            "conlang": "xэpa",
+            "conlang": "ХЭРА",
             "english": "they/them",
             "notes": "3rd person plural"
         },
         {
-            "conlang": "цэ",
+            "conlang": "ЦЭ",
             "english": "this",
             "notes": "proximal entity pointer"
         },
         {
-            "conlang": "штa",
+            "conlang": "ШТА",
             "english": "that",
             "notes": "distal entity pointer"
         },
         {
-            "conlang": "თэპ",
+            "conlang": "დЭპ",
             "english": "here",
             "notes": "proximal location anchor"
         },
         {
-            "conlang": "жaт",
+            "conlang": "ЖАТ",
             "english": "there",
             "notes": "distal location anchor"
         },
         {
-            "conlang": "тэ",
+            "conlang": "ТЭ",
             "english": "question",
             "notes": "turns a statement into a question"
         },
         {
-            "conlang": "ζa",
+            "conlang": "ΞА",
             "english": "who",
             "notes": "interrogative (person)"
         },
         {
-            "conlang": "чэ",
+            "conlang": "ЧЭ",
             "english": "what",
             "notes": "interrogative (thing)"
         },
         {
-            "conlang": "zьэ",
+            "conlang": "ZЬЭ",
             "english": "where",
             "notes": "interrogative (location)"
         },
         {
-            "conlang": "вδт",
+            "conlang": "ВΣТ",
             "english": "when",
             "notes": "interrogative (time)"
         },
         {
-            "conlang": "λoc",
+            "conlang": "ΛОС",
             "english": "how",
             "notes": "interrogative (method/manner)"
         },
         {
-            "conlang": "тջc",
+            "conlang": "ТՋС",
             "english": "which",
             "notes": "interrogative (selection)"
         },
         {
-            "conlang": "кy",
+            "conlang": "КУ",
             "english": "to",
             "notes": "directional vector (target)"
         },
         {
-            "conlang": "ცэ",
+            "conlang": "ձЭ",
             "english": "from",
             "notes": "directional vector (source)"
         },
         {
-            "conlang": "xyв",
+            "conlang": "ХУВ",
             "english": "through",
             "notes": ""
         },
         {
-            "conlang": "эpэд",
+            "conlang": "ЭРЭΔ",
             "english": "across",
             "notes": ""
         },
         {
-            "conlang": "шиpт",
+            "conlang": "ШИРТ",
             "english": "between",
             "notes": "intermediate / medial spatial anchor"
         },
         {
-            "conlang": "qμ",
+            "conlang": "QU",
             "english": "with",
             "notes": "comitative linker"
         },
         {
-            "conlang": "pэв",
+            "conlang": "РЭВ",
             "english": "without",
             "notes": ""
         },
         {
-            "conlang": "нεqт",
+            "conlang": "НЕQТ",
             "english": "on",
             "notes": ""
         },
         {
-            "conlang": "λδд",
+            "conlang": "ΛΣΔ",
             "english": "at",
             "notes": ""
         },
         {
-            "conlang": "ти",
+            "conlang": "ТИ",
             "english": "in",
             "notes": "interior spatial anchor"
         },
         {
-            "conlang": "мoж",
+            "conlang": "МОЖ",
             "english": "out",
             "notes": "exterior spatial anchor"
         },
         {
-            "conlang": "вoм",
+            "conlang": "ВОМ",
             "english": "above",
             "notes": ""
         },
         {
-            "conlang": "бეт",
+            "conlang": "БJТ",
             "english": "over",
             "notes": ""
         },
         {
-            "conlang": "qэպ",
+            "conlang": "QЭЩ",
             "english": "below",
             "notes": ""
         },
         {
-            "conlang": "cyвa",
+            "conlang": "СУВА",
             "english": "under",
             "notes": ""
         },
         {
-            "conlang": "виλ",
+            "conlang": "ВИΛ",
             "english": "near",
             "notes": ""
         },
         {
-            "conlang": "yըa",
+            "conlang": "УԸА",
             "english": "far",
             "notes": ""
         },
         {
-            "conlang": "էa",
+            "conlang": "ԷА",
             "english": "by",
             "notes": ""
         },
         {
-            "conlang": "თэнт",
+            "conlang": "დЭНТ",
             "english": "about",
             "notes": ""
         },
         {
-            "conlang": "բδ",
+            "conlang": "FΣ",
             "english": "out of/made of",
             "notes": ""
         },
         {
-            "conlang": "иьэт",
+            "conlang": "ИЬЭТ",
             "english": "future/next",
             "notes": ""
         },
         {
-            "conlang": "hэ",
+            "conlang": "ՑЭ",
             "english": "before",
             "notes": "prior temporal anchor"
         },
         {
-            "conlang": "гюнa",
+            "conlang": "ГЮНА",
             "english": "after",
             "notes": "subsequent temporal anchor"
         },
         {
-            "conlang": "пpэд",
+            "conlang": "ПРЭΔ",
             "english": "until",
             "notes": ""
         },
         {
-            "conlang": "шλэ",
+            "conlang": "ШΛЭ",
             "english": "since",
             "notes": ""
         },
         {
-            "conlang": "жэ",
+            "conlang": "ЖЭ",
             "english": "continuous/ongoing",
             "notes": ""
         },
         {
-            "conlang": "дyмa",
+            "conlang": "ΔУМА",
             "english": "done/finished/complete",
             "notes": ""
         },
         {
-            "conlang": "რac",
+            "conlang": "რАС",
             "english": "necessary/imperative",
             "notes": ""
         },
         {
-            "conlang": "тэнa",
+            "conlang": "ТЭНА",
             "english": "can/may/allowed to",
             "notes": ""
         },
         {
-            "conlang": "цapaт",
+            "conlang": "ЦАРАТ",
             "english": "must/required",
             "notes": ""
         },
         {
-            "conlang": "ви",
+            "conlang": "ВИ",
             "english": "and",
             "notes": "conjunction (additive)"
         },
         {
-            "conlang": "pи",
+            "conlang": "РИ",
             "english": "or",
             "notes": "conjunction (alternative)"
         },
         {
-            "conlang": "вpyპ",
+            "conlang": "ВРУპ",
             "english": "however",
             "notes": "conjunction (adversative)"
         },
         {
-            "conlang": "вo",
+            "conlang": "ВО",
             "english": "if",
             "notes": "conditional antecedent"
         },
         {
-            "conlang": "штя",
+            "conlang": "ШТЯ",
             "english": "then",
             "notes": "conditional consequent"
         },
         {
-            "conlang": "нит",
+            "conlang": "НИТ",
             "english": "because",
             "notes": "causal linker"
         },
         {
-            "conlang": "дьэ",
+            "conlang": "ΔЬЭ",
             "english": "yes",
             "notes": "affirmation statement"
         },
         {
-            "conlang": "ըa",
+            "conlang": "ԸА",
             "english": "no",
             "notes": "negation statement"
         },
         {
-            "conlang": "дaza",
+            "conlang": "ΔАZА",
             "english": "single",
             "notes": "unitary quantifier"
         },
         {
-            "conlang": "cипa",
+            "conlang": "СИПА",
             "english": "some/partial",
             "notes": "partitive scope operator"
         },
         {
-            "conlang": "pэш",
+            "conlang": "РЭШ",
             "english": "all",
             "notes": "universal scope operator"
         },
         {
-            "conlang": "тελ",
+            "conlang": "ТЕΛ",
             "english": "none/null/nothing",
             "notes": "null / zero operator"
         },
         {
-            "conlang": "cит",
+            "conlang": "СИТ",
             "english": "each",
             "notes": "distributive scope"
         },
         {
-            "conlang": "zичa",
+            "conlang": "ZИЧА",
             "english": "every",
             "notes": "exhaustive scope"
         },
         {
-            "conlang": "xaპ",
+            "conlang": "ХАპ",
             "english": "any",
             "notes": "arbitrary scope"
         },
         {
-            "conlang": "qиc",
+            "conlang": "QИС",
             "english": "only",
             "notes": ""
         },
         {
-            "conlang": "миpa",
+            "conlang": "МИРА",
             "english": "even",
             "notes": ""
         },
         {
-            "conlang": "qaн",
+            "conlang": "QАН",
             "english": "both",
             "notes": "dual quantifier"
         },
         {
-            "conlang": "киλ",
+            "conlang": "КИΛ",
             "english": "few",
             "notes": "paucal quantifier"
         },
         {
-            "conlang": "μըaт",
+            "conlang": "UԸАТ",
             "english": "most",
             "notes": "majority scope"
         },
         {
-            "conlang": "aчa",
+            "conlang": "АЧА",
             "english": "more",
             "notes": "positive scalar operator"
         },
         {
-            "conlang": "coт",
+            "conlang": "СОТ",
             "english": "less",
             "notes": "negative scalar operator"
         },
         {
-            "conlang": "სa",
+            "conlang": "სА",
             "english": "than",
             "notes": ""
         },
         {
-            "conlang": "пε",
+            "conlang": "ПЕ",
             "english": "as",
             "notes": ""
         },
         {
-            "conlang": "нэpy",
+            "conlang": "НЭРУ",
             "english": "very",
             "notes": ""
         },
         {
-            "conlang": "мэшт",
+            "conlang": "МЭШТ",
             "english": "most",
             "notes": ""
         },
         {
-            "conlang": "სapa",
+            "conlang": "სАРА",
             "english": "enough",
             "notes": "threshold quantifier"
         },
         {
-            "conlang": "миzэн",
+            "conlang": "МИZЭН",
             "english": "same",
             "notes": ""
         },
         {
-            "conlang": "εpт",
+            "conlang": "ЕРТ",
             "english": "other",
             "notes": "differentiation pointer"
         },
         {
-            "conlang": "штиλ",
+            "conlang": "ШТИΛ",
             "english": "another",
             "notes": "additive differentiation pointer"
         },
         {
-            "conlang": "вэтэ",
+            "conlang": "ВЭТЭ",
             "english": "for",
             "notes": ""
         },
         {
-            "conlang": "coλ",
+            "conlang": "СОΛ",
             "english": "but",
             "notes": ""
         },
         {
-            "conlang": "dи",
+            "conlang": "DИ",
             "english": "will",
             "notes": ""
         },
         {
-            "conlang": "бюн",
+            "conlang": "БЮН",
             "english": "would",
             "notes": ""
         },
         {
-            "conlang": "кa",
+            "conlang": "КА",
             "english": "have/has",
             "notes": ""
         },
         {
-            "conlang": "тy",
+            "conlang": "ТУ",
             "english": "position/location",
             "notes": ""
         },
         {
-            "conlang": "yшy",
+            "conlang": "УШУ",
             "english": "now",
             "notes": ""
         },
         {
-            "conlang": "ни",
+            "conlang": "НИ",
             "english": "past",
             "notes": ""
         },
         {
-            "conlang": "кид",
+            "conlang": "КИΔ",
             "english": "why",
             "notes": ""
         },
         {
-            "conlang": "тa",
+            "conlang": "ТА",
             "english": "not",
             "notes": ""
         },
         {
-            "conlang": "pa",
+            "conlang": "РА",
             "english": "ly/described as/described by",
             "notes": ""
         },
         {
-            "conlang": "λa",
+            "conlang": "ΛА",
             "english": "we/us",
             "notes": "1st person plural"
         }
     ],
     "level1": [
         {
-            "conlang": "oէoдa",
+            "conlang": "ОԷОΔА",
             "english": "water",
             "notes": ""
         },
         {
-            "conlang": "тεь",
+            "conlang": "ТЕЬ",
             "english": "tea",
             "notes": "any drink made from dried leaves and hot water"
         },
         {
-            "conlang": "covэ",
+            "conlang": "СОVЭ",
             "english": "coffee",
             "notes": "any drink made from dried ground beans and hot water"
         },
         {
-            "conlang": "кoжa",
+            "conlang": "КОЖА",
             "english": "cat",
             "notes": "any cat like animal"
         },
         {
-            "conlang": "paპэт",
+            "conlang": "РАპЭТ",
             "english": "plant",
             "notes": ""
         },
         {
-            "conlang": "эжδн",
+            "conlang": "ЭЖΣН",
             "english": "name",
             "notes": "the name of something or someone"
         },
         {
-            "conlang": "yპвaн",
+            "conlang": "УპВАН",
             "english": "user",
             "notes": ""
         },
         {
-            "conlang": "ньyгэцьa",
+            "conlang": "НЬУГЭЦЬА",
             "english": "never",
             "notes": ""
         },
         {
-            "conlang": "вэм",
+            "conlang": "ВЭМ",
             "english": "time",
             "notes": "a quantity or interval of time"
         },
         {
-            "conlang": "ცoжoc",
+            "conlang": "ձОЖОС",
             "english": "cosmos",
             "notes": "the universe, all of outer space"
         },
         {
-            "conlang": "ըэ",
+            "conlang": "ԸЭ",
             "english": "time",
             "notes": "a time of day, specified numerically to any level of precision"
         },
         {
-            "conlang": "дaთaт",
+            "conlang": "ΔАდАТ",
             "english": "date",
             "notes": "the full date including year, month, and day"
         },
         {
-            "conlang": "cyкoc",
+            "conlang": "СУКОС",
             "english": "small",
             "notes": ""
         },
         {
-            "conlang": "apжэниьa",
+            "conlang": "АРЖЭНИЬА",
             "english": "action",
             "notes": ""
         },
         {
-            "conlang": "ьδz",
+            "conlang": "ЬΣZ",
             "english": "thing/object",
             "notes": "an arbitrary physical object"
         },
         {
-            "conlang": "мaპpoд",
+            "conlang": "МАპРОΔ",
             "english": "matter/affair",
             "notes": ""
         },
         {
-            "conlang": "кoλoвa",
+            "conlang": "КОΛОВА",
             "english": "word",
             "notes": ""
         },
         {
-            "conlang": "вoλoш",
+            "conlang": "ВОΛОШ",
             "english": "big/large",
             "notes": ""
         },
         {
-            "conlang": "xეპa",
+            "conlang": "ХJპА",
             "english": "fast/quick",
             "notes": "a fast action or event"
         },
         {
-            "conlang": "თμч",
+            "conlang": "დUЧ",
             "english": "bad",
             "notes": ""
         },
         {
-            "conlang": "coтa",
+            "conlang": "СОТА",
             "english": "good",
             "notes": ""
         },
         {
-            "conlang": "дpaнoгэ",
+            "conlang": "ΔРАНОГЭ",
             "english": "drink/beverage",
             "notes": ""
         },
         {
-            "conlang": "ըэжнa",
+            "conlang": "ԸЭЖНА",
             "english": "krezhna",
             "notes": "the most common and widely used currency across the known worlds"
         },
         {
-            "conlang": "ეтa",
+            "conlang": "JТА",
             "english": "person",
             "notes": "a sentient humanoid"
         },
         {
-            "conlang": "vyპapa",
+            "conlang": "VУპАРА",
             "english": "standard",
             "notes": "the typical way something is"
         },
         {
-            "conlang": "вoч",
+            "conlang": "ВОЧ",
             "english": "want",
             "notes": ""
         },
         {
-            "conlang": "гpaպaв",
+            "conlang": "ГРАЩАВ",
             "english": "gun/firearm",
             "notes": "any type of ranged weapon"
         },
         {
-            "conlang": "мэza",
+            "conlang": "МЭZА",
             "english": "hand",
             "notes": ""
         },
         {
-            "conlang": "мэzнэвгo",
+            "conlang": "МЭZНЭВГО",
             "english": "sword",
             "notes": "any weapon with a long blade"
         },
         {
-            "conlang": "жδтεpoн",
+            "conlang": "ЖΣТЕРОН",
             "english": "weapon",
             "notes": ""
         },
         {
-            "conlang": "პpδк",
+            "conlang": "პРΣК",
             "english": "show",
             "notes": "to show something"
         },
         {
-            "conlang": "ეдδha",
+            "conlang": "JΔΣՑА",
             "english": "nail",
             "notes": "a hard spike or rivet used to connect materials together"
         },
         {
-            "conlang": "vδpջzдo",
+            "conlang": "VΣРՋZΔО",
             "english": "clear/transparent",
             "notes": ""
         },
         {
-            "conlang": "пoштaд",
+            "conlang": "ПОШТАΔ",
             "english": "potato",
             "notes": ""
         },
         {
-            "conlang": "aчюըa",
+            "conlang": "АЧЮԸА",
             "english": "memory",
             "notes": ""
         },
         {
-            "conlang": "жэcнa",
+            "conlang": "ЖЭСНА",
             "english": "absolutely/definitely",
             "notes": ""
         },
         {
-            "conlang": "бэpδд",
+            "conlang": "БЭРΣΔ",
             "english": "test",
             "notes": "a test run or instantiation of a process"
         },
         {
-            "conlang": "тэжнop",
+            "conlang": "ТЭЖНОР",
             "english": "tezhnor",
             "notes": "the name of the tezhnor language"
         },
         {
-            "conlang": "жэц",
+            "conlang": "ЖЭЦ",
             "english": "hi/hey",
             "notes": "informal hi or hey"
         },
         {
-            "conlang": "кaнa",
+            "conlang": "КАНА",
             "english": "man",
             "notes": ""
         },
         {
-            "conlang": "ьэpa",
+            "conlang": "ЬЭРА",
             "english": "woman/lady",
             "notes": ""
         },
         {
-            "conlang": "პyтв",
+            "conlang": "პУТВ",
             "english": "tree",
             "notes": ""
         },
         {
-            "conlang": "თин",
+            "conlang": "დИН",
             "english": "pick/choose",
             "notes": ""
         },
         {
-            "conlang": "ьидa",
+            "conlang": "ЬИΔА",
             "english": "open",
             "notes": "to physically open a door or container"
         },
         {
-            "conlang": "aცи",
+            "conlang": "АձИ",
             "english": "look",
             "notes": "to look for something or someone"
         },
         {
-            "conlang": "кьyzyт",
+            "conlang": "КЬУZУТ",
             "english": "speak/say",
             "notes": "to say or speak something out loud"
         },
         {
-            "conlang": "штиλa",
+            "conlang": "ШТИΛА",
             "english": "always",
             "notes": ""
         },
         {
-            "conlang": "кoλ",
+            "conlang": "КОΛ",
             "english": "zero",
             "notes": ""
         },
         {
-            "conlang": "oтa",
+            "conlang": "ОТА",
             "english": "one",
             "notes": ""
         },
         {
-            "conlang": "coн",
+            "conlang": "СОН",
             "english": "two",
             "notes": ""
         },
         {
-            "conlang": "тяp",
+            "conlang": "ТЯР",
             "english": "three",
             "notes": ""
         },
         {
-            "conlang": "pиc",
+            "conlang": "РИС",
             "english": "four",
             "notes": ""
         },
         {
-            "conlang": "итa",
+            "conlang": "ИТА",
             "english": "five",
             "notes": ""
         },
         {
-            "conlang": "пaц",
+            "conlang": "ПАЦ",
             "english": "six",
             "notes": ""
         },
         {
-            "conlang": "нδp",
+            "conlang": "НΣР",
             "english": "seven",
             "notes": ""
         },
         {
-            "conlang": "шэт",
+            "conlang": "ШЭТ",
             "english": "eight",
             "notes": ""
         },
         {
-            "conlang": "θaн",
+            "conlang": "ΘАН",
             "english": "nine",
             "notes": ""
         },
         {
-            "conlang": "բy",
+            "conlang": "FУ",
             "english": "up",
             "notes": ""
         },
         {
-            "conlang": "диp",
+            "conlang": "ΔИР",
             "english": "use",
             "notes": ""
         },
         {
-            "conlang": "жив",
+            "conlang": "ЖИВ",
             "english": "do",
             "notes": ""
         },
         {
-            "conlang": "oըвδp",
+            "conlang": "ОԸВΣР",
             "english": "write",
             "notes": ""
         },
         {
-            "conlang": "шиьaд",
+            "conlang": "ШИЬАΔ",
             "english": "like",
             "notes": ""
         },
         {
-            "conlang": "нδ",
+            "conlang": "НΣ",
             "english": "so/alright then/okay then",
             "notes": ""
         },
         {
-            "conlang": "иpμըa",
+            "conlang": "ИРUԸА",
             "english": "long",
             "notes": ""
         },
         {
-            "conlang": "мижнa",
+            "conlang": "МИЖНА",
             "english": "make",
             "notes": "build, assemble, or construct in a general sense"
         },
         {
-            "conlang": "სaт",
+            "conlang": "სАТ",
             "english": "see",
             "notes": ""
         },
         {
-            "conlang": "pиպ",
+            "conlang": "РИЩ",
             "english": "day",
             "notes": ""
         },
         {
-            "conlang": "шиλи",
+            "conlang": "ШИΛИ",
             "english": "come",
             "notes": ""
         },
         {
-            "conlang": "ըиьaт",
+            "conlang": "ԸИЬАТ",
             "english": "number",
             "notes": ""
         },
         {
-            "conlang": "ьэф",
+            "conlang": "ЬЭФ",
             "english": "sound",
             "notes": ""
         },
         {
-            "conlang": "жюн",
+            "conlang": "ЖЮН",
             "english": "know",
             "notes": ""
         },
         {
-            "conlang": "ьэдaв",
+            "conlang": "ЬЭΔАВ",
             "english": "name/label",
             "notes": "to name or label something or someone"
         },
         {
-            "conlang": "pyтв",
+            "conlang": "РУТВ",
             "english": "down",
             "notes": ""
         },
         {
-            "conlang": "чaк",
+            "conlang": "ЧАК",
             "english": "side",
             "notes": ""
         },
         {
-            "conlang": "ըyьa",
+            "conlang": "ԸУЬА",
             "english": "find",
             "notes": ""
         },
         {
-            "conlang": "xypo",
+            "conlang": "ХУРО",
             "english": "new",
             "notes": ""
         },
         {
-            "conlang": "цջтигa",
+            "conlang": "ЦՋТИГА",
             "english": "place",
             "notes": "a region or area"
         },
         {
-            "conlang": "кyhyд",
+            "conlang": "КУՑУΔ",
             "english": "work",
             "notes": "to perform actions or duties"
         },
         {
-            "conlang": "нитиp",
+            "conlang": "НИТИР",
             "english": "take",
             "notes": ""
         },
         {
-            "conlang": "жкaλa",
+            "conlang": "ЖКАΛА",
             "english": "part/section",
             "notes": ""
         },
         {
-            "conlang": "եит",
+            "conlang": "ԵИТ",
             "english": "get/acquire",
             "notes": ""
         },
         {
-            "conlang": "պиե",
+            "conlang": "ЩИԵ",
             "english": "live/reside",
             "notes": "to reside or make one's home somewhere"
         },
         {
-            "conlang": "кич",
+            "conlang": "КИЧ",
             "english": "back",
             "notes": "a location, the opposite of the front"
         },
         {
-            "conlang": "cεнa",
+            "conlang": "СЕНА",
             "english": "year",
             "notes": ""
         },
         {
-            "conlang": "дyьэк",
+            "conlang": "ΔУЬЭК",
             "english": "give",
             "notes": ""
         },
         {
-            "conlang": "диzэp",
+            "conlang": "ΔИZЭР",
             "english": "form/appearance",
             "notes": "the form, appearance, or shape of something"
         },
         {
-            "conlang": "тaλэкδд",
+            "conlang": "ТАΛЭКΣΔ",
             "english": "sentence",
             "notes": "a sequence of words forming a complete thought"
         },
         {
-            "conlang": "пpид",
+            "conlang": "ПРИΔ",
             "english": "great",
             "notes": ""
         },
         {
-            "conlang": "cюдaт",
+            "conlang": "СЮΔАТ",
             "english": "think",
             "notes": ""
         },
         {
-            "conlang": "თэн",
+            "conlang": "დЭН",
             "english": "help",
             "notes": ""
         },
         {
-            "conlang": "xaд",
+            "conlang": "ХАΔ",
             "english": "low",
             "notes": ""
         },
         {
-            "conlang": "жиպ",
+            "conlang": "ЖИЩ",
             "english": "item",
             "notes": ""
         },
         {
-            "conlang": "qэცa",
+            "conlang": "QЭձА",
             "english": "line",
             "notes": ""
         },
         {
-            "conlang": "эca",
+            "conlang": "ЭСА",
             "english": "also",
             "notes": ""
         },
         {
-            "conlang": "ζэт",
+            "conlang": "ΞЭТ",
             "english": "mean",
             "notes": "to intend, to have in mind"
         },
         {
-            "conlang": "δцэт",
+            "conlang": "ΣЦЭТ",
             "english": "differ",
             "notes": ""
         },
         {
-            "conlang": "ըaтa",
+            "conlang": "ԸАТА",
             "english": "turn",
             "notes": "to cause to move around an axis"
         },
         {
-            "conlang": "სεдa",
+            "conlang": "სЕΔА",
             "english": "cause",
             "notes": "to make something happen"
         },
         {
-            "conlang": "жyд",
+            "conlang": "ЖУΔ",
             "english": "move",
             "notes": ""
         },
         {
-            "conlang": "λиp",
+            "conlang": "ΛИР",
             "english": "right",
             "notes": "the direction opposite of left"
         },
         {
-            "conlang": "мэpк",
+            "conlang": "МЭРК",
             "english": "boy",
             "notes": ""
         },
         {
-            "conlang": "кλэт",
+            "conlang": "КΛЭТ",
             "english": "tell",
             "notes": "to speak a message to someone"
         },
         {
-            "conlang": "պиեэт",
+            "conlang": "ЩИԵЭТ",
             "english": "set/collection",
             "notes": "a collection of items"
         },
         {
-            "conlang": "цэpэ",
+            "conlang": "ЦЭРЭ",
             "english": "air",
             "notes": "generally the gasses composing an atmosphere"
         },
         {
-            "conlang": "тиpaд",
+            "conlang": "ТИРАΔ",
             "english": "play",
             "notes": "to engage with a game"
         },
         {
-            "conlang": "էδд",
+            "conlang": "ԷΣΔ",
             "english": "end",
             "notes": ""
         },
         {
-            "conlang": "պвит",
+            "conlang": "ЩВИТ",
             "english": "put/place",
             "notes": "to put or place something in a location"
         },
         {
-            "conlang": "биьaн",
+            "conlang": "БИЬАН",
             "english": "home",
             "notes": ""
         },
         {
-            "conlang": "եջтop",
+            "conlang": "ԵՋТОР",
             "english": "read",
             "notes": ""
         },
         {
-            "conlang": "λэтэc",
+            "conlang": "ΛЭТЭС",
             "english": "hand",
             "notes": ""
         },
         {
-            "conlang": "պaвoн",
+            "conlang": "ЩАВОН",
             "english": "spell",
             "notes": "to construct a word out of letters"
         },
         {
-            "conlang": "ьэե",
+            "conlang": "ЬЭԵ",
             "english": "add",
             "notes": ""
         },
         {
-            "conlang": "paдa",
+            "conlang": "РАΔА",
             "english": "land",
             "notes": "solid ground as opposed to an ocean"
         },
         {
-            "conlang": "էax",
+            "conlang": "ԷАХ",
             "english": "high",
             "notes": ""
         },
         {
-            "conlang": "θoպив",
+            "conlang": "ΘОЩИВ",
             "english": "follow",
             "notes": ""
         },
         {
-            "conlang": "эպo",
+            "conlang": "ЭЩО",
             "english": "act",
             "notes": "to take action"
         },
         {
-            "conlang": "xaζ",
+            "conlang": "ХАΞ",
             "english": "ask",
             "notes": ""
         },
         {
-            "conlang": "λядcэ",
+            "conlang": "ΛЯΔСЭ",
             "english": "change",
             "notes": ""
         },
         {
-            "conlang": "պи",
+            "conlang": "ЩИ",
             "english": "go",
             "notes": ""
         },
         {
-            "conlang": "чин",
+            "conlang": "ЧИН",
             "english": "light",
             "notes": "light in weight, not heavy"
         },
         {
-            "conlang": "პaвპyьap",
+            "conlang": "პАВპУЬАР",
             "english": "light/brightness",
             "notes": "the presence of light, a bright area, not dark"
         },
         {
-            "conlang": "ըyպ",
+            "conlang": "ԸУЩ",
             "english": "dark/darkness",
             "notes": "a dark area, a place lacking light"
         },
         {
-            "conlang": "нэцд",
+            "conlang": "НЭЦΔ",
             "english": "kind/type",
             "notes": "the category of thing"
         },
         {
-            "conlang": "dиպ",
+            "conlang": "DИЩ",
             "english": "need",
             "notes": ""
         },
         {
-            "conlang": "биь",
+            "conlang": "БИЬ",
             "english": "off",
             "notes": ""
         },
         {
-            "conlang": "λyшкa",
+            "conlang": "ΛУШКА",
             "english": "house",
             "notes": "the structure where someone or something lives"
         },
         {
-            "conlang": "имoжэньa",
+            "conlang": "ИМОЖЭНЬА",
             "english": "image/picture",
             "notes": ""
         },
         {
-            "conlang": "тμცи",
+            "conlang": "ТUձИ",
             "english": "try",
             "notes": ""
         },
         {
-            "conlang": "բyд",
+            "conlang": "FУΔ",
             "english": "point",
             "notes": ""
         },
         {
-            "conlang": "пac",
+            "conlang": "ПАС",
             "english": "again",
             "notes": ""
         },
         {
-            "conlang": "pyвε",
+            "conlang": "РУВЕ",
             "english": "animal",
             "notes": ""
         },
         {
-            "conlang": "мaкapa",
+            "conlang": "МАКАРА",
             "english": "mother/mom",
             "notes": ""
         },
         {
-            "conlang": "дaжи",
+            "conlang": "ΔАЖИ",
             "english": "planet/world",
             "notes": ""
         },
         {
-            "conlang": "пэшδ",
+            "conlang": "ПЭШΣ",
             "english": "build",
             "notes": "to construct something"
         },
         {
-            "conlang": "штэк",
+            "conlang": "ШТЭК",
             "english": "ground",
             "notes": "the natural ground"
         },
         {
-            "conlang": "киpдa",
+            "conlang": "КИРΔА",
             "english": "father/dad",
             "notes": ""
         },
         {
-            "conlang": "мюш",
+            "conlang": "МЮШ",
             "english": "head",
             "notes": "the body part"
         },
         {
-            "conlang": "zиპ",
+            "conlang": "ZИპ",
             "english": "stand",
             "notes": "to stand on one's legs"
         },
         {
-            "conlang": "λδպy",
+            "conlang": "ΛΣЩУ",
             "english": "own",
             "notes": "to posess something"
         },
         {
-            "conlang": "ниեки",
+            "conlang": "НИԵКИ",
             "english": "food",
             "notes": ""
         },
         {
-            "conlang": "кaპεьy",
+            "conlang": "КАპЕЬУ",
             "english": "page",
             "notes": "a paper page of a book"
         },
         {
-            "conlang": "мэжδн",
+            "conlang": "МЭЖΣН",
             "english": "country/nation",
             "notes": "a sovereign nation"
         },
         {
-            "conlang": "pyш",
+            "conlang": "РУШ",
             "english": "sun",
             "notes": "the main star at the centre of a solar system"
         },
         {
-            "conlang": "вэцδд",
+            "conlang": "ВЭЦΣΔ",
             "english": "answer",
             "notes": ""
         },
         {
-            "conlang": "вεнэ",
+            "conlang": "ВЕНЭ",
             "english": "school",
             "notes": "any type of educational institution"
         },
         {
-            "conlang": "qδд",
+            "conlang": "QΣΔ",
             "english": "grow",
             "notes": ""
         },
         {
-            "conlang": "жδպε",
+            "conlang": "ЖΣЩЕ",
             "english": "study",
             "notes": ""
         },
         {
-            "conlang": "мэպ",
+            "conlang": "МЭЩ",
             "english": "still/remaining",
             "notes": "something that remains"
         },
         {
-            "conlang": "пoдэպ",
+            "conlang": "ПОΔЭЩ",
             "english": "city",
             "notes": ""
         },
         {
-            "conlang": "xypэт",
+            "conlang": "ХУРЭТ",
             "english": "learn",
             "notes": ""
         },
         {
-            "conlang": "мδpэzэд",
+            "conlang": "МΣРЭZЭΔ",
             "english": "cover",
             "notes": "something which covers or acts as a covering"
         },
         {
-            "conlang": "რεьaд",
+            "conlang": "რЕЬАΔ",
             "english": "state",
             "notes": "the condition or attributes of a closed system"
         },
         {
-            "conlang": "кδpжд",
+            "conlang": "КΣРЖΔ",
             "english": "keep",
             "notes": ""
         },
         {
-            "conlang": "էи",
+            "conlang": "ԷИ",
             "english": "eye",
             "notes": ""
         },
         {
-            "conlang": "шив",
+            "conlang": "ШИВ",
             "english": "start/begin",
             "notes": "to start or begin"
         },
         {
-            "conlang": "pиըa",
+            "conlang": "РИԸА",
             "english": "last/final",
             "notes": ""
         },
         {
-            "conlang": "εpд",
+            "conlang": "ЕРΔ",
             "english": "let/allow",
             "notes": ""
         },
         {
-            "conlang": "პyպδ",
+            "conlang": "პУЩΣ",
             "english": "thought",
             "notes": ""
         },
         {
-            "conlang": "zδცя",
+            "conlang": "ZΣձЯ",
             "english": "cross",
             "notes": "to move across an area"
         },
         {
-            "conlang": "եют",
+            "conlang": "ԵЮТ",
             "english": "farm",
             "notes": ""
         },
         {
-            "conlang": "кaსa",
+            "conlang": "КАსА",
             "english": "hard/difficult",
             "notes": ""
         },
         {
-            "conlang": "миpoч",
+            "conlang": "МИРОЧ",
             "english": "might/perhaps/possibly",
             "notes": "an expression of probability or possibility"
         },
         {
-            "conlang": "мaжн",
+            "conlang": "МАЖН",
             "english": "story",
             "notes": ""
         },
         {
-            "conlang": "თyт",
+            "conlang": "დУТ",
             "english": "left",
             "notes": "the direction opposite of right"
         },
         {
-            "conlang": "ниრ",
+            "conlang": "НИრ",
             "english": "sea",
             "notes": "a large body of water with some distinct land borders, but can be connected to an ocean"
         },
         {
-            "conlang": "кaըδp",
+            "conlang": "КАԸΣР",
             "english": "draw",
             "notes": "to lay down markings or shapes with a writing instrument"
         },
         {
-            "conlang": "ζaн",
+            "conlang": "ΞАН",
             "english": "late",
             "notes": "coming or remaining after the usual or proper time"
         },
         {
-            "conlang": "мижэт",
+            "conlang": "МИЖЭТ",
             "english": "run",
             "notes": "the action of something or someone moving quickly under the power of their legs"
         },
         {
-            "conlang": "vδдpэ",
+            "conlang": "VΣΔРЭ",
             "english": "while/during",
             "notes": ""
         },
         {
-            "conlang": "pид",
+            "conlang": "РИΔ",
             "english": "press",
             "notes": "to push on something"
         },
         {
-            "conlang": "бич",
+            "conlang": "БИЧ",
             "english": "close",
             "notes": "to block access or move a covering over an opening"
         },
         {
-            "conlang": "мoжн",
+            "conlang": "МОЖН",
             "english": "night",
             "notes": ""
         },
         {
-            "conlang": "гpac",
+            "conlang": "ГРАС",
             "english": "real",
             "notes": ""
         },
         {
-            "conlang": "иha",
+            "conlang": "ИՑА",
             "english": "life",
             "notes": ""
         },
         {
-            "conlang": "вэт",
+            "conlang": "ВЭТ",
             "english": "north",
             "notes": ""
         },
         {
-            "conlang": "миთиди",
+            "conlang": "МИდИΔИ",
             "english": "seem/appear/look like",
             "notes": ""
         },
         {
-            "conlang": "paдμк",
+            "conlang": "РАΔUК",
             "english": "together",
             "notes": ""
         },
         {
-            "conlang": "вичи",
+            "conlang": "ВИЧИ",
             "english": "child",
             "notes": ""
         },
         {
-            "conlang": "paдyьa",
+            "conlang": "РАΔУЬА",
             "english": "white",
             "notes": ""
         },
         {
-            "conlang": "кyպ",
+            "conlang": "КУЩ",
             "english": "walk",
             "notes": ""
         },
         {
-            "conlang": "жopyպ",
+            "conlang": "ЖОРУЩ",
             "english": "example",
             "notes": ""
         },
         {
-            "conlang": "вaпaპ",
+            "conlang": "ВАПАპ",
             "english": "paper",
             "notes": ""
         },
         {
-            "conlang": "պэե",
+            "conlang": "ЩЭԵ",
             "english": "group",
             "notes": ""
         },
         {
-            "conlang": "чэθиp",
+            "conlang": "ЧЭΘИР",
             "english": "music",
             "notes": ""
         },
         {
-            "conlang": "ζεpoт",
+            "conlang": "ΞЕРОТ",
             "english": "mark",
             "notes": "to put a marking on something"
         },
         {
-            "conlang": "фyгa",
+            "conlang": "ФУГА",
             "english": "often",
             "notes": ""
         },
         {
-            "conlang": "пaպ",
+            "conlang": "ПАЩ",
             "english": "letter/character",
             "notes": "a single symbol used as part of a written language"
         },
         {
-            "conlang": "жяд",
+            "conlang": "ЖЯΔ",
             "english": "river",
             "notes": ""
         },
         {
-            "conlang": "мэպpoc",
+            "conlang": "МЭЩРОС",
             "english": "second",
             "notes": "next in sequence from first"
         },
         {
-            "conlang": "სaпa",
+            "conlang": "სАПА",
             "english": "car/personal vehicle",
             "notes": ""
         },
         {
-            "conlang": "мyж",
+            "conlang": "МУЖ",
             "english": "foot",
             "notes": "the body part"
         },
         {
-            "conlang": "բиpa",
+            "conlang": "FИРА",
             "english": "care",
             "notes": "to care about something or someone"
         },
         {
-            "conlang": "ниպ",
+            "conlang": "НИЩ",
             "english": "book",
             "notes": "a bound written work with multiple pages"
         },
         {
-            "conlang": "էмиди",
+            "conlang": "ԷМИΔИ",
             "english": "carry",
             "notes": ""
         },
         {
-            "conlang": "zюთo",
+            "conlang": "ZЮდО",
             "english": "science",
             "notes": ""
         },
         {
-            "conlang": "миж",
+            "conlang": "МИЖ",
             "english": "eat",
             "notes": ""
         },
         {
-            "conlang": "cэըoн",
+            "conlang": "СЭԸОН",
             "english": "room",
             "notes": ""
         },
         {
-            "conlang": "zниpэ",
+            "conlang": "ZНИРЭ",
             "english": "friend",
             "notes": ""
         },
         {
-            "conlang": "ըaთин",
+            "conlang": "ԸАდИН",
             "english": "idea",
             "notes": ""
         },
         {
-            "conlang": "мики",
+            "conlang": "МИКИ",
             "english": "fish",
             "notes": "the animal"
         },
         {
-            "conlang": "էyպpδн",
+            "conlang": "ԷУЩРΣН",
             "english": "mountain",
             "notes": ""
         },
         {
-            "conlang": "რэт",
+            "conlang": "რЭТ",
             "english": "stop",
             "notes": "to command someone or something to stop"
         },
         {
-            "conlang": "oтa",
+            "conlang": "ОТА",
             "english": "once/one time",
             "notes": ""
         },
         {
-            "conlang": "ըoპ",
+            "conlang": "ԸОპ",
             "english": "base/foundation",
             "notes": "the bottom part or base of an object"
         },
         {
-            "conlang": "нэთэдpa",
+            "conlang": "НЭდЭΔРА",
             "english": "hear",
             "notes": ""
         },
         {
-            "conlang": "պλoв",
+            "conlang": "ЩΛОВ",
             "english": "horse",
             "notes": ""
         },
         {
-            "conlang": "шит",
+            "conlang": "ШИТ",
             "english": "cut",
             "notes": ""
         },
         {
-            "conlang": "paдpэ",
+            "conlang": "РАΔРЭ",
             "english": "sure/confident",
             "notes": ""
         },
         {
-            "conlang": "qэpэz",
+            "conlang": "QЭРЭZ",
             "english": "watch",
             "notes": ""
         },
         {
-            "conlang": "ըaц",
+            "conlang": "ԸАЦ",
             "english": "colour/color",
             "notes": ""
         },
         {
-            "conlang": "этэp",
+            "conlang": "ЭТЭР",
             "english": "face",
             "notes": "the body part"
         },
         {
-            "conlang": "кahδ",
+            "conlang": "КАՑΣ",
             "english": "wood",
             "notes": ""
         },
         {
-            "conlang": "цэвaц",
+            "conlang": "ЦЭВАЦ",
             "english": "talk",
             "notes": ""
         },
         {
-            "conlang": "нoтэ",
+            "conlang": "НОТЭ",
             "english": "main/primary",
             "notes": ""
         },
         {
-            "conlang": "cэнэжэв",
+            "conlang": "СЭНЭЖЭВ",
             "english": "girl",
             "notes": ""
         },
         {
-            "conlang": "cμпиx",
+            "conlang": "СUПИХ",
             "english": "plain",
             "notes": "ordinary, uninteresting"
         },
         {
-            "conlang": "эპpaн",
+            "conlang": "ЭპРАН",
             "english": "usual",
             "notes": ""
         },
         {
-            "conlang": "жэλ",
+            "conlang": "ЖЭΛ",
             "english": "young",
             "notes": ""
         },
         {
-            "conlang": "мaλha",
+            "conlang": "МАΛՑА",
             "english": "ready",
             "notes": ""
         },
         {
-            "conlang": "pэж",
+            "conlang": "РЭЖ",
             "english": "red",
             "notes": ""
         },
         {
-            "conlang": "պиzэн",
+            "conlang": "ЩИZЭН",
             "english": "list",
             "notes": "a list of items"
         },
         {
-            "conlang": "мoтэн",
+            "conlang": "МОТЭН",
             "english": "feel",
             "notes": "to use the sense of touch to feel something"
         },
         {
-            "conlang": "pэнa",
+            "conlang": "РЭНА",
             "english": "feel",
             "notes": "to mentally or emotionally experience something"
         },
         {
-            "conlang": "zэzтэ",
+            "conlang": "ZЭZТЭ",
             "english": "bird",
             "notes": ""
         },
         {
-            "conlang": "пoн",
+            "conlang": "ПОН",
             "english": "soon",
             "notes": ""
         },
         {
-            "conlang": "вoдεьaд",
+            "conlang": "ВОΔЕЬАΔ",
             "english": "body",
             "notes": "an animal's body"
         },
         {
-            "conlang": "мoкoд",
+            "conlang": "МОКОΔ",
             "english": "dog",
             "notes": ""
         },
         {
-            "conlang": "видoм",
+            "conlang": "ВИΔОМ",
             "english": "family",
             "notes": ""
         },
         {
-            "conlang": "բэპpэ",
+            "conlang": "FЭპРЭ",
             "english": "direct/point",
             "notes": "to imply a direction"
         },
         {
-            "conlang": "шეнэт",
+            "conlang": "ШJНЭТ",
             "english": "direct/straightforward",
             "notes": "proceeding from one point to another"
         },
         {
-            "conlang": "xδтв",
+            "conlang": "ХΣТВ",
             "english": "leave",
             "notes": ""
         },
         {
-            "conlang": "тэнэpa",
+            "conlang": "ТЭНЭРА",
             "english": "song",
             "notes": ""
         },
         {
-            "conlang": "პpyв",
+            "conlang": "პРУВ",
             "english": "door",
             "notes": ""
         },
         {
-            "conlang": "шaнтиxa",
+            "conlang": "ШАНТИХА",
             "english": "measure",
             "notes": ""
         },
         {
-            "conlang": "мэжэня",
+            "conlang": "МЭЖЭНЯ",
             "english": "product",
             "notes": "a manufactured or assembled product"
         },
         {
-            "conlang": "вyд",
+            "conlang": "ВУΔ",
             "english": "black",
             "notes": ""
         },
         {
-            "conlang": "шըэc",
+            "conlang": "ШԸЭС",
             "english": "short",
             "notes": ""
         },
         {
-            "conlang": "кoբoнz",
+            "conlang": "КОFОНZ",
             "english": "category/class",
             "notes": ""
         },
         {
-            "conlang": "პaн",
+            "conlang": "პАН",
             "english": "wind",
             "notes": "the natural movement of air outdoors"
         },
         {
-            "conlang": "λazнap",
+            "conlang": "ΛАZНАР",
             "english": "ship/boat/watercraft",
             "notes": ""
         },
         {
-            "conlang": "шэպьaд",
+            "conlang": "ШЭЩЬАΔ",
             "english": "ship/spaceship/spacecraft/starship",
             "notes": ""
         },
         {
-            "conlang": "ըջcн",
+            "conlang": "ԸՋСН",
             "english": "area",
             "notes": "a regional or geographic area"
         },
         {
-            "conlang": "zнэc",
+            "conlang": "ZНЭС",
             "english": "half",
             "notes": ""
         },
         {
-            "conlang": "ըyг",
+            "conlang": "ԸУГ",
             "english": "rock/stone",
             "notes": ""
         },
         {
-            "conlang": "aλкac",
+            "conlang": "АΛКАС",
             "english": "order",
             "notes": "the sequence of items"
         },
         {
-            "conlang": "мaըaд",
+            "conlang": "МАԸАΔ",
             "english": "order/command",
             "notes": "a formal or official command or order"
         },
         {
-            "conlang": "ջպa",
+            "conlang": "ՋЩА",
             "english": "fire",
             "notes": ""
         },
         {
-            "conlang": "պo",
+            "conlang": "ЩО",
             "english": "south",
             "notes": ""
         },
         {
-            "conlang": "кaxaн",
+            "conlang": "КАХАН",
             "english": "piece",
             "notes": ""
         },
         {
-            "conlang": "гpэнтaк",
+            "conlang": "ГРЭНТАК",
             "english": "problem",
             "notes": ""
         },
         {
-            "conlang": "нэшнэ",
+            "conlang": "НЭШНЭ",
             "english": "whole",
             "notes": ""
         },
         {
-            "conlang": "բaф",
+            "conlang": "FАФ",
             "english": "pass",
             "notes": ""
         },
         {
-            "conlang": "ըэc",
+            "conlang": "ԸЭС",
             "english": "top",
             "notes": ""
         },
         {
-            "conlang": "гpoպaн",
+            "conlang": "ГРОЩАН",
             "english": "king/emperor",
             "notes": ""
         },
         {
-            "conlang": "пzэш",
+            "conlang": "ПZЭШ",
             "english": "space/outer space",
             "notes": ""
         },
         {
-            "conlang": "qэpн",
+            "conlang": "QЭРН",
             "english": "space",
             "notes": "the area between objects"
         },
         {
-            "conlang": "ьэzλo",
+            "conlang": "ЬЭZΛО",
             "english": "best",
             "notes": ""
         },
         {
-            "conlang": "zгэн",
+            "conlang": "ZГЭН",
             "english": "hour",
             "notes": ""
         },
         {
-            "conlang": "պaнa",
+            "conlang": "ЩАНА",
             "english": "better",
             "notes": ""
         },
         {
-            "conlang": "cиz",
+            "conlang": "СИZ",
             "english": "true",
             "notes": ""
         },
         {
-            "conlang": "էεz",
+            "conlang": "ԷЕZ",
             "english": "false",
             "notes": ""
         },
         {
-            "conlang": "cэvниp",
+            "conlang": "СЭVНИР",
             "english": "hundred",
             "notes": ""
         },
         {
-            "conlang": "экнaдo",
+            "conlang": "ЭКНАΔО",
             "english": "remember",
             "notes": ""
         },
         {
-            "conlang": "պpaд",
+            "conlang": "ЩРАΔ",
             "english": "step",
             "notes": "a movement of one pace"
         },
         {
-            "conlang": "нეp",
+            "conlang": "НJР",
             "english": "early",
             "notes": ""
         },
         {
-            "conlang": "ьoc",
+            "conlang": "ЬОС",
             "english": "hold",
             "notes": ""
         },
         {
-            "conlang": "vиc",
+            "conlang": "VИС",
             "english": "reach",
             "notes": ""
         },
         {
-            "conlang": "жaн",
+            "conlang": "ЖАН",
             "english": "west",
             "notes": ""
         },
         {
-            "conlang": "кмиcнδ",
+            "conlang": "КМИСНΣ",
             "english": "interest",
             "notes": "interest in something"
         },
         {
-            "conlang": "xэвac",
+            "conlang": "ХЭВАС",
             "english": "sing",
             "notes": ""
         },
         {
-            "conlang": "пpэc",
+            "conlang": "ПРЭС",
             "english": "listen",
             "notes": ""
         },
         {
-            "conlang": "шoz",
+            "conlang": "ШОZ",
             "english": "table",
             "notes": ""
         },
         {
-            "conlang": "εьэт",
+            "conlang": "ЕЬЭТ",
             "english": "travel",
             "notes": ""
         },
         {
-            "conlang": "coжэ",
+            "conlang": "СОЖЭ",
             "english": "morning",
             "notes": ""
         },
         {
-            "conlang": "էэc",
+            "conlang": "ԷЭС",
             "english": "ten",
             "notes": ""
         },
         {
-            "conlang": "кzиp",
+            "conlang": "КZИР",
             "english": "simple",
             "notes": ""
         },
         {
-            "conlang": "ცaըac",
+            "conlang": "ձАԸАС",
             "english": "toward",
             "notes": ""
         },
         {
-            "conlang": "шaтaн",
+            "conlang": "ШАТАН",
             "english": "war",
             "notes": ""
         },
         {
-            "conlang": "шaнըaд",
+            "conlang": "ШАНԸАΔ",
             "english": "lay/lie",
             "notes": "to lie down flat on a surface"
         },
         {
-            "conlang": "гьμдδ",
+            "conlang": "ГЬUΔΣ",
             "english": "against",
             "notes": "against an object"
         },
         {
-            "conlang": "aжин",
+            "conlang": "АЖИН",
             "english": "slow",
             "notes": ""
         },
         {
-            "conlang": "мэzгьoд",
+            "conlang": "МЭZГЬОΔ",
             "english": "against",
             "notes": "opposing, not in favour of"
         },
         {
-            "conlang": "пocмo",
+            "conlang": "ПОСМО",
             "english": "pattern",
             "notes": ""
         },
         {
-            "conlang": "λyтoн",
+            "conlang": "ΛУТОН",
             "english": "centre/center",
             "notes": ""
         },
         {
-            "conlang": "ozδpa",
+            "conlang": "ОZΣРА",
             "english": "serve",
             "notes": ""
         },
         {
-            "conlang": "мэжнδ",
+            "conlang": "МЭЖНΣ",
             "english": "love",
             "notes": "to feel great affection for"
         },
         {
-            "conlang": "пьδт",
+            "conlang": "ПЬΣТ",
             "english": "love",
             "notes": "strong affection"
         },
         {
-            "conlang": "нэш",
+            "conlang": "НЭШ",
             "english": "money/cash",
             "notes": ""
         },
         {
-            "conlang": "covшμ",
+            "conlang": "СОVШU",
             "english": "appear/show up",
             "notes": ""
         },
         {
-            "conlang": "мyqaz",
+            "conlang": "МУQАZ",
             "english": "rain",
             "notes": ""
         },
         {
-            "conlang": "zкoд",
+            "conlang": "ZКОΔ",
             "english": "road",
             "notes": ""
         },
         {
-            "conlang": "жэш",
+            "conlang": "ЖЭШ",
             "english": "map",
             "notes": ""
         },
         {
-            "conlang": "ьэբэc",
+            "conlang": "ЬЭFЭС",
             "english": "rule",
             "notes": "mandatory guidance on how to perform an action"
         },
         {
-            "conlang": "ცэպaч",
+            "conlang": "ձЭЩАЧ",
             "english": "rule/govern",
             "notes": ""
         },
         {
-            "conlang": "юpac",
+            "conlang": "ЮРАС",
             "english": "voice",
             "notes": ""
         },
         {
-            "conlang": "zгвэт",
+            "conlang": "ZГВЭТ",
             "english": "pull",
             "notes": ""
         },
         {
-            "conlang": "պpэш",
+            "conlang": "ЩРЭШ",
             "english": "cold",
             "notes": ""
         },
         {
-            "conlang": "ивελт",
+            "conlang": "ИВЕΛТ",
             "english": "notice",
             "notes": "to notice something"
         },
         {
-            "conlang": "цэпoк",
+            "conlang": "ЦЭПОК",
             "english": "unit",
             "notes": ""
         },
         {
-            "conlang": "мэեгpэт",
+            "conlang": "МЭԵГРЭТ",
             "english": "power/influence/authority",
             "notes": ""
         },
         {
-            "conlang": "yzცэч",
+            "conlang": "УZձЭЧ",
             "english": "power/energy",
             "notes": ""
         },
         {
-            "conlang": "эчкэт",
+            "conlang": "ЭЧКЭТ",
             "english": "town",
             "notes": ""
         },
         {
-            "conlang": "пиpa",
+            "conlang": "ПИРА",
             "english": "certain",
             "notes": ""
         },
         {
-            "conlang": "եэպ",
+            "conlang": "ԵЭЩ",
             "english": "fly",
             "notes": ""
         },
         {
-            "conlang": "мгaт",
+            "conlang": "МГАТ",
             "english": "fall",
             "notes": ""
         },
         {
-            "conlang": "эzгэc",
+            "conlang": "ЭZГЭС",
             "english": "lead",
             "notes": "to bring along in a particular direction"
         },
         {
-            "conlang": "эcьэ",
+            "conlang": "ЭСЬЭ",
             "english": "cry",
             "notes": "the emotional expression of crying"
         },
         {
-            "conlang": "мэжнa",
+            "conlang": "МЭЖНА",
             "english": "machine",
             "notes": ""
         },
         {
-            "conlang": "пaч",
+            "conlang": "ПАЧ",
             "english": "note",
             "notes": "a short written or typed note"
         },
         {
-            "conlang": "ըидэт",
+            "conlang": "ԸИΔЭТ",
             "english": "wait",
             "notes": ""
         },
         {
-            "conlang": "oдδн",
+            "conlang": "ОΔΣН",
             "english": "plan",
             "notes": ""
         },
         {
-            "conlang": "պpэж",
+            "conlang": "ЩРЭЖ",
             "english": "star",
             "notes": "the celestial body"
         },
         {
-            "conlang": "zэшк",
+            "conlang": "ZЭШК",
             "english": "box",
             "notes": ""
         },
         {
-            "conlang": "фaдa",
+            "conlang": "ФАΔА",
             "english": "rest",
             "notes": "a break from activity, respite"
         },
         {
-            "conlang": "ьμнэ",
+            "conlang": "ЬUНЭ",
             "english": "rest/remainder",
             "notes": ""
         },
         {
-            "conlang": "cyнэт",
+            "conlang": "СУНЭТ",
             "english": "right/correct",
             "notes": ""
         },
         {
-            "conlang": "zмифэт",
+            "conlang": "ZМИФЭТ",
             "english": "able/capable",
             "notes": ""
         },
         {
-            "conlang": "pиcмиьa",
+            "conlang": "РИСМИЬА",
             "english": "beautiful/pretty",
             "notes": ""
         },
         {
-            "conlang": "иცэд",
+            "conlang": "ИձЭΔ",
             "english": "contain",
             "notes": ""
         },
         {
-            "conlang": "ջдpэc",
+            "conlang": "ՋΔРЭС",
             "english": "front",
             "notes": ""
         },
         {
-            "conlang": "эчэ",
+            "conlang": "ЭЧЭ",
             "english": "teach",
             "notes": ""
         },
         {
-            "conlang": "բэha",
+            "conlang": "FЭՑА",
             "english": "week",
             "notes": ""
         },
         {
-            "conlang": "եэжэт",
+            "conlang": "ԵЭЖЭТ",
             "english": "develop/design/engineer",
             "notes": ""
         },
         {
-            "conlang": "мoպэ",
+            "conlang": "МОЩЭ",
             "english": "green",
             "notes": ""
         },
         {
-            "conlang": "aცиpa",
+            "conlang": "АձИРА",
             "english": "ocean",
             "notes": ""
         },
         {
-            "conlang": "миzм",
+            "conlang": "МИZМ",
             "english": "warm",
             "notes": ""
         },
         {
-            "conlang": "тэpa",
+            "conlang": "ТЭРА",
             "english": "free/unconstrained",
             "notes": "in a state of freedom"
         },
         {
-            "conlang": "zгичэc",
+            "conlang": "ZГИЧЭС",
             "english": "free",
             "notes": "not having a cost"
         },
         {
-            "conlang": "cмac",
+            "conlang": "СМАС",
             "english": "minute",
             "notes": ""
         },
         {
-            "conlang": "гεpa",
+            "conlang": "ГЕРА",
             "english": "strong",
             "notes": "physically strong, able to move heavy things"
         },
         {
-            "conlang": "мջкэт",
+            "conlang": "МՋКЭТ",
             "english": "special",
             "notes": ""
         },
         {
-            "conlang": "пδжეд",
+            "conlang": "ПΣЖJΔ",
             "english": "mind/consciousness",
             "notes": "the abstract mental world of the mind"
         },
         {
-            "conlang": "ըδш",
+            "conlang": "ԸΣШ",
             "english": "behind",
             "notes": ""
         },
         {
-            "conlang": "pэтaн",
+            "conlang": "РЭТАН",
             "english": "tail",
             "notes": "the body part"
         },
         {
-            "conlang": "гэzнδн",
+            "conlang": "ГЭZНΣН",
             "english": "produce/generate",
             "notes": ""
         },
         {
-            "conlang": "ջպaч",
+            "conlang": "ՋЩАЧ",
             "english": "fact",
             "notes": ""
         },
         {
-            "conlang": "пaкя",
+            "conlang": "ПАКЯ",
             "english": "wheel",
             "notes": ""
         },
         {
-            "conlang": "yრэд",
+            "conlang": "УრЭΔ",
             "english": "multiply",
             "notes": "the mathematical operation"
         },
         {
-            "conlang": "λэთ",
+            "conlang": "ΛЭდ",
             "english": "stay",
             "notes": ""
         },
         {
-            "conlang": "кopнջ",
+            "conlang": "КОРНՋ",
             "english": "full",
             "notes": ""
         },
         {
-            "conlang": "ջшнэгвaн",
+            "conlang": "ՋШНЭГВАН",
             "english": "force",
             "notes": "the amount of power or strength"
         },
         {
-            "conlang": "պигнaxн",
+            "conlang": "ЩИГНАХН",
             "english": "force",
             "notes": "to physically move something using great power"
         },
         {
-            "conlang": "pиთэт",
+            "conlang": "РИდЭТ",
             "english": "force",
             "notes": "to force someone or something to do your bidding"
         },
         {
-            "conlang": "вэнz",
+            "conlang": "ВЭНZ",
             "english": "blue",
             "notes": ""
         },
         {
-            "conlang": "бэднэт",
+            "conlang": "БЭΔНЭТ",
             "english": "decide",
             "notes": ""
         },
         {
-            "conlang": "vaнთэc",
+            "conlang": "VАНდЭС",
             "english": "surface",
             "notes": "the surface of an object"
         },
         {
-            "conlang": "гpyc",
+            "conlang": "ГРУС",
             "english": "deep",
             "notes": "a physical distance extending a long way down"
         },
         {
-            "conlang": "кaცэт",
+            "conlang": "КАձЭТ",
             "english": "moon",
             "notes": "a natural satellite orbiting a planet"
         },
         {
-            "conlang": "ջλpaca",
+            "conlang": "ՋΛРАСА",
             "english": "island",
             "notes": ""
         },
         {
-            "conlang": "oრμ",
+            "conlang": "ОრU",
             "english": "busy",
             "notes": "occupied"
         },
         {
-            "conlang": "тyьэжэв",
+            "conlang": "ТУЬЭЖЭВ",
             "english": "system",
             "notes": "any physical, digital, or abstract system"
         },
         {
-            "conlang": "чջvэ",
+            "conlang": "ЧՋVЭ",
             "english": "record",
             "notes": "to make a record of some information"
         },
         {
-            "conlang": "итvи",
+            "conlang": "ИТVИ",
             "english": "common/typical/usual/normal",
             "notes": ""
         },
         {
-            "conlang": "xэкэдpи",
+            "conlang": "ХЭКЭΔРИ",
             "english": "possible",
             "notes": ""
         },
         {
-            "conlang": "кэт",
+            "conlang": "КЭТ",
             "english": "dry",
             "notes": ""
         },
         {
-            "conlang": "кεhиьo",
+            "conlang": "КЕՑИЬО",
             "english": "wonder",
             "notes": "to think about"
         },
         {
-            "conlang": "dpaдa",
+            "conlang": "DРАΔА",
             "english": "laugh",
             "notes": ""
         },
         {
-            "conlang": "жaдa",
+            "conlang": "ЖАΔА",
             "english": "thousand",
             "notes": ""
         },
         {
-            "conlang": "ըиե",
+            "conlang": "ԸИԵ",
             "english": "check",
             "notes": "a short investigation of something"
         },
         {
-            "conlang": "нaчa",
+            "conlang": "НАЧА",
             "english": "game",
             "notes": ""
         },
         {
-            "conlang": "мqapε",
+            "conlang": "МQАРЕ",
             "english": "shape",
             "notes": ""
         },
         {
-            "conlang": "ըидэc",
+            "conlang": "ԸИΔЭС",
             "english": "equate/consider the same",
             "notes": ""
         },
         {
-            "conlang": "мэե",
+            "conlang": "МЭԵ",
             "english": "hot",
             "notes": ""
         },
         {
-            "conlang": "тиxэн",
+            "conlang": "ТИХЭН",
             "english": "miss",
             "notes": ""
         },
         {
-            "conlang": "гδp",
+            "conlang": "ГΣР",
             "english": "bring",
             "notes": ""
         },
         {
-            "conlang": "ьэчap",
+            "conlang": "ЬЭЧАР",
             "english": "heat",
             "notes": "the hot space or area"
         },
         {
-            "conlang": "тишэш",
+            "conlang": "ТИШЭШ",
             "english": "snow",
             "notes": ""
         },
         {
-            "conlang": "cмэc",
+            "conlang": "СМЭС",
             "english": "tired",
             "notes": "the state of being tired"
         },
         {
-            "conlang": "кюшaд",
+            "conlang": "КЮШАΔ",
             "english": "tire",
             "notes": "to become tired"
         },
         {
-            "conlang": "видиьa",
+            "conlang": "ВИΔИЬА",
             "english": "distant/far away",
             "notes": ""
         },
         {
-            "conlang": "эшиq",
+            "conlang": "ЭШИQ",
             "english": "fill",
             "notes": ""
         },
         {
-            "conlang": "гэպ",
+            "conlang": "ГЭЩ",
             "english": "east",
             "notes": ""
         },
         {
-            "conlang": "гpaчк",
+            "conlang": "ГРАЧК",
             "english": "language",
             "notes": "referring to a spoken and or written language used by a culture"
         },
         {
-            "conlang": "pэեд",
+            "conlang": "РЭԵΔ",
             "english": "among/amongst/amid/amidst",
             "notes": ""
         },
         {
-            "conlang": "жaц",
+            "conlang": "ЖАЦ",
             "english": "ball",
             "notes": ""
         },
         {
-            "conlang": "мpэλ",
+            "conlang": "МРЭΛ",
             "english": "yet",
             "notes": ""
         },
         {
-            "conlang": "миьэ",
+            "conlang": "МИЬЭ",
             "english": "wave",
             "notes": "the waving motion with the hand"
         },
         {
-            "conlang": "ьaեэв",
+            "conlang": "ЬАԵЭВ",
             "english": "wave",
             "notes": "the wave pattern which can propagate through a medium"
         },
         {
-            "conlang": "պвaт",
+            "conlang": "ЩВАТ",
             "english": "drop",
             "notes": "to drop an object"
         },
         {
-            "conlang": "мეкэд",
+            "conlang": "МJКЭΔ",
             "english": "heart",
             "notes": "the body part"
         },
         {
-            "conlang": "yчэcмa",
+            "conlang": "УЧЭСМА",
             "english": "heavy",
             "notes": ""
         },
         {
-            "conlang": "cλэըэ",
+            "conlang": "СΛЭԸЭ",
             "english": "dance",
             "notes": ""
         },
         {
-            "conlang": "ըэпoв",
+            "conlang": "ԸЭПОВ",
             "english": "engine",
             "notes": ""
         },
         {
-            "conlang": "мэк",
+            "conlang": "МЭК",
             "english": "arm",
             "notes": "the body part"
         },
         {
-            "conlang": "пaчкэн",
+            "conlang": "ПАЧКЭН",
             "english": "gift/present",
             "notes": ""
         },
         {
-            "conlang": "вэpд",
+            "conlang": "ВЭРΔ",
             "english": "wide",
             "notes": ""
         },
         {
-            "conlang": "пьэтэp",
+            "conlang": "ПЬЭТЭР",
             "english": "vary",
             "notes": ""
         },
         {
-            "conlang": "гэш",
+            "conlang": "ГЭШ",
             "english": "size/scale/magnitude",
             "notes": ""
         },
         {
-            "conlang": "λэгэpт",
+            "conlang": "ΛЭГЭРТ",
             "english": "weight",
             "notes": ""
         },
         {
-            "conlang": "цaтвэ",
+            "conlang": "ЦАТВЭ",
             "english": "general",
             "notes": "not specific"
         },
         {
-            "conlang": "чиպ",
+            "conlang": "ЧИЩ",
             "english": "ice",
             "notes": "water ice"
         },
         {
-            "conlang": "ջպиλ",
+            "conlang": "ՋЩИΛ",
             "english": "circle",
             "notes": "the abstract circle shape"
         },
         {
-            "conlang": "пэгpю",
+            "conlang": "ПЭГРЮ",
             "english": "pair",
             "notes": ""
         },
         {
-            "conlang": "живpэc",
+            "conlang": "ЖИВРЭС",
             "english": "include",
             "notes": ""
         },
         {
-            "conlang": "եpaкac",
+            "conlang": "ԵРАКАС",
             "english": "divide/separate",
             "notes": "to divide or separate"
         },
         {
-            "conlang": "cмэպpэд",
+            "conlang": "СМЭЩРЭΔ",
             "english": "divide",
             "notes": "the mathematical operation"
         },
         {
-            "conlang": "zкидa",
+            "conlang": "ZКИΔА",
             "english": "maybe",
             "notes": ""
         },
         {
-            "conlang": "պэт",
+            "conlang": "ЩЭТ",
             "english": "sudden",
             "notes": ""
         },
         {
-            "conlang": "aцэьэ",
+            "conlang": "АЦЭЬЭ",
             "english": "reason",
             "notes": "the explanation for something"
         },
         {
-            "conlang": "жюxa",
+            "conlang": "ЖЮХА",
             "english": "gone",
             "notes": ""
         },
         {
-            "conlang": "ζэкт",
+            "conlang": "ΞЭКТ",
             "english": "square",
             "notes": "the square shape"
         },
         {
-            "conlang": "ըэкт",
+            "conlang": "ԸЭКТ",
             "english": "count",
             "notes": "to count things"
         },
         {
-            "conlang": "мջфэv",
+            "conlang": "МՋФЭV",
             "english": "length",
             "notes": ""
         },
         {
-            "conlang": "ζaкaтэ",
+            "conlang": "ΞАКАТЭ",
             "english": "represent",
             "notes": ""
         },
         {
-            "conlang": "бպэ",
+            "conlang": "БЩЭ",
             "english": "art",
             "notes": ""
         },
         {
-            "conlang": "vεьaт",
+            "conlang": "VЕЬАТ",
             "english": "hunt",
             "notes": "to hunt something"
         },
         {
-            "conlang": "гpиxoв",
+            "conlang": "ГРИХОВ",
             "english": "hunt",
             "notes": "the activity of hunting"
         },
         {
-            "conlang": "вишк",
+            "conlang": "ВИШК",
             "english": "forest",
             "notes": ""
         },
         {
-            "conlang": "եεըy",
+            "conlang": "ԵЕԸУ",
             "english": "likely/probable",
             "notes": ""
         },
         {
-            "conlang": "бэcч",
+            "conlang": "БЭСЧ",
             "english": "bed",
             "notes": ""
         },
         {
-            "conlang": "гpaвт",
+            "conlang": "ГРАВТ",
             "english": "brother",
             "notes": ""
         },
         {
-            "conlang": "гpa",
+            "conlang": "ГРА",
             "english": "bro",
             "notes": ""
         },
         {
-            "conlang": "hигc",
+            "conlang": "ՑИГС",
             "english": "egg",
             "notes": ""
         },
         {
-            "conlang": "xaжэн",
+            "conlang": "ХАЖЭН",
             "english": "ride",
             "notes": "to travel in a vehicle"
         },
         {
-            "conlang": "кaтoн",
+            "conlang": "КАТОН",
             "english": "believe",
             "notes": ""
         },
         {
-            "conlang": "чэc",
+            "conlang": "ЧЭС",
             "english": "sit",
             "notes": ""
         },
         {
-            "conlang": "дэcэ",
+            "conlang": "ΔЭСЭ",
             "english": "race",
             "notes": "to run and try to be faster than something or someone else"
         },
         {
-            "conlang": "вδдpδ",
+            "conlang": "ВΣΔРΣ",
             "english": "window",
             "notes": ""
         },
         {
-            "conlang": "мpaz",
+            "conlang": "МРАZ",
             "english": "store/shop",
             "notes": "any physical establishment where you can buy stuff"
         },
         {
-            "conlang": "ьδთэե",
+            "conlang": "ЬΣდЭԵ",
             "english": "summer",
             "notes": ""
         },
         {
-            "conlang": "мьэгэд",
+            "conlang": "МЬЭГЭΔ",
             "english": "train",
             "notes": "any vehicle that moves on tracks"
         },
         {
-            "conlang": "миպ",
+            "conlang": "МИЩ",
             "english": "sleep",
             "notes": ""
         },
         {
-            "conlang": "гэчя",
+            "conlang": "ГЭЧЯ",
             "english": "prove",
             "notes": ""
         },
         {
-            "conlang": "киди",
+            "conlang": "КИΔИ",
             "english": "leg",
             "notes": "the body part"
         },
         {
-            "conlang": "cეт",
+            "conlang": "СJТ",
             "english": "wall",
             "notes": ""
         },
         {
-            "conlang": "итδ",
+            "conlang": "ИТΣ",
             "english": "catch",
             "notes": "to catch an object"
         },
         {
-            "conlang": "რиьy",
+            "conlang": "რИЬУ",
             "english": "wish",
             "notes": ""
         },
         {
-            "conlang": "oպви",
+            "conlang": "ОЩВИ",
             "english": "sky",
             "notes": ""
         },
         {
-            "conlang": "պaк",
+            "conlang": "ЩАК",
             "english": "board",
             "notes": "a rectangular plank of any material"
         },
         {
-            "conlang": "иպpэ",
+            "conlang": "ИЩРЭ",
             "english": "happy/glad",
             "notes": ""
         },
         {
-            "conlang": "гдим",
+            "conlang": "ГΔИМ",
             "english": "winter",
             "notes": ""
         },
         {
-            "conlang": "zмэե",
+            "conlang": "ZМЭԵ",
             "english": "wild",
             "notes": "an untamed animal"
         },
         {
-            "conlang": "тэθэт",
+            "conlang": "ТЭΘЭТ",
             "english": "instrument/musical instrument",
             "notes": ""
         },
         {
-            "conlang": "եиd",
+            "conlang": "ԵИD",
             "english": "glass",
             "notes": "the transparent material"
         },
         {
-            "conlang": "чикэ",
+            "conlang": "ЧИКЭ",
             "english": "grass",
             "notes": ""
         },
         {
-            "conlang": "дэեк",
+            "conlang": "ΔЭԵК",
             "english": "job",
             "notes": ""
         },
         {
-            "conlang": "pэცэpa",
+            "conlang": "РЭձЭРА",
             "english": "cow",
             "notes": ""
         },
         {
-            "conlang": "гpиц",
+            "conlang": "ГРИЦ",
             "english": "edge",
             "notes": ""
         },
         {
-            "conlang": "պиp",
+            "conlang": "ЩИР",
             "english": "sign",
             "notes": "any printed sign or digital display serving as a sign"
         },
         {
-            "conlang": "poxдa",
+            "conlang": "РОХΔА",
             "english": "visit",
             "notes": ""
         },
         {
-            "conlang": "pиш",
+            "conlang": "РИШ",
             "english": "soft",
             "notes": "a soft feeling or texture of an object"
         },
         {
-            "conlang": "мaвa",
+            "conlang": "МАВА",
             "english": "fun",
             "notes": ""
         },
         {
-            "conlang": "бpигди",
+            "conlang": "БРИГΔИ",
             "english": "strange/weird",
             "notes": ""
         },
         {
-            "conlang": "եиპ",
+            "conlang": "ԵИპ",
             "english": "bright",
             "notes": "describing something that is illuminated"
         },
         {
-            "conlang": "нэчa",
+            "conlang": "НЭЧА",
             "english": "gas",
             "notes": "the phase of matter"
         },
         {
-            "conlang": "εըδ",
+            "conlang": "ЕԸΣ",
             "english": "weather",
             "notes": ""
         },
         {
-            "conlang": "λεт",
+            "conlang": "ΛЕТ",
             "english": "month",
             "notes": ""
         },
         {
-            "conlang": "гpигδд",
+            "conlang": "ГРИГΣΔ",
             "english": "million",
             "notes": ""
         },
         {
-            "conlang": "мջдpэв",
+            "conlang": "МՋΔРЭВ",
             "english": "bear",
             "notes": "any bear like animal"
         },
         {
-            "conlang": "пpaтьэ",
+            "conlang": "ПРАТЬЭ",
             "english": "finish",
             "notes": ""
         },
         {
-            "conlang": "xaცи",
+            "conlang": "ХАձИ",
             "english": "flower",
             "notes": ""
         },
         {
-            "conlang": "жэpиьa",
+            "conlang": "ЖЭРИЬА",
             "english": "clothes/clothing",
             "notes": ""
         },
         {
-            "conlang": "бэкoт",
+            "conlang": "БЭКОТ",
             "english": "cloth",
             "notes": ""
         },
         {
-            "conlang": "եиzэ",
+            "conlang": "ԵИZЭ",
             "english": "hope",
             "notes": ""
         },
         {
-            "conlang": "гpეдэт",
+            "conlang": "ГРJΔЭТ",
             "english": "describe",
             "notes": ""
         },
         {
-            "conlang": "птиc",
+            "conlang": "ПТИС",
             "english": "jump",
             "notes": ""
         },
         {
-            "conlang": "гичэ",
+            "conlang": "ГИЧЭ",
             "english": "babe/sweetie/sweetheart",
             "notes": "casual term of endearment for a spouse or partner"
         },
         {
-            "conlang": "pиьэдьэ",
+            "conlang": "РИЬЭΔЬЭ",
             "english": "baby",
             "notes": "an actual baby, younger than a toddler"
         },
         {
-            "conlang": "иբэც",
+            "conlang": "ИFЭձ",
             "english": "village",
             "notes": ""
         },
         {
-            "conlang": "pэтyв",
+            "conlang": "РЭТУВ",
             "english": "meet",
             "notes": "to meet someone for the first time"
         },
         {
-            "conlang": "ըяж",
+            "conlang": "ԸЯЖ",
             "english": "push",
             "notes": ""
         },
         {
-            "conlang": "гдид",
+            "conlang": "ГΔИΔ",
             "english": "root",
             "notes": "the root of a plant"
         },
         {
-            "conlang": "гpиьy",
+            "conlang": "ГРИЬУ",
             "english": "buy",
             "notes": ""
         },
         {
-            "conlang": "жэcც",
+            "conlang": "ЖЭСձ",
             "english": "raise",
             "notes": "to raise something up"
         },
         {
-            "conlang": "თyըэ",
+            "conlang": "დУԸЭ",
             "english": "solve",
             "notes": ""
         },
         {
-            "conlang": "шըaн",
+            "conlang": "ШԸАН",
             "english": "metal",
             "notes": ""
         },
         {
-            "conlang": "шμc",
+            "conlang": "ШUС",
             "english": "hair",
             "notes": ""
         },
         {
-            "conlang": "чэкoвьa",
+            "conlang": "ЧЭКОВЬА",
             "english": "cook",
             "notes": "to cook food"
         },
         {
-            "conlang": "мaг",
+            "conlang": "МАГ",
             "english": "floor",
             "notes": ""
         },
         {
-            "conlang": "եδzջ",
+            "conlang": "ԵΣZՋ",
             "english": "either",
             "notes": ""
         },
         {
-            "conlang": "qaдpэ",
+            "conlang": "QАΔРЭ",
             "english": "result",
             "notes": ""
         },
         {
-            "conlang": "гдэтaж",
+            "conlang": "ГΔЭТАЖ",
             "english": "burn",
             "notes": "to burn with fire"
         },
         {
-            "conlang": "иպяп",
+            "conlang": "ИЩЯП",
             "english": "hill",
             "notes": ""
         },
         {
-            "conlang": "vэhδ",
+            "conlang": "VЭՑΣ",
             "english": "safe",
             "notes": ""
         },
         {
-            "conlang": "иcчэ",
+            "conlang": "ИСЧЭ",
             "english": "quiet",
             "notes": ""
         },
         {
-            "conlang": "тэш",
+            "conlang": "ТЭШ",
             "english": "silent",
             "notes": ""
         },
         {
-            "conlang": "ελoб",
+            "conlang": "ЕΛОБ",
             "english": "law",
             "notes": ""
         },
         {
-            "conlang": "чиპ",
+            "conlang": "ЧИპ",
             "english": "bit/small amount",
             "notes": ""
         },
         {
-            "conlang": "ըиьyд",
+            "conlang": "ԸИЬУΔ",
             "english": "coast",
             "notes": ""
         },
         {
-            "conlang": "aцэд",
+            "conlang": "АЦЭΔ",
             "english": "tall",
             "notes": ""
         },
         {
-            "conlang": "мэთջ",
+            "conlang": "МЭდՋ",
             "english": "sand",
             "notes": ""
         },
         {
-            "conlang": "xьyт",
+            "conlang": "ХЬУТ",
             "english": "dirt/soil",
             "notes": ""
         },
         {
-            "conlang": "vacэг",
+            "conlang": "VАСЭГ",
             "english": "roll",
             "notes": "for anything to roll"
         },
         {
-            "conlang": "пидэш",
+            "conlang": "ПИΔЭШ",
             "english": "value",
             "notes": "the value or worth of something"
         },
         {
-            "conlang": "тջшэцoв",
+            "conlang": "ТՋШЭЦОВ",
             "english": "temperature",
             "notes": ""
         },
         {
-            "conlang": "ζэc",
+            "conlang": "ΞЭС",
             "english": "finger",
             "notes": ""
         },
         {
-            "conlang": "гpиьэц",
+            "conlang": "ГРИЬЭЦ",
             "english": "fight",
             "notes": ""
         },
         {
-            "conlang": "юшкя",
+            "conlang": "ЮШКЯ",
             "english": "lie",
             "notes": "to tell a lie"
         },
         {
-            "conlang": "гишч",
+            "conlang": "ГИШЧ",
             "english": "straight",
             "notes": ""
         },
         {
-            "conlang": "тиьэгλμ",
+            "conlang": "ТИЬЭГΛU",
             "english": "lie",
             "notes": "a lie, an untrue statement"
         },
         {
-            "conlang": "ეьэч",
+            "conlang": "JЬЭЧ",
             "english": "excite",
             "notes": ""
         },
         {
-            "conlang": "вьэqδд",
+            "conlang": "ВЬЭQΣΔ",
             "english": "natural",
             "notes": ""
         },
         {
-            "conlang": "дижэш",
+            "conlang": "ΔИЖЭШ",
             "english": "view/viewpoint",
             "notes": ""
         },
         {
-            "conlang": "zгpэд",
+            "conlang": "ZГРЭΔ",
             "english": "middle",
             "notes": ""
         },
         {
-            "conlang": "кaдиш",
+            "conlang": "КАΔИШ",
             "english": "ear",
             "notes": ""
         },
         {
-            "conlang": "фэт",
+            "conlang": "ФЭТ",
             "english": "quite/particularly",
             "notes": ""
         },
         {
-            "conlang": "პэкэж",
+            "conlang": "პЭКЭЖ",
             "english": "broken",
             "notes": ""
         },
         {
-            "conlang": "шahδд",
+            "conlang": "ШАՑΣΔ",
             "english": "case/circumstance/situation",
             "notes": ""
         },
         {
-            "conlang": "гpaxaк",
+            "conlang": "ГРАХАК",
             "english": "kill",
             "notes": "to kill"
         },
         {
-            "conlang": "мэжт",
+            "conlang": "МЭЖТ",
             "english": "son",
             "notes": ""
         },
         {
-            "conlang": "λэըջд",
+            "conlang": "ΛЭԸՋΔ",
             "english": "lake",
             "notes": ""
         },
         {
-            "conlang": "нюдa",
+            "conlang": "НЮΔА",
             "english": "moment",
             "notes": ""
         },
         {
-            "conlang": "вимг",
+            "conlang": "ВИМГ",
             "english": "loud",
             "notes": ""
         },
         {
-            "conlang": "вpэλ",
+            "conlang": "ВРЭΛ",
             "english": "spring/spring season",
             "notes": "the spring season"
         },
         {
-            "conlang": "мэчнaθ",
+            "conlang": "МЭЧНАΘ",
             "english": "spring",
             "notes": "the mechanical component"
         },
         {
-            "conlang": "պεьэд",
+            "conlang": "ЩЕЬЭΔ",
             "english": "speed",
             "notes": ""
         },
         {
-            "conlang": "гpиш",
+            "conlang": "ГРИШ",
             "english": "key",
             "notes": ""
         },
         {
-            "conlang": "виpи",
+            "conlang": "ВИРИ",
             "english": "milk",
             "notes": ""
         },
         {
-            "conlang": "эцaтap",
+            "conlang": "ЭЦАТАР",
             "english": "method",
             "notes": ""
         },
         {
-            "conlang": "ниcэт",
+            "conlang": "НИСЭТ",
             "english": "dress",
             "notes": "not pants, a typically flowy type of clothing worn by women"
         },
         {
-            "conlang": "ცaպэ",
+            "conlang": "ձАЩЭ",
             "english": "surprise",
             "notes": ""
         },
         {
-            "conlang": "yьэp",
+            "conlang": "УЬЭР",
             "english": "pay",
             "notes": ""
         },
         {
-            "conlang": "რaдэ",
+            "conlang": "რАΔЭ",
             "english": "age",
             "notes": ""
         },
         {
-            "conlang": "qyтε",
+            "conlang": "QУТЕ",
             "english": "cloud",
             "notes": ""
         },
         {
-            "conlang": "битэ",
+            "conlang": "БИТЭ",
             "english": "tiny",
             "notes": "extremely small"
         },
         {
-            "conlang": "ըиьaд",
+            "conlang": "ԸИЬАΔ",
             "english": "climb",
             "notes": ""
         },
         {
-            "conlang": "мpyд",
+            "conlang": "МРУΔ",
             "english": "cool",
             "notes": "to cool or become colder"
         },
         {
-            "conlang": "нδსaд",
+            "conlang": "НΣსАΔ",
             "english": "design",
             "notes": "any shapes, pattern, or illustration, typically artistic in nature"
         },
         {
-            "conlang": "фaէэ",
+            "conlang": "ФАԷЭ",
             "english": "poor",
             "notes": "lacking money"
         },
         {
-            "conlang": "ըეдэ",
+            "conlang": "ԸJΔЭ",
             "english": "people",
             "notes": "an abstract population or group of people"
         },
         {
-            "conlang": "vyд",
+            "conlang": "VУΔ",
             "english": "bottom",
             "notes": ""
         },
         {
-            "conlang": "мьyд",
+            "conlang": "МЬУΔ",
             "english": "stick",
             "notes": ""
         },
         {
-            "conlang": "жиьaк",
+            "conlang": "ЖИЬАК",
             "english": "iron",
             "notes": ""
         },
         {
-            "conlang": "բэт",
+            "conlang": "FЭТ",
             "english": "flat",
             "notes": ""
         },
         {
-            "conlang": "виzи",
+            "conlang": "ВИZИ",
             "english": "skin",
             "notes": "the skin of an animal or person"
         },
         {
-            "conlang": "vpoт",
+            "conlang": "VРОТ",
             "english": "smile",
             "notes": ""
         },
         {
-            "conlang": "виьyт",
+            "conlang": "ВИЬУТ",
             "english": "hole",
             "notes": ""
         },
         {
-            "conlang": "xμдთи",
+            "conlang": "ХUΔდИ",
             "english": "receive",
             "notes": ""
         },
         {
-            "conlang": "բahэн",
+            "conlang": "FАՑЭН",
             "english": "trade",
             "notes": ""
         },
         {
-            "conlang": "тиьδт",
+            "conlang": "ТИЬΣТ",
             "english": "trip",
             "notes": "to trip over something"
         },
         {
-            "conlang": "кячδc",
+            "conlang": "КЯЧΣС",
             "english": "office",
             "notes": "a room where someone formally does their work"
         },
         {
-            "conlang": "пpэζ",
+            "conlang": "ПРЭΞ",
             "english": "row",
             "notes": "an abstract row of objects"
         },
         {
-            "conlang": "иьэч",
+            "conlang": "ИЬЭЧ",
             "english": "mouth",
             "notes": ""
         },
         {
-            "conlang": "էyრaд",
+            "conlang": "ԷУრАΔ",
             "english": "exact",
             "notes": ""
         },
         {
-            "conlang": "киья",
+            "conlang": "КИЬЯ",
             "english": "die",
             "notes": ""
         },
         {
-            "conlang": "ьეм",
+            "conlang": "ЬJМ",
             "english": "least",
             "notes": "the smallest one or example of"
         },
         {
-            "conlang": "ըэζтэд",
+            "conlang": "ԸЭΞТЭΔ",
             "english": "trouble",
             "notes": ""
         },
         {
-            "conlang": "биьyгpэ",
+            "conlang": "БИЬУГРЭ",
             "english": "except",
             "notes": ""
         },
         {
-            "conlang": "кλэбpи",
+            "conlang": "КΛЭБРИ",
             "english": "shout",
             "notes": ""
         },
         {
-            "conlang": "բиьэт",
+            "conlang": "FИЬЭТ",
             "english": "join",
             "notes": ""
         },
         {
-            "conlang": "тити",
+            "conlang": "ТИТИ",
             "english": "seed",
             "notes": "an organic seed which can grow a plant"
         },
         {
-            "conlang": "вypэн",
+            "conlang": "ВУРЭН",
             "english": "tone",
             "notes": "the tone of one's speech, the manner of speaking"
         },
         {
-            "conlang": "dиpэ",
+            "conlang": "DИРЭ",
             "english": "suggest",
             "notes": ""
         },
         {
-            "conlang": "гpиեэc",
+            "conlang": "ГРИԵЭС",
             "english": "clean",
             "notes": "to clean something or perform the action of cleaning"
         },
         {
-            "conlang": "вopqэт",
+            "conlang": "ВОРQЭТ",
             "english": "clean",
             "notes": "the state of being clean"
         },
         {
-            "conlang": "ըэгaт",
+            "conlang": "ԸЭГАТ",
             "english": "break",
             "notes": ""
         },
         {
-            "conlang": "xaдэжит",
+            "conlang": "ХАΔЭЖИТ",
             "english": "rise",
             "notes": ""
         },
         {
-            "conlang": "виьyλ",
+            "conlang": "ВИЬУΛ",
             "english": "blow",
             "notes": ""
         },
         {
-            "conlang": "qaчк",
+            "conlang": "QАЧК",
             "english": "oil",
             "notes": "any type of oil"
         },
         {
-            "conlang": "apaд",
+            "conlang": "АРАΔ",
             "english": "blood",
             "notes": ""
         },
         {
-            "conlang": "εha",
+            "conlang": "ЕՑА",
             "english": "touch",
             "notes": "to touch something"
         },
         {
-            "conlang": "виьyp",
+            "conlang": "ВИЬУР",
             "english": "mix",
             "notes": ""
         },
         {
-            "conlang": "δкaცя",
+            "conlang": "ΣКАձЯ",
             "english": "team",
             "notes": ""
         },
         {
-            "conlang": "եиьaζ",
+            "conlang": "ԵИЬАΞ",
             "english": "wire",
             "notes": ""
         },
         {
-            "conlang": "бyьэд",
+            "conlang": "БУЬЭΔ",
             "english": "cost",
             "notes": ""
         },
         {
-            "conlang": "тэчд",
+            "conlang": "ТЭЧΔ",
             "english": "lost",
             "notes": "the state of being lost"
         },
         {
-            "conlang": "вyк",
+            "conlang": "ВУК",
             "english": "brown",
             "notes": ""
         },
         {
-            "conlang": "пբиьaд",
+            "conlang": "ПFИЬАΔ",
             "english": "equal",
             "notes": ""
         },
         {
-            "conlang": "шaдcя",
+            "conlang": "ШАΔСЯ",
             "english": "garden",
             "notes": ""
         },
         {
-            "conlang": "читэт",
+            "conlang": "ЧИТЭТ",
             "english": "send",
             "notes": ""
         },
         {
-            "conlang": "xaт",
+            "conlang": "ХАТ",
             "english": "fit",
             "notes": "the state of fitting in a physical space"
         },
         {
-            "conlang": "нoшδ",
+            "conlang": "НОШΣ",
             "english": "flow",
             "notes": ""
         },
         {
-            "conlang": "ьэчк",
+            "conlang": "ЬЭЧК",
             "english": "collect",
             "notes": ""
         },
         {
-            "conlang": "pэსтэвa",
+            "conlang": "РЭსТЭВА",
             "english": "fair",
             "notes": ""
         },
         {
-            "conlang": "ьoպ",
+            "conlang": "ЬОЩ",
             "english": "bank/financial institution",
             "notes": ""
         },
         {
-            "conlang": "шюм",
+            "conlang": "ШЮМ",
             "english": "save",
             "notes": "to save someone or something from peril"
         },
         {
-            "conlang": "гpэкэc",
+            "conlang": "ГРЭКЭС",
             "english": "control",
             "notes": "to control something"
         },
         {
-            "conlang": "нинэд",
+            "conlang": "НИНЭΔ",
             "english": "fraction/fractional part",
             "notes": "the fractional part of a number/the general concept of a fractional part"
         },
         {
-            "conlang": "ьეьэт",
+            "conlang": "ЬJЬЭТ",
             "english": "gentle",
             "notes": ""
         },
         {
-            "conlang": "шяpa",
+            "conlang": "ШЯРА",
             "english": "practice",
             "notes": "to practice a skill"
         },
         {
-            "conlang": "гpμc",
+            "conlang": "ГРUС",
             "english": "separate",
             "notes": "independant, not connected"
         },
         {
-            "conlang": "кьδдap",
+            "conlang": "КЬΣΔАР",
             "english": "doctor, medical doctor",
             "notes": "medical doctor"
         },
         {
-            "conlang": "чьycэ",
+            "conlang": "ЧЬУСЭ",
             "english": "please",
             "notes": "a term to politely ask for something"
         },
         {
-            "conlang": "xaчэpэт",
+            "conlang": "ХАЧЭРЭТ",
             "english": "protect",
             "notes": ""
         },
         {
-            "conlang": "пpaպa",
+            "conlang": "ПРАЩА",
             "english": "noon/midday",
             "notes": ""
         },
         {
-            "conlang": "вoшa",
+            "conlang": "ВОША",
             "english": "ring",
             "notes": "finger jewelry"
         },
         {
-            "conlang": "λюpaтэк",
+            "conlang": "ΛЮРАТЭК",
             "english": "insect",
             "notes": ""
         },
         {
-            "conlang": "xэեьэт",
+            "conlang": "ХЭԵЬЭТ",
             "english": "detailed/intricate",
             "notes": ""
         },
         {
-            "conlang": "яшhaբa",
+            "conlang": "ЯШՑАFА",
             "english": "period/interval/time period",
             "notes": ""
         },
         {
-            "conlang": "oէypтε",
+            "conlang": "ОԷУРТЕ",
             "english": "radio",
             "notes": "an audio only communication device"
         },
         {
-            "conlang": "гьyт",
+            "conlang": "ГЬУТ",
             "english": "atom",
             "notes": ""
         },
         {
-            "conlang": "hoեэc",
+            "conlang": "ՑОԵЭС",
             "english": "human",
             "notes": ""
         },
         {
-            "conlang": "ьэтբиьy",
+            "conlang": "ЬЭТFИЬУ",
             "english": "history",
             "notes": ""
         },
         {
-            "conlang": "тyьэpш",
+            "conlang": "ТУЬЭРШ",
             "english": "effect",
             "notes": ""
         },
         {
-            "conlang": "pэzни",
+            "conlang": "РЭZНИ",
             "english": "electricity",
             "notes": ""
         },
         {
-            "conlang": "вδчэт",
+            "conlang": "ВΣЧЭТ",
             "english": "expect",
             "notes": ""
         },
         {
-            "conlang": "тяբя",
+            "conlang": "ТЯFЯ",
             "english": "modern",
             "notes": ""
         },
         {
-            "conlang": "шиբи",
+            "conlang": "ШИFИ",
             "english": "crop",
             "notes": "generally plants or food grown for consumption"
         },
         {
-            "conlang": "киг",
+            "conlang": "КИГ",
             "english": "hit",
             "notes": ""
         },
         {
-            "conlang": "чьyтpэ",
+            "conlang": "ЧЬУТРЭ",
             "english": "student",
             "notes": ""
         },
         {
-            "conlang": "qaгэp",
+            "conlang": "QАГЭР",
             "english": "corner",
             "notes": ""
         },
         {
-            "conlang": "qoкэк",
+            "conlang": "QОКЭК",
             "english": "bone",
             "notes": ""
         },
         {
-            "conlang": "ьyьy",
+            "conlang": "ЬУЬУ",
             "english": "party",
             "notes": "a celebration gathering"
         },
         {
-            "conlang": "тэгoь",
+            "conlang": "ТЭГОЬ",
             "english": "supply",
             "notes": "to supply someone or something with materials"
         },
         {
-            "conlang": "daкբa",
+            "conlang": "DАКFА",
             "english": "imagine",
             "notes": ""
         },
         {
-            "conlang": "тэг",
+            "conlang": "ТЭГ",
             "english": "rail",
             "notes": ""
         },
         {
-            "conlang": "ьoпюд",
+            "conlang": "ЬОПЮΔ",
             "english": "provide",
             "notes": ""
         },
         {
-            "conlang": "cиьyт",
+            "conlang": "СИЬУТ",
             "english": "agree",
             "notes": ""
         },
         {
-            "conlang": "პoшoc",
+            "conlang": "პОШОС",
             "english": "chair",
             "notes": ""
         },
         {
-            "conlang": "dpaгя",
+            "conlang": "DРАГЯ",
             "english": "danger",
             "notes": ""
         },
         {
-            "conlang": "პaкa",
+            "conlang": "პАКА",
             "english": "muffin",
             "notes": ""
         },
         {
-            "conlang": "ьaфaբэ",
+            "conlang": "ЬАФАFЭ",
             "english": "fruit",
             "notes": ""
         },
         {
-            "conlang": "миьaե",
+            "conlang": "МИЬАԵ",
             "english": "rich/wealthy",
             "notes": "having a lot of money"
         },
         {
-            "conlang": "вyкa",
+            "conlang": "ВУКА",
             "english": "thick",
             "notes": ""
         },
         {
-            "conlang": "жaե",
+            "conlang": "ЖАԵ",
             "english": "soldier",
             "notes": ""
         },
         {
-            "conlang": "aθpэcьи",
+            "conlang": "АΘРЭСЬИ",
             "english": "process",
             "notes": ""
         },
         {
-            "conlang": "гpyг",
+            "conlang": "ГРУГ",
             "english": "guess",
             "notes": "an attempt at stating something with limited or no knowledge"
         },
         {
-            "conlang": "чьэгpэ",
+            "conlang": "ЧЬЭГРЭ",
             "english": "guess",
             "notes": "to guess"
         },
         {
-            "conlang": "вяьoт",
+            "conlang": "ВЯЬОТ",
             "english": "operate",
             "notes": "to operate a device or machinery"
         },
         {
-            "conlang": "вpaцьэ",
+            "conlang": "ВРАЦЬЭ",
             "english": "create",
             "notes": ""
         },
         {
-            "conlang": "виьэч",
+            "conlang": "ВИЬЭЧ",
             "english": "sharp",
             "notes": ""
         },
         {
-            "conlang": "cиьэpвa",
+            "conlang": "СИЬЭРВА",
             "english": "everyone",
             "notes": ""
         },
         {
-            "conlang": "եyьaբя",
+            "conlang": "ԵУЬАFЯ",
             "english": "today",
             "notes": ""
         },
         {
-            "conlang": "vиьэ",
+            "conlang": "VИЬЭ",
             "english": "wing",
             "notes": "the anatomical body part"
         },
         {
-            "conlang": "шqятqo",
+            "conlang": "ШQЯТQО",
             "english": "neighbour/neighbor",
             "notes": ""
         },
         {
-            "conlang": "xapэ",
+            "conlang": "ХАРЭ",
             "english": "wash",
             "notes": ""
         },
         {
-            "conlang": "вoкբoтиьa",
+            "conlang": "ВОКFОТИЬА",
             "english": "bat",
             "notes": "the animal"
         },
         {
-            "conlang": "цaեэ",
+            "conlang": "ЦАԵЭ",
             "english": "prefer/rather",
             "notes": ""
         },
         {
-            "conlang": "qютoм",
+            "conlang": "QЮТОМ",
             "english": "crowd",
             "notes": ""
         },
         {
-            "conlang": "daм",
+            "conlang": "DАМ",
             "english": "corn",
             "notes": "the vegetable"
         },
         {
-            "conlang": "пբиьэт",
+            "conlang": "ПFИЬЭТ",
             "english": "compare",
             "notes": ""
         },
         {
-            "conlang": "λoxниьa",
+            "conlang": "ΛОХНИЬА",
             "english": "poem/poetry",
             "notes": ""
         },
         {
-            "conlang": "пaжaт",
+            "conlang": "ПАЖАТ",
             "english": "string",
             "notes": ""
         },
         {
-            "conlang": "пиьyт",
+            "conlang": "ПИЬУТ",
             "english": "tube",
             "notes": ""
         },
         {
-            "conlang": "бբэтки",
+            "conlang": "БFЭТКИ",
             "english": "bell",
             "notes": ""
         },
         {
-            "conlang": "вaдyp",
+            "conlang": "ВАΔУР",
             "english": "depend",
             "notes": ""
         },
         {
-            "conlang": "кьyм",
+            "conlang": "КЬУМ",
             "english": "meat",
             "notes": ""
         },
         {
-            "conlang": "вaкьэ",
+            "conlang": "ВАКЬЭ",
             "english": "rub",
             "notes": ""
         },
         {
-            "conlang": "ьэζδд",
+            "conlang": "ЬЭΞΣΔ",
             "english": "famous",
             "notes": ""
         },
         {
-            "conlang": "вaζэc",
+            "conlang": "ВАΞЭС",
             "english": "stream",
             "notes": "a small waterway"
         },
         {
-            "conlang": "вyтբэ",
+            "conlang": "ВУТFЭ",
             "english": "fear",
             "notes": ""
         },
         {
-            "conlang": "жиcэт",
+            "conlang": "ЖИСЭТ",
             "english": "sight",
             "notes": "the sense of sight"
         },
         {
-            "conlang": "тaмэc",
+            "conlang": "ТАМЭС",
             "english": "thin",
             "notes": ""
         },
         {
-            "conlang": "вεтբэт",
+            "conlang": "ВЕТFЭТ",
             "english": "triangle",
             "notes": ""
         },
         {
-            "conlang": "кaпբиьaт",
+            "conlang": "КАПFИЬАТ",
             "english": "company/business",
             "notes": ""
         },
         {
-            "conlang": "qoтypy",
+            "conlang": "QОТУРУ",
             "english": "hurry",
             "notes": ""
         },
         {
-            "conlang": "თaтьэт",
+            "conlang": "დАТЬЭТ",
             "english": "clock/timepiece/chronometer",
             "notes": ""
         },
         {
-            "conlang": "вpyтэт",
+            "conlang": "ВРУТЭТ",
             "english": "tie",
             "notes": "to tie a knot or to tie things together"
         },
         {
-            "conlang": "кьэqaт",
+            "conlang": "КЬЭQАТ",
             "english": "enter",
             "notes": "to enter a room, building, or space"
         },
         {
-            "conlang": "пpaш",
+            "conlang": "ПРАШ",
             "english": "significant/major",
             "notes": ""
         },
         {
-            "conlang": "μтьεд",
+            "conlang": "UТЬЕΔ",
             "english": "search",
             "notes": "to search for something or someone"
         },
         {
-            "conlang": "чεრ",
+            "conlang": "ЧЕრ",
             "english": "dead",
             "notes": ""
         },
         {
-            "conlang": "вyьapж",
+            "conlang": "ВУЬАРЖ",
             "english": "yellow",
             "notes": ""
         },
         {
-            "conlang": "пpaвպ",
+            "conlang": "ПРАВЩ",
             "english": "display",
             "notes": "to display something on a digital screen"
         },
         {
-            "conlang": "εvт",
+            "conlang": "ЕVТ",
             "english": "spot",
             "notes": ""
         },
         {
-            "conlang": "гиьэтaк",
+            "conlang": "ГИЬЭТАК",
             "english": "desert",
             "notes": ""
         },
         {
-            "conlang": "пyж",
+            "conlang": "ПУЖ",
             "english": "suit",
             "notes": "a full body set of formal clothing, appropriate for business, politics, or formal events"
         },
         {
-            "conlang": "кapшэт",
+            "conlang": "КАРШЭТ",
             "english": "current",
             "notes": ""
         },
         {
-            "conlang": "բεт",
+            "conlang": "FЕТ",
             "english": "lift",
             "notes": ""
         },
         {
-            "conlang": "пaчиьaպpэ",
+            "conlang": "ПАЧИЬАЩРЭ",
             "english": "rose",
             "notes": "any type of rose like flowers"
         },
         {
-            "conlang": "ըяպ",
+            "conlang": "ԸЯЩ",
             "english": "continue",
             "notes": ""
         },
         {
-            "conlang": "гpaպoд",
+            "conlang": "ГРАЩОΔ",
             "english": "block",
             "notes": "a three dimensional block like shape"
         },
         {
-            "conlang": "цэц",
+            "conlang": "ЦЭЦ",
             "english": "hat",
             "notes": ""
         },
         {
-            "conlang": "чyc",
+            "conlang": "ЧУС",
             "english": "sell",
             "notes": ""
         },
         {
-            "conlang": "ьoдբя",
+            "conlang": "ЬОΔFЯ",
             "english": "success",
             "notes": ""
         },
         {
-            "conlang": "кицэ",
+            "conlang": "КИЦЭ",
             "english": "subtract",
             "notes": ""
         },
         {
-            "conlang": "εьaжaд",
+            "conlang": "ЕЬАЖАΔ",
             "english": "event",
             "notes": "an organized gathering"
         },
         {
-            "conlang": "пεzეьaд",
+            "conlang": "ПЕZJЬАΔ",
             "english": "particular",
             "notes": ""
         },
         {
-            "conlang": "тюպ",
+            "conlang": "ТЮЩ",
             "english": "deal",
             "notes": ""
         },
         {
-            "conlang": "qэპpa",
+            "conlang": "QЭპРА",
             "english": "swim",
             "notes": ""
         },
         {
-            "conlang": "пբoдэж",
+            "conlang": "ПFОΔЭЖ",
             "english": "opposite",
             "notes": ""
         },
         {
-            "conlang": "тyьэнa",
+            "conlang": "ТУЬЭНА",
             "english": "wife",
             "notes": ""
         },
         {
-            "conlang": "თиե",
+            "conlang": "დИԵ",
             "english": "boot",
             "notes": ""
         },
         {
-            "conlang": "тoc",
+            "conlang": "ТОС",
             "english": "shoe",
             "notes": ""
         },
         {
-            "conlang": "эьyн",
+            "conlang": "ЭЬУН",
             "english": "shoulder",
             "notes": ""
         },
         {
-            "conlang": "ьaთэp",
+            "conlang": "ЬАდЭР",
             "english": "spread",
             "notes": ""
         },
         {
-            "conlang": "cջжиьa",
+            "conlang": "СՋЖИЬА",
             "english": "arrange",
             "notes": ""
         },
         {
-            "conlang": "кэтaк",
+            "conlang": "КЭТАК",
             "english": "camp/encampment",
             "notes": "an encampment"
         },
         {
-            "conlang": "пaსэт",
+            "conlang": "ПАსЭТ",
             "english": "invent",
             "notes": ""
         },
         {
-            "conlang": "жaф",
+            "conlang": "ЖАФ",
             "english": "born",
             "notes": ""
         },
         {
-            "conlang": "qaтьэpэc",
+            "conlang": "QАТЬЭРЭС",
             "english": "determine",
             "notes": ""
         },
         {
-            "conlang": "пoէaк",
+            "conlang": "ПОԷАК",
             "english": "truck",
             "notes": ""
         },
         {
-            "conlang": "пyнδн",
+            "conlang": "ПУНΣН",
             "english": "level",
             "notes": "a level surface"
         },
         {
-            "conlang": "тэζэт",
+            "conlang": "ТЭΞЭТ",
             "english": "noise",
             "notes": ""
         },
         {
-            "conlang": "ცaшy",
+            "conlang": "ձАШУ",
             "english": "chance",
             "notes": ""
         },
         {
-            "conlang": "гэчт",
+            "conlang": "ГЭЧТ",
             "english": "gather",
             "notes": ""
         },
         {
-            "conlang": "нaжδн",
+            "conlang": "НАЖΣН",
             "english": "shop",
             "notes": "to shop or browse goods for purchase"
         },
         {
-            "conlang": "zэպλδp",
+            "conlang": "ZЭЩΛΣР",
             "english": "stretch",
             "notes": ""
         },
         {
-            "conlang": "ცэч",
+            "conlang": "ձЭЧ",
             "english": "throw",
             "notes": ""
         },
         {
-            "conlang": "λиьэт",
+            "conlang": "ΛИЬЭТ",
             "english": "shine",
             "notes": ""
         },
         {
-            "conlang": "кьopэե",
+            "conlang": "КЬОРЭԵ",
             "english": "property",
             "notes": "any type of personal, corporate or governmental property"
         },
         {
-            "conlang": "бэткиьa",
+            "conlang": "БЭТКИЬА",
             "english": "property",
             "notes": "real estate"
         },
         {
-            "conlang": "тиьyк",
+            "conlang": "ТИЬУК",
             "english": "select",
             "notes": ""
         },
         {
-            "conlang": "шεш",
+            "conlang": "ШЕШ",
             "english": "wrong",
             "notes": ""
         },
         {
-            "conlang": "vyк",
+            "conlang": "VУК",
             "english": "grey/gray",
             "notes": ""
         },
         {
-            "conlang": "питиьaт",
+            "conlang": "ПИТИЬАТ",
             "english": "repeat",
             "notes": ""
         },
         {
-            "conlang": "вδեμპ",
+            "conlang": "ВΣԵUპ",
             "english": "require",
             "notes": ""
         },
         {
-            "conlang": "бpoвa",
+            "conlang": "БРОВА",
             "english": "broad",
             "notes": ""
         },
         {
-            "conlang": "cδრaн",
+            "conlang": "СΣრАН",
             "english": "prepare",
             "notes": ""
         },
         {
-            "conlang": "aжaд",
+            "conlang": "АЖАΔ",
             "english": "tomorrow",
             "notes": ""
         },
         {
-            "conlang": "мич",
+            "conlang": "МИЧ",
             "english": "salt",
             "notes": ""
         },
         {
-            "conlang": "вpэд",
+            "conlang": "ВРЭΔ",
             "english": "nose",
             "notes": ""
         },
         {
-            "conlang": "ьδպpиьa",
+            "conlang": "ЬΣЩРИЬА",
             "english": "plural",
             "notes": ""
         },
         {
-            "conlang": "гբиьaк",
+            "conlang": "ГFИЬАК",
             "english": "anger",
             "notes": ""
         },
         {
-            "conlang": "вoьдэ",
+            "conlang": "ВОЬΔЭ",
             "english": "claim",
             "notes": ""
         },
         {
-            "conlang": "жижa",
+            "conlang": "ЖИЖА",
             "english": "sugar",
             "notes": ""
         },
         {
-            "conlang": "дoж",
+            "conlang": "ΔОЖ",
             "english": "death",
             "notes": ""
         },
         {
-            "conlang": "vεтьэ",
+            "conlang": "VЕТЬЭ",
             "english": "skill",
             "notes": ""
         },
         {
-            "conlang": "θpэcьэ",
+            "conlang": "ΘРЭСЬЭ",
             "english": "season",
             "notes": "a climate season experienced on the surface of a planet as a result of the planet's orbit"
         },
         {
-            "conlang": "иცoш",
+            "conlang": "ИձОШ",
             "english": "match",
             "notes": ""
         },
         {
-            "conlang": "пэдэкьδт",
+            "conlang": "ПЭΔЭКЬΣТ",
             "english": "magnet",
             "notes": ""
         },
         {
-            "conlang": "вqoдьэ",
+            "conlang": "ВQОΔЬЭ",
             "english": "huge/massive",
             "notes": ""
         },
         {
-            "conlang": "гиьэζ",
+            "conlang": "ГИЬЭΞ",
             "english": "silver",
             "notes": "silver appearance or colour"
         },
         {
-            "conlang": "чoкoc",
+            "conlang": "ЧОКОС",
             "english": "silver",
             "notes": "the element"
         },
         {
-            "conlang": "тac",
+            "conlang": "ТАС",
             "english": "thanks",
             "notes": ""
         },
         {
-            "conlang": "жиг",
+            "conlang": "ЖИГ",
             "english": "thank",
             "notes": "to thank someone"
         },
         {
-            "conlang": "кaдaш",
+            "conlang": "КАΔАШ",
             "english": "branch",
             "notes": "a branch of a tree"
         },
         {
-            "conlang": "шюдьoв",
+            "conlang": "ШЮΔЬОВ",
             "english": "especially",
             "notes": ""
         },
         {
-            "conlang": "кьэтвaчδ",
+            "conlang": "КЬЭТВАЧΣ",
             "english": "fig",
             "notes": ""
         },
         {
-            "conlang": "цეьaд",
+            "conlang": "ЦJЬАΔ",
             "english": "afraid",
             "notes": ""
         },
         {
-            "conlang": "λьэpэт",
+            "conlang": "ΛЬЭРЭТ",
             "english": "sister",
             "notes": "a biological sister"
         },
         {
-            "conlang": "ζицaд",
+            "conlang": "ΞИЦАΔ",
             "english": "steel",
             "notes": "broadly any type of steel like alloy"
         },
         {
-            "conlang": "мьэжэнy",
+            "conlang": "МЬЭЖЭНУ",
             "english": "discuss",
             "notes": ""
         },
         {
-            "conlang": "oшдy",
+            "conlang": "ОШΔУ",
             "english": "backward",
             "notes": ""
         },
         {
-            "conlang": "aтьэв",
+            "conlang": "АТЬЭВ",
             "english": "forward",
             "notes": ""
         },
         {
-            "conlang": "qջեьε",
+            "conlang": "QՋԵЬЕ",
             "english": "similar",
             "notes": ""
         },
         {
-            "conlang": "гջтaш",
+            "conlang": "ГՋТАШ",
             "english": "guide",
             "notes": "to guide someone or something"
         },
         {
-            "conlang": "мьoкэц",
+            "conlang": "МЬОКЭЦ",
             "english": "guide",
             "notes": "a guide"
         },
         {
-            "conlang": "чидкьэ",
+            "conlang": "ЧИΔКЬЭ",
             "english": "experience",
             "notes": ""
         },
         {
-            "conlang": "пqэш",
+            "conlang": "ПQЭШ",
             "english": "score",
             "notes": "an accumulated set of points representing accomplishments"
         },
         {
-            "conlang": "тaмя",
+            "conlang": "ТАМЯ",
             "english": "score",
             "notes": "to score a point or goal in a game"
         },
         {
-            "conlang": "եyвλэ",
+            "conlang": "ԵУВΛЭ",
             "english": "apple",
             "notes": "broadly any type of apple like fruit"
         },
         {
-            "conlang": "тpoчaн",
+            "conlang": "ТРОЧАН",
             "english": "coat",
             "notes": "the piece of clothing"
         },
         {
-            "conlang": "кьoпт",
+            "conlang": "КЬОПТ",
             "english": "card",
             "notes": "a physical card, often having written information on it"
         },
         {
-            "conlang": "вoьop",
+            "conlang": "ВОЬОР",
             "english": "band",
             "notes": "thin material wrapping around objects to bind them together"
         },
         {
-            "conlang": "пaრ",
+            "conlang": "ПАრ",
             "english": "rope",
             "notes": ""
         },
         {
-            "conlang": "cэcэ",
+            "conlang": "СЭСЭ",
             "english": "slip",
             "notes": ""
         },
         {
-            "conlang": "თиc",
+            "conlang": "დИС",
             "english": "win",
             "notes": ""
         },
         {
-            "conlang": "пoкoж",
+            "conlang": "ПОКОЖ",
             "english": "dream",
             "notes": "a dream experienced while sleeping"
         },
         {
-            "conlang": "виьэpэc",
+            "conlang": "ВИЬЭРЭС",
             "english": "evening",
             "notes": ""
         },
         {
-            "conlang": "haдэьэт",
+            "conlang": "ՑАΔЭЬЭТ",
             "english": "condition",
             "notes": "a state that must be met in order for something to proceed"
         },
         {
-            "conlang": "пьoт",
+            "conlang": "ПЬОТ",
             "english": "feed",
             "notes": "to give food to someone or something"
         },
         {
-            "conlang": "azьэpвoн",
+            "conlang": "АZЬЭРВОН",
             "english": "condition",
             "notes": "the state of something, particularly whether it is in good or poor condition"
         },
         {
-            "conlang": "кaxэт",
+            "conlang": "КАХЭТ",
             "english": "tool",
             "notes": ""
         },
         {
-            "conlang": "пaxaд",
+            "conlang": "ПАХАΔ",
             "english": "total",
             "notes": ""
         },
         {
-            "conlang": "кaбբa",
+            "conlang": "КАБFА",
             "english": "basic",
             "notes": ""
         },
         {
-            "conlang": "qэтpaм",
+            "conlang": "QЭТРАМ",
             "english": "smell",
             "notes": "to smell"
         },
         {
-            "conlang": "θэპивaн",
+            "conlang": "ΘЭპИВАН",
             "english": "valley",
             "notes": ""
         },
         {
-            "conlang": "никբэ",
+            "conlang": "НИКFЭ",
             "english": "double",
             "notes": ""
         },
         {
-            "conlang": "чaтьэc",
+            "conlang": "ЧАТЬЭС",
             "english": "seat",
             "notes": ""
         },
         {
-            "conlang": "твaպ",
+            "conlang": "ТВАЩ",
             "english": "master",
             "notes": "to achieve a high level of skill in a particular area"
         },
         {
-            "conlang": "pμтa",
+            "conlang": "РUТА",
             "english": "parent",
             "notes": ""
         },
         {
-            "conlang": "эსьε",
+            "conlang": "ЭსЬЕ",
             "english": "arrive",
             "notes": ""
         },
         {
-            "conlang": "кэcч",
+            "conlang": "КЭСЧ",
             "english": "track",
             "notes": "to track an object through space"
         },
         {
-            "conlang": "պэк",
+            "conlang": "ЩЭК",
             "english": "track",
             "notes": "a track that a vehicle travels along"
         },
         {
-            "conlang": "вεբyд",
+            "conlang": "ВЕFУΔ",
             "english": "instant",
             "notes": ""
         },
         {
-            "conlang": "ьoшт",
+            "conlang": "ЬОШТ",
             "english": "shore",
             "notes": ""
         },
         {
-            "conlang": "пpэшaт",
+            "conlang": "ПРЭШАТ",
             "english": "division",
             "notes": ""
         },
         {
-            "conlang": "եμшт",
+            "conlang": "ԵUШТ",
             "english": "sheet",
             "notes": ""
         },
         {
-            "conlang": "кodдpoж",
+            "conlang": "КОDΔРОЖ",
             "english": "original",
             "notes": ""
         },
         {
-            "conlang": "чьэт",
+            "conlang": "ЧЬЭТ",
             "english": "connect",
             "notes": ""
         },
         {
-            "conlang": "гaчyт",
+            "conlang": "ГАЧУТ",
             "english": "post",
             "notes": "a short vertical post installed in the ground or floor"
         },
         {
-            "conlang": "ьэт",
+            "conlang": "ЬЭТ",
             "english": "spend",
             "notes": "to spend money"
         },
         {
-            "conlang": "qapв",
+            "conlang": "QАРВ",
             "english": "fat",
             "notes": ""
         },
         {
-            "conlang": "պэz",
+            "conlang": "ЩЭZ",
             "english": "share",
             "notes": ""
         },
         {
-            "conlang": "вaxт",
+            "conlang": "ВАХТ",
             "english": "bread",
             "notes": ""
         },
         {
-            "conlang": "λaвyλ",
+            "conlang": "ΛАВУΛ",
             "english": "proper",
             "notes": ""
         },
         {
-            "conlang": "кδчэт",
+            "conlang": "КΣЧЭТ",
             "english": "charge",
             "notes": "to charge with electricity"
         },
         {
-            "conlang": "жyдբa",
+            "conlang": "ЖУΔFА",
             "english": "charge",
             "notes": "to charge money"
         },
         {
-            "conlang": "vδм",
+            "conlang": "VΣМ",
             "english": "bar",
             "notes": "the abstract shape of a bar"
         },
         {
-            "conlang": "дaբя",
+            "conlang": "ΔАFЯ",
             "english": "offer",
             "notes": ""
         },
         {
-            "conlang": "бyчэ",
+            "conlang": "БУЧЭ",
             "english": "duck",
             "notes": "any type of duck"
         },
         {
-            "conlang": "ьεкьεд",
+            "conlang": "ЬЕКЬЕΔ",
             "english": "market",
             "notes": "an indoor or outdoor gathering of small sellers"
         },
         {
-            "conlang": "ջчpэ",
+            "conlang": "ՋЧРЭ",
             "english": "chick",
             "notes": "a young chicken"
         },
         {
-            "conlang": "եиcи",
+            "conlang": "ԵИСИ",
             "english": "degree/extent",
             "notes": "the extent of something"
         },
         {
-            "conlang": "яըэ",
+            "conlang": "ЯԸЭ",
             "english": "dear",
             "notes": "important or special, especially of a person"
         },
         {
-            "conlang": "гpиьэպ",
+            "conlang": "ГРИЬЭЩ",
             "english": "enemy",
             "notes": ""
         },
         {
-            "conlang": "aтэէa",
+            "conlang": "АТЭԷА",
             "english": "reply",
             "notes": ""
         },
         {
-            "conlang": "кьэζ",
+            "conlang": "КЬЭΞ",
             "english": "drink",
             "notes": "to drink"
         },
         {
-            "conlang": "мюp",
+            "conlang": "МЮР",
             "english": "happen/occur",
             "notes": ""
         },
         {
-            "conlang": "եити",
+            "conlang": "ԵИТИ",
             "english": "support",
             "notes": "to support someone or something"
         },
         {
-            "conlang": "эთиьэт",
+            "conlang": "ЭდИЬЭТ",
             "english": "speech",
             "notes": "a speech given by someone"
         },
         {
-            "conlang": "тoжqaн",
+            "conlang": "ТОЖQАН",
             "english": "nature",
             "notes": "natural planetary features, as opposed to constructed infrastructure"
         },
         {
-            "conlang": "гэpэեьэ",
+            "conlang": "ГЭРЭԵЬЭ",
             "english": "range",
             "notes": ""
         },
         {
-            "conlang": "vavш",
+            "conlang": "VАVШ",
             "english": "steam",
             "notes": ""
         },
         {
-            "conlang": "жиьoλтpa",
+            "conlang": "ЖИЬОΛТРА",
             "english": "motion",
             "notes": ""
         },
         {
-            "conlang": "ьyьэт",
+            "conlang": "ЬУЬЭТ",
             "english": "path",
             "notes": "a path that something follows"
         },
         {
-            "conlang": "мaжoнoλ",
+            "conlang": "МАЖОНОΛ",
             "english": "liquid",
             "notes": ""
         },
         {
-            "conlang": "кyж",
+            "conlang": "КУЖ",
             "english": "log",
             "notes": "a log made from a tree"
         },
         {
-            "conlang": "гиե",
+            "conlang": "ГИԵ",
             "english": "tooth",
             "notes": ""
         },
         {
-            "conlang": "ըaպт",
+            "conlang": "ԸАЩТ",
             "english": "shell",
             "notes": ""
         },
         {
-            "conlang": "мьoдэж",
+            "conlang": "МЬОΔЭЖ",
             "english": "neck",
             "notes": "the body part"
         },
         {
-            "conlang": "шигэьэд",
+            "conlang": "ШИГЭЬЭΔ",
             "english": "shigeyed",
             "notes": "the official imperial language of the Iron Star empire"
         },
         {
-            "conlang": "zэեa",
+            "conlang": "ZЭԵА",
             "english": "old",
             "notes": ""
         },
         {
-            "conlang": "жэтpиa",
+            "conlang": "ЖЭТРИА",
             "english": "hello/greetings/greeting",
             "notes": "formal greeting or hello"
         }
     ],
     "level2+": [
         {
-            "conlang": "дьэвջч",
+            "conlang": "ΔЬЭВՋЧ",
             "english": "hell yeah",
             "notes": "enthusiastically yes, absolutely yes"
         },
         {
-            "conlang": "yპвэтэzнa",
+            "conlang": "УპВЭТЭZНА",
             "english": "username",
             "notes": "an identifier used on a digital system, often not a person's real name"
         },
         {
-            "conlang": "ըoнoთaт",
+            "conlang": "ԸОНОდАТ",
             "english": "datetime",
             "notes": "a full timestamp including the date and time"
         },
         {
-            "conlang": "պpэшнюдa",
+            "conlang": "ЩРЭШНЮΔА",
             "english": "verb",
             "notes": "action words as a part of speech"
         },
         {
-            "conlang": "вεpтyнa",
+            "conlang": "ВЕРТУНА",
             "english": "fortune",
             "notes": ""
         },
         {
-            "conlang": "თэრεpтyнa",
+            "conlang": "დЭრЕРТУНА",
             "english": "it is what it is",
             "notes": "an expression meaning sarcastically, here is your fortune or such is life"
         },
         {
-            "conlang": "aცэλэpэнтoн",
+            "conlang": "АձЭΛЭРЭНТОН",
             "english": "adventure",
             "notes": ""
         },
         {
-            "conlang": "ცэpэнтoc",
+            "conlang": "ձЭРЭНТОС",
             "english": "exploration of deep space and distant worlds",
             "notes": ""
         },
         {
-            "conlang": "пpэպaдypoн",
+            "conlang": "ПРЭЩАΔУРОН",
             "english": "industry",
             "notes": "manufacturing of physical items"
         },
         {
-            "conlang": "ջнhoრoдoн",
+            "conlang": "ՋНՑОრОΔОН",
             "english": "interface",
             "notes": "physical controls for using a digital system"
         },
         {
-            "conlang": "pиьэპoв",
+            "conlang": "РИЬЭპОВ",
             "english": "rifle",
             "notes": "a firearm with a long barrel"
         },
         {
-            "conlang": "штyгpaд",
+            "conlang": "ШТУГРАΔ",
             "english": "pistol/hand cannon",
             "notes": "a single handed gun"
         },
         {
-            "conlang": "кивэzλэвьδд",
+            "conlang": "КИВЭZΛЭВЬΣΔ",
             "english": "greatsword",
             "notes": "a heavy sword wielded with both hands"
         },
         {
-            "conlang": "ცиpнoтoλ",
+            "conlang": "ձИРНОТОΛ",
             "english": "shack",
             "notes": "small building/small structure"
         },
         {
-            "conlang": "aλyмջниьa",
+            "conlang": "АΛУМՋНИЬА",
             "english": "aluminum",
             "notes": ""
         },
         {
-            "conlang": "вэмэpнo",
+            "conlang": "ВЭМЭРНО",
             "english": "agility",
             "notes": ""
         },
         {
-            "conlang": "եahaპoнoв",
+            "conlang": "ԵАՑАპОНОВ",
             "english": "constitution",
             "notes": "physical constitution/resiliance"
         },
         {
-            "conlang": "ջλδшдaz",
+            "conlang": "ՋΛΣШΔАZ",
             "english": "solution",
             "notes": ""
         },
         {
-            "conlang": "чyζюцьμц",
+            "conlang": "ЧУΞЮЦЬUЦ",
             "english": "action only friend",
             "notes": "a person you enjoy doing activities with, but not talking to them, an action only friend"
         },
         {
-            "conlang": "pμнтεв",
+            "conlang": "РUНТЕВ",
             "english": "drive",
             "notes": "to operate or pilot a wheeled or tracked land vehicle"
         },
         {
-            "conlang": "yzгoдa",
+            "conlang": "УZГОΔА",
             "english": "port",
             "notes": "a coastal location where ships dock"
         },
         {
-            "conlang": "мopzopoн",
+            "conlang": "МОРZОРОН",
             "english": "self",
             "notes": "the abstract concept of the self"
         },
         {
-            "conlang": "мэzнэгэвнa",
+            "conlang": "МЭZНЭГЭВНА",
             "english": "run/execute/play/invoke",
             "notes": "to start a system and have it operate"
         },
         {
-            "conlang": "cмaтиpo",
+            "conlang": "СМАТИРО",
             "english": "with ease/easily/without difficulty",
             "notes": ""
         },
         {
-            "conlang": "oპoмaд",
+            "conlang": "ОპОМАΔ",
             "english": "pose",
             "notes": "the orientation of body and limbs"
         },
         {
-            "conlang": "ьэвэнqεp",
+            "conlang": "ЬЭВЭНQЕР",
             "english": "vowel",
             "notes": ""
         },
         {
-            "conlang": "qaтδըoд",
+            "conlang": "QАТΣԸОΔ",
             "english": "noun",
             "notes": ""
         },
         {
-            "conlang": "პpэш",
+            "conlang": "პРЭШ",
             "english": "field",
             "notes": "a large, flat landmass/a meadow"
         },
         {
-            "conlang": "ըэპovнaд",
+            "conlang": "ԸЭპОVНАΔ",
             "english": "void/nothingness",
             "notes": ""
         },
         {
-            "conlang": "нэთэpкa",
+            "conlang": "НЭდЭРКА",
             "english": "course/training",
             "notes": ""
         },
         {
-            "conlang": "qичэcниьэ",
+            "conlang": "QИЧЭСНИЬЭ",
             "english": "surface",
             "notes": "the surface of a body of water"
         },
         {
-            "conlang": "мэպaq",
+            "conlang": "МЭЩАQ",
             "english": "gold",
             "notes": "the element"
         },
         {
-            "conlang": "oвнaкэp",
+            "conlang": "ОВНАКЭР",
             "english": "plane",
             "notes": "a mathematically flat surface"
         },
         {
-            "conlang": "тэცэc",
+            "conlang": "ТЭձЭС",
             "english": "paint",
             "notes": "to apply paint to a surface"
         },
         {
-            "conlang": "иθэpa",
+            "conlang": "ИΘЭРА",
             "english": "language/way of speaking/manner of speaking",
             "notes": "the way of saying something, the choice of words"
         },
         {
-            "conlang": "кaեպpaтьэ",
+            "conlang": "КАԵЩРАТЬЭ",
             "english": "grand/magnificent",
             "notes": ""
         },
         {
-            "conlang": "мэhyв",
+            "conlang": "МЭՑУВ",
             "english": "present/introduce",
             "notes": "to formally give or present something"
         },
         {
-            "conlang": "եэчpoтэ",
+            "conlang": "ԵЭЧРОТЭ",
             "english": "material/substance",
             "notes": ""
         },
         {
-            "conlang": "вapэპэ",
+            "conlang": "ВАРЭპЭ",
             "english": "settle",
             "notes": "to lie down and get comfortable"
         },
         {
-            "conlang": "мэчaтвэ",
+            "conlang": "МЭЧАТВЭ",
             "english": "syllable",
             "notes": ""
         },
         {
-            "conlang": "vидpид",
+            "conlang": "VИΔРИΔ",
             "english": "subject/topic",
             "notes": ""
         },
         {
-            "conlang": "пьoдa",
+            "conlang": "ПЬОΔА",
             "english": "geographical region",
             "notes": ""
         },
         {
-            "conlang": "гpoպэтμд",
+            "conlang": "ГРОЩЭТUΔ",
             "english": "cell/cage",
             "notes": ""
         },
         {
-            "conlang": "пoкaвδpoд",
+            "conlang": "ПОКАВΣРОΔ",
             "english": "cell",
             "notes": "a cell of a biological organism"
         },
         {
-            "conlang": "гpэპaвpδд",
+            "conlang": "ГРЭპАВРΣΔ",
             "english": "race",
             "notes": "a race within a particular species"
         },
         {
-            "conlang": "եидpэт",
+            "conlang": "ԵИΔРЭТ",
             "english": "exercise",
             "notes": "a drill or formal rehersal of an activity"
         },
         {
-            "conlang": "тидиp",
+            "conlang": "ТИΔИР",
             "english": "exercise",
             "notes": "physical exercise for the body"
         },
         {
-            "conlang": "эըyтa",
+            "conlang": "ЭԸУТА",
             "english": "paragraph",
             "notes": ""
         },
         {
-            "conlang": "ьэдpэк",
+            "conlang": "ЬЭΔРЭК",
             "english": "century",
             "notes": ""
         },
         {
-            "conlang": "ըэтэპaн",
+            "conlang": "ԸЭТЭპАН",
             "english": "consider",
             "notes": ""
         },
         {
-            "conlang": "кьэт",
+            "conlang": "КЬЭТ",
             "english": "copy",
             "notes": "to copy data or information by any means"
         },
         {
-            "conlang": "бэեpэв",
+            "conlang": "БЭԵРЭВ",
             "english": "phrase",
             "notes": ""
         },
         {
-            "conlang": "гpaктьэк",
+            "conlang": "ГРАКТЬЭК",
             "english": "beat/strike/pummel",
             "notes": ""
         },
         {
-            "conlang": "пэλмэдპ",
+            "conlang": "ПЭΛМЭΔპ",
             "english": "sense/perceive",
             "notes": "to sense or perceive something"
         },
         {
-            "conlang": "aдэт",
+            "conlang": "АΔЭТ",
             "english": "observe",
             "notes": ""
         },
         {
-            "conlang": "цopoპэн",
+            "conlang": "ЦОРОპЭН",
             "english": "dictionary",
             "notes": ""
         },
         {
-            "conlang": "hэըэպaд",
+            "conlang": "ՑЭԸЭЩАΔ",
             "english": "consonant",
             "notes": ""
         },
         {
-            "conlang": "кюьэha",
+            "conlang": "КЮЬЭՑА",
             "english": "dress/wear clothing",
             "notes": "to wear particular clothing"
         },
         {
-            "conlang": "ижცэpд",
+            "conlang": "ИЖձЭРΔ",
             "english": "organ/internal organ",
             "notes": "an internal body part with a particular life support function"
         },
         {
-            "conlang": "zεьyтopoж",
+            "conlang": "ZЕЬУТОРОЖ",
             "english": "experiment",
             "notes": "an experiment"
         },
         {
-            "conlang": "aштyкэт",
+            "conlang": "АШТУКЭТ",
             "english": "crease",
             "notes": ""
         },
         {
-            "conlang": "pюфδც",
+            "conlang": "РЮФΣձ",
             "english": "melody",
             "notes": ""
         },
         {
-            "conlang": "дичэhэ",
+            "conlang": "ΔИЧЭՑЭ",
             "english": "symbol",
             "notes": ""
         },
         {
-            "conlang": "coвpaн",
+            "conlang": "СОВРАН",
             "english": "sovran/sovran alphabet",
             "notes": "the name of the alphabet used to write tezhnor"
         },
         {
-            "conlang": "дpэч",
+            "conlang": "ΔРЭЧ",
             "english": "simulation",
             "notes": ""
         },
         {
-            "conlang": "нεнoსтpэ",
+            "conlang": "НЕНОსТРЭ",
             "english": "practice",
             "notes": "the established method of doing something"
         },
         {
-            "conlang": "эчиьaж",
+            "conlang": "ЭЧИЬАЖ",
             "english": "locate",
             "notes": "search for or find in a physical place"
         },
         {
-            "conlang": "პopиьaднδ",
+            "conlang": "პОРИЬАΔНΣ",
             "english": "character",
             "notes": "the moral alignment of someone's personality"
         },
         {
-            "conlang": "вэλкюpэ",
+            "conlang": "ВЭΛКЮРЭ",
             "english": "chemical element",
             "notes": ""
         },
         {
-            "conlang": "oпբaт",
+            "conlang": "ОПFАТ",
             "english": "party",
             "notes": "an organization, especially a military or political one"
         },
         {
-            "conlang": "кикբиպa",
+            "conlang": "КИКFИЩА",
             "english": "capital",
             "notes": "a capital city"
         },
         {
-            "conlang": "мaλвиьεp",
+            "conlang": "МАΛВИЬЕР",
             "english": "writer",
             "notes": "someone who writes professionally or is employed as a writer"
         },
         {
-            "conlang": "кичэζ",
+            "conlang": "КИЧЭΞ",
             "english": "colony",
             "notes": ""
         },
         {
-            "conlang": "pюxეьε",
+            "conlang": "РЮХJЬЕ",
             "english": "mine",
             "notes": "an excavation where minerals are dug out of the ground"
         },
         {
-            "conlang": "ըэвэдoвкa",
+            "conlang": "ԸЭВЭΔОВКА",
             "english": "mine",
             "notes": "an explosive placed on or under the ground"
         },
         {
-            "conlang": "vэըacьэ",
+            "conlang": "VЭԸАСЬЭ",
             "english": "tie",
             "notes": "a tie between two people or things"
         },
         {
-            "conlang": "тpэцкaв",
+            "conlang": "ТРЭЦКАВ",
             "english": "print",
             "notes": "the process of putting written language on a physical surface"
         },
         {
-            "conlang": "мaպpaти",
+            "conlang": "МАЩРАТИ",
             "english": "chart",
             "notes": "a chart focused on presenting numerical information"
         },
         {
-            "conlang": "тьoгբэ",
+            "conlang": "ТЬОГFЭ",
             "english": "diagram",
             "notes": "a diagram focused on presenting visual or spatial information"
         },
         {
-            "conlang": "vэди",
+            "conlang": "VЭΔИ",
             "english": "terms",
             "notes": "requirements which determine an agreement"
         },
         {
-            "conlang": "вaкaც",
+            "conlang": "ВАКАձ",
             "english": "column",
             "notes": "a vertical assembly of data or items in a layout"
         },
         {
-            "conlang": "aθэեьyьoн",
+            "conlang": "АΘЭԵЬУЬОН",
             "english": "continent",
             "notes": ""
         },
         {
-            "conlang": "ьyбьy",
+            "conlang": "ЬУБЬУ",
             "english": "molecule",
             "notes": ""
         },
         {
-            "conlang": "vqэгьaт",
+            "conlang": "VQЭГЬАТ",
             "english": "oxygen",
             "notes": ""
         },
         {
-            "conlang": "λyжэнoд",
+            "conlang": "ΛУЖЭНОΔ",
             "english": "suffix",
             "notes": "a character suffix of a word"
         },
         {
-            "conlang": "პoч",
+            "conlang": "პОЧ",
             "english": "mass",
             "notes": "the mass of an object"
         },
         {
-            "conlang": "ըэчтьэ",
+            "conlang": "ԸЭЧТЬЭ",
             "english": "card",
             "notes": "a card element on a digital user interface"
         },
         {
-            "conlang": "вopoмoни",
+            "conlang": "ВОРОМОНИ",
             "english": "vision/dream/plan",
             "notes": "ambitions, visionary plans"
         },
         {
-            "conlang": "вoжнoдья",
+            "conlang": "ВОЖНОΔЬЯ",
             "english": "station/facility",
             "notes": ""
         },
         {
-            "conlang": "oცop",
+            "conlang": "ОձОР",
             "english": "favour/favor",
             "notes": ""
         },
         {
-            "conlang": "μպвэч",
+            "conlang": "UЩВЭЧ",
             "english": "chord",
             "notes": "a chord of auditory tones, a musical chord"
         },
         {
-            "conlang": "եэдzдo",
+            "conlang": "ԵЭΔZΔО",
             "english": "segment",
             "notes": ""
         },
         {
-            "conlang": "вaպьэк",
+            "conlang": "ВАЩЬЭК",
             "english": "slave",
             "notes": ""
         },
         {
-            "conlang": "гьεpтyьoн",
+            "conlang": "ГЬЕРТУЬОН",
             "english": "population",
             "notes": ""
         },
         {
-            "conlang": "ьэრюдaнa",
+            "conlang": "ЬЭრЮΔАНА",
             "english": "populate",
             "notes": "to populate with living creatures"
         },
         {
-            "conlang": "кqapպ",
+            "conlang": "КQАРЩ",
             "english": "market",
             "notes": "a broader market for a particular good or service in an economy"
         },
         {
-            "conlang": "ცaчyтьэ",
+            "conlang": "ձАЧУТЬЭ",
             "english": "nature",
             "notes": "someone's nature"
         },
         {
-            "conlang": "aպвиեocнa",
+            "conlang": "АЩВИԵОСНА",
             "english": "addition",
             "notes": "the fact something was added"
         },
         {
-            "conlang": "qяთδдaдьэ",
+            "conlang": "QЯდΣΔАΔЬЭ",
             "english": "quotient",
             "notes": ""
         }
