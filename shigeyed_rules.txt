@@ -1,165 +1,39 @@
-шигэьэд syllables
-    ьэ  
-    pa  
-    кa  
-    дa  
-    ьa  
-    тэ  
-    ти  
-    мэ  
-    pэ  
-    нa  
-    ըэ  
-    вa  
-    тa  
-    ви  
-    чэ  
-    ьэт 
-    pи  
-    вo  
-    ьy  
-    cэ  
-    мa  
-    ми  
-    нэ  
-    ни  
-    ըa  
-    жэ  
-    пa  
-    ди  
-    ки  
-    шa  
-    вэ  
-    гэ  
-    ьaд 
-    жи  
-    xa  
-    цэ  
-    чa  
-    кo  
-    пo  
-    պa  
-    мo  
-    чи  
-    гpи 
-    дэ  
-    ცэ  
-    дьэ 
-    тy  
-    co  
-    нo  
-    гpa 
-    бэ  
-    ცи  
-    ըи  
-    po  
-    яэ  
-    ცa  
-    гpэ 
-    тьэ 
-    μи  
-    xэ  
-    дy  
-    цa  
-    cи  
-    яa  
-    ши  
-    ьaт 
-    qэ  
-    պи  
-    яy  
-    пэ  
-    пи  
-    μэ  
-    ьo  
-    qa  
-    вy  
-    zи  
-    cy  
-    py  
-    жa  
-    жнa 
-    poн 
-    ըy  
-    гa  
-    би  
-    pэт 
-    дpэ 
-    էy  
-    თэ  
-    zэ  
-    cьэ 
-    дэт 
-    պэ  
-    кэт 
-    кэ  
-    պpэ 
-    ги  
-    ьэч 
-    ьэд 
-    ьyт 
-    кьэ 
-    pтy 
-    жaт
-    ьλ
-    ьи
-    zьэ 
-    кy  
-    էa  
-    za  
-    zэн 
-    шy  
-    თaт 
-    кoc 
-    яo  
-    дpa 
-    zнэ
-    cнa 
-    თин 
-    диp 
-    яи  
-    xy  
-    xaд
-    ca  
-    paд 
-    պo  
-    ცλ 
-    жэт
-    თи
-    жo
+АЭՋОUЯИJЕУΣЮБВГΔZКΛМНПРСТVХQЬFՑԵЖЧШΘDФΞЦპЩდსԸԷრձ
 
-шигэьэд pure vowels
-    aэoλиy
+ШИГЭЬЭΔ syllables
+    
+ШИГЭЬЭΔ pure vowels
+    АЭОЯИУ
 
-шигэьэд converts the following missing тэжнop vowels into other vowels
-    h -> y
-    ю -> э
-    ջ -> э
-    δ -> o
-    ε -> o
-    ე -> λ
+ШИГЭЬЭΔ converts the following missing ТЭЖНОР vowels into other vowels
+    U -> У
+    Ю -> Э
+    Ջ -> Э
+    Σ -> О
+    Е -> О
+    J -> Я
 
-шигэьэд pure consonants
-    бвгдzкямнпpcтxqьμжчшцպըէთც
+ШИГЭЬЭΔ pure consonants
+    БВГΔZКΛМНПРСТХQЬԵЖЧШЦЩԸԷდձ
 
-шигэьэд converts missing тэжнop consonants into other consonants
-    v -> x
-    θ -> x
-    d -> д
-    ф -> н
-    բ -> p
-    ζ -> ш
-    Ց -> x
-    პ -> c
-    ს -> к
-    რ -> თ
+ШИГЭЬЭΔ converts missing ТЭЖНОР consonants into other consonants
+    V -> Х
+    Θ -> Х
+    D -> Δ
+    Ф -> Н
+    F -> Р
+    Ξ -> Ш
+    Ց -> Х
+    პ -> С
+    ს -> К
+    რ -> დ
 
-There are no characters for a single vowel sound. тэжнop words beginning with a single vowel syllable can be approximated by starting the word with:
-    - ьa
-    - ьэ
-    - ьo
-    - ьλ
-    - ьи
-    - ьy
+There are no characters for a single vowel sound. ТЭЖНОР words beginning with a single vowel syllable can be approximated by starting the word with:
+    - ЬА
+    - ЬЭ
+    - ЬО
+    - ЬЯ
+    - ЬИ
+    - ЬУ
 
-Every syllable in шигэьэд is CV
+Every syllable in ШИГЭЬЭΔ is C+V or C+VC+
