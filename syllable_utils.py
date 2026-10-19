@@ -4,68 +4,110 @@ import os
 import sys
 from pathlib import Path
 
-# aэջohλиეεyδюбвгдzкямнпpcтvxqьμՑжчшθdфըբζцპსպէთრც
-
 CONSONANTS = [
-    "б", "в", "г", "д", "z", "к", "я", "м", "н", "п", "p", "c", "т", "v", "x", 
-    "q", "ь", "ե", "ж", "ч", "ш", "θ", "d", "ф", "ը", "բ", "ζ", "h", "ц", "პ", 
-    "ს", "պ", "է", "თ", "რ", "ც"
-]
+        "Б",
+        "В",
+        "Г",
+        "Δ",
+        "Z",
+        "К",
+        "Λ",
+        "М",
+        "Н",
+        "П",
+        "Р",
+        "С",
+        "Т",
+        "V",
+        "Х",
+        "Q",
+        "Ь",
+        "Ե",
+        "Ж",
+        "Ч",
+        "Ш",
+        "Θ",
+        "D",
+        "Ф",
+        "F",
+        "Ξ",
+        "Ց",
+        "Ц",
+        "პ",
+        "Щ",
+        "დ",
+        "ს",
+        "Ը",
+        "Է",
+        "რ",
+        "ձ"
+    ]
 
 VOWELS = [
-    "a", "э", "ջ", "o", "μ", "λ", "и", "ე", "ε", "y", "δ", "ю"
-]
+        "А",
+        "Э",
+        "Ջ",
+        "О",
+        "U",
+        "Я",
+        "И",
+        "J",
+        "Е",
+        "У",
+        "Σ",
+        "Ю"
+    ]
 
 DEFINITIONS = {
-    "a": 'a',
-    "э": 'e',
-    "ջ": 'i',
-    "o": 'o',
-    "μ": 'u',
-    "λ": 'ay',
-    "и": 'ee',
-    "ე": 'eye',
-    "ε": 'oh',
-    "y": 'oo',
-    "δ": 'oe',
-    "ю": 'ue',
-    "б": 'b',
-    "в": 'v',
-    "г": 'g',
-    "д": 'd',
-    "z": 'z',
-    "к": 'k',
-    "я": 'l',
-    "м": 'm',
-    "н": 'n',
-    "п": 'p',
-    "p": 'r',
-    "c": 's',
-    "т": 't',
-    "v": 'f',
-    "x": 'kh',
-    "q": 'w',
-    "ь": 'y',
-    "ե": 'j',
-    "ж": 'zh',
-    "ч": 'ch',
-    "ш": 'sh' ,
-    "θ": 'th',
-    "d": 'dh',
-    "ф": 'ng',
-    "ը": 'kr',
-    "բ": 'rr',
-    "ζ": 'sz',
-    "h": 'h',
-    "ц": 'ts',
-    "პ": 'st',
-    "ს": 'ks',
-    "պ": 'sk',
-    "է": 'kv',
-    "თ": 'sv',
-    "რ": 'zv',
-    "ც": 'dv'
-}
+        "А": "a",
+        "Э": "e",
+        "Ջ": "i",
+        "О": "o",
+        "U": "u",
+        "Я": "ay",
+        "И": "ee",
+        "J": "iy",
+        "Е": "ow",
+        "У": "oo",
+        "Σ": "oe",
+        "Ю": "ue",
+        "Б": "b",
+        "В": "v",
+        "Г": "g",
+        "Δ": "d",
+        "Z": "z",
+        "К": "k",
+        "Λ": "l",
+        "М": "m",
+        "Н": "n",
+        "П": "p",
+        "Р": "r",
+        "С": "s",
+        "Т": "t",
+        "V": "f",
+        "Х": "kh",
+        "Q": "w",
+        "Ь": "y",
+        "F": "rr",
+        "Ց": "h",
+        "Ե": "j",
+        "Ж": "zh",
+        "Ч": "ch",
+        "Ш": "sh",
+        "Θ": "th",
+        "D": "dh",
+        "Ф": "ng",
+        "Ξ": "shch",
+        "Ц": "ts",
+        "პ": "st",
+        "Щ": "sk",
+        "დ": "sv",
+        "ს": "ks",
+        "Ը": "kr",
+        "Է": "kv",
+        "რ": "gr",
+        "ձ": "dv"
+    }
 
 def get_file(path):
     if not os.path.exists(path):
@@ -89,40 +131,41 @@ def get_syllables(word):
     remainder = word
 
     while len(remainder) > 0:
-        if len(remainder) > 0:
-            if remainder[0] in CONSONANTS:
-                syllable = ""
-                remainder_position = 0
-                while len(remainder) > 0:
-                    if len(remainder) > 1:
-                        if remainder[remainder_position + 1] in CONSONANTS:
-                            word_end = remainder[remainder_position + 1:]
-                            consonant_cluster = True
-                            for c in word_end:
-                                if c in VOWELS:
-                                    consonant_cluster = False
-                            if consonant_cluster:
-                                syllable += remainder
-                                remainder = ""
-                                break # C+VC+
-                        
-                        if remainder[remainder_position] in VOWELS:
-                            syllable += remainder[remainder_position]
-                            remainder = remainder[1:]
-                            break # C+V
-                        
-                    syllable += remainder[remainder_position]
-                    remainder = remainder[1:]
-
-                syllables.append(syllable)
-
-        if len(remainder) > 0:
-            if remainder[0] in VOWELS:
-                syllable = remainder[0]
+        if remainder[0] in CONSONANTS:
+            syllable = ""
+            remainder_position = 0
+            while len(remainder) > 0:
+                if len(remainder) > 1:
+                    if remainder[remainder_position + 1] in CONSONANTS:
+                        word_end = remainder[remainder_position + 1:]
+                        consonant_cluster = True
+                        for c in word_end:
+                            if c in VOWELS:
+                                consonant_cluster = False
+                        if consonant_cluster:
+                            syllable += remainder
+                            remainder = ""
+                            break # C+VC+
+                    
+                    if remainder[remainder_position] in VOWELS:
+                        syllable += remainder[remainder_position]
+                        remainder = remainder[1:]
+                        break # C+V
+                    
+                syllable += remainder[remainder_position]
                 remainder = remainder[1:]
 
-                syllables.append(syllable)
-    
+            syllables.append(syllable)
+
+        elif remainder[0] in VOWELS:
+            syllable = remainder[0]
+            remainder = remainder[1:]
+            syllables.append(syllable)
+            
+        else:
+            syllables.append(remainder[0])
+            remainder = remainder[1:]
+            
     return syllables
 
 def count_syllables(dictionary):
@@ -189,11 +232,49 @@ def romanize(text_path):
     for syllable in shigeyed_syllables:
         romanized = ""
         for character in syllable:
-            romanized += DEFINITIONS[character]
+            romanized += DEFINITIONS.get(character, character)
         romanized_syllables.append(romanized)
         
     print(romanized_syllables)
-    # rename_images_to_names("C:/Working/TezhnorAlphabet/syllabary", romanized_syllables)
+
+def generate_spec(input_file, output_file):
+    syllables = get_file(input_file)
+    if not isinstance(syllables, list):
+        print("Error: Input file must contain a list of syllables on separate lines.")
+        sys.exit(1)
+
+    shigeyed_to_code = {}
+    code_to_shigeyed = {}
+    shigeyed_categories = {}
+
+    for syllable in syllables:
+        romanized = ""
+        for char in syllable:
+            romanized += DEFINITIONS.get(char, char)
+            
+        shigeyed_to_code[syllable] = romanized
+        code_to_shigeyed[romanized] = syllable
+        
+        first_char = syllable[0]
+        if first_char not in shigeyed_categories:
+            shigeyed_categories[first_char] = []
+        shigeyed_categories[first_char].append(syllable)
+
+    # Sort categories by length (longest first) then alphabetically for greedy matching
+    for key in shigeyed_categories:
+        shigeyed_categories[key].sort(key=lambda x: (-len(x), x))
+
+    output_data = {
+        "characters": syllables,  # <--- Added the raw syllables list here!
+        "shigeyed_to_code": shigeyed_to_code,
+        "code_to_shigeyed": code_to_shigeyed,
+        "shigeyed_categories": shigeyed_categories
+    }
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, indent=4, ensure_ascii=False)
+        
+    print(f"Success! Generated '{output_file}' with {len(syllables)} parsed syllables.")
 
 def main():
     parser = argparse.ArgumentParser(description="Conlang syllable utilities.")
@@ -208,12 +289,19 @@ def main():
     parser_romanize = subparsers.add_parser("romanize", help="Romanize syllables from a text file")
     parser_romanize.add_argument("-f", "--file", default="shigeyed_syllables.txt", help="Path to the syllables text file (default: shigeyed_syllables.txt)")
 
+    # 3. Spec Command
+    parser_spec = subparsers.add_parser("spec", help="Generate Shigeyed spec JSON from syllables text list")
+    parser_spec.add_argument("-i", "--input", default="shigeyed_syllables.txt", help="Path to input syllables text file (default: shigeyed_syllables.txt)")
+    parser_spec.add_argument("-o", "--output", default="temp_shigeyed_spec.json", help="Path to output spec JSON (default: temp_shigeyed_spec.json)")
+
     args = parser.parse_args()
 
     if args.command == "list":
         get_syllable_list(args.dict)
     elif args.command == "romanize":
         romanize(args.file)
+    elif args.command == "spec":
+        generate_spec(args.input, args.output)
 
 if __name__ == "__main__":
     main()
