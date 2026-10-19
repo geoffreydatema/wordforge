@@ -19,7 +19,6 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ===============================================================
 
 # BACKLOG
-#   - switch to new fonts
 #   - analyse syllable frequency with updated characters
 #   - generate shigeyed font using syllables
 #   - load shigeyed
@@ -46,8 +45,8 @@ def load_shigeyed_spec():
 SHIGEYED_SPEC = load_shigeyed_spec()
 SHIGEYED_TO_CODE = SHIGEYED_SPEC.get("shigeyed_to_code", {})
 CODE_TO_SHIGEYED = SHIGEYED_SPEC.get("code_to_shigeyed", {})
-SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("vowels", []))
-SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("consonants", []))
+SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("uppercase_vowels", []))
+SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("uppercase_consonants", []))
 TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
 TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
 SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
@@ -56,8 +55,8 @@ TEZHNOR_SPEC = load_spec()
 TEZHNOR_TO_CODE = TEZHNOR_SPEC["uppercase_to_code"]
 CODE_TO_TEZHNOR = TEZHNOR_SPEC["code_to_uppercase"]
 TEZHNOR_TO_PRONUNCIATION = TEZHNOR_SPEC["uppercase_to_pronunciation"]
-VOWELS = TEZHNOR_SPEC["vowels"]
-CONSONANTS = TEZHNOR_SPEC["consonants"]
+VOWELS = TEZHNOR_SPEC["uppercase_vowels"]
+CONSONANTS = TEZHNOR_SPEC["uppercase_consonants"]
 ASCII_TO_SYMBOL = TEZHNOR_SPEC.get("ascii_to_symbol", {})
 SORTED_ASCII_KEYS = sorted(ASCII_TO_SYMBOL.keys(), key=len, reverse=True)
 escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
@@ -146,8 +145,8 @@ FONT_PROFILES = {
         "line_height": 440,
         "space_width": 60,
         "advance_normal": 212,
-        "advance_square": 0,
-        "advance_wide": 0,
+        "advance_square": 212,
+        "advance_wide": 212,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
@@ -160,8 +159,8 @@ FONT_PROFILES = {
         "line_height": 440,
         "space_width": 60,
         "advance_normal": 212,
-        "advance_square": 0,
-        "advance_wide": 0,
+        "advance_square": 212,
+        "advance_wide": 212,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
@@ -174,8 +173,8 @@ FONT_PROFILES = {
         "line_height": 440,
         "space_width": 60,
         "advance_normal": 262,
-        "advance_square": 0,
-        "advance_wide": 0,
+        "advance_square": 262,
+        "advance_wide": 262,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
@@ -187,9 +186,9 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.15,
         "line_height": 440,
         "space_width": 60,    
-        "advance_normal": 262, 
-        "advance_square": 0, 
-        "advance_wide": 0,   
+        "advance_normal": 262,
+        "advance_square": 262,
+        "advance_wide": 262,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
