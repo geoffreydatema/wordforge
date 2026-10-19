@@ -1,5 +1,5 @@
 {
-    "lower_case": [
+    "lowercase": [
         "а",
         "э",
         "ջ",
@@ -49,7 +49,7 @@
         "რ",
         "ც"
     ],
-    "upper_case": [
+    "uppercase": [
         "А",
         "Э",
         "Ջ",
@@ -151,7 +151,7 @@
         ["რ", "რ"],
         ["ձ", "ც"]
     ],
-    "lower_case_to_code": {
+    "lowercase_to_code": {
         "а": "a",
         "э": "e",
         "ջ": "i",
@@ -201,7 +201,7 @@
         "რ": "gr",
         "ც": "dv"
     },
-    "code_to_lower_case": {
+    "code_to_lowercase": {
         "a":    "а",
         "e":    "э",
         "i":    "ջ",
@@ -251,7 +251,7 @@
         "gr":   "რ",
         "dv":   "ც" 
     },
-    "lower_case_to_pronunciation": {
+    "lowercase_to_pronunciation": {
         "а": "Short 'a' as in 'cat'",
         "э": "Short 'e' as in 'bet'",
         "ջ": "Short 'i' as in 'bit'",
@@ -301,7 +301,7 @@
         "რ": "Consonant cluster 'gr'",
         "ც": "Consonant cluster 'dv'"
     },
-    "upper_case_to_code": {
+    "uppercase_to_code": {
         "А": "a",
         "Э": "e",
         "Ջ": "i",
@@ -351,7 +351,7 @@
         "რ": "gr",
         "ձ": "dv"
     },
-    "code_to_upper_case": {
+    "code_to_uppercase": {
         "a":    "А",
         "e":    "Э",
         "i":    "Ջ",
@@ -401,7 +401,7 @@
         "gr":   "რ",
         "dv":   "ձ" 
     },
-    "upper_case_to_pronunciation": {
+    "uppercase_to_pronunciation": {
         "А": "Short 'a' as in 'cat'",
         "Э": "Short 'e' as in 'bet'",
         "Ջ": "Short 'i' as in 'bit'",

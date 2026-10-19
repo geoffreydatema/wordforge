@@ -19,7 +19,6 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ===============================================================
 
 # BACKLOG
-#   - clean up spec loading below (dict keys have changed)
 #   - switch to new fonts
 #   - analyse syllable frequency with updated characters
 #   - generate shigeyed font using syllables
@@ -35,8 +34,6 @@ def load_spec():
     except Exception as e:
         print(f"Failed to load tezhnor_spec.json: {e}")
         sys.exit(1)
-
-SPEC = load_spec()
 
 def load_shigeyed_spec():
     try:
@@ -55,27 +52,22 @@ TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
 TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
 SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
 
-TEZHNOR_TO_CODE = SPEC["tezhnor_to_code"]
-CODE_TO_TEZHNOR = SPEC["code_to_tezhnor"]
-TEZHNOR_TO_PRONUNCIATION = SPEC["tezhnor_to_pronunciation"]
-VOWELS = SPEC["vowels"]
-CONSONANTS = SPEC["consonants"]
-
-ASCII_TO_SYMBOL = SPEC.get("ascii_to_symbol", {})
-
+TEZHNOR_SPEC = load_spec()
+TEZHNOR_TO_CODE = TEZHNOR_SPEC["uppercase_to_code"]
+CODE_TO_TEZHNOR = TEZHNOR_SPEC["code_to_uppercase"]
+TEZHNOR_TO_PRONUNCIATION = TEZHNOR_SPEC["uppercase_to_pronunciation"]
+VOWELS = TEZHNOR_SPEC["vowels"]
+CONSONANTS = TEZHNOR_SPEC["consonants"]
+ASCII_TO_SYMBOL = TEZHNOR_SPEC.get("ascii_to_symbol", {})
 SORTED_ASCII_KEYS = sorted(ASCII_TO_SYMBOL.keys(), key=len, reverse=True)
-
 escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
 SYMBOL_REGEX_PATTERN = f"(<---->|\\s+|{'|'.join(escaped_keys)})" if escaped_keys else "(<---->|\\s+)"
-
 TYPER_CHAR_TO_SYMBOL_NAME = ASCII_TO_SYMBOL.copy()
-
 CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
-
 RAW_PIXMAP_CACHE = {}
 SCALED_PIXMAP_CACHE = {}
 
-LOADED_UNICODE_FONTS = ["Arial - Regular", "Arial - Bold"] # Default fallbacks
+LOADED_UNICODE_FONTS = ["Arial - Regular", "Arial - Bold"]
 
 def preload_font_pixmaps():
     """Loads all raw bitmap images into memory once at startup, avoiding disk I/O later."""
@@ -147,108 +139,108 @@ def get_shared_pixmap(char, font_dir, scale):
 LORE_TO_PRON = TEZHNOR_TO_CODE.copy()
 
 FONT_PROFILES = {
-    "Rounded Regular": {
-        "dir": "fonts/tezhnor_rounded_regular",
+    "Uppercase Bold": {
+        "dir": "fonts/tezhnor_uppercase_bold",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
         "space_width": 60,
-        "advance_normal": 103,
-        "advance_square": 128,
-        "advance_wide": 155,
+        "advance_normal": 212,
+        "advance_square": 0,
+        "advance_wide": 0,
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
-    "Rounded Bold": {
-        "dir": "fonts/tezhnor_rounded_bold", 
+    "Uppercase Regular": {
+        "dir": "fonts/tezhnor_uppercase_regular", 
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
         "space_width": 60,
-        "advance_normal": 103,
-        "advance_square": 128,
-        "advance_wide": 155,
+        "advance_normal": 212,
+        "advance_square": 0,
+        "advance_wide": 0,
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
-    "Block Regular": {
-        "dir": "fonts/tezhnor_block_regular",
+    "Uppercase Square Bold": {
+        "dir": "fonts/tezhnor_uppercase_square_bold",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
         "space_width": 60,
-        "advance_normal": 103,
-        "advance_square": 128,
-        "advance_wide": 155,
+        "advance_normal": 262,
+        "advance_square": 0,
+        "advance_wide": 0,
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
-    "Block Mono": {
-        "dir": "fonts/tezhnor_block_mono",
+    "Uppercase Square Regular": {
+        "dir": "fonts/tezhnor_uppercase_square_regular",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
-        "space_width": 103,    
-        "advance_normal": 103, 
-        "advance_square": 103, 
-        "advance_wide": 103,   
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
+        "space_width": 60,    
+        "advance_normal": 262, 
+        "advance_square": 0, 
+        "advance_wide": 0,   
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
-    "Block Extended": {
-        "dir": "fonts/tezhnor_block_mono_extended",
+    "Lowercase Bold": {
+        "dir": "fonts/tezhnor_lowercase_bold",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
-        "space_width": 128,    
-        "advance_normal": 128, 
-        "advance_square": 128, 
-        "advance_wide": 128,   
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
+        "space_width": 60,    
+        "advance_normal": 212, 
+        "advance_square": 262, 
+        "advance_wide": 312,   
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
-    "Block Monoheight": {
-        "dir": "fonts/tezhnor_block_monoheight",
+    "Lowercase Regular": {
+        "dir": "fonts/tezhnor_lowercase_regular",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.18,
-        "line_height": 210,
+        "bitmap_base_scale": 0.15,
+        "line_height": 440,
         "space_width": 60,
-        "advance_normal": 103,
-        "advance_square": 128,
-        "advance_wide": 155,
+        "advance_normal": 212, 
+        "advance_square": 262, 
+        "advance_wide": 312, 
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 12
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     },
     "Shigeyed Bold": {
         "dir": "fonts/shigeyed_bold",
         "text_base_pt": 28,
-        "bitmap_base_scale": 0.14,
+        "bitmap_base_scale": 0.15,
         "advance_symbol": 200,
-        "line_height": 400,
+        "line_height": 440,
         "space_width": 80,
-        "advance_normal": 0,
-        "advance_square": 0,
+        "advance_normal": 250,
+        "advance_square": 250,
         "advance_wide": 250,
         "padding": 15,
-        "bitmap_offset_x": 5,
-        "bitmap_offset_y": 10,
-        "bitmap_base_char_spacing": 20
+        "bitmap_offset_x": 0,
+        "bitmap_offset_y": 0,
+        "bitmap_base_char_spacing": 0
     }
 }
 
-CURRENT_FONT_KEY = "Rounded Bold"
+CURRENT_FONT_KEY = "Uppercase Bold"
 FONT_METRICS = FONT_PROFILES[CURRENT_FONT_KEY]
 
 CHAR_WIDTHS = {
@@ -263,7 +255,7 @@ CHAR_WIDTHS = {
     CODE_TO_TEZHNOR["ts"]: "advance_square",
     CODE_TO_TEZHNOR["kv"]: "advance_square",
     CODE_TO_TEZHNOR["sv"]: "advance_wide",
-    CODE_TO_TEZHNOR["zv"]: "advance_wide",
+    CODE_TO_TEZHNOR["gr"]: "advance_wide",
 }
 
 KEYBOARD_LAYOUT = [
@@ -281,7 +273,7 @@ COMBO_MAP = {
     "kr": CODE_TO_TEZHNOR['kr'], "rr": CODE_TO_TEZHNOR['rr'],
     "ts": CODE_TO_TEZHNOR['ts'], "st": CODE_TO_TEZHNOR['st'],
     "ks": CODE_TO_TEZHNOR['ks'], "sk": CODE_TO_TEZHNOR['sk'],
-    "kv": CODE_TO_TEZHNOR['kv'], "sv": CODE_TO_TEZHNOR['sv'], "zv": CODE_TO_TEZHNOR['zv'], 
+    "kv": CODE_TO_TEZHNOR['kv'], "sv": CODE_TO_TEZHNOR['sv'], "gr": CODE_TO_TEZHNOR['gr'], 
     "dv": CODE_TO_TEZHNOR['dv']
 }
 
@@ -909,7 +901,7 @@ class Wordforge(QMainWindow):
         self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
         row_idx = 0
         
-        definition_font = "Rounded Bold" 
+        definition_font = "Uppercase Bold" 
         current_font_dir = FONT_PROFILES[definition_font]["dir"]
         base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
         table_icon_scale = base_scale * 0.65 
@@ -1100,7 +1092,7 @@ class Wordforge(QMainWindow):
         self.font_dropdown = QComboBox()
         tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
         self.font_dropdown.addItems(tezhnor_fonts)
-        self.font_dropdown.setCurrentText("Rounded Bold")
+        self.font_dropdown.setCurrentText("Uppercase Bold")
         self.font_dropdown.currentTextChanged.connect(self.change_font_profile)
         
         row1_layout.addWidget(QLabel("Tezhnor Font:"))
