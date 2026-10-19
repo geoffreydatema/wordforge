@@ -54,6 +54,15 @@ CODE_TO_TEZHNOR = TEZHNOR_SPEC["code_to_uppercase"]
 TEZHNOR_TO_PRONUNCIATION = TEZHNOR_SPEC["uppercase_to_pronunciation"]
 VOWELS = TEZHNOR_SPEC["uppercase_vowels"]
 CONSONANTS = TEZHNOR_SPEC["uppercase_consonants"]
+
+CODE_TO_LOWERCASE = TEZHNOR_SPEC.get("code_to_lowercase", {})
+TEZHNOR_LOWERCASE_MAP = {}
+
+# Map every Uppercase char directly to its Lowercase equivalent via the romanized code
+for upper_char, roman_code in TEZHNOR_TO_CODE.items():
+    if roman_code in CODE_TO_LOWERCASE:
+        TEZHNOR_LOWERCASE_MAP[upper_char] = CODE_TO_LOWERCASE[roman_code]
+
 ASCII_TO_SYMBOL = TEZHNOR_SPEC.get("ascii_to_symbol", {})
 SORTED_ASCII_KEYS = sorted(ASCII_TO_SYMBOL.keys(), key=len, reverse=True)
 escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
@@ -1685,13 +1694,6 @@ class Wordforge(QMainWindow):
         self.typer_input.apply_block_formatting()
         self.typer_input.blockSignals(False)
         
-        # Update Lowercase Typer
-        if hasattr(self, 'lower_typer_input'):
-            self.lower_typer_input.blockSignals(True)
-            self.lower_typer_input.setText(translated_text.lower())
-            self.lower_typer_input.apply_block_formatting()
-            self.lower_typer_input.blockSignals(False)
-        
         # Update Bitmap Displays
         display_text = self.typer_input.toPlainText().replace("<---->", "[]")
         self.typer_bottom.set_text(display_text)
@@ -1706,9 +1708,17 @@ class Wordforge(QMainWindow):
             self.render_tezhnor_display.set_text(display_text)
 
     def translate_tezhnor_to_shigeyed(self):
-        self.shigeyed_input.blockSignals(True)
         tezhnor_text = self.typer_input.toPlainText()
         
+        if hasattr(self, 'lower_typer_input'):
+            self.lower_typer_input.blockSignals(True)
+            lower_text = self.to_tezhnor_lowercase(tezhnor_text)
+            self.lower_typer_input.setText(lower_text)
+            self.lower_typer_input.apply_block_formatting()
+            self.lower_typer_input.blockSignals(False)
+
+        # Continue with standard Shigeyed translation...
+        self.shigeyed_input.blockSignals(True)
         tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, tezhnor_text) if t]
         
         translated_tokens = []
@@ -1866,6 +1876,15 @@ class Wordforge(QMainWindow):
                 html_output += f"<b style='color:#81d4fa;'>{opt}</b>: <i>Not found in dictionary</i><br>"
                 
         self.active_word_display.setHtml(html_output)
+
+    def to_tezhnor_lowercase(self, text):
+        result = ""
+        for char in text:
+            if char in TEZHNOR_LOWERCASE_MAP:
+                result += TEZHNOR_LOWERCASE_MAP[char]
+            else:
+                result += char.lower()
+        return result
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
