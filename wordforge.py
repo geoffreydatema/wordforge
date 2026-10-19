@@ -19,9 +19,6 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 # ===============================================================
 
 # BACKLOG
-#   - analyse syllable frequency with updated characters
-#   - generate shigeyed font using syllables
-#   - load shigeyed
 #   - do another pass for symbol assignment to graveyard operators
 #   - name symbols
 #   - generate symbol textures and add to fonts
@@ -1039,7 +1036,22 @@ class Wordforge(QMainWindow):
         self.typer_input = TyperTextEdit()
         self.typer_input.textChanged.connect(self.translate_tezhnor_to_shigeyed)
         left_editors_layout.addWidget(self.typer_input, stretch=1)
+        
+        lbl_lower_tezhnor = QLabel("Lowercase Tezhnor (Drafting)")
+        lbl_lower_tezhnor.setStyleSheet(label_style)
+        left_editors_layout.addWidget(lbl_lower_tezhnor)
+        
+        self.lower_typer_input = TyperTextEdit()
+        self.lower_typer_input.setReadOnly(True) # Keep it as a synchronized display
+        self.lower_typer_input.setStyleSheet("""
+            QTextEdit {
+                font-size: 14pt; padding: 10px; background-color: #2b2b2b; 
+                color: #b2ebf2; border: 1px solid #555; border-radius: 2px;
+            }
+        """)
+        left_editors_layout.addWidget(self.lower_typer_input, stretch=1)
 
+        # --- Shigeyed Typer ---
         lbl_shigeyed = QLabel("Shigeyed Typer")
         lbl_shigeyed.setStyleSheet(label_style)
         left_editors_layout.addWidget(lbl_shigeyed)
@@ -1525,6 +1537,10 @@ class Wordforge(QMainWindow):
             ff_name = self.unicode_font_dropdown.currentText()
             
         self.typer_input.update_font_settings(scale_factor, lh_factor, cs_val, ff_name)
+        
+        if hasattr(self, 'lower_typer_input'):
+            self.lower_typer_input.update_font_settings(scale_factor, lh_factor, cs_val, ff_name)
+            
         self.typer_bottom.update_settings(scale_factor, lh_factor, cs_val)
         
         if hasattr(self, 'shigeyed_display'):
@@ -1663,11 +1679,20 @@ class Wordforge(QMainWindow):
         translated_text = "".join(translated_tokens)
         translated_text = re.sub(r'[ \t]+', ' ', translated_text).strip()
 
+        # Update Uppercase Typer
         self.typer_input.blockSignals(True) 
         self.typer_input.setText(translated_text)
         self.typer_input.apply_block_formatting()
         self.typer_input.blockSignals(False)
         
+        # Update Lowercase Typer
+        if hasattr(self, 'lower_typer_input'):
+            self.lower_typer_input.blockSignals(True)
+            self.lower_typer_input.setText(translated_text.lower())
+            self.lower_typer_input.apply_block_formatting()
+            self.lower_typer_input.blockSignals(False)
+        
+        # Update Bitmap Displays
         display_text = self.typer_input.toPlainText().replace("<---->", "[]")
         self.typer_bottom.set_text(display_text)
 
