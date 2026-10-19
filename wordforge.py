@@ -45,8 +45,8 @@ def load_shigeyed_spec():
 SHIGEYED_SPEC = load_shigeyed_spec()
 SHIGEYED_TO_CODE = SHIGEYED_SPEC.get("shigeyed_to_code", {})
 CODE_TO_SHIGEYED = SHIGEYED_SPEC.get("code_to_shigeyed", {})
-SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("uppercase_vowels", []))
-SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("uppercase_consonants", []))
+SHIGEYED_VOWELS = set(SHIGEYED_SPEC.get("vowels", []))
+SHIGEYED_CONSONANTS = set(SHIGEYED_SPEC.get("consonants", []))
 TEZHNOR_VOWEL_MAP = SHIGEYED_SPEC.get("tezhnor_vowel_map", {})
 TEZHNOR_CONSONANT_MAP = SHIGEYED_SPEC.get("tezhnor_consonant_map", {})
 SYLLABLES_BY_CONSONANT = SHIGEYED_SPEC.get("shigeyed_categories", {})
@@ -143,7 +143,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,
+        "space_width": 100,
         "advance_normal": 212,
         "advance_square": 212,
         "advance_wide": 212,
@@ -157,7 +157,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,
+        "space_width": 100,
         "advance_normal": 212,
         "advance_square": 212,
         "advance_wide": 212,
@@ -171,7 +171,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,
+        "space_width": 100,
         "advance_normal": 262,
         "advance_square": 262,
         "advance_wide": 262,
@@ -185,7 +185,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,    
+        "space_width": 100,    
         "advance_normal": 262,
         "advance_square": 262,
         "advance_wide": 262,
@@ -199,7 +199,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,    
+        "space_width": 100,    
         "advance_normal": 212, 
         "advance_square": 262, 
         "advance_wide": 312,   
@@ -213,7 +213,7 @@ FONT_PROFILES = {
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 60,
+        "space_width": 100,
         "advance_normal": 212, 
         "advance_square": 262, 
         "advance_wide": 312, 
@@ -228,10 +228,10 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.15,
         "advance_symbol": 200,
         "line_height": 440,
-        "space_width": 80,
-        "advance_normal": 250,
-        "advance_square": 250,
-        "advance_wide": 250,
+        "space_width": 100,
+        "advance_normal": 262,
+        "advance_square": 262,
+        "advance_wide": 262,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
@@ -249,7 +249,6 @@ CHAR_WIDTHS = {
     CODE_TO_TEZHNOR["m"]: "advance_square",
     CODE_TO_TEZHNOR["zh"]: "advance_wide",
     CODE_TO_TEZHNOR["sh"]: "advance_wide",
-    CODE_TO_TEZHNOR["th"]: "advance_square",
     CODE_TO_TEZHNOR["sk"]: "advance_wide",
     CODE_TO_TEZHNOR["ts"]: "advance_square",
     CODE_TO_TEZHNOR["kv"]: "advance_square",
@@ -1714,8 +1713,8 @@ class Wordforge(QMainWindow):
                 char = norm_word[cursor]
                 
                 if char in SHIGEYED_VOWELS:
-                    soft_syl = "ь" + char
-                    if soft_syl in SYLLABLES_BY_CONSONANT.get("ь", []):
+                    soft_syl = "Ь" + char
+                    if soft_syl in SYLLABLES_BY_CONSONANT.get("Ь", []):
                         shigeyed_output.append(soft_syl)
                     else:
                         shigeyed_output.append(char) 
