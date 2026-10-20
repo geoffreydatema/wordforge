@@ -18,11 +18,6 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ===============================================================
 
-# BACKLOG
-#   - do another pass for symbol assignment to graveyard operators
-#   - name symbols
-#   - generate symbol textures and add to fonts
-
 def load_spec():
     try:
         with open('tezhnor_spec.json', 'r', encoding='utf-8') as f:
@@ -153,10 +148,11 @@ FONT_PROFILES = {
         "advance_normal": 203,
         "advance_square": 203,
         "advance_wide": 203,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Uppercase Regular": {
         "dir": "fonts/tezhnor_uppercase_regular", 
@@ -167,10 +163,11 @@ FONT_PROFILES = {
         "advance_normal": 203,
         "advance_square": 203,
         "advance_wide": 203,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Uppercase Square Bold": {
         "dir": "fonts/tezhnor_uppercase_square_bold",
@@ -181,10 +178,11 @@ FONT_PROFILES = {
         "advance_normal": 254,
         "advance_square": 254,
         "advance_wide": 254,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Uppercase Square Regular": {
         "dir": "fonts/tezhnor_uppercase_square_regular",
@@ -195,24 +193,26 @@ FONT_PROFILES = {
         "advance_normal": 254,
         "advance_square": 254,
         "advance_wide": 254,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Lowercase Bold": {
         "dir": "fonts/tezhnor_lowercase_bold",
         "text_base_pt": 28,
         "bitmap_base_scale": 0.15,
         "line_height": 440,
-        "space_width": 100,    
-        "advance_normal": 203, 
-        "advance_square": 254, 
-        "advance_wide": 305,   
+        "space_width": 100,
+        "advance_normal": 203,
+        "advance_square": 254,
+        "advance_wide": 305,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Lowercase Regular": {
         "dir": "fonts/tezhnor_lowercase_regular",
@@ -220,13 +220,14 @@ FONT_PROFILES = {
         "bitmap_base_scale": 0.15,
         "line_height": 440,
         "space_width": 100,
-        "advance_normal": 203, 
-        "advance_square": 254, 
-        "advance_wide": 305, 
+        "advance_normal": 203,
+        "advance_square": 254,
+        "advance_wide": 305,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     },
     "Shigeyed Bold": {
         "dir": "fonts/shigeyed_bold",
@@ -238,10 +239,11 @@ FONT_PROFILES = {
         "advance_normal": 254,
         "advance_square": 254,
         "advance_wide": 254,
+        "advance_symbol": 203,
         "padding": 15,
         "bitmap_offset_x": 0,
         "bitmap_offset_y": 0,
-        "bitmap_base_char_spacing": 0
+        "bitmap_base_char_spacing": 16
     }
 }
 
