@@ -1199,18 +1199,24 @@ class Wordforge(QMainWindow):
         # --- TOP: Controls ---
         render_controls_layout = QHBoxLayout()
         
-        # Bitmap Font Selector
+        # Bitmap Font Selector (Stacked vertically)
+        font_layout = QVBoxLayout()
         self.render_font_dropdown = QComboBox()
         tezhnor_fonts = [k for k in FONT_PROFILES.keys() if "shigeyed" not in k.lower()]
         self.render_font_dropdown.addItems(tezhnor_fonts)
         self.render_font_dropdown.setCurrentText(CURRENT_FONT_KEY)
         self.render_font_dropdown.currentTextChanged.connect(self.change_font_profile)
         
-        render_controls_layout.addWidget(QLabel("Tezhnor Font:"))
-        render_controls_layout.addWidget(self.render_font_dropdown)
+        lbl_font = QLabel("Tezhnor Font:")
+        lbl_font.setStyleSheet(label_style) 
+        font_layout.addWidget(lbl_font)
+        font_layout.addWidget(self.render_font_dropdown)
+        
+        render_controls_layout.addLayout(font_layout)
         render_controls_layout.addSpacing(20)
         
         # Sliders
+        size_layout = QVBoxLayout()
         self.render_scale_label = QLabel("Size: 150%")
         self.render_scale_label.setStyleSheet(slider_label_style)
         self.render_scale_slider = QSlider(Qt.Horizontal)
@@ -1219,6 +1225,12 @@ class Wordforge(QMainWindow):
         self.render_scale_slider.setStyleSheet(slider_style)
         self.render_scale_slider.valueChanged.connect(self.update_render_settings)
         
+        size_layout.addWidget(self.render_scale_label)
+        size_layout.addWidget(self.render_scale_slider)
+        render_controls_layout.addLayout(size_layout)
+        render_controls_layout.addSpacing(15)
+        
+        lh_layout = QVBoxLayout()
         self.render_lh_label = QLabel("Line Height: 100%")
         self.render_lh_label.setStyleSheet(slider_label_style)
         self.render_lh_slider = QSlider(Qt.Horizontal)
@@ -1227,6 +1239,12 @@ class Wordforge(QMainWindow):
         self.render_lh_slider.setStyleSheet(slider_style)
         self.render_lh_slider.valueChanged.connect(self.update_render_settings)
         
+        lh_layout.addWidget(self.render_lh_label)
+        lh_layout.addWidget(self.render_lh_slider)
+        render_controls_layout.addLayout(lh_layout)
+        render_controls_layout.addSpacing(15)
+        
+        cs_layout = QVBoxLayout()
         self.render_cs_label = QLabel("Char Spacing: 0")
         self.render_cs_label.setStyleSheet(slider_label_style)
         self.render_cs_slider = QSlider(Qt.Horizontal)
@@ -1235,20 +1253,18 @@ class Wordforge(QMainWindow):
         self.render_cs_slider.setStyleSheet(slider_style)
         self.render_cs_slider.valueChanged.connect(self.update_render_settings)
         
-        render_controls_layout.addWidget(self.render_scale_label)
-        render_controls_layout.addWidget(self.render_scale_slider)
-        render_controls_layout.addSpacing(15)
-        render_controls_layout.addWidget(self.render_lh_label)
-        render_controls_layout.addWidget(self.render_lh_slider)
-        render_controls_layout.addSpacing(15)
-        render_controls_layout.addWidget(self.render_cs_label)
-        render_controls_layout.addWidget(self.render_cs_slider)
+        cs_layout.addWidget(self.render_cs_label)
+        cs_layout.addWidget(self.render_cs_slider)
+        render_controls_layout.addLayout(cs_layout)
         
         render_controls_layout.addStretch()
+        
+        # Export Button (Anchored to the bottom)
         self.btn_export_png = QPushButton("Render to Disk")
         self.btn_export_png.setStyleSheet("background-color: #2e7d32; color: white; font-weight: bold; padding: 6px 15px; border-radius: 4px;")
         self.btn_export_png.clicked.connect(self.export_render_to_png)
-        render_controls_layout.addWidget(self.btn_export_png)
+        
+        render_controls_layout.addWidget(self.btn_export_png, alignment=Qt.AlignBottom)
         
         render_layout.addLayout(render_controls_layout)
         
@@ -1262,7 +1278,7 @@ class Wordforge(QMainWindow):
         self.render_tezhnor_scroll = QScrollArea()
         self.render_tezhnor_scroll.setWidgetResizable(True)
         self.render_tezhnor_display = BitmapRenderer()
-        self.render_tezhnor_display.setMinimumSize(4000, 4000) # Massive canvas for scrolling
+        self.render_tezhnor_display.setMinimumSize(4000, 4000) 
         self.render_tezhnor_scroll.setWidget(self.render_tezhnor_display)
         
         render_tezhnor_layout.addWidget(self.render_tezhnor_scroll)
@@ -1277,16 +1293,16 @@ class Wordforge(QMainWindow):
         self.render_shigeyed_display = BitmapRenderer()
         self.render_shigeyed_display.setMinimumSize(4000, 4000)
         
-        # Lock it to the Shigeyed profile
-        self.render_shigeyed_display.font_dir = shig_prof["dir"]
-        self.render_shigeyed_display.base_scale = shig_prof["bitmap_base_scale"]
+        self.render_shigeyed_display.font_dir = FONT_PROFILES["Shigeyed Bold"]["dir"]
+        self.render_shigeyed_display.base_scale = FONT_PROFILES["Shigeyed Bold"]["bitmap_base_scale"]
         
         self.render_shigeyed_scroll.setWidget(self.render_shigeyed_display)
         
         render_shigeyed_layout.addWidget(self.render_shigeyed_scroll)
         self.render_subtabs.addTab(render_shigeyed_tab, "Shigeyed")
         
-        render_layout.addWidget(self.render_subtabs)
+        render_layout.addWidget(self.render_subtabs, stretch=1)
+        
         self.top_tabs.addTab(render_tab, "Render")
 
         # ==========================================
