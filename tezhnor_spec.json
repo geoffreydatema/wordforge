@@ -1,4 +1,18 @@
 {
+    "rules": [
+        "'ТС' must be written as 'Ц'.",
+        "'СТ' must be written as 'პ'.",
+        "'СК' must be written as 'Щ'.",
+        "'СВ' must be written as 'დ'.",
+        "'КС' must be written as 'ს'.",
+        "'КР' must be written as 'Ը'.",
+        "'КВ' must be written as 'Է'.",
+        "'ГР' must be written as 'რ'.",
+        "'ΔВ' must be written as 'ձ'.",
+        "Single vowel syllables are only allowed at the start of a word. Because vowel combinations are not allowed mid word, every other syllable will be multicharacter.",
+        "Double letters don't add any sound or phonetic modification to the word, and may not be used.",
+        "Vowels may not be combined. Many vowel combinations like 'ՋЭ' are too awkward to pronounce. While a word could be started with the sound of 'ИЭ', it must be spelled 'ИЬЭ' to clearly distinguish each syllable."
+    ],
     "lowercase": [
         "а",
         "э",

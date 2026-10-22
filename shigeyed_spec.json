@@ -1,4 +1,10 @@
 {
+    "rules": [
+        "There are no characters for a single vowel sound. ТЭЖНОР words beginning with a single vowel syllable can be approximated by starting the word with ЬА, ЬЭ, ЬО, ЬЯ, ЬИ, or ЬУ",
+        "Every syllable is C+V or C+VC+.",
+        "Many ТЭЖНОР vowels are not used and map to a ШИГЭЬЭΔ vowel.",
+        "Many ТЭЖНОР consonants are not used and map to a ШИГЭЬЭΔ vowel."
+    ],
     "vowels": [
         "А",
         "Э",
