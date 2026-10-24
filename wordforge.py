@@ -1735,7 +1735,6 @@ class Wordforge(QMainWindow):
             self.lower_typer_input.apply_block_formatting()
             self.lower_typer_input.blockSignals(False)
 
-        # Continue with standard Shigeyed translation...
         self.shigeyed_input.blockSignals(True)
         tokens = [t for t in re.split(SYMBOL_REGEX_PATTERN, tezhnor_text) if t]
         
@@ -1778,17 +1777,12 @@ class Wordforge(QMainWindow):
                     available_syls = SYLLABLES_BY_CONSONANT[char]
                     matched = False
                     
-                    for length in [4, 3, 2]:
+                    # GREEDY MATCHING: Maximize syllable length (4 -> 3 -> 2)
+                    for length in [3, 2]:
                         if cursor + length <= len(norm_word):
                             candidate = norm_word[cursor:cursor+length]
                             if candidate in available_syls:
-                                ends_in_consonant = candidate[-1] not in SHIGEYED_VOWELS
-                                
-                                if ends_in_consonant and cursor + length < len(norm_word):
-                                    next_char = norm_word[cursor + length]
-                                    if next_char in SHIGEYED_VOWELS:
-                                        continue 
-                                
+                                # Removed the "next_char is vowel" rejection logic!
                                 shigeyed_output.append(candidate)
                                 cursor += length
                                 matched = True
