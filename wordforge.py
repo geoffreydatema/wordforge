@@ -64,6 +64,7 @@ escaped_keys = [re.escape(k) for k in SORTED_ASCII_KEYS]
 SYMBOL_REGEX_PATTERN = f"(<---->|\\s+|{'|'.join(escaped_keys)})" if escaped_keys else "(<---->|\\s+)"
 TYPER_CHAR_TO_SYMBOL_NAME = ASCII_TO_SYMBOL.copy()
 CHAR_TO_FILENAME = TEZHNOR_TO_CODE.copy()
+CHAR_TO_FILENAME.update(TEZHNOR_SPEC.get("lowercase_to_code", {}))
 RAW_PIXMAP_CACHE = {}
 SCALED_PIXMAP_CACHE = {}
 
@@ -889,14 +890,15 @@ class Wordforge(QMainWindow):
         def_layout = QVBoxLayout(def_tab)
         
         self.def_table = QTableWidget()
-        self.def_table.setColumnCount(4)
-        self.def_table.setHorizontalHeaderLabels(["Character", "Unicode", "Romanization", "Notes"])
+        self.def_table.setColumnCount(5)
+        self.def_table.setHorizontalHeaderLabels(["Uppercase", "Lowercase", "Unicode", "Romanization", "Notes"])
         
         def_header = self.def_table.horizontalHeader()
         def_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
         def_header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         def_header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
-        def_header.setSectionResizeMode(3, QHeaderView.Stretch)
+        def_header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        def_header.setSectionResizeMode(4, QHeaderView.Stretch)
         
         self.def_table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.def_table.setSelectionBehavior(QTableWidget.SelectRows)
@@ -907,34 +909,53 @@ class Wordforge(QMainWindow):
         self.def_table.setRowCount(len(TEZHNOR_TO_CODE))
         row_idx = 0
         
+        # Uppercase Font Profile
         definition_font = "Uppercase Bold" 
         current_font_dir = FONT_PROFILES[definition_font]["dir"]
         base_scale = FONT_PROFILES[definition_font]["bitmap_base_scale"]
         table_icon_scale = base_scale * 0.65 
+
+        # Lowercase Font Profile
+        lower_font = "Lowercase Bold"
+        lower_font_dir = FONT_PROFILES[lower_font]["dir"]
+        lower_base_scale = FONT_PROFILES[lower_font]["bitmap_base_scale"]
+        lower_icon_scale = lower_base_scale * 0.4 
         
         for char, code in TEZHNOR_TO_CODE.items():
+            # Column 0: Uppercase Bitmap
             lbl = QLabel()
             pixmap = get_shared_pixmap(char, current_font_dir, table_icon_scale)
             if pixmap: lbl.setPixmap(pixmap)
             lbl.setAlignment(Qt.AlignCenter)
             
+            # Column 1: Lowercase Bitmap
+            lower_lbl = QLabel()
+            lower_char = TEZHNOR_LOWERCASE_MAP.get(char, char.lower())
+            lower_pixmap = get_shared_pixmap(lower_char, lower_font_dir, lower_icon_scale)
+            if lower_pixmap: lower_lbl.setPixmap(lower_pixmap)
+            lower_lbl.setAlignment(Qt.AlignCenter)
+            
+            # Column 2: Unicode
             char_item = QTableWidgetItem(char)
             char_item.setTextAlignment(Qt.AlignCenter)
             char_item.setFont(QFont("Arial", 16))
             
+            # Column 3: Romanization
             code_item = QTableWidgetItem(code)
             code_item.setTextAlignment(Qt.AlignCenter)
             code_item.setFont(QFont("Arial", 12))
             
+            # Column 4: Notes
             notes_text = TEZHNOR_TO_PRONUNCIATION.get(char, "")
             notes_item = QTableWidgetItem(notes_text)
             notes_item.setFont(QFont("Arial", 11))
             notes_item.setForeground(QColor("#bbb"))
             
             self.def_table.setCellWidget(row_idx, 0, lbl)
-            self.def_table.setItem(row_idx, 1, char_item)
-            self.def_table.setItem(row_idx, 2, code_item)
-            self.def_table.setItem(row_idx, 3, notes_item)
+            self.def_table.setCellWidget(row_idx, 1, lower_lbl)
+            self.def_table.setItem(row_idx, 2, char_item)
+            self.def_table.setItem(row_idx, 3, code_item)
+            self.def_table.setItem(row_idx, 4, notes_item)
             row_idx += 1
             
         self.def_table.setSortingEnabled(True)
