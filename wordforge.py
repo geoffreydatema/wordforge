@@ -444,9 +444,9 @@ class RichLineEdit(QTextEdit):
         
         self.setStyleSheet("""
             QTextEdit {
-                font-size: 14pt; 
-                font-weight: bold;
-                padding-top: 12px; 
+                font-family: 'Noto Sans';  /* Force Noto Sans at the class level */
+                font-size: 10pt;           /* Slightly larger for conlang clarity */
+                padding-top: 15px;         /* Increased to push Noto Sans down into the center */
                 padding-left: 5px;
                 padding-right: 5px;
                 border: 1px solid #555; 
@@ -807,16 +807,18 @@ class Wordforge(QMainWindow):
         self.input_conlang.returnPressed.connect(self.add_entry)
         self.input_conlang.setPlaceholderText("New Word")
         
+        # English Def Field
         self.input_english = QLineEdit()
         self.input_english.setPlaceholderText("English Definition")
         self.input_english.setFixedHeight(50)
-        self.input_english.setStyleSheet("font-size: 14pt; padding: 5px;")
+        self.input_english.setStyleSheet("font-size: 11pt; padding: 5px;")
         self.input_english.returnPressed.connect(self.add_entry)
 
+        # Notes Field
         self.input_notes = QLineEdit()
         self.input_notes.setPlaceholderText("Notes")
         self.input_notes.setFixedHeight(50)
-        self.input_notes.setStyleSheet("font-size: 14pt; padding: 5px;")
+        self.input_notes.setStyleSheet("font-size: 11pt; padding: 5px;")
         self.input_notes.returnPressed.connect(self.add_entry)
         
         form_layout.addWidget(QLabel("Word:"), 0, 0)
@@ -1539,14 +1541,17 @@ class Wordforge(QMainWindow):
             label = QLabel(lore_word_raw)
             label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
             label.setMinimumWidth(150)
+            
+            label.setFont(QFont("Noto Sans", 10)) 
+            
             table.setCellWidget(r, 0, label)
             
             english_item = QTableWidgetItem(item.get('english', ''))
-            english_item.setFont(QFont("Arial", 12))
+            english_item.setFont(QFont("Arial", 11))
             table.setItem(r, 1, english_item)
             
             notes_item = QTableWidgetItem(item.get('notes', ''))
-            notes_item.setFont(QFont("Arial", 12))
+            notes_item.setFont(QFont("Arial", 11))
             table.setItem(r, 2, notes_item)
 
             del_btn = QPushButton("x")
