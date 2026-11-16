@@ -36,7 +36,7 @@
             "notes": "3rd person feminine"
         },
         {
-            "conlang": "პО",
+            "conlang": "ΨО",
             "english": "it",
             "notes": "3rd person neuter / object"
         },
@@ -56,7 +56,7 @@
             "notes": "distal entity pointer"
         },
         {
-            "conlang": "დЭპ",
+            "conlang": "WЭΨ",
             "english": "here",
             "notes": "proximal location anchor"
         },
@@ -191,7 +191,7 @@
             "notes": ""
         },
         {
-            "conlang": "დЭНТ",
+            "conlang": "WЭНТ",
             "english": "about",
             "notes": ""
         },
@@ -261,7 +261,7 @@
             "notes": "conjunction (alternative)"
         },
         {
-            "conlang": "ВРУპ",
+            "conlang": "ВРУΨ",
             "english": "however",
             "notes": "conjunction (adversative)"
         },
@@ -321,7 +321,7 @@
             "notes": "exhaustive scope"
         },
         {
-            "conlang": "ХАპ",
+            "conlang": "ХАΨ",
             "english": "any",
             "notes": "arbitrary scope"
         },
@@ -361,7 +361,7 @@
             "notes": "negative scalar operator"
         },
         {
-            "conlang": "სА",
+            "conlang": "GА",
             "english": "than",
             "notes": ""
         },
@@ -381,7 +381,7 @@
             "notes": ""
         },
         {
-            "conlang": "სАРА",
+            "conlang": "GАРА",
             "english": "enough",
             "notes": "threshold quantifier"
         },
@@ -483,7 +483,7 @@
             "notes": "any cat like animal"
         },
         {
-            "conlang": "РАპЭТ",
+            "conlang": "РАΨЭТ",
             "english": "plant",
             "notes": ""
         },
@@ -493,7 +493,7 @@
             "notes": "the name of something or someone"
         },
         {
-            "conlang": "УპВАН",
+            "conlang": "УΨВАН",
             "english": "user",
             "notes": ""
         },
@@ -518,7 +518,7 @@
             "notes": "a time of day, specified numerically to any level of precision"
         },
         {
-            "conlang": "ΔАდАТ",
+            "conlang": "ΔАWАТ",
             "english": "date",
             "notes": "the full date including year, month, and day"
         },
@@ -538,7 +538,7 @@
             "notes": "an arbitrary physical object"
         },
         {
-            "conlang": "МАპРОΔ",
+            "conlang": "МАΨРОΔ",
             "english": "matter/affair",
             "notes": ""
         },
@@ -553,12 +553,12 @@
             "notes": ""
         },
         {
-            "conlang": "ХJპА",
+            "conlang": "ХJΨА",
             "english": "fast/quick",
             "notes": "a fast action or event"
         },
         {
-            "conlang": "დUЧ",
+            "conlang": "WUЧ",
             "english": "bad",
             "notes": ""
         },
@@ -583,7 +583,7 @@
             "notes": "a sentient humanoid"
         },
         {
-            "conlang": "VУპАРА",
+            "conlang": "VУΨАРА",
             "english": "standard",
             "notes": "the typical way something is"
         },
@@ -613,7 +613,7 @@
             "notes": ""
         },
         {
-            "conlang": "პРΣК",
+            "conlang": "ΨРΣК",
             "english": "show",
             "notes": "to show something"
         },
@@ -668,12 +668,12 @@
             "notes": ""
         },
         {
-            "conlang": "პУТВ",
+            "conlang": "ΨУТВ",
             "english": "tree",
             "notes": ""
         },
         {
-            "conlang": "დИН",
+            "conlang": "WИН",
             "english": "pick/choose",
             "notes": ""
         },
@@ -788,7 +788,7 @@
             "notes": "build, assemble, or construct in a general sense"
         },
         {
-            "conlang": "სАТ",
+            "conlang": "GАТ",
             "english": "see",
             "notes": ""
         },
@@ -908,7 +908,7 @@
             "notes": ""
         },
         {
-            "conlang": "დЭН",
+            "conlang": "WЭН",
             "english": "help",
             "notes": ""
         },
@@ -948,7 +948,7 @@
             "notes": "to cause to move around an axis"
         },
         {
-            "conlang": "სЕΔА",
+            "conlang": "GЕΔА",
             "english": "cause",
             "notes": "to make something happen"
         },
@@ -1063,7 +1063,7 @@
             "notes": "light in weight, not heavy"
         },
         {
-            "conlang": "პАВპУЬАР",
+            "conlang": "ΨАВΨУЬАР",
             "english": "light/brightness",
             "notes": "the presence of light, a bright area, not dark"
         },
@@ -1148,7 +1148,7 @@
             "notes": "the body part"
         },
         {
-            "conlang": "ZИპ",
+            "conlang": "ZИΨ",
             "english": "stand",
             "notes": "to stand on one's legs"
         },
@@ -1163,7 +1163,7 @@
             "notes": ""
         },
         {
-            "conlang": "КАპЕЬУ",
+            "conlang": "КАΨЕЬУ",
             "english": "page",
             "notes": "a paper page of a book"
         },
@@ -1248,7 +1248,7 @@
             "notes": ""
         },
         {
-            "conlang": "პУЩΣ",
+            "conlang": "ΨУЩΣ",
             "english": "thought",
             "notes": ""
         },
@@ -1263,7 +1263,7 @@
             "notes": ""
         },
         {
-            "conlang": "КАსА",
+            "conlang": "КАGА",
             "english": "hard/difficult",
             "notes": ""
         },
@@ -1278,7 +1278,7 @@
             "notes": ""
         },
         {
-            "conlang": "დУТ",
+            "conlang": "WУТ",
             "english": "left",
             "notes": "the direction opposite of right"
         },
@@ -1338,7 +1338,7 @@
             "notes": ""
         },
         {
-            "conlang": "МИდИΔИ",
+            "conlang": "МИWИΔИ",
             "english": "seem/appear/look like",
             "notes": ""
         },
@@ -1368,7 +1368,7 @@
             "notes": ""
         },
         {
-            "conlang": "ВАПАპ",
+            "conlang": "ВАПАΨ",
             "english": "paper",
             "notes": ""
         },
@@ -1408,7 +1408,7 @@
             "notes": "next in sequence from first"
         },
         {
-            "conlang": "სАПА",
+            "conlang": "GАПА",
             "english": "car/personal vehicle",
             "notes": ""
         },
@@ -1433,7 +1433,7 @@
             "notes": ""
         },
         {
-            "conlang": "ZЮდО",
+            "conlang": "ZЮWО",
             "english": "science",
             "notes": ""
         },
@@ -1453,7 +1453,7 @@
             "notes": ""
         },
         {
-            "conlang": "ԸАდИН",
+            "conlang": "ԸАWИН",
             "english": "idea",
             "notes": ""
         },
@@ -1478,12 +1478,12 @@
             "notes": ""
         },
         {
-            "conlang": "ԸОპ",
+            "conlang": "ԸОΨ",
             "english": "base/foundation",
             "notes": "the bottom part or base of an object"
         },
         {
-            "conlang": "НЭდЭΔРА",
+            "conlang": "НЭWЭΔРА",
             "english": "hear",
             "notes": ""
         },
@@ -1543,7 +1543,7 @@
             "notes": "ordinary, uninteresting"
         },
         {
-            "conlang": "ЭპРАН",
+            "conlang": "ЭΨРАН",
             "english": "usual",
             "notes": ""
         },
@@ -1603,7 +1603,7 @@
             "notes": ""
         },
         {
-            "conlang": "FЭპРЭ",
+            "conlang": "FЭΨРЭ",
             "english": "direct/point",
             "notes": "to imply a direction"
         },
@@ -1623,7 +1623,7 @@
             "notes": ""
         },
         {
-            "conlang": "პРУВ",
+            "conlang": "ΨРУВ",
             "english": "door",
             "notes": ""
         },
@@ -1653,7 +1653,7 @@
             "notes": ""
         },
         {
-            "conlang": "პАН",
+            "conlang": "ΨАН",
             "english": "wind",
             "notes": "the natural movement of air outdoors"
         },
@@ -2153,7 +2153,7 @@
             "notes": "the mathematical operation"
         },
         {
-            "conlang": "ΛЭდ",
+            "conlang": "ΛЭW",
             "english": "stay",
             "notes": ""
         },
@@ -2173,7 +2173,7 @@
             "notes": "to physically move something using great power"
         },
         {
-            "conlang": "РИდЭТ",
+            "conlang": "РИWЭТ",
             "english": "force",
             "notes": "to force someone or something to do your bidding"
         },
@@ -2188,7 +2188,7 @@
             "notes": ""
         },
         {
-            "conlang": "VАНდЭС",
+            "conlang": "VАНWЭС",
             "english": "surface",
             "notes": "the surface of an object"
         },
@@ -2558,7 +2558,7 @@
             "notes": "any physical establishment where you can buy stuff"
         },
         {
-            "conlang": "ЬΣდЭԵ",
+            "conlang": "ЬΣWЭԵ",
             "english": "summer",
             "notes": ""
         },
@@ -2678,7 +2678,7 @@
             "notes": ""
         },
         {
-            "conlang": "ԵИპ",
+            "conlang": "ԵИΨ",
             "english": "bright",
             "notes": "describing something that is illuminated"
         },
@@ -2783,7 +2783,7 @@
             "notes": "to raise something up"
         },
         {
-            "conlang": "დУԸЭ",
+            "conlang": "WУԸЭ",
             "english": "solve",
             "notes": ""
         },
@@ -2848,7 +2848,7 @@
             "notes": ""
         },
         {
-            "conlang": "ЧИპ",
+            "conlang": "ЧИΨ",
             "english": "bit/small amount",
             "notes": ""
         },
@@ -2863,7 +2863,7 @@
             "notes": ""
         },
         {
-            "conlang": "МЭდՋ",
+            "conlang": "МЭWՋ",
             "english": "sand",
             "notes": ""
         },
@@ -2943,7 +2943,7 @@
             "notes": ""
         },
         {
-            "conlang": "პЭКЭЖ",
+            "conlang": "ΨЭКЭЖ",
             "english": "broken",
             "notes": ""
         },
@@ -3048,7 +3048,7 @@
             "notes": "to cool or become colder"
         },
         {
-            "conlang": "НΣსАΔ",
+            "conlang": "НΣGАΔ",
             "english": "design",
             "notes": "any shapes, pattern, or illustration, typically artistic in nature"
         },
@@ -3098,7 +3098,7 @@
             "notes": ""
         },
         {
-            "conlang": "ХUΔდИ",
+            "conlang": "ХUΔWИ",
             "english": "receive",
             "notes": ""
         },
@@ -3278,7 +3278,7 @@
             "notes": ""
         },
         {
-            "conlang": "РЭსТЭВА",
+            "conlang": "РЭGТЭВА",
             "english": "fair",
             "notes": ""
         },
@@ -3453,7 +3453,7 @@
             "notes": ""
         },
         {
-            "conlang": "პОШОС",
+            "conlang": "ΨОШОС",
             "english": "chair",
             "notes": ""
         },
@@ -3463,7 +3463,7 @@
             "notes": ""
         },
         {
-            "conlang": "პАКА",
+            "conlang": "ΨАКА",
             "english": "muffin",
             "notes": ""
         },
@@ -3643,7 +3643,7 @@
             "notes": ""
         },
         {
-            "conlang": "დАТЬЭТ",
+            "conlang": "WАТЬЭТ",
             "english": "clock/timepiece/chronometer",
             "notes": ""
         },
@@ -3758,7 +3758,7 @@
             "notes": ""
         },
         {
-            "conlang": "QЭპРА",
+            "conlang": "QЭΨРА",
             "english": "swim",
             "notes": ""
         },
@@ -3773,7 +3773,7 @@
             "notes": ""
         },
         {
-            "conlang": "დИԵ",
+            "conlang": "WИԵ",
             "english": "boot",
             "notes": ""
         },
@@ -3788,7 +3788,7 @@
             "notes": ""
         },
         {
-            "conlang": "ЬАდЭР",
+            "conlang": "ЬАWЭР",
             "english": "spread",
             "notes": ""
         },
@@ -3803,7 +3803,7 @@
             "notes": "an encampment"
         },
         {
-            "conlang": "ПАსЭТ",
+            "conlang": "ПАGЭТ",
             "english": "invent",
             "notes": ""
         },
@@ -3893,7 +3893,7 @@
             "notes": ""
         },
         {
-            "conlang": "ВΣԵUპ",
+            "conlang": "ВΣԵUΨ",
             "english": "require",
             "notes": ""
         },
@@ -4098,7 +4098,7 @@
             "notes": ""
         },
         {
-            "conlang": "დИС",
+            "conlang": "WИС",
             "english": "win",
             "notes": ""
         },
@@ -4148,7 +4148,7 @@
             "notes": "to smell"
         },
         {
-            "conlang": "ΘЭპИВАН",
+            "conlang": "ΘЭΨИВАН",
             "english": "valley",
             "notes": ""
         },
@@ -4173,7 +4173,7 @@
             "notes": ""
         },
         {
-            "conlang": "ЭსЬЕ",
+            "conlang": "ЭGЬЕ",
             "english": "arrive",
             "notes": ""
         },
@@ -4318,7 +4318,7 @@
             "notes": "to support someone or something"
         },
         {
-            "conlang": "ЭდИЬЭТ",
+            "conlang": "ЭWИЬЭТ",
             "english": "speech",
             "notes": "a speech given by someone"
         },
@@ -4400,12 +4400,12 @@
             "notes": "enthusiastically yes, absolutely yes"
         },
         {
-            "conlang": "УპВЭТЭZНА",
+            "conlang": "УΨВЭТЭZНА",
             "english": "username",
             "notes": "an identifier used on a digital system, often not a person's real name"
         },
         {
-            "conlang": "ԸОНОდАТ",
+            "conlang": "ԸОНОWАТ",
             "english": "datetime",
             "notes": "a full timestamp including the date and time"
         },
@@ -4420,7 +4420,7 @@
             "notes": ""
         },
         {
-            "conlang": "დЭრЕРТУНА",
+            "conlang": "WЭრЕРТУНА",
             "english": "it is what it is",
             "notes": "an expression meaning sarcastically, here is your fortune or such is life"
         },
@@ -4445,7 +4445,7 @@
             "notes": "physical controls for using a digital system"
         },
         {
-            "conlang": "РИЬЭპОВ",
+            "conlang": "РИЬЭΨОВ",
             "english": "rifle",
             "notes": "a firearm with a long barrel"
         },
@@ -4475,7 +4475,7 @@
             "notes": ""
         },
         {
-            "conlang": "ԵАՑАპОНОВ",
+            "conlang": "ԵАՑАΨОНОВ",
             "english": "constitution",
             "notes": "physical constitution/resiliance"
         },
@@ -4515,7 +4515,7 @@
             "notes": ""
         },
         {
-            "conlang": "ОპОМАΔ",
+            "conlang": "ОΨОМАΔ",
             "english": "pose",
             "notes": "the orientation of body and limbs"
         },
@@ -4530,17 +4530,17 @@
             "notes": ""
         },
         {
-            "conlang": "პРЭШ",
+            "conlang": "ΨРЭШ",
             "english": "field",
             "notes": "a large, flat landmass/a meadow"
         },
         {
-            "conlang": "ԸЭპОVНАΔ",
+            "conlang": "ԸЭΨОVНАΔ",
             "english": "void/nothingness",
             "notes": ""
         },
         {
-            "conlang": "НЭდЭРКА",
+            "conlang": "НЭWЭРКА",
             "english": "course/training",
             "notes": ""
         },
@@ -4585,7 +4585,7 @@
             "notes": ""
         },
         {
-            "conlang": "ВАРЭპЭ",
+            "conlang": "ВАРЭΨЭ",
             "english": "settle",
             "notes": "to lie down and get comfortable"
         },
@@ -4615,7 +4615,7 @@
             "notes": "a cell of a biological organism"
         },
         {
-            "conlang": "რЭპАВРΣΔ",
+            "conlang": "რЭΨАВРΣΔ",
             "english": "race",
             "notes": "a race within a particular species"
         },
@@ -4640,7 +4640,7 @@
             "notes": ""
         },
         {
-            "conlang": "ԸЭТЭპАН",
+            "conlang": "ԸЭТЭΨАН",
             "english": "consider",
             "notes": ""
         },
@@ -4660,7 +4660,7 @@
             "notes": ""
         },
         {
-            "conlang": "ПЭΛМЭΔპ",
+            "conlang": "ПЭΛМЭΔΨ",
             "english": "sense/perceive",
             "notes": "to sense or perceive something"
         },
@@ -4670,7 +4670,7 @@
             "notes": ""
         },
         {
-            "conlang": "ЦОРОპЭН",
+            "conlang": "ЦОРОΨЭН",
             "english": "dictionary",
             "notes": ""
         },
@@ -4720,7 +4720,7 @@
             "notes": ""
         },
         {
-            "conlang": "НЕНОსТРЭ",
+            "conlang": "НЕНОGТРЭ",
             "english": "practice",
             "notes": "the established method of doing something"
         },
@@ -4730,7 +4730,7 @@
             "notes": "search for or find in a physical place"
         },
         {
-            "conlang": "პОРИЬАΔНΣ",
+            "conlang": "ΨОРИЬАΔНΣ",
             "english": "character",
             "notes": "the moral alignment of someone's personality"
         },
@@ -4820,7 +4820,7 @@
             "notes": "a character suffix of a word"
         },
         {
-            "conlang": "პОЧ",
+            "conlang": "ΨОЧ",
             "english": "mass",
             "notes": "the mass of an object"
         },
@@ -4885,7 +4885,7 @@
             "notes": "the fact something was added"
         },
         {
-            "conlang": "QЯდΣΔАΔЬЭ",
+            "conlang": "QЯWΣΔАΔЬЭ",
             "english": "quotient",
             "notes": ""
         }

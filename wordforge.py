@@ -13,9 +13,9 @@ from PySide6.QtCore import Qt, QObject, QEvent, Signal
 
 # ===============================================================
 # 
-# lower case:   аэջоμяиეεуδюбвгдzкλмнпрстvхqьբhեжчшθdфζцპպთსըէრც
-# upper case:   АЭՋОUЯИJЕУΣЮБВГΔZКΛМНПРСТVХQЬFՑԵЖЧШΘDФΞЦპЩდსԸԷრձ
-
+# upper case:   АЭՋОUЯИJЕУΣЮБВГΔZЬКΛМНПРСVХТՑԵFQЖЦЧШΞΘDФΨЩWGԸԷრձ
+# lower case:   аэջоμяиეεуδюбвгдzькλмнпрсvхтhեբqжцчшξθdфψպwgըէრც
+# 
 # ===============================================================
 
 def load_spec():
@@ -261,7 +261,7 @@ CHAR_WIDTHS = {
     CODE_TO_TEZHNOR["sk"]: "advance_wide",
     CODE_TO_TEZHNOR["ts"]: "advance_square",
     CODE_TO_TEZHNOR["kv"]: "advance_square",
-    CODE_TO_TEZHNOR["sv"]: "advance_wide",
+    CODE_TO_TEZHNOR["sv"]: "advance_square",
     CODE_TO_TEZHNOR["gr"]: "advance_wide",
 }
 
